@@ -1,0 +1,1648 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quest Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#F3F6FA; --surface:#FFFFFF; --surface-2:#E9EEF5; --ink:#18223D; --muted:#5B6782; --line:#D5DDE8;
+  --accent:#0E8A8C; --accent-ink:#FFFFFF; --accent-soft:#D5F0EF;
+  --gold:#E9A23B; --gold-soft:#FCEFD8;
+  --danger:#D6452A; --danger-soft:#FBE2DC;
+  --good:#2E9E5B; --good-soft:#DDF3E5;
+  --s-social:#B5542C; --s-arts:#8A4FD1; --s-music:#D0417E; --s-math:#2563C9; --s-science:#1C8F5A; --s-french:#C28A12; --s-home:#4F6480; --s-event:#6B7690;
+  --shadow:0 1px 2px rgba(24,34,61,.06),0 6px 20px rgba(24,34,61,.07);
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-inline:16px;padding-block:20px 60px}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:20px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+.label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Header */
+.top{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end}
+.top h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.02em}
+.top h1 span{color:var(--accent)}
+.sub{color:var(--muted);margin-top:4px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-weight:600;font-size:14px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.small{padding:5px 10px;font-size:13px}
+
+/* Progress counts */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stats-row .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:flex;align-items:baseline;gap:8px}
+.stats-row .stat b{font-family:var(--mono);font-size:24px;line-height:1}
+.stats-row .stat span{font-size:13.5px;color:var(--muted);font-weight:600}
+.stats-row .stat.warn b{color:var(--danger)}
+/* Rank panel (unused) */
+.rank{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:var(--ink);color:var(--bg);border-radius:18px;padding:18px 22px;position:relative;overflow:hidden}
+.rank::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 47px,rgba(255,255,255,.05) 47px 48px),repeating-linear-gradient(0deg,transparent 0 47px,rgba(255,255,255,.05) 47px 48px);pointer-events:none}
+.medal{width:64px;height:64px;border-radius:50%;background:var(--gold);color:#2B1B00;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:26px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+.rank-name{font-family:var(--display);font-size:24px;font-weight:800}
+.rank .label{color:inherit;opacity:.7}
+.xpbar{height:12px;border-radius:99px;background:rgba(255,255,255,.14);margin-top:8px;overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#FFD98A);border-radius:99px;transition:width .6s ease}
+.xptext{font-size:13px;opacity:.8;margin-top:6px}
+.stats{display:flex;gap:22px;position:relative;z-index:1}
+.stat{text-align:center}
+.stat b{display:block;font-family:var(--mono);font-size:26px;line-height:1.1}
+.stat span{font-size:12px;opacity:.75}
+.stat.warn b{color:#FF9B82}
+
+/* Next up */
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ncard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left;display:grid;gap:6px;box-shadow:var(--shadow);border-top:4px solid var(--c,var(--accent))}
+.ncard:hover{transform:translateY(-2px);transition:transform .15s}
+.ncard h3{font-size:17px}
+.ncard .when{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.count{font-family:var(--mono);font-weight:700;font-size:12px;padding:3px 8px;border-radius:99px;background:var(--surface-2);color:var(--ink);white-space:nowrap}
+.count.hot{background:var(--danger-soft);color:var(--danger)}
+.count.soon{background:var(--gold-soft);color:var(--ink)}
+.count.ok{background:var(--good-soft);color:var(--good)}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:12px;width:max-content;max-width:100%;overflow-x:auto}
+.tab{border:0;background:transparent;padding:8px 16px;border-radius:9px;font-weight:600;color:var(--muted);white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+
+/* Calendar */
+.cal-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.cal-head h2{font-size:22px}
+.cal-nav{display:flex;gap:6px}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.dow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding:4px 0}
+.day{min-height:96px;border:1px solid var(--line);border-radius:10px;padding:5px;background:var(--surface);text-align:left;display:flex;flex-direction:column;gap:3px;min-width:0}
+.day.out{opacity:.4}
+.day.today{border:2px solid var(--accent);background:var(--accent-soft)}
+.day.sel{outline:2px solid var(--gold);outline-offset:1px}
+.day .num{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--muted)}
+.day.today .num{color:var(--accent)}
+.chip{display:block;font-size:11.5px;font-weight:600;line-height:1.25;padding:3px 6px;border-radius:6px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--ink);border-left:3px solid var(--c);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.done{text-decoration:line-through;opacity:.55}
+.chip.event{background:transparent;border:1px dashed var(--c);border-left-width:1px}
+.chip.late{background:var(--danger-soft);border-left-color:var(--danger)}
+.more{font-size:11px;color:var(--muted);font-weight:600}
+.dots{display:none;gap:3px;flex-wrap:wrap}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+
+.side h3{font-size:18px;margin-bottom:10px}
+.items{display:grid;gap:8px}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:left;width:100%}
+.item:hover{border-color:var(--c)}
+.item .sw{width:10px;align-self:stretch;border-radius:4px;background:var(--c)}
+.item .t{font-weight:700;line-height:1.25}
+.item .m{font-size:12.5px;color:var(--muted)}
+.item.done .t{text-decoration:line-through;color:var(--muted)}
+.item.event{border-style:dashed}
+.empty{color:var(--muted);font-size:14px;padding:8px 2px}
+
+/* List view */
+.groups{display:grid;gap:22px}
+.group h3{font-size:16px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.group h3 .n{font-family:var(--mono);font-size:12px;background:var(--surface-2);padding:1px 8px;border-radius:99px}
+.group.late h3{color:var(--danger)}
+
+/* Badges */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.badge{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:16px;display:grid;gap:6px;justify-items:start}
+.badge .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px;background:var(--surface-2);color:var(--muted)}
+.badge.on .ico{background:var(--gold);color:#2B1B00}
+.badge.off{opacity:.6}
+.badge h4{margin:0;font-family:var(--display);font-size:16px}
+.badge p{margin:0;font-size:13px;color:var(--muted)}
+
+/* Modal */
+dialog{border:0;padding:0;border-radius:18px;background:var(--surface);color:var(--ink);width:min(640px,calc(100vw - 32px));max-height:calc(100vh - 48px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(10,14,28,.55)}
+.m-head{padding:20px 22px 14px;border-bottom:1px solid var(--line);border-top:6px solid var(--c,var(--accent));display:grid;gap:8px;position:relative}
+.m-head h2{font-size:24px;padding-right:36px}
+.close{position:absolute;right:14px;top:14px;border:0;background:var(--surface-2);width:34px;height:34px;border-radius:50%;font-size:18px;line-height:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--surface-2)}
+.tag.subj{background:color-mix(in srgb,var(--c) 18%,transparent)}
+.tag.xp{background:var(--gold-soft)}
+.m-body{padding:18px 22px;display:grid;gap:18px;overflow:auto}
+.m-body p{margin:0}
+.steps{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.steps label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;background:var(--surface-2);cursor:pointer}
+.steps input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.steps label.ck span{text-decoration:line-through;color:var(--muted)}
+.minibar{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.minibar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.links{display:grid;gap:8px}
+.link{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600}
+.link:hover{border-color:var(--accent);background:var(--accent-soft)}
+.link .kind{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:3px 6px;border-radius:6px;background:var(--surface-2);color:var(--muted);min-width:44px;text-align:center}
+.link .arrow{margin-left:auto;color:var(--muted)}
+.link.study{background:var(--gold-soft);border-color:var(--gold)}
+.link.study .kind{background:var(--gold);color:#2B1B00}
+.rubric{display:grid;gap:6px}
+.rubric div{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.note{font-size:13px;color:var(--muted);background:var(--surface-2);padding:10px 12px;border-radius:10px}
+.m-foot{padding:14px 22px 20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.m-foot .row{display:flex;gap:8px;flex-wrap:wrap}
+.donebox{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--good-soft);color:var(--ink);font-weight:600}
+.donebox b{color:var(--good)}
+.btn.good{background:var(--good);border-color:var(--good);color:#fff}
+
+/* Form */
+form.add{display:grid;gap:12px}
+form.add label{display:grid;gap:4px;font-size:13px;font-weight:600}
+form.add input,form.add select,form.add textarea{font:inherit;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* Toast + confetti */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
+.foot{font-size:12.5px;color:var(--muted);text-align:center}
+
+@media (max-width:900px){
+  .cal-layout{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .top{grid-template-columns:1fr}
+  .toolbar{justify-content:flex-start}
+  .rank{grid-template-columns:auto 1fr;padding:16px}
+  .stats{grid-column:1/-1;justify-content:space-around}
+  .day{min-height:54px;padding:4px}
+  .day .chip,.day .more{display:none}
+  .dots{display:flex}
+  .two{grid-template-columns:1fr}
+  .grid{gap:3px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.mission{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.mission summary{list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;cursor:pointer;border-radius:12px}
+.mission summary::-webkit-details-marker{display:none}
+.mission summary:hover{background:var(--surface-2)}
+.mission summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.mission .chev{transition:transform .2s;color:var(--muted);font-size:13px}
+.mission[open] .chev{transform:rotate(90deg)}
+.mission-bar{flex-basis:100%;height:6px}
+.mission .steps{padding:0 12px 12px}
+.refreshed{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:12.5px;font-weight:600;color:var(--muted);font-family:var(--mono)}
+.refreshed::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--good)}
+
+/* ---------- Work-in-progress button + Papa Review ---------- */
+.wip{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;border-radius:14px;background:var(--ink);color:var(--bg);text-decoration:none}
+.wip:hover{outline:3px solid var(--gold)}
+.wip-tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#2B1B00;padding:4px 8px;border-radius:6px}
+.wip-name{font-weight:700}
+.wip-go{font-weight:700;color:var(--gold)}
+.link.review{background:var(--accent-soft);border-color:var(--accent)}
+.link.review .kind{background:var(--accent);color:var(--accent-ink)}
+#reviewApp .wrap{max-width:900px}
+.rv-head{display:grid;gap:6px}
+.rv-head h1{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.02em}
+.rv-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.rv-crit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:4px}
+.rv-crit .lv{font-family:var(--mono);font-weight:700;font-size:14px}
+.rv-crit .lv b{color:var(--accent)}
+.rv-prio{background:var(--gold-soft);border-radius:14px;padding:16px 18px}
+.rv-prio ol{margin:8px 0 0;padding-left:22px;display:grid;gap:6px}
+.rv-slide{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px}
+.rv-slide.focus{border-color:var(--danger);box-shadow:0 0 0 3px var(--danger-soft)}
+.rv-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.rv-num{width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-family:var(--mono);font-weight:700;flex:none}
+.rv-top h3{font-size:19px;flex:1;min-width:0}
+.rv-flag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--danger-soft);color:var(--danger)}
+.rv-good{background:var(--good-soft);border-radius:10px;padding:10px 12px;font-size:14.5px}
+.rv-good b{color:var(--good)}
+.rv-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rv-list label{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:10px;background:var(--surface-2);cursor:pointer;font-size:14.5px}
+.rv-list input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.rv-list label.ck span.txt{text-decoration:line-through;color:var(--muted)}
+.rv-crit-tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted);margin-left:6px;white-space:nowrap}
+.rv-fact{font-size:11px;font-weight:800;color:var(--danger);margin-right:4px}
+.rv-ask{font-size:14.5px;border-left:3px solid var(--gold);padding:4px 0 4px 12px;color:var(--ink)}
+.rv-ask b{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.rv-progress{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.rv-progress i{display:block;height:100%;background:var(--accent);transition:width .3s}
+
+/* ---------- Online sync pill ---------- */
+.sync{font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:99px;background:var(--surface-2);color:var(--muted);align-self:center;white-space:nowrap}
+.sync[data-s="online"]{background:var(--good-soft);color:var(--good)}
+.sync[data-s="saving"]{background:var(--gold-soft);color:var(--ink)}
+.sync[data-s="error"],.sync[data-s="readonly"]{background:var(--danger-soft);color:var(--danger)}
+
+/* ---------- Compact, fit-to-screen main page ----------
+   On laptop/desktop screens the whole main page fits the window: the calendar
+   stretches to fill what's left, and long lists scroll inside their own panel. */
+#questApp .wrap{gap:12px}
+body{padding-block:14px 14px}
+.top h1{font-size:30px}
+.top .label{font-size:10.5px}
+.sub{margin-top:2px;font-size:13.5px}
+.refreshed{margin-top:2px;font-size:12px}
+.toolbar .btn,.toolbar .sync{padding:6px 11px;font-size:13px}
+.stats-row{gap:8px}
+.stats-row .stat{padding:7px 14px}
+.stats-row .stat b{font-size:19px}
+.stats-row .stat span{font-size:12.5px}
+.next{gap:10px}
+.ncard{padding:10px 14px;gap:4px;border-top-width:3px;box-shadow:none}
+.ncard h3{font-size:15.5px}
+.ncard .minibar{height:5px}
+.ncard .when{font-size:12.5px}
+.tabs{padding:3px}
+.tab{padding:6px 14px;font-size:14px}
+.quest-foot{display:none}
+.panel{padding:12px}
+.cal-head{margin-bottom:8px}
+.cal-head h2{font-size:18px}
+.day{min-height:70px;padding:4px;gap:2px}
+.chip{font-size:11px;padding:2px 5px}
+.side h3{font-size:15px;margin-bottom:8px}
+.items{gap:6px}
+.item{padding:7px 10px;gap:8px}
+.item .t{font-size:14px}
+.item .m{font-size:12px}
+.legend{margin-top:8px;gap:8px;font-size:11px}
+/* Deleted assignments */
+.from-cr{font-size:12px;color:var(--muted);margin-left:auto;align-self:center}
+.btn.del{color:var(--danger)}
+.delbox{padding:12px 14px;border-radius:12px;background:var(--danger-soft);font-size:14px}
+.del-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.del-row .sw{width:8px;align-self:stretch;border-radius:4px;background:var(--c)}
+.del-info{min-width:0}
+.del-title{border:0;background:none;padding:0;font-weight:700;text-align:left;cursor:pointer;color:var(--ink)}
+.del-title:hover{color:var(--accent);text-decoration:underline}
+.del-row .m{font-size:12.5px;color:var(--muted)}
+/* Header: date + refresh moved to the top right */
+.top{align-items:center}
+.top-right{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+.top-meta{text-align:right;display:grid;gap:1px}
+.top-meta .sub{margin:0;font-size:13px;font-weight:600;color:var(--ink)}
+.top-meta .refreshed{margin:0;justify-content:flex-end;font-size:11.5px}
+/* Up next: one slim row */
+.upnext{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center}
+.upnext > .label{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;letter-spacing:.12em}
+.ncard{padding:7px 12px;gap:2px}
+.ncard .nrow{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0}
+.ncard h3{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ncard .count{font-size:11px;padding:2px 7px}
+.ncard .when{font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:901px){ .cal-layout{grid-template-columns:minmax(0,1fr) 290px} }
+@media (max-width:640px){ .top-right{justify-content:flex-start} .top-meta{text-align:left} .top-meta .refreshed{justify-content:flex-start} }
+.stats-row .stat{padding:6px 14px}
+@media (min-width:901px) and (min-height:620px){
+  #questApp .wrap{height:calc(100vh - 28px);grid-template-rows:auto auto auto auto minmax(0,1fr);min-height:0}
+  #view-calendar{min-height:0;height:100%;grid-template-rows:minmax(0,1fr);align-items:stretch}
+  #view-calendar > .panel,#view-calendar > .side{height:100%;min-height:0}
+  #view-calendar > .panel{display:flex;flex-direction:column}
+  #calGrid{flex:1;min-height:0;grid-template-rows:auto;grid-auto-rows:minmax(0,1fr)}
+  #calGrid .day{min-height:0;overflow:hidden}
+  #view-calendar > .side{min-height:0;overflow:auto}
+  #view-list{min-height:0;overflow:auto}
+}
+@media (min-width:901px) and (max-height:760px){
+  #calGrid .day .chip,#calGrid .day .more{display:none}
+  #calGrid .day .dots{display:flex}
+}
+
+/* ================= FRENCH TRAINER (scoped) ================= */
+#trainerApp{
+  color-scheme: light;
+  --bg:#F3F5FB; --surface:#FFFFFF; --surface-2:#E9EDF7; --ink:#17203B; --muted:#5A6583; --line:#D4DBEA;
+  --bleu:#2447C7; --bleu-soft:#DEE5FB; --rouge:#D6452A; --rouge-soft:#FBE2DC; --vert:#23945A; --vert-soft:#DCF2E5; --or:#D99A1E; --or-soft:#FBEFD5;
+  --shadow:0 1px 2px rgba(23,32,59,.06),0 6px 20px rgba(23,32,59,.07);
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+#trainerApp *{box-sizing:border-box}
+#trainerApp{margin:0}
+#trainerApp{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);}
+#trainerApp [hidden]{display:none!important}
+#trainerApp .wrap{max-width:900px;margin:0 auto;display:grid;gap:18px}
+#trainerApp h1,#trainerApp h2,#trainerApp h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+#trainerApp button{font:inherit;color:inherit;cursor:pointer}
+#trainerApp button:focus-visible,#trainerApp a:focus-visible,#trainerApp input:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
+#trainerApp a{color:var(--bleu)}
+#trainerApp .label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+#trainerApp .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#trainerApp .back{font-weight:600;text-decoration:none;font-size:14px}
+#trainerApp .hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end}
+#trainerApp .hero h1{font-size:clamp(26px,4.4vw,40px);font-weight:800;letter-spacing:-.02em}
+#trainerApp .hero h1 em{font-style:normal;color:var(--bleu)}
+#trainerApp .flag{display:inline-flex;height:6px;width:54px;border-radius:3px;overflow:hidden;margin-bottom:10px}
+#trainerApp .flag i{flex:1}
+#trainerApp .meter{display:flex;gap:14px}
+#trainerApp .ring{--p:0;width:76px;height:76px;border-radius:50%;background:conic-gradient(var(--bleu) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center}
+#trainerApp .ring span{width:60px;height:60px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:15px}
+#trainerApp .meter .txt{display:grid;align-content:center;font-size:13px;color:var(--muted)}
+#trainerApp .meter .txt b{font-family:var(--display);font-size:20px;color:var(--ink)}
+#trainerApp .tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:12px;overflow-x:auto}
+#trainerApp .tab{border:0;background:transparent;padding:8px 14px;border-radius:9px;font-weight:600;color:var(--muted);white-space:nowrap;font-size:15px}
+#trainerApp .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#trainerApp .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+#trainerApp .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 16px;font-weight:600;font-size:15px}
+#trainerApp .btn:hover{border-color:var(--bleu)}
+#trainerApp .btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+#trainerApp .btn.good{background:var(--vert);border-color:var(--vert);color:#fff}
+#trainerApp .btn.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge)}
+#trainerApp .btn.small{padding:5px 10px;font-size:13px}
+#trainerApp .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#trainerApp .stack{display:grid;gap:14px}
+#trainerApp .muted{color:var(--muted)}
+#trainerApp .speak{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:34px;height:34px;display:inline-grid;place-items:center;font-size:15px;flex:none}
+#trainerApp .speak:hover{border-color:var(--bleu);background:var(--bleu-soft)}
+#trainerApp .plan{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:s}
+#trainerApp .plan li{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;counter-increment:s}
+#trainerApp .plan li::before{content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-family:var(--mono);font-weight:700;font-size:14px}
+#trainerApp .plan li.ok::before{content:"✓";background:var(--vert);color:#fff}
+#trainerApp .plan li.now{border-color:var(--bleu);background:var(--bleu-soft)}
+#trainerApp .plan .t{font-weight:700}
+#trainerApp .plan .d{font-size:13.5px;color:var(--muted)}
+#trainerApp .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+#trainerApp .tip{background:var(--surface-2);border-radius:12px;padding:12px 14px}
+#trainerApp .tip b{display:block;font-family:var(--display);font-size:16px;margin-bottom:2px}
+#trainerApp .tip p{margin:0;font-size:13.5px;color:var(--muted)}
+#trainerApp .countdown{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--or-soft);border-radius:12px;padding:12px 14px}
+#trainerApp .countdown input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+#trainerApp .sets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#trainerApp .setcard{border:1px solid var(--line);border-radius:12px;padding:12px}
+#trainerApp .setcard .bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:8px}
+#trainerApp .setcard .bar i{display:block;height:100%;background:var(--bleu)}
+#trainerApp .fc-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+#trainerApp .seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:3px;flex-wrap:wrap}
+#trainerApp .seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted)}
+#trainerApp .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#trainerApp .card{perspective:1200px;height:260px;margin-top:16px}
+#trainerApp .card-in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d;cursor:pointer}
+#trainerApp .card.flip .card-in{transform:rotateY(180deg)}
+#trainerApp .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:24px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+#trainerApp .face.front{background:linear-gradient(180deg,var(--surface),var(--bleu-soft))}
+#trainerApp .face.back{transform:rotateY(180deg);background:linear-gradient(180deg,var(--surface),var(--or-soft))}
+#trainerApp .face .big{font-family:var(--display);font-size:clamp(30px,6vw,48px);font-weight:800}
+#trainerApp .face .hook{font-size:15px;color:var(--muted);max-width:44ch;margin-top:8px}
+#trainerApp .face .hint{font-size:13px;color:var(--muted);margin-top:10px}
+#trainerApp .boxes{display:inline-flex;gap:3px}
+#trainerApp .boxes i{width:10px;height:10px;border-radius:3px;background:var(--surface-2)}
+#trainerApp .boxes i.on{background:var(--bleu)}
+#trainerApp .q{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px;background:var(--surface)}
+#trainerApp .q .num{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:700}
+#trainerApp .q .prompt{font-size:18px;font-weight:600}
+#trainerApp .q .prompt .fr{font-family:var(--display);font-size:22px;color:var(--bleu)}
+#trainerApp .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+#trainerApp .opt{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;font-weight:600}
+#trainerApp .opt:hover{border-color:var(--bleu)}
+#trainerApp .opt[aria-pressed="true"]{border-color:var(--bleu);background:var(--bleu-soft)}
+#trainerApp .opt.right{border-color:var(--vert);background:var(--vert-soft)}
+#trainerApp .opt.wrong{border-color:var(--rouge);background:var(--rouge-soft)}
+#trainerApp .q input[type=text]{font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;width:100%;max-width:360px;background:var(--surface);color:var(--ink)}
+#trainerApp .q.right{border-color:var(--vert)}
+#trainerApp .q.wrong{border-color:var(--rouge)}
+#trainerApp .fb{font-size:14.5px;padding:10px 12px;border-radius:10px}
+#trainerApp .fb.right{background:var(--vert-soft)}
+#trainerApp .fb.wrong{background:var(--rouge-soft)}
+#trainerApp .section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
+#trainerApp .section-h h3{font-size:18px}
+#trainerApp .streak{font-family:var(--mono);font-weight:700;padding:4px 10px;border-radius:99px;background:var(--or-soft)}
+#trainerApp .result{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--ink);color:#fff;border-radius:16px;padding:20px}
+#trainerApp .result .score{font-family:var(--display);font-size:52px;font-weight:800;line-height:1}
+#trainerApp .result .lvl{font-family:var(--display);font-size:22px;font-weight:800;color:#FFD27A}
+#trainerApp .tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+#trainerApp .test-card{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;text-align:left;background:var(--surface)}
+#trainerApp .test-card:hover{border-color:var(--bleu)}
+#trainerApp .test-card h3{font-size:19px}
+#trainerApp .lesson{border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px}
+#trainerApp .lesson h3{font-size:20px}
+#trainerApp .ex{display:grid;gap:6px}
+#trainerApp .ex div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15.5px}
+#trainerApp .ex .arrow{color:var(--muted)}
+#trainerApp .ex code{font-family:var(--mono);background:var(--surface-2);padding:2px 6px;border-radius:6px;font-size:14px}
+#trainerApp .done-pill{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--vert-soft);color:var(--vert)}
+#trainerApp .tbl-wrap{overflow-x:auto}
+#trainerApp table{width:100%;border-collapse:collapse;font-size:15px}
+#trainerApp th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+#trainerApp td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle}
+#trainerApp td.fr{font-weight:700;white-space:nowrap}
+#trainerApp td.hook{color:var(--muted);font-size:13.5px}
+#trainerApp tr.set-h td{background:var(--surface-2);font-weight:700;font-size:13px}
+#trainerApp .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px);text-align:center}
+#trainerApp .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#trainerApp .foot{font-size:12.5px;color:var(--muted);text-align:center}
+@media (max-width:640px){#trainerApp .hero{grid-template-columns:1fr}
+#trainerApp .sets{grid-template-columns:1fr}
+#trainerApp .card{height:230px}
+#trainerApp .result{grid-template-columns:1fr}
+#trainerApp .plan li{grid-template-columns:32px 1fr}
+#trainerApp .plan li .btn{grid-column:2}
+
+}
+@media (prefers-reduced-motion:reduce){#trainerApp *{transition:none!important}
+}
+
+</style>
+
+<style>
+/* ---------- Sign-in screen ---------- */
+#gate{min-height:calc(100vh - 28px);display:grid;place-items:center}
+.gate-card{width:min(400px,100%);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:14px;box-shadow:var(--shadow)}
+.gate-card h1{font-size:28px}
+.gate-card h1 span{color:var(--accent)}
+.gate-card label{display:grid;gap:4px;font-size:13px;font-weight:600}
+.gate-card input{font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.gate-card .btn{justify-content:center;padding:10px 14px}
+.gate-msg{font-size:13.5px;color:var(--muted);min-height:1.2em}
+.gate-msg.err{color:var(--danger)}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+<div id="gate">
+  <form class="gate-card" id="gateForm" autocomplete="on">
+    <h1>Quest <span>Log</span></h1>
+    <p class="gate-msg" id="gateIntro" style="margin:0">Sign in to see your assignments.</p>
+    <label for="gEmail">Email<input id="gEmail" type="email" autocomplete="username" required></label>
+    <label for="gPass">Password<input id="gPass" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit" id="gBtn">Sign in</button>
+    <div class="gate-msg" id="gateMsg" role="status" aria-live="polite"></div>
+  </form>
+  <div class="gate-card" id="gateSetup" hidden>
+    <h1>Quest <span>Log</span></h1>
+    <p style="margin:0">No dashboard data yet. Choose the <b>quest-data.json</b> file from your Claude folder (quest-log-tools) to load it.</p>
+    <label for="setupFile">Data file<input id="setupFile" type="file" accept="application/json"></label>
+    <div class="gate-msg" id="setupMsg" role="status" aria-live="polite"></div>
+    <button class="btn" type="button" id="setupSignOut">Sign out</button>
+  </div>
+</div>
+<div id="appRoot" hidden></div>
+<input type="file" id="applyFile" accept="application/json" hidden>
+<template id="appMarkup">
+<div id="questApp">
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="label">__SCHOOLLINE__</div>
+      <h1>__NAME__'s <span>Quest Log</span></h1>
+    </div>
+    <div class="top-right">
+    <div class="top-meta">
+      <div class="sub" id="todayLine"></div>
+      <div class="refreshed" id="syncLine"></div>
+    </div>
+    <div class="toolbar">
+      <span class="sync" id="syncStatus" data-s="local">Saved on this device</span>
+      <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
+      <button class="btn primary" id="addBtn" type="button">+ Add assignment</button>
+      <button class="btn parent-only" id="applyBtn" type="button" hidden>Apply update</button>
+      <button class="btn" id="signOutBtn" type="button">Sign out</button>
+      <button class="btn local-only" id="exportBtn" type="button">Back up progress</button>
+      <label class="btn local-only" for="importFile" style="margin:0">Restore</label>
+      <input type="file" id="importFile" accept="application/json" hidden>
+    </div>
+    </div>
+  </header>
+
+  <section class="stats-row" aria-label="Progress">
+    <div class="stat"><b id="stTodo">0</b><span>to do</span></div>
+    <div class="stat warn"><b id="stLate">0</b><span>overdue</span></div>
+    <div class="stat"><b id="stDone">0</b><span>done</span></div>
+  </section>
+
+  <section class="upnext">
+    <div class="label">Up next</div>
+    <div class="next" id="nextUp"></div>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-view="calendar" aria-selected="true" type="button">Calendar</button>
+    <button class="tab" role="tab" data-view="list" aria-selected="false" type="button">All assignments</button>
+  </div>
+
+  <section id="view-calendar" class="cal-layout">
+    <div class="panel">
+      <div class="cal-head">
+        <h2 id="monthTitle"></h2>
+        <div class="cal-nav">
+          <button class="btn small" id="prevM" type="button" aria-label="Previous month">‹</button>
+          <button class="btn small" id="todayM" type="button">Today</button>
+          <button class="btn small" id="nextM" type="button" aria-label="Next month">›</button>
+        </div>
+      </div>
+      <div class="grid" id="calGrid"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside class="panel side">
+      <h3 id="dayTitle"></h3>
+      <div class="items" id="dayItems"></div>
+      <h3 style="margin-top:20px">Anytime tasks</h3>
+      <div class="items" id="anytime"></div>
+    </aside>
+  </section>
+
+  <section id="view-list" class="panel" hidden>
+    <div class="groups" id="groups"></div>
+  </section>
+
+
+  <p class="foot quest-foot" id="questFoot">Progress is saved in this browser. Use "Back up progress" now and then so nothing gets lost. Classroom links open with the account that's signed in to Google.</p>
+</div>
+</div>
+
+<div id="reviewApp" hidden><div class="wrap" id="reviewBody"></div></div>
+
+<div id="trainerApp" hidden>
+<div class="wrap">
+  <a class="back" href="#quest">← Back to Quest Log</a>
+  <header class="hero">
+    <div>
+      <div class="flag" aria-hidden="true"><i style="background:var(--bleu)"></i><i style="background:#fff;border-block:1px solid var(--line)"></i><i style="background:var(--rouge)"></i></div>
+      <div class="label">French · __FRTEACHER__ · Section A</div>
+      <h1>Le garçon qui joue des tours <em>Section A</em></h1>
+      <div class="muted" style="margin-top:4px">50 words · flashcards, practice, grammar and 3 mock tests</div>
+    </div>
+    <div class="meter">
+      <div class="ring" id="ring"><span id="ringTxt">0%</span></div>
+      <div class="txt"><b id="mastered">0 / 50</b>words mastered<span id="dueTxt"></span></div>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-view="plan" aria-selected="true" type="button">Study plan</button>
+    <button class="tab" role="tab" data-view="cards" aria-selected="false" type="button">Flashcards</button>
+    <button class="tab" role="tab" data-view="practice" aria-selected="false" type="button">Practice</button>
+    <button class="tab" role="tab" data-view="grammar" aria-selected="false" type="button">Grammar</button>
+    <button class="tab" role="tab" data-view="tests" aria-selected="false" type="button">Mock tests</button>
+    <button class="tab" role="tab" data-view="words" aria-selected="false" type="button">Word list</button>
+  </div>
+
+  <!-- PLAN -->
+  <section id="v-plan" class="stack">
+    <div class="countdown">
+      <label for="testDate"><b>Test date:</b></label>
+      <input type="date" id="testDate">
+      <span id="cdText" class="muted">Ask __FRTEACHER__ for the date and enter it here.</span>
+    </div>
+    <div class="panel stack">
+      <h2 style="font-size:22px">Your path to Level 4</h2>
+      <ol class="plan" id="planList"></ol>
+    </div>
+    <div class="panel stack">
+      <div class="label">Your three word sets</div>
+      <div class="sets" id="setCards"></div>
+    </div>
+    <div class="stack">
+      <div class="label">How to study so it sticks</div>
+      <div class="tips">
+        <div class="tip"><b>Test yourself first</b><p>Try to remember the word before you flip the card. The effort of remembering is what makes it stick.</p></div>
+        <div class="tip"><b>Little and often</b><p>10 minutes a day beats one hour the night before. The flashcards bring back each word just before you'd forget it.</p></div>
+        <div class="tip"><b>Say it out loud</b><p>Tap 🔊, then say the word yourself. Use the actions from class too. Hearing and moving help you remember.</p></div>
+        <div class="tip"><b>Mix it up</b><p>Practice mixes all three sets and question types, just like the real test.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="v-cards" class="panel" hidden>
+    <div class="fc-top">
+      <div class="seg" id="setSeg" aria-label="Word set">
+        <button type="button" data-set="1" aria-pressed="false">Set 1</button>
+        <button type="button" data-set="2" aria-pressed="false">Set 2</button>
+        <button type="button" data-set="3" aria-pressed="false">Set 3</button>
+        <button type="button" data-set="0" aria-pressed="true">All due</button>
+      </div>
+      <div class="seg" id="dirSeg" aria-label="Direction">
+        <button type="button" data-dir="fe" aria-pressed="true">French → English</button>
+        <button type="button" data-dir="ef" aria-pressed="false">English → French</button>
+      </div>
+    </div>
+    <div id="fcArea"></div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="v-practice" class="panel stack" hidden>
+    <div class="row" style="justify-content:space-between">
+      <div><h2 style="font-size:22px">Quick practice</h2><div class="muted" style="font-size:14px">10 mixed questions. You'll see the answer right away, and your weakest words come up more often.</div></div>
+      <span class="streak" id="streak">🔥 0</span>
+    </div>
+    <div id="prArea"></div>
+  </section>
+
+  <!-- GRAMMAR -->
+  <section id="v-grammar" class="stack" hidden></section>
+
+  <!-- TESTS -->
+  <section id="v-tests" class="stack" hidden>
+    <div id="testMenu" class="stack">
+      <div class="panel stack">
+        <h2 style="font-size:22px">Mock tests</h2>
+        <p class="muted" style="margin:0">Each test has 25 questions in 7 parts, like a real vocabulary test: meanings, translation, fill in the blank, grammar, reading and conversation. Try it without looking at notes, then go over every mistake. Words you miss go back into your flashcards automatically.</p>
+      </div>
+      <div class="tests" id="testCards"></div>
+    </div>
+    <div id="testArea" class="stack" hidden></div>
+  </section>
+
+  <!-- WORDS -->
+  <section id="v-words" class="panel" hidden>
+    <div class="row" style="justify-content:space-between;margin-bottom:10px"><h2 style="font-size:22px">All Section A words</h2><span class="muted" style="font-size:13px">Blue squares = how well you know it (4 = mastered)</span></div>
+    <div class="tbl-wrap"><table><thead><tr><th></th><th>French</th><th>English</th><th>Memory hook</th><th>Level</th></tr></thead><tbody id="wordRows"></tbody></table></div>
+  </section>
+
+  <p class="foot">Vocabulary from __FRTEACHER__'s "Section A vocabulary" list (posted Sep 23). Practice sentences use only these words and aren't quoted from the play. Progress saves online with your Quest Log.</p>
+</div>
+<div class="toast" id="tToast" role="status" aria-live="polite"></div>
+
+</div>
+
+<dialog id="modal" aria-labelledby="mTitle"><div id="mContent"></div></dialog>
+<dialog id="addModal" aria-labelledby="addTitle">
+  <div class="m-head"><h2 id="addTitle">Add an assignment</h2><button class="close" type="button" data-close aria-label="Close">×</button></div>
+  <form class="add m-body" id="addForm">
+    <label for="fTitle">Title<input id="fTitle" required placeholder="e.g. Science lab report"></label>
+    <div class="two">
+      <label for="fSubject">Subject<select id="fSubject"></select></label>
+      <label for="fDue">Due date (leave blank for anytime)<input id="fDue" type="date"></label>
+    </div>
+    <label for="fDesc">What to do<textarea id="fDesc" rows="3" placeholder="Short description"></textarea></label>
+    <label for="fSteps">Steps (one per line, optional)<textarea id="fSteps" rows="3"></textarea></label>
+    <div class="two">
+      <label for="fLinkLabel">Link name<input id="fLinkLabel" placeholder="Open in Classroom"></label>
+      <label for="fLinkUrl">Link address<input id="fLinkUrl" type="url" placeholder="https://classroom.google.com/..."></label>
+    </div>
+    
+    <div class="row" style="display:flex;gap:8px"><button class="btn primary" type="submit">Add to Quest Log</button><button class="btn" type="button" data-close>Cancel</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<canvas id="confetti"></canvas>
+
+</template>
+<script type="text/plain" id="appJs0">
+/* Classroom data is loaded from the private database after sign-in. */
+/* ---------- Storage ---------- */
+const KEY='quest-log-v1';
+let store = {state:{}, custom:[], dueOverride:{}, deleted:{}};
+try{ const raw=localStorage.getItem(KEY); if(raw) store=Object.assign(store, JSON.parse(raw)); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} if(window.QUEST_CH) QUEST_CH.push(); }
+
+/* ---------- Helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pd=s=>{ if(!s) return null; const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=()=>{const d=new Date(); d.setHours(0,0,0,0); return d;};
+const daysUntil=s=>Math.round((pd(s)-today())/86400000);
+const fmt=(s,opt={weekday:'short',month:'short',day:'numeric'})=>pd(s).toLocaleDateString('en-CA',opt);
+const col=sub=>'var('+(SUBJECTS[sub]||SUBJECTS.home).c+')';
+
+// Deleting is a soft delete: the task is hidden but its progress is kept, so it can be restored.
+function allTasks(){
+  store.deleted=store.deleted||{};
+  return [...BUILT_IN, ...store.custom].map(t=>({...t, due: store.dueOverride[t.id] ?? t.due}));
+}
+// Only assignments added on this page can be deleted; anything from Google Classroom always stays.
+const isDeleted=t=>!!(t.custom&&store.deleted&&store.deleted[t.id]);
+function deletedTasks(){ return allTasks().filter(isDeleted).sort((a,b)=>(store.deleted[b.id]||'').localeCompare(store.deleted[a.id]||'')); }
+function tasks(){
+  return allTasks().filter(t=>!isDeleted(t));
+}
+const st=id=>store.state[id]||(store.state[id]={});
+const isDone=t=>!!(t.turnedIn || (store.state[t.id]&&store.state[t.id].done));
+const isLate=t=>!isDone(t)&&t.due&&daysUntil(t.due)<0;
+
+function countdown(t){
+  if(isDone(t)) return {txt:'Done ✓', cls:'ok'};
+  if(!t.due) return {txt:'Anytime', cls:''};
+  const n=daysUntil(t.due);
+  if(n<0) return {txt:Math.abs(n)+'d late', cls:'hot'};
+  if(n===0) return {txt:'Due today', cls:'hot'};
+  if(n===1) return {txt:'Tomorrow', cls:'hot'};
+  if(n<=7) return {txt:n+' days', cls:'soon'};
+  return {txt:n+' days', cls:''};
+}
+
+/* ---------- Ranks & badges ---------- */
+const RANKS=['Rookie','Scout','Explorer','Navigator','Cartographer','Captain','Commodore','Admiral','Legend'];
+const PER=200;
+function xp(){ return tasks().reduce((s,t)=>{
+  if(isDone(t)) return s+t.xp+(st(t.id).early?20:0);
+  const steps=t.steps||[]; const ck=(st(t.id).steps||[]).filter(Boolean).length;
+  return s+(steps.length?Math.floor(ck*5):0);
+},0); }
+
+function badges(){
+  const all=tasks(), done=all.filter(isDone);
+  const sketches=done.filter(t=>t.id.startsWith('sketch')).length;
+  const early=done.filter(t=>st(t.id).early).length;
+  const classroom=done.filter(t=>st(t.id).how==='classroom').length;
+  const subjects=new Set(done.map(t=>t.subject));
+  return [
+    {k:'1', name:'First Win', d:'Finish your first assignment.', on:done.length>=1},
+    {k:'M', name:'Master Mapper', d:'Complete the Colonization Assignment.', on:done.some(t=>t.id==='colonization')},
+    {k:'E', name:'Early Bird', d:'Finish something at least a day before it\'s due.', on:early>=1},
+    {k:'3', name:'Sketch Streak', d:'Finish 3 sketches.', on:sketches>=3},
+    {k:'10', name:'Full Sketchbook', d:'Finish all 10 sketches.', on:sketches>=10},
+    {k:'C', name:'Cloud Submitter', d:'Turn in 3 things on Google Classroom.', on:classroom>=3},
+    {k:'5', name:'On a Roll', d:'Finish 5 assignments.', on:done.length>=5},
+    {k:'S', name:'All-Rounder', d:'Finish work in 4 different subjects.', on:subjects.size>=4},
+    {k:'0', name:'Clean Slate', d:'Have zero overdue work (and at least 1 done).', on:done.length>0&&!all.some(isLate)}
+  ];
+}
+
+/* ---------- Rendering ---------- */
+let view='calendar';
+let cursor=(()=>{const d=today(); return new Date(d.getFullYear(), d.getMonth(), 1);})();
+let selected=ymd(today());
+
+function renderHeader(){
+  $('#todayLine').textContent='Today is '+today().toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  $('#syncLine').textContent=syncLabel();
+  const all=tasks();
+  $('#stDone').textContent=all.filter(isDone).length;
+  $('#stTodo').textContent=all.filter(t=>!isDone(t)).length;
+  $('#stLate').textContent=all.filter(isLate).length;
+  const nd=deletedTasks().length, db=$('#deletedBtn'); db.hidden=nd===0; db.textContent='Deleted ('+nd+')';
+}
+
+function itemButton(t, isEvent){
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='item'+(isEvent?' event':'')+(!isEvent&&isDone(t)?' done':'');
+  b.style.setProperty('--c', isEvent?col('event'):col(t.subject));
+  let meta, right='';
+  if(isEvent){ meta=(t.time||'')+' · '+fmt(t.date); right='<span class="count">Event</span>'; }
+  else { const c=countdown(t); meta=(SUBJECTS[t.subject]||SUBJECTS.home).name+(t.due?' · '+fmt(t.due):''); right='<span class="count '+c.cls+'">'+esc(c.txt)+'</span>'; }
+  b.innerHTML='<span class="sw"></span><span><span class="t">'+esc(t.title)+'</span><br><span class="m">'+esc(meta)+'</span></span>'+right;
+  b.onclick=()=> isEvent?openEvent(t):openTask(t.id);
+  return b;
+}
+
+function renderNext(){
+  const box=$('#nextUp'); box.innerHTML='';
+  const open=tasks().filter(t=>!isDone(t)&&t.due).sort((a,b)=>pd(a.due)-pd(b.due)).slice(0,3);
+  if(!open.length){ box.innerHTML='<div class="empty">Nothing with a due date left. Legend status! 🎉</div>'; return; }
+  open.forEach(t=>{
+    const c=countdown(t), steps=t.steps||[], ck=(st(t.id).steps||[]).filter(Boolean).length;
+    const b=document.createElement('button'); b.type='button'; b.className='ncard'; b.style.setProperty('--c',col(t.subject));
+    b.innerHTML='<div class="nrow"><h3>'+esc(t.title)+'</h3><span class="count '+c.cls+'">'+esc(c.txt)+'</span></div>'+
+      '<div class="when">'+esc((SUBJECTS[t.subject]||SUBJECTS.home).name)+' · '+esc(fmt(t.due))+(t.time?' · '+esc(t.time):'')+(steps.length?' · '+ck+'/'+steps.length+' steps':'')+'</div>';
+    b.onclick=()=>openTask(t.id);
+    box.appendChild(b);
+  });
+}
+
+function renderCalendar(){
+  $('#monthTitle').textContent=cursor.toLocaleDateString('en-CA',{month:'long',year:'numeric'});
+  const g=$('#calGrid'); g.innerHTML='';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>{const e=document.createElement('div'); e.className='dow'; e.textContent=d; g.appendChild(e);});
+  const start=new Date(cursor); start.setDate(1-cursor.getDay());
+  const all=tasks(), tkey=ymd(today());
+  for(let i=0;i<42;i++){
+    const d=new Date(start); d.setDate(start.getDate()+i);
+    if(i===35 && d.getMonth()!==cursor.getMonth()) break;
+    const key=ymd(d);
+    const dayTasks=all.filter(t=>t.due===key), dayEv=EVENTS.filter(e=>e.date===key);
+    const cell=document.createElement('button'); cell.type='button';
+    cell.className='day'+(d.getMonth()!==cursor.getMonth()?' out':'')+(key===tkey?' today':'')+(key===selected?' sel':'');
+    cell.setAttribute('aria-label', d.toDateString()+', '+(dayTasks.length+dayEv.length)+' items');
+    let html='<span class="num">'+d.getDate()+'</span>';
+    const entries=[...dayTasks.map(t=>({t,ev:false})), ...dayEv.map(t=>({t,ev:true}))];
+    entries.slice(0,3).forEach(({t,ev})=>{
+      const cls='chip'+(ev?' event':'')+(!ev&&isDone(t)?' done':'')+(!ev&&isLate(t)?' late':'');
+      html+='<span class="'+cls+'" style="--c:'+(ev?col('event'):col(t.subject))+'">'+esc(t.title)+'</span>';
+    });
+    if(entries.length>3) html+='<span class="more">+'+(entries.length-3)+' more</span>';
+    if(entries.length) html+='<span class="dots">'+entries.map(({t,ev})=>'<i style="--c:'+(ev?col('event'):(isLate(t)?'var(--danger)':col(t.subject)))+'"></i>').join('')+'</span>';
+    cell.innerHTML=html;
+    cell.onclick=()=>{selected=key; renderCalendar(); renderDay();};
+    g.appendChild(cell);
+  }
+  $('#legend').innerHTML=Object.values(SUBJECTS).map(s=>'<span><i style="--c:var('+s.c+')"></i>'+s.name+'</span>').join('');
+}
+
+function renderDay(){
+  const d=pd(selected);
+  $('#dayTitle').textContent=d.toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'});
+  const box=$('#dayItems'); box.innerHTML='';
+  const t=tasks().filter(x=>x.due===selected), e=EVENTS.filter(x=>x.date===selected);
+  if(!t.length&&!e.length) box.innerHTML='<div class="empty">Nothing due. Free day, or a chance to work ahead.</div>';
+  t.forEach(x=>box.appendChild(itemButton(x,false)));
+  e.forEach(x=>box.appendChild(itemButton(x,true)));
+  const any=$('#anytime'); any.innerHTML='';
+  const a=tasks().filter(x=>!x.due).sort((p,q)=>isDone(p)-isDone(q));
+  if(!a.length) any.innerHTML='<div class="empty">None.</div>';
+  a.forEach(x=>any.appendChild(itemButton(x,false)));
+}
+
+function renderList(){
+  const all=tasks(), box=$('#groups'); box.innerHTML='';
+  const open=all.filter(t=>!isDone(t));
+  const byDate=(a,b)=>pd(a.due)-pd(b.due);
+  const groups=[
+    ['Overdue', open.filter(isLate).sort(byDate), 'late'],
+    ['This week', open.filter(t=>t.due&&daysUntil(t.due)>=0&&daysUntil(t.due)<=7).sort(byDate)],
+    ['Coming up', open.filter(t=>t.due&&daysUntil(t.due)>7).sort(byDate)],
+    ['Anytime', open.filter(t=>!t.due)],
+    ['Completed', all.filter(isDone).sort((a,b)=>(st(b.id).at||'').localeCompare(st(a.id).at||'')), 'done']
+  ];
+  groups.forEach(([name,list,cls])=>{
+    const g=document.createElement('div'); g.className='group'+(cls?' '+cls:'');
+    g.innerHTML='<h3>'+name+' <span class="n">'+list.length+'</span></h3>';
+    const items=document.createElement('div'); items.className='items';
+    if(!list.length) items.innerHTML='<div class="empty">'+(name==='Overdue'?'Nothing overdue. Nice!':'Nothing here.')+'</div>';
+    list.forEach(t=>items.appendChild(itemButton(t,false)));
+    g.appendChild(items); box.appendChild(g);
+  });
+}
+
+function renderBadges(){
+  $('#badgeGrid').innerHTML=badges().map(b=>'<div class="badge '+(b.on?'on':'off')+'"><div class="ico">'+esc(b.k)+'</div><h4>'+esc(b.name)+'</h4><p>'+esc(b.d)+'</p><span class="label">'+(b.on?'Unlocked':'Locked')+'</span></div>').join('');
+}
+
+function renderAll(){
+  renderHeader(); renderNext();
+  if(view==='calendar'){renderCalendar(); renderDay();}
+  if(view==='list') renderList();
+}
+
+/* ---------- Modal ---------- */
+const modal=$('#modal');
+function linksHtml(links){
+  if(!links||!links.length) return '';
+  return '<div><div class="label" style="margin-bottom:8px">Materials</div><div class="links">'+links.map(l=>
+    '<a class="link'+(l.kind==='STUDY'?' study':l.kind==='REVIEW'?' review':'')+'" href="'+esc(l.url)+'"'+(/^https?:/.test(l.url)?' target="_blank" rel="noopener"':'')+'><span class="kind">'+esc(l.kind||'LINK')+'</span><span>'+esc(l.label)+'</span><span class="arrow">↗</span></a>').join('')+'</div></div>';
+}
+
+const missionOpen={}; // remembers an expanded checklist while the page is open; starts collapsed
+function openTask(id){
+  const t=allTasks().find(x=>x.id===id); if(!t) return;
+  const gone=isDeleted(t);
+  const s=st(id), steps=t.steps||[]; s.steps=s.steps||[];
+  const c=countdown(t);
+  const ck=steps.filter((_,i)=>s.steps[i]).length;
+  let h='<div class="m-head" style="--c:'+col(t.subject)+'"><button class="close" type="button" data-close aria-label="Close">×</button>'+
+    '<div class="tags"><span class="tag subj" style="--c:'+col(t.subject)+'">'+esc((SUBJECTS[t.subject]||SUBJECTS.home).name)+'</span>'+(t.teacher?'<span class="tag">'+esc(t.teacher)+'</span>':'')+'<span class="count '+c.cls+'">'+esc(c.txt)+'</span></div>'+
+    '<h2 id="mTitle">'+esc(t.title)+'</h2>'+
+    '<div class="sub">'+(t.due?'Due '+esc(fmt(t.due,{weekday:'long',month:'long',day:'numeric'}))+(t.time?' at '+esc(t.time):''):'No due date yet')+(t.turnIn?' · '+esc(t.turnIn):'')+'</div></div>';
+  h+='<div class="m-body">';
+  if(t.wip) h+='<a class="wip" href="'+esc(t.wip.url)+'" target="_blank" rel="noopener"><span class="wip-tag">Work in progress</span><span class="wip-name">'+esc(t.wip.label)+'</span><span class="wip-go">Open ↗</span></a>';
+  h+=linksHtml(t.links);
+  if(t.desc) h+='<p>'+esc(t.desc)+'</p>';
+  if(t.note) h+='<div class="note">'+esc(t.note)+'</div>';
+  if(steps.length){
+    h+='<details class="mission" id="mission"'+(missionOpen[id]?' open':'')+'><summary><span class="chev" aria-hidden="true">▸</span><span class="label">Mission steps</span><span class="mono" style="font-size:12px;margin-left:auto" id="stepCount">'+ck+'/'+steps.length+'</span><span class="minibar mission-bar"><i id="stepBar" style="width:'+(ck/steps.length*100)+'%"></i></span></summary><ul class="steps">'+
+      steps.map((x,i)=>'<li><label class="'+(s.steps[i]?'ck':'')+'" for="step-'+id+'-'+i+'"><input type="checkbox" id="step-'+id+'-'+i+'" data-step="'+i+'" '+(s.steps[i]?'checked':'')+'><span>'+esc(x)+'</span></label></li>').join('')+'</ul></details>';
+  }
+  if(t.rubric) h+='<div><div class="label" style="margin-bottom:6px">Rubric (/16)</div><div class="rubric">'+t.rubric.map(r=>'<div><span>'+esc(r[0])+'</span><span class="mono">'+esc(r[1])+'</span></div>').join('')+'</div></div>';
+  h+='</div><div class="m-foot">';
+  if(gone){
+    h+='<div class="delbox"><span>Deleted on '+esc(fmt(store.deleted[id]))+'. Its progress is saved and comes back when you restore it.</span></div><div class="row"><button class="btn primary" type="button" data-restore>Restore assignment</button><button class="btn" type="button" data-backlist>Back to deleted list</button></div></div>';
+    $('#mContent').innerHTML=h; if(!modal.open) modal.showModal();
+    const mis0=modal.querySelector('#mission'); if(mis0) mis0.querySelectorAll('input').forEach(i=>i.disabled=true);
+    modal.querySelector('[data-restore]').onclick=()=>restoreTask(id,true);
+    modal.querySelector('[data-backlist]').onclick=openDeleted;
+    return;
+  }
+  if(t.turnedIn && !s.done){
+    h+='<div class="donebox">✓ <span>Turned in <b>on Google Classroom</b>'+(t.turnedIn!==true?' on '+esc(fmt(t.turnedIn)):'')+' · synced from Classroom</span></div>';
+  } else if(isDone(t)){
+    h+='<div class="donebox">✓ <span>Completed <b>'+(s.how==='classroom'?'on Google Classroom':'at school')+'</b>'+(s.at?' on '+esc(fmt(s.at)):'')+(s.early?' · finished early':'')+'</span></div><div class="row"><button class="btn small" type="button" data-undo>Mark as not done</button></div>';
+  } else {
+    h+='<div class="label">Finished it? Choose how:</div><div class="row"><button class="btn good" type="button" data-done="school">Done at school</button><button class="btn primary" type="button" data-done="classroom">Submitted on Classroom</button></div>';
+  }
+  h+='<div class="row"><label class="label" for="dueEdit" style="align-self:center">'+(t.due?'Change due date':'Set due date')+'</label><input type="date" id="dueEdit" value="'+(t.due||'')+'" style="font:inherit;padding:5px 8px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)">'+(t.custom?'<button class="btn small del" type="button" data-del>Delete</button>':'<span class="from-cr">From Google Classroom</span>')+'</div>';
+  h+='</div>';
+  $('#mContent').innerHTML=h;
+  if(!modal.open) modal.showModal();
+
+  const mis=modal.querySelector('#mission'); if(mis) mis.ontoggle=()=>{ missionOpen[id]=mis.open; };
+  modal.querySelectorAll('[data-step]').forEach(cb=>cb.onchange=()=>{
+    s.steps[+cb.dataset.step]=cb.checked; save();
+    cb.closest('label').classList.toggle('ck',cb.checked);
+    const n=steps.filter((_,i)=>s.steps[i]).length;
+    $('#stepCount').textContent=n+'/'+steps.length; $('#stepBar').style.width=(n/steps.length*100)+'%';
+    if(cb.checked) toast(n===steps.length?'All steps done! Now mark it complete 🚀':'Step done · '+(steps.length-n)+' to go');
+    renderAll();
+  });
+  modal.querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{
+    const early=t.due?daysUntil(t.due)>=1:false;
+    Object.assign(s,{done:true,how:b.dataset.done,at:ymd(today()),early});
+    save(); boom(); toast(early?'Done early. Great work! 🎉':'Done. Great work! 🎉'); openTask(id); renderAll();
+  });
+  const u=modal.querySelector('[data-undo]'); if(u) u.onclick=()=>{ delete s.done; delete s.how; delete s.at; delete s.early; save(); openTask(id); renderAll(); };
+  $('#dueEdit').onchange=e=>{
+    const v=e.target.value||null;
+    if(t.custom){ const c=store.custom.find(x=>x.id===id); c.due=v; } else store.dueOverride[id]=v;
+    save(); openTask(id); renderAll(); toast(v?'Due date set':'Due date cleared');
+  };
+  const del=modal.querySelector('[data-del]'); if(del) del.onclick=()=>{
+    if(del.dataset.sure){ store.deleted[id]=ymd(today()); save(); modal.close(); renderAll(); toast('Moved to Deleted. You can restore it any time'); }
+    else { del.dataset.sure='1'; del.textContent='Tap again to delete'; }
+  };
+}
+
+function restoreTask(id, reopen){
+  delete store.deleted[id]; save(); renderAll(); toast('Restored with all its progress');
+  if(reopen) openTask(id); else if(deletedTasks().length) openDeleted(); else modal.close();
+}
+function openDeleted(){
+  const list=deletedTasks();
+  let h='<div class="m-head"><button class="close" type="button" data-close aria-label="Close">×</button><h2 id="mTitle">Deleted assignments</h2><div class="sub">Restoring brings back everything: checked steps, done marks and due dates.</div></div><div class="m-body">';
+  if(!list.length) h+='<div class="empty">Nothing deleted.</div>';
+  else h+='<div class="items">'+list.map(t=>{
+    const s=st(t.id), n=(t.steps||[]).length, ck=(s.steps||[]).filter(Boolean).length;
+    const prog=isDone(t)?'Done':n?ck+'/'+n+' steps':'Not started';
+    return '<div class="del-row" style="--c:'+col(t.subject)+'"><span class="sw"></span><div class="del-info"><button type="button" class="del-title" data-view="'+esc(t.id)+'">'+esc(t.title)+'</button><div class="m">'+esc((SUBJECTS[t.subject]||SUBJECTS.home).name)+(t.due?' · due '+esc(fmt(t.due)):'')+' · '+esc(prog)+' · deleted '+esc(fmt(store.deleted[t.id]))+'</div></div><button class="btn small primary" type="button" data-restore-id="'+esc(t.id)+'">Restore</button></div>';
+  }).join('')+'</div>';
+  h+='</div>';
+  $('#mContent').innerHTML=h; if(!modal.open) modal.showModal();
+  modal.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>openTask(b.dataset.view));
+  modal.querySelectorAll('[data-restore-id]').forEach(b=>b.onclick=()=>restoreTask(b.dataset.restoreId,false));
+}
+$('#deletedBtn').onclick=openDeleted;
+
+function openEvent(e){
+  $('#mContent').innerHTML='<div class="m-head" style="--c:'+col('event')+'"><button class="close" type="button" data-close aria-label="Close">×</button><div class="tags"><span class="tag">School event</span></div><h2 id="mTitle">'+esc(e.title)+'</h2><div class="sub">'+esc(fmt(e.date,{weekday:'long',month:'long',day:'numeric'}))+(e.time?' · '+esc(e.time):'')+'</div></div><div class="m-body"><p>'+esc(e.desc)+'</p>'+linksHtml(e.links)+'</div>';
+  if(!modal.open) modal.showModal();
+}
+
+document.addEventListener('click',e=>{ if(e.target.closest('[data-close]')){ const d=e.target.closest('dialog'); if(d) d.close(); } });
+[modal,$('#addModal')].forEach(d=>d.addEventListener('click',e=>{ if(e.target===d) d.close(); }));
+
+/* ---------- Add assignment ---------- */
+$('#fSubject').innerHTML=Object.entries(SUBJECTS).filter(([k])=>k!=='event').map(([k,v])=>'<option value="'+k+'">'+v.name+'</option>').join('');
+$('#addBtn').onclick=()=>{ $('#addForm').reset(); $('#addModal').showModal(); };
+$('#addForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const url=$('#fLinkUrl').value.trim();
+  const t={ id:'c'+Date.now(), custom:true, title:$('#fTitle').value.trim(), subject:$('#fSubject').value, due:$('#fDue').value||null, xp:0,
+    desc:$('#fDesc').value.trim(), steps:$('#fSteps').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    links: /^https?:\/\//.test(url)?[{label:$('#fLinkLabel').value.trim()||'Open material', url, kind:/classroom\.google/.test(url)?'CLASS':'LINK'}]:[] };
+  store.custom.push(t); save(); $('#addModal').close();
+  if(t.due){ const d=pd(t.due); cursor=new Date(d.getFullYear(),d.getMonth(),1); selected=t.due; }
+  renderAll(); toast('New quest added: '+t.title);
+});
+
+/* ---------- Backup ---------- */
+$('#exportBtn').onclick=()=>{
+  const blob=new Blob([JSON.stringify(store,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='dhruv-quest-log-backup-'+ymd(today())+'.json';
+  document.body.appendChild(a); a.click(); a.remove(); toast('Backup saved to Downloads');
+};
+$('#importFile').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ const d=JSON.parse(r.result); store={state:d.state||{},custom:d.custom||[],dueOverride:d.dueOverride||{},deleted:d.deleted||{}}; save(); renderAll(); toast('Progress restored'); }catch(err){ toast('That file isn\'t a Quest Log backup'); } };
+  r.readAsText(f); e.target.value='';
+};
+
+/* ---------- Tabs & nav ---------- */
+document.querySelectorAll('#questApp .tab').forEach(b=>b.onclick=()=>{
+  view=b.dataset.view;
+  document.querySelectorAll('#questApp .tab').forEach(x=>x.setAttribute('aria-selected',x===b));
+  ['calendar','list'].forEach(v=>$('#view-'+v).hidden=v!==view);
+  try{ localStorage.setItem(KEY+'-view',view); }catch(e){}
+  renderAll();
+});
+$('#prevM').onclick=()=>{cursor.setMonth(cursor.getMonth()-1); renderCalendar();};
+$('#nextM').onclick=()=>{cursor.setMonth(cursor.getMonth()+1); renderCalendar();};
+$('#todayM').onclick=()=>{const d=today(); cursor=new Date(d.getFullYear(),d.getMonth(),1); selected=ymd(d); renderCalendar(); renderDay();};
+
+/* ---------- Toast & confetti ---------- */
+let tt; function toast(m){ const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2600); }
+function boom(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv=$('#confetti'), ctx=cv.getContext('2d'); cv.width=innerWidth; cv.height=innerHeight;
+  const colors=['#E9A23B','#0E8A8C','#D6452A','#8A4FD1','#2563C9','#2E9E5B'];
+  const ps=Array.from({length:140},()=>({x:innerWidth/2,y:innerHeight*0.45,vx:(Math.random()-.5)*14,vy:-Math.random()*14-4,r:Math.random()*6+4,c:colors[Math.random()*colors.length|0],a:Math.random()*6,s:(Math.random()-.5)*.4}));
+  let f=0; (function step(){ ctx.clearRect(0,0,cv.width,cv.height);
+    ps.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.a+=p.s; ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillStyle=p.c;ctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);ctx.restore();});
+    if(++f<120) requestAnimationFrame(step); else ctx.clearRect(0,0,cv.width,cv.height); })();
+}
+
+/* ---------- Boot ---------- */
+try{ const v=localStorage.getItem(KEY+'-view'); if(v==='list'){ const b=document.querySelector('#questApp .tab[data-view="'+v+'"]'); if(b) b.click(); } }catch(e){}
+renderAll();
+
+/* ---------- French Trainer bridge ---------- */
+window.QL={
+  frenchProgress(marks, testDate){
+    const s=st('frenchA'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(testDate && store.dueOverride.frenchA!==testDate){ store.dueOverride.frenchA=testDate; changed=true; }
+    if(changed){ save(); renderAll(); }
+  }
+};
+
+/* ---------- Screens: Quest Log <-> French Trainer ---------- */
+function showScreen(name){
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  if(modal.open) modal.close();
+  if(name==='quest') renderAll();
+  if(name.startsWith('papa-')) renderReview(name.slice(5));
+  window.scrollTo({top:0});
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href="#french"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
+});
+
+function renderReview(key){
+  const R=REVIEWS[key], box=$('#reviewBody'); if(!R){ box.innerHTML='<p>Review not found.</p>'; return; }
+  const s=st(R.task); s.review=s.review||{};
+  const all=R.slides.flatMap(sl=>sl.fix.map((_,i)=>sl.n+'-'+i)), done=all.filter(k=>s.review[k]).length;
+  let h='<a class="back" href="#quest" style="font-weight:600;text-decoration:none">← Back to Quest Log</a>'+
+    '<div class="rv-head"><div class="label">'+(R.eyebrow?esc(R.eyebrow)+' · ':'')+'reviewed '+esc(fmt(R.reviewed,{month:'short',day:'numeric'}))+'</div><h1>'+esc(R.title)+'</h1><p style="margin:0;max-width:70ch">'+esc(R.intro)+'</p></div>'+
+    '<a class="wip" href="'+esc(R.slidesUrl)+'" target="_blank" rel="noopener"><span class="wip-tag">Work in progress</span><span class="wip-name">Open your slides</span><span class="wip-go">Open ↗</span></a>'+
+    '<div><div class="row" style="display:flex;justify-content:space-between;margin-bottom:6px"><span class="label">Fixes done</span><span class="mono" id="rvCount">'+done+' / '+all.length+'</span></div><div class="rv-progress"><i id="rvBar" style="width:'+(done/all.length*100)+'%"></i></div></div>'+
+    '<div><div class="label" style="margin-bottom:8px">Rubric estimate: now → possible (Level out of 4)</div><div class="rv-sum">'+R.levels.map(l=>'<div class="rv-crit"><span style="font-weight:700">'+esc(l[0])+'</span><span class="lv">'+esc(l[1])+' → <b>'+esc(l[2])+'</b></span><span style="font-size:13px;color:var(--muted)">'+esc(l[3])+'</span></div>').join('')+'</div></div>'+
+    '<div class="rv-prio"><b style="font-family:var(--display);font-size:18px">Do these 5 first (biggest mark boost)</b><ol>'+R.priorities.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ol></div>';
+  R.slides.forEach(sl=>{
+    h+='<section class="rv-slide'+(sl.flag&&/Biggest|Needs|Off/.test(sl.flag)?' focus':'')+'"><div class="rv-top"><span class="rv-num">'+sl.n+'</span><h3>'+esc(sl.t)+'</h3>'+(sl.flag?'<span class="rv-flag">'+esc(sl.flag)+'</span>':'')+'</div>'+
+      '<div class="rv-good"><b>Working well:</b> '+esc(sl.good)+'</div><ul class="rv-list">'+
+      sl.fix.map((f,i)=>{const k=sl.n+'-'+i; return '<li><label class="'+(s.review[k]?'ck':'')+'" for="rv-'+k+'"><input type="checkbox" id="rv-'+k+'" data-rv="'+k+'" '+(s.review[k]?'checked':'')+'><span><span class="txt">'+(f[2]==='fact'?'<span class="rv-fact">FACT</span>':'')+esc(f[0])+'</span><span class="rv-crit-tag">'+esc(f[1])+'</span></span></label></li>';}).join('')+
+      '</ul><div class="rv-ask"><b>Think deeper</b><br>'+esc(sl.ask)+'</div></section>';
+  });
+  h+='<p class="foot">Suggestions only: the ideas and wording should be yours. Double-check facts in your sources before adding them.</p>';
+  box.innerHTML=h;
+  box.querySelectorAll('[data-rv]').forEach(cb=>cb.onchange=()=>{
+    s.review[cb.dataset.rv]=cb.checked; if(!cb.checked) delete s.review[cb.dataset.rv];
+    cb.closest('label').classList.toggle('ck',cb.checked);
+    const d=all.filter(k=>s.review[k]).length; $('#rvCount').textContent=d+' / '+all.length; $('#rvBar').style.width=(d/all.length*100)+'%';
+    if(cb.checked) toast(d===all.length?'Every fix done! Time to turn it in 🚀':'Fix done · '+(all.length-d)+' to go');
+    save();
+  });
+}
+</script>
+<script type="text/plain" id="appJs1">
+(function(){
+const root=document.getElementById("trainerApp");
+
+/* ================= DATA ================= */
+const VOC = [
+  // Set 1 (page 1)
+  {fr:"bonjour", en:["hello","hi","good morning","good day"], set:1, hook:"bon (good) + jour (day) = good day"},
+  {fr:"tout le monde", en:["everyone","everybody"], set:1, hook:"Literally \"all the world\", so everyone"},
+  {fr:"maintenant", en:["now","right now"], set:1, hook:"main-tenant = holding it in your hand right NOW"},
+  {fr:"la", en:["the"], set:1, hook:"\"the\" for feminine words: la classe, la tête", noType:true},
+  {fr:"classe", en:["class"], set:1, hook:"Looks just like English (a cognate)"},
+  {fr:"de", en:["of","from"], set:1, hook:"la classe de français = the class of French", noType:true},
+  {fr:"d’", en:["of"], set:1, hook:"de shrinks to d’ before a vowel or h: d’anglais", noType:true},
+  {fr:"français", en:["french"], set:1, hook:"français sounds like \"France-ay\""},
+  {fr:"commence", en:["begins","starts","begin","start","commences"], set:1, hook:"Like \"commence\" in English: the class commences"},
+  {fr:"parle", en:["speak","speaks","talk","talks"], set:1, hook:"A \"parley\" is a talk"},
+  {fr:"seulement", en:["only","just","solely"], set:1, hook:"seul = alone/sole, so seulement = solely, only"},
+  {fr:"en", en:["in"], set:1, hook:"en français = in French", noType:true},
+  {fr:"tout / tous", en:["all","every"], set:1, hook:"tout le monde = all the world", noType:true},
+  {fr:"toute", en:["entire","all","whole"], set:1, hook:"The feminine form: toute la classe = the entire class", noType:true},
+  {fr:"le", en:["the"], set:1, hook:"\"the\" for masculine words: le temps", noType:true},
+  {fr:"temps", en:["time"], set:1, hook:"tempo, temporary: all about time"},
+  {fr:"alors", en:["then","so"], set:1, hook:"\"Alors…\" is how French people say \"So…\""},
+  {fr:"ouvre", en:["open","opens"], set:1, hook:"\"oo-vruh\": you ouvre (open) the oven"},
+  {fr:"ça", en:["that","it","this"], set:1, hook:"ça va? = is THAT going (ok)?", noType:true},
+  // Set 2 (page 2)
+  {fr:"c’est", en:["it is","that is","its","thats","it's","that's"], set:2, hook:"ce + est = c’est, \"it is\""},
+  {fr:"tête", en:["head"], set:2, hook:"A tête-à-tête is a head-to-head chat"},
+  {fr:"et", en:["and"], set:2, hook:"et cetera = and the rest"},
+  {fr:"prend", en:["take","takes"], set:2, hook:"apPREHEND: police take the thief"},
+  {fr:"l’", en:["the"], set:2, hook:"le/la shrinks to l’ before a vowel or h: l’anglais", noType:true},
+  {fr:"anglais", en:["english"], set:2, hook:"The Angles gave England its name"},
+  {fr:"met", en:["put","puts","place","places"], set:2, hook:"He MET the pocket and PUT something in it"},
+  {fr:"dans", en:["in","inside","into"], set:2, hook:"You DANce INside the room"},
+  {fr:"poche", en:["pocket"], set:2, hook:"A pouch is a little poche"},
+  {fr:"ferme", en:["close","closes","shut","shuts"], set:2, hook:"Close it FIRMly"},
+  {fr:"pas", en:["not"], set:2, hook:"ne … pas wraps the verb to mean NOT", noType:true},
+  {fr:"va", en:["go","goes"], set:2, hook:"VAmoose! = go away!"},
+  {fr:"traverse", en:["cross","crosses","traverse","traverses"], set:2, hook:"To traverse is to cross"},
+  {fr:"ligne", en:["line"], set:2, hook:"ligne ≈ line (the g is silent-ish: \"leen-yuh\")"},
+  {fr:"vient", en:["comes","come"], set:2, hook:"A venue is where people come"},
+  {fr:"ici", en:["here"], set:2, hook:"\"ee-see\": it's easy to see from here"},
+  {fr:"s’assoit", en:["sits down","sit down","sits","sit"], set:2, hook:"\"sa-swah\": they sit on a seat"},
+  {fr:"arrête", en:["stop","stops"], set:2, hook:"The police arrest you = make you stop"},
+  {fr:"je", en:["i"], set:2, hook:"je = I (always small unless it starts a sentence)", noType:true},
+  {fr:"m’appelle", en:["my name is","am called","i am called","call myself"], set:2, hook:"Je m’appelle = I call myself (appeal = call)"},
+  // Set 3 (page 3)
+  {fr:"madame", en:["mrs","madam","ms","miss","ma'am","maam"], set:3, hook:"Madam: how you address a woman"},
+  {fr:"monsieur", en:["mr","sir","mister"], set:3, hook:"Monsieur = Mr. / Sir"},
+  {fr:"toi", en:["you"], set:3, hook:"Et toi? = And YOU? (on its own, for emphasis)", noType:true},
+  {fr:"t’appelles", en:["are called","is your name","your name is","you are called"], set:3, hook:"tu t’appelles = you call yourself"},
+  {fr:"tu", en:["you"], set:3, hook:"tu goes right before a verb: tu t’appelles", noType:true},
+  {fr:"comment", en:["how","what"], set:3, hook:"Comment? = How? (Comment tu t’appelles? = What's your name?)"},
+  {fr:"ça va", en:["how are you","it's going","how's it going","its going","hows it going","i'm fine","im fine","it's going well","how are things"], set:3, hook:"Literally \"it goes?\", so \"how's it going?\""},
+  {fr:"dit", en:["says","say","said","tells"], set:3, hook:"DICTate = say words out loud"},
+  {fr:"bien", en:["well","good","fine"], set:3, hook:"BENefit = something good"},
+  {fr:"mal", en:["bad","badly","not well","poorly"], set:3, hook:"MALfunction = working badly"},
+  {fr:"comme ci, comme ça", en:["so-so","so so","okay","ok","not bad"], set:3, hook:"\"like this, like that\" = so-so"}
+];
+VOC.forEach((w,i)=>w.i=i);
+
+// Sentences use only Section A words (plus le garçon, from the title). Manual distractors keep one right answer.
+const SENT = [
+  {s:"Bonjour, ___ !", a:"tout le monde", d:["la tête","comment","ici"], en:"Hello, everyone!"},
+  {s:"___, la classe de français commence.", a:"Maintenant", d:["Dans","Poche","Je"], en:"Now, French class begins."},
+  {s:"Maintenant, la classe de français ___.", a:"commence", d:["poche","ici","toi"], en:"Now, French class begins."},
+  {s:"Tout le monde ___ seulement en français.", a:"parle", d:["tête","ligne","bien"], en:"Everyone speaks only in French."},
+  {s:"Tout le monde parle ___ en français.", a:"seulement", d:["madame","poche","je"], en:"Everyone speaks only in French."},
+  {s:"Le garçon met l’anglais dans la ___.", a:"poche", d:["va","comment","ici"], en:"The boy puts English in the pocket."},
+  {s:"Le garçon ___ l’anglais dans la poche.", a:"met", d:["bonjour","tête","comment"], en:"The boy puts English in the pocket."},
+  {s:"Le garçon ___ la ligne.", a:"traverse", d:["toi","bien","seulement"], en:"The boy crosses the line."},
+  {s:"Le garçon vient ___ et s’assoit.", a:"ici", d:["tête","ferme","je"], en:"The boy comes here and sits down."},
+  {s:"Madame ___ : « Arrête ! »", a:"dit", d:["poche","ligne","toi"], en:"Madam says: \"Stop!\""},
+  {s:"Comment tu ___ ? — Je m’appelle __NAME__.", a:"t’appelles", d:["m’appelle","s’assoit","tête"], en:"What is your name? — My name is __NAME__."},
+  {s:"Comment tu t’appelles ? — Je ___ __NAME__.", a:"m’appelle", d:["t’appelles","traverse","poche"], en:"What is your name? — My name is __NAME__."},
+  {s:"___ tu t’appelles ?", a:"Comment", d:["Ici","Et","Poche"], en:"What is your name?"},
+  {s:"Ça va ? — Ça va ___ !", a:"bien", d:["ici","tête","dans"], en:"How's it going? — It's going well!"},
+  {s:"Le garçon ne parle ___ anglais.", a:"pas", d:["et","je","ici"], en:"The boy does not speak English."},
+  {s:"___ la classe parle français.", a:"Toute", d:["Tu","Je","Bonjour"], en:"The entire class speaks French."},
+  {s:"___ la classe de français.", a:"C’est", d:["Je","Tu","Dit"], en:"It's French class."},
+  {s:"___ ! Ne traverse pas la ligne !", a:"Arrête", d:["Poche","Tête","Ligne"], en:"Stop! Don't cross the line!"},
+  {s:"Monsieur ___ dans la classe.", a:"vient", d:["poche","tête","bien"], en:"Sir comes into the class."},
+  {s:"Tout le monde ___.", a:"s’assoit", d:["tête","poche","ici"], en:"Everyone sits down."},
+  {s:"Le garçon ___ la poche.", a:"ouvre", d:["madame","ici","bien"], en:"The boy opens the pocket."}
+];
+
+const GRAM = [
+  {id:"g1", topic:"elision", q:"___ anglais", o:["l’","le","la"], a:"l’", why:"anglais starts with a vowel, so le/la shrinks to l’."},
+  {id:"g2", topic:"elision", q:"la classe ___ anglais", o:["d’","de"], a:"d’", why:"de becomes d’ before a vowel."},
+  {id:"g3", topic:"elision", q:"la classe ___ français", o:["de","d’"], a:"de", why:"français starts with a consonant (f), so de stays de."},
+  {id:"g4", topic:"elision", q:"Je ___appelle __NAME__.", o:["m’","me","t’"], a:"m’", why:"je me appelle → je m’appelle. me shrinks before a vowel."},
+  {id:"g5", topic:"elision", q:"Comment tu ___appelles ?", o:["t’","m’","te"], a:"t’", why:"tu te appelles → tu t’appelles."},
+  {id:"g6", topic:"elision", q:"Le garçon ___assoit.", o:["s’","se","t’"], a:"s’", why:"se assoit → s’assoit."},
+  {id:"g7", topic:"elision", q:"___ la classe de français.", o:["C’est","Ce est","Ça est"], a:"C’est", why:"ce + est → c’est."},
+  {id:"g8", topic:"negation", q:"Le garçon ne parle ___ anglais.", o:["pas","seulement","ici"], a:"pas", why:"ne … pas wraps around the verb to make it negative."},
+  {id:"g9", topic:"negation", q:"Make it negative: \"Le garçon traverse la ligne.\"", o:["Le garçon ne traverse pas la ligne.","Le garçon pas traverse ne la ligne.","Ne le garçon traverse la ligne pas."], a:"Le garçon ne traverse pas la ligne.", why:"ne goes before the verb, pas goes right after it."},
+  {id:"g10", topic:"negation", q:"What does \"Ne ferme pas la poche !\" mean?", o:["Don't close the pocket!","Close the pocket!","Open the pocket!"], a:"Don't close the pocket!", why:"ne … pas = not / don't."},
+  {id:"g11", topic:"tout", q:"___ la classe (the entire class)", o:["Toute","Tout","Tous"], a:"Toute", why:"classe is feminine, so tout → toute."},
+  {id:"g12", topic:"tout", q:"___ le monde (everyone)", o:["Tout","Toute","Tous"], a:"Tout", why:"monde is masculine and singular: tout le monde."},
+  {id:"g13", topic:"tout", q:"___ tête", o:["la","le","l’"], a:"la", why:"tête is feminine: la tête."},
+  {id:"g14", topic:"tout", q:"___ temps", o:["le","la","l’"], a:"le", why:"temps is masculine: le temps."},
+  {id:"g15", topic:"tout", q:"___ poche", o:["la","le"], a:"la", why:"poche is feminine: la poche."},
+  {id:"g16", topic:"tu", q:"Et ___, comment tu t’appelles ?", o:["toi","tu","je"], a:"toi", why:"toi stands on its own for emphasis: \"And YOU?\""},
+  {id:"g17", topic:"tu", q:"Comment ___ t’appelles ?", o:["tu","toi","je"], a:"tu", why:"tu goes directly before the verb."},
+  {id:"g18", topic:"tu", q:"___ m’appelle __NAME__.", o:["Je","Tu","Toi"], a:"Je", why:"m’appelle goes with je: je m’appelle."}
+];
+
+const DLG = [
+  {q:"Madame says: « Bonjour, tout le monde ! » What's the best reply?", a:"Bonjour, madame !", d:["Arrête !","Traverse la ligne.","C’est la poche."]},
+  {q:"« Comment tu t’appelles ? »", a:"Je m’appelle __NAME__.", d:["Ça va bien.","Comme ci, comme ça.","C’est la tête."]},
+  {q:"« Ça va ? » You feel so-so. You say:", a:"Comme ci, comme ça.", d:["Je m’appelle __NAME__.","Ici.","La poche."]},
+  {q:"« Ça va ? » You feel great. You say:", a:"Ça va bien !", d:["Ça va mal.","Arrête !","Monsieur."]},
+  {q:"« Ça va ? » You feel sick. You say:", a:"Ça va mal.", d:["Ça va bien !","Bonjour !","C’est ici."]},
+  {q:"Monsieur says: « Ferme la poche ! » What do you do?", a:"Close the pocket", d:["Open your head","Cross the line","Sit down"]},
+  {q:"Madame says: « Traverse la ligne ! » What do you do?", a:"Cross the line", d:["Stop","Close the pocket","Say hello"]},
+  {q:"Madame says: « Arrête ! » What do you do?", a:"Stop", d:["Go","Sit down","Open the pocket"]},
+  {q:"Madame says: « Tout le monde s’assoit. » What happens?", a:"Everyone sits down", d:["Everyone stands up","Everyone speaks English","Everyone crosses the line"]}
+];
+
+const LESSONS = [
+  {id:"elision", title:"The apostrophe words (l’, d’, m’, t’, s’, c’)", body:"French hates two vowel sounds bumping together. When a little word ending in a vowel (le, la, de, me, te, se, ce) comes before a word starting with a vowel or h, it drops its vowel and adds an apostrophe.",
+    ex:[["le / la + anglais","l’anglais"],["de + anglais","d’anglais"],["je me appelle","je m’appelle"],["tu te appelles","tu t’appelles"],["il se assoit","il s’assoit"],["ce est","c’est"]]},
+  {id:"negation", title:"Saying NOT: ne … pas", body:"To make a sentence negative, wrap ne … pas around the verb, like a sandwich. ne goes before the verb and pas right after. (ne becomes n’ before a vowel.)",
+    ex:[["Le garçon parle anglais.","Le garçon ne parle pas anglais."],["Traverse la ligne !","Ne traverse pas la ligne !"],["Ferme la poche !","Ne ferme pas la poche !"]]},
+  {id:"tout", title:"le / la and tout / toute", body:"Every French noun is masculine or feminine. Learn the word WITH its le or la. tout changes to match too: tout for masculine, toute for feminine, tous for plural.",
+    ex:[["masculine","le temps · tout le monde"],["feminine","la classe · la tête · la poche · la ligne"],["the entire class","toute la classe"]]},
+  {id:"tu", title:"je, tu and toi", body:"je = I and tu = you, and both go right before a verb. toi also means you, but it stands on its own or adds emphasis.",
+    ex:[["Je m’appelle __NAME__.","I am called __NAME__."],["Comment tu t’appelles ?","What's your name?"],["Et toi ?","And you?"]]}
+];
+
+/* ================= STATE ================= */
+const KEY="quest-french-sectionA-v1";
+let S={words:{}, tests:{}, lessons:{}, testDate:null, streakBest:0};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} if(window.FR_CH) FR_CH.push(); syncQuest();}
+
+const INT=[0,1,2,4,7]; // Leitner review gaps in days
+const $=s=>root.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const TODAY=ymd(new Date());
+const dayDiff=(a,b)=>Math.round((new Date(b+"T00:00")-new Date(a+"T00:00"))/86400000);
+const ws=w=>S.words[w.fr]||{b:0,last:null,seen:false};
+function setW(w,o){S.words[w.fr]=Object.assign(ws(w),o);}
+const isDue=w=>{const s=ws(w); return !s.seen || dayDiff(s.last,TODAY)>=INT[s.b];};
+const isMastered=w=>ws(w).seen&&ws(w).b>=3;
+const setLearned=n=>VOC.filter(w=>w.set===n).every(w=>ws(w).seen&&ws(w).b>=2);
+function grade(w,ok){ const s=ws(w); setW(w,{seen:true,last:TODAY,b: ok?Math.min(4,s.b+1):0}); }
+
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(a,r=Math.random){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g,"").replace(/[^a-z\s-]/g," ").replace(/-/g," ").replace(/\s+/g," ").trim();
+const cap=(s,like)=>/^[A-ZÀ-Ý]/.test(like)?s.charAt(0).toUpperCase()+s.slice(1):s;
+
+/* ================= SPEECH ================= */
+let frVoice=null;
+function pickVoice(){ const v=speechSynthesis.getVoices(); frVoice=v.find(x=>/fr-CA/i.test(x.lang))||v.find(x=>/^fr/i.test(x.lang))||null; }
+const canSpeak='speechSynthesis' in window;
+if(canSpeak){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function say(t){ if(!canSpeak) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t.replace(/ \/ /g,", ")); u.lang=frVoice?frVoice.lang:"fr-CA"; if(frVoice)u.voice=frVoice; u.rate=.85; speechSynthesis.speak(u); }
+const spk=t=>canSpeak?'<button class="speak" type="button" data-say="'+esc(t)+'" aria-label="Hear '+esc(t)+'">🔊</button>':'';
+document.addEventListener("click",e=>{const b=e.target.closest("[data-say]"); if(b){e.stopPropagation(); say(b.dataset.say);}});
+
+/* ================= QUESTION FACTORY ================= */
+const disjoint=(a,b)=>!a.en.some(x=>b.en.map(norm).includes(norm(x)));
+function distract(w,n,r,key){
+  const pool=shuffle(VOC.filter(x=>x!==w&&disjoint(x,w)),r); const out=[],seen=new Set([key(w)]);
+  for(const x of pool){ if(!seen.has(key(x))){seen.add(key(x));out.push(x);} if(out.length===n)break; }
+  return out;
+}
+function qFrEn(w,r){ const opts=shuffle([w,...distract(w,3,r,x=>x.en[0])],r).map(x=>x.en[0]); return {kind:"mc",sec:"Word meanings",prompt:'What does <span class="fr">'+esc(w.fr)+'</span> mean?',say:w.fr,opts,a:w.en[0],word:w,why:w.fr+" = "+w.en.slice(0,3).join(" / ")}; }
+function qEnFr(w,r){ const opts=shuffle([w,...distract(w,3,r,x=>x.fr)],r).map(x=>x.fr); return {kind:"mc",sec:"English to French",prompt:'How do you say <b>"'+esc(w.en[0])+'"</b> in French?',opts,a:w.fr,word:w,why:w.en[0]+" = "+w.fr}; }
+function qType(w){ return {kind:"type",sec:"Type the English",prompt:'Type the English for <span class="fr">'+esc(w.fr)+'</span>',say:w.fr,accept:w.en,a:w.en[0],word:w,why:"Accepted: "+w.en.slice(0,4).join(", ")}; }
+function qFill(s,r){ const opts=shuffle([s.a,...s.d],r); return {kind:"mc",sec:"Fill in the blank",prompt:esc(s.s).replace("___",'<span style="display:inline-block;min-width:64px;border-bottom:2px solid var(--bleu)">&nbsp;</span>'),sub:"Hint: "+s.en,opts,a:s.a,wordFr:s.a,why:s.s.replace("___",s.a)+" = "+s.en}; }
+function qGram(g,r){ return {kind:"mc",sec:"Grammar",prompt:esc(g.q).replace("___",'<span style="display:inline-block;min-width:48px;border-bottom:2px solid var(--bleu)">&nbsp;</span>'),opts:shuffle(g.o,r),a:g.a,why:g.why}; }
+function qComp(s,r){ const full=s.s.replace("___",s.a); const others=shuffle([...new Set(SENT.filter(x=>x.en!==s.en).map(x=>x.en))],r).slice(0,3); return {kind:"mc",sec:"Understand the sentence",prompt:'What does this mean?<br><span class="fr">'+esc(full)+'</span>',say:full,opts:shuffle([s.en,...others],r),a:s.en,why:full+" = "+s.en}; }
+function qDlg(d,r){ return {kind:"mc",sec:"Conversation",prompt:esc(d.q),opts:shuffle([d.a,...d.d],r),a:d.a,why:"Best answer: "+d.a}; }
+const correct=(q,ans)=> q.kind==="type" ? q.accept.some(x=>norm(x)===norm(ans)) : ans===q.a;
+function wordFor(q){ if(q.word) return q.word; if(q.wordFr) return VOC.find(w=>norm(w.fr)===norm(q.wordFr)); return null; }
+
+function buildTest(seed){
+  const r=rng(seed);
+  const words=shuffle(VOC,r), typeable=shuffle(VOC.filter(w=>!w.noType),r);
+  const used=new Set(); const take=(arr,n)=>{const out=[];for(const w of arr){if(!used.has(w.fr)){used.add(w.fr);out.push(w);} if(out.length===n)break;} return out;};
+  const sents=shuffle(SENT,r);
+  return [
+    ...take(words,6).map(w=>qFrEn(w,r)),
+    ...take(words,4).map(w=>qEnFr(w,r)),
+    ...take(typeable,4).map(w=>qType(w)),
+    ...sents.slice(0,4).map(s=>qFill(s,r)),
+    ...shuffle(GRAM,r).slice(0,3).map(g=>qGram(g,r)),
+    ...sents.slice(4,6).map(s=>qComp(s,r)),
+    ...shuffle(DLG,r).slice(0,2).map(d=>qDlg(d,r))
+  ];
+}
+
+/* ================= QUEST LOG SYNC ================= */
+// Ticks steps on the "French · Section A" task in __NAME__'s Quest Log when it's opened in the same browser.
+function syncQuest(){
+  const best=n=>(S.tests[n]&&S.tests[n].best)||0;
+  const marks=[!!S.video, setLearned(1), setLearned(2), setLearned(3), LESSONS.every(l=>S.lessons[l.id]), best(1)>=80, best(2)>=80, best(3)>=90];
+  if(window.QL) QL.frenchProgress(marks, S.testDate);
+}
+
+/* ================= HEADER ================= */
+function renderHeader(){
+  const m=VOC.filter(isMastered).length, p=Math.round(m/VOC.length*100);
+  $("#ring").style.setProperty("--p",p); $("#ringTxt").textContent=p+"%";
+  $("#mastered").textContent=m+" / "+VOC.length;
+  const due=VOC.filter(w=>ws(w).seen&&isDue(w)).length;
+  $("#dueTxt").textContent=due?due+" words ready for review":"";
+}
+
+/* ================= PLAN ================= */
+function renderPlan(){
+  const best=n=>(S.tests[n]&&S.tests[n].best)||0;
+  const steps=[
+    {t:"Watch the Section A video twice", d:"Copy the actions and say the words out loud with the video.", ok:!!S.video, act:'<a class="btn small" href="__FRVIDEO__" target="_blank" rel="noopener">Open video ↗</a> <button class="btn small" type="button" id="vidDone">'+(S.video?"Watched ✓":"I watched it")+'</button>'},
+    {t:"Learn Set 1 (bonjour → ça)", d:"Every word at level 2+ in flashcards.", ok:setLearned(1), go:["cards",1]},
+    {t:"Learn Set 2 (c’est → m’appelle)", d:"Every word at level 2+.", ok:setLearned(2), go:["cards",2]},
+    {t:"Learn Set 3 (madame → comme ci, comme ça)", d:"Every word at level 2+.", ok:setLearned(3), go:["cards",3]},
+    {t:"Grammar spotlight", d:"Four mini-lessons: apostrophes, ne…pas, le/la, tu/toi.", ok:LESSONS.every(l=>S.lessons[l.id]), go:["grammar"]},
+    {t:"Mock Test 1: score 80%+", d:"Best: "+best(1)+"%", ok:best(1)>=80, go:["test",1]},
+    {t:"Mock Test 2: score 80%+", d:"Best: "+best(2)+"%", ok:best(2)>=80, go:["test",2]},
+    {t:"Mock Test 3: score 90%+ (expert!)", d:"Best: "+best(3)+"%", ok:best(3)>=90, go:["test",3]}
+  ];
+  const nowIdx=steps.findIndex(s=>!s.ok);
+  $("#planList").innerHTML=steps.map((s,i)=>'<li class="'+(s.ok?"ok":"")+(i===nowIdx?" now":"")+'"><div><div class="t">'+esc(s.t)+'</div><div class="d">'+esc(s.d)+'</div></div><div class="row">'+(s.act||(s.go?'<button class="btn small '+(i===nowIdx?"primary":"")+'" type="button" data-go="'+s.go.join(",")+'">'+(s.ok?"Review":"Start")+'</button>':''))+'</div></li>').join("");
+  $("#vidDone").onclick=()=>{S.video=!S.video; save(); renderPlan(); if(S.video) toast("Nice! Step 1 done");};
+  root.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{const [v,n]=b.dataset.go.split(","); if(v==="cards"){fcSet=+n; show("cards");} else if(v==="test"){show("tests"); startTest(+n);} else show(v);});
+  $("#setCards").innerHTML=[1,2,3].map(n=>{const ws_=VOC.filter(w=>w.set===n), m=ws_.filter(isMastered).length; return '<div class="setcard"><div class="row" style="justify-content:space-between"><b>Set '+n+'</b><span class="mono" style="font-size:13px">'+m+'/'+ws_.length+'</span></div><div class="muted" style="font-size:13px">'+esc(ws_[0].fr)+' → '+esc(ws_[ws_.length-1].fr)+'</div><div class="bar"><i style="width:'+(m/ws_.length*100)+'%"></i></div></div>';}).join("");
+  $("#testDate").value=S.testDate||"";
+  if(S.testDate){ const n=dayDiff(TODAY,S.testDate); $("#cdText").innerHTML = n>0 ? '<b>'+n+' day'+(n>1?"s":"")+'</b> to go. '+(n>=4?"Aim for one set per day, then mock tests.":"Do a mock test every day and review your mistakes.") : n===0 ? "<b>Test day!</b> Quick flashcard warm-up, then you've got this." : "Test date has passed. Update it if there's a new one."; }
+}
+$("#testDate").onchange=e=>{S.testDate=e.target.value||null; save(); renderPlan(); toast(S.testDate?"Test date saved (also added to your Quest Log)":"Test date cleared");};
+
+/* ================= FLASHCARDS ================= */
+let fcSet=0, fcDir="fe", fcQueue=[], fcIdx=0, fcStats={k:0,n:0};
+function buildQueue(){
+  let pool=VOC.filter(w=>fcSet===0||w.set===fcSet);
+  let due=pool.filter(isDue);
+  if(fcSet===0) due=due.filter(w=>ws(w).seen).concat(due.filter(w=>!ws(w).seen).slice(0,8));
+  if(!due.length && fcSet!==0) due=pool.slice().sort((a,b)=>ws(a).b-ws(b).b);
+  fcQueue=shuffle(due).slice(0,12); fcIdx=0; fcStats={k:0,n:0};
+}
+function renderCards(){
+  root.querySelectorAll("#setSeg button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.set===fcSet));
+  root.querySelectorAll("#dirSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.dir===fcDir));
+  const area=$("#fcArea");
+  if(fcIdx>=fcQueue.length){
+    area.innerHTML='<div class="stack" style="text-align:center;padding:30px 0"><h2>'+(fcQueue.length?"Round done! 🎉":"Nothing due right now ✓")+'</h2><p class="muted" style="margin:0">'+(fcQueue.length?"You knew "+fcStats.k+" of "+fcQueue.length+". Missed words come back sooner.":"Your brain needs time between reviews. Come back tomorrow, or try Practice.")+'</p><div class="row" style="justify-content:center"><button class="btn primary" type="button" id="again">Another round</button><button class="btn" type="button" data-show="practice">Go to Practice</button></div></div>';
+    $("#again").onclick=()=>{buildQueue(); if(!fcQueue.length){fcQueue=shuffle(VOC.filter(w=>fcSet===0||w.set===fcSet)).slice(0,10);} renderCards();};
+    return;
+  }
+  const w=fcQueue[fcIdx], s=ws(w);
+  const front=fcDir==="fe"?'<div><div class="big">'+esc(w.fr)+'</div><div class="hint">Say it, remember it, then tap to flip</div></div>':'<div><div class="big" style="font-size:clamp(26px,5vw,40px)">'+esc(w.en[0])+'</div><div class="hint">What\'s the French? Say it, then tap to flip</div></div>';
+  const back='<div><div class="big" style="font-size:clamp(24px,5vw,38px)">'+esc(fcDir==="fe"?w.en.slice(0,3).join(" / "):w.fr)+'</div><div class="hook">💡 '+esc(w.hook)+'</div></div>';
+  area.innerHTML='<div class="row" style="justify-content:space-between;margin-top:14px"><span class="mono muted" style="font-size:13px">Card '+(fcIdx+1)+' of '+fcQueue.length+' · Set '+w.set+'</span><span class="row" style="gap:8px"><span class="boxes" title="Level '+s.b+' of 4">'+[1,2,3,4].map(i=>'<i class="'+(s.seen&&s.b>=i?"on":"")+'"></i>').join("")+'</span>'+spk(w.fr)+'</span></div>'+
+    '<div class="card" id="card"><div class="card-in" tabindex="0" role="button" aria-label="Flip card"><div class="face front">'+front+'</div><div class="face back">'+back+'</div></div></div>'+
+    '<div class="row" style="justify-content:center;margin-top:16px" id="fcBtns"><button class="btn primary" type="button" id="flipBtn">Flip card</button></div>';
+  const flip=()=>{ $("#card").classList.add("flip"); if(fcDir==="ef") say(w.fr);
+    $("#fcBtns").innerHTML='<button class="btn bad" type="button" id="nope">Not yet</button><button class="btn good" type="button" id="yep">I knew it!</button>';
+    $("#nope").onclick=()=>next(false); $("#yep").onclick=()=>next(true); };
+  const next=ok=>{ grade(w,ok); fcStats.n++; if(ok)fcStats.k++; if(!ok) fcQueue.push(w); save(); fcIdx++; renderHeader(); renderCards(); };
+  $("#card").onclick=e=>{ if(!e.target.closest("[data-say]")) flip(); };
+  $("#card .card-in").onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();} };
+  $("#flipBtn").onclick=flip;
+}
+root.querySelectorAll("#setSeg button").forEach(b=>b.onclick=()=>{fcSet=+b.dataset.set; buildQueue(); renderCards();});
+root.querySelectorAll("#dirSeg button").forEach(b=>b.onclick=()=>{fcDir=b.dataset.dir; renderCards();});
+
+/* ================= QUESTION UI ================= */
+function qHtml(q,i,withNum){
+  let h='<div class="q" id="q'+i+'">'+(withNum?'<span class="num">Q'+(i+1)+'</span>':'')+'<div class="prompt">'+q.prompt+' '+(q.say?spk(q.say):"")+'</div>'+(q.sub?'<div class="muted" style="font-size:13.5px">'+esc(q.sub)+'</div>':'');
+  if(q.kind==="mc") h+='<div class="opts">'+q.opts.map(o=>'<button type="button" class="opt" data-q="'+i+'" data-v="'+esc(o)+'" aria-pressed="false">'+esc(o)+'</button>').join("")+'</div>';
+  else h+='<input type="text" id="in'+i+'" data-q="'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English">';
+  return h+'<div class="fb" hidden></div></div>';
+}
+function showFeedback(q,i,ans){
+  const box=$("#q"+i), ok=correct(q,ans);
+  box.classList.add(ok?"right":"wrong");
+  box.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; if(b.dataset.v===q.a) b.classList.add("right"); else if(b.dataset.v===ans) b.classList.add("wrong"); });
+  const inp=box.querySelector("input"); if(inp) inp.disabled=true;
+  const fb=box.querySelector(".fb"); fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+  fb.innerHTML=(ok?"<b>Correct!</b> ":"<b>Answer: "+esc(q.a)+"</b>. ")+esc(q.why||"");
+  return ok;
+}
+
+/* ================= PRACTICE ================= */
+let pr=null, streak=0;
+function newRound(){
+  const weak=VOC.slice().sort((a,b)=>(ws(a).seen?ws(a).b:1.5)-(ws(b).seen?ws(b).b:1.5)+ (Math.random()-.5)*2);
+  const qs=[]; let wi=0;
+  for(let k=0;k<10;k++){
+    const t=["fe","fe","ef","type","fill","gram","comp","dlg"][Math.floor(Math.random()*8)];
+    const w=weak[wi++%weak.length];
+    if(t==="fe") qs.push(qFrEn(w,Math.random));
+    else if(t==="ef") qs.push(qEnFr(w,Math.random));
+    else if(t==="type") qs.push(w.noType?qFrEn(w,Math.random):qType(w));
+    else if(t==="fill") qs.push(qFill(SENT[Math.floor(Math.random()*SENT.length)],Math.random));
+    else if(t==="gram") qs.push(qGram(GRAM[Math.floor(Math.random()*GRAM.length)],Math.random));
+    else if(t==="comp") qs.push(qComp(SENT[Math.floor(Math.random()*SENT.length)],Math.random));
+    else qs.push(qDlg(DLG[Math.floor(Math.random()*DLG.length)],Math.random));
+  }
+  pr={qs,i:0,right:0};
+}
+function renderPractice(){
+  if(!pr) newRound();
+  $("#streak").textContent="🔥 "+streak+(S.streakBest?" · best "+S.streakBest:"");
+  const area=$("#prArea");
+  if(pr.i>=pr.qs.length){
+    area.innerHTML='<div class="stack" style="text-align:center;padding:24px 0"><h2>'+pr.right+' / 10</h2><p class="muted" style="margin:0">'+(pr.right>=9?"Expert level! Try a mock test.":pr.right>=7?"Strong! One more round to lock it in.":"Keep going. Every miss makes the next try easier.")+'</p><div class="row" style="justify-content:center"><button class="btn primary" type="button" id="prAgain">New round</button><button class="btn" type="button" data-show="tests">Mock tests</button></div></div>';
+    $("#prAgain").onclick=()=>{pr=null; renderPractice();}; return;
+  }
+  const q=pr.qs[pr.i];
+  area.innerHTML='<div class="mono muted" style="font-size:13px;margin-bottom:8px">Question '+(pr.i+1)+' of 10 · '+esc(q.sec)+'</div>'+qHtml(q,"p")+'<div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="prNext" hidden>Next →</button></div>';
+  const done=ans=>{ const ok=showFeedback(q,"p",ans); const w=wordFor(q); if(w) grade(w,ok);
+    if(ok){pr.right++;streak++; if(streak>S.streakBest)S.streakBest=streak; if(streak%5===0) toast("🔥 "+streak+" in a row!");} else streak=0;
+    save(); renderHeader(); $("#streak").textContent="🔥 "+streak+" · best "+S.streakBest; $("#prNext").hidden=false; $("#prNext").focus(); };
+  area.querySelectorAll(".opt").forEach(b=>b.onclick=()=>done(b.dataset.v));
+  const inp=$("#inp"); if(inp){ inp.focus(); area.querySelector(".row").insertAdjacentHTML("afterbegin",'<button class="btn" type="button" id="chk">Check</button>'); const go=()=>{ if(!inp.value.trim())return; $("#chk").remove(); done(inp.value); }; $("#chk").onclick=go; inp.onkeydown=e=>{if(e.key==="Enter")go();}; }
+  $("#prNext").onclick=()=>{pr.i++; renderPractice();};
+}
+
+/* ================= GRAMMAR ================= */
+function renderGrammar(){
+  const box=$("#v-grammar");
+  box.innerHTML=LESSONS.map(l=>{
+    const qs=GRAM.filter(g=>g.topic===l.id);
+    return '<div class="lesson panel" id="L-'+l.id+'"><div class="row" style="justify-content:space-between"><h3>'+esc(l.title)+'</h3>'+(S.lessons[l.id]?'<span class="done-pill">Done ✓</span>':'')+'</div><p style="margin:0">'+esc(l.body)+'</p><div class="ex">'+l.ex.map(e=>'<div><code>'+esc(e[0])+'</code><span class="arrow">→</span><b>'+esc(e[1])+'</b>'+(/[a-zà-ÿ’]/i.test(e[1])&&l.id!=="tu"?spk(e[1]):"")+'</div>').join("")+'</div>'+
+      '<div class="label" style="margin-top:6px">Check yourself</div><div class="stack">'+qs.map((g,i)=>qHtml(qGram(g,Math.random),l.id+"-"+i)).join("")+'</div></div>';
+  }).join("");
+  LESSONS.forEach(l=>{
+    const qs=GRAM.filter(g=>g.topic===l.id); let answered=0, right=0;
+    qs.forEach((g,i)=>{ const id=l.id+"-"+i; const q={kind:"mc",a:g.a,why:g.why};
+      root.querySelectorAll('#q'+CSS.escape(id)+' .opt').forEach(b=>b.onclick=()=>{ const ok=showFeedback(q,id,b.dataset.v); answered++; if(ok)right++;
+        if(answered===qs.length){ if(right===qs.length){ S.lessons[l.id]=true; save(); toast("Lesson mastered ✓"); renderPlan(); } else toast(right+"/"+qs.length+". Reread the rule and try again tomorrow."); } }); });
+  });
+}
+
+/* ================= MOCK TESTS ================= */
+function renderTestMenu(){
+  $("#testMenu").hidden=false; $("#testArea").hidden=true;
+  const cards=[[1,"Mock Test 1","Target 80%+"],[2,"Mock Test 2","Target 80%+"],[3,"Mock Test 3","Target 90%+ (expert)"],[0,"Surprise test","New random questions every time"]];
+  $("#testCards").innerHTML=cards.map(([n,t,d])=>{const r=S.tests[n]; return '<button class="test-card" type="button" data-test="'+n+'"><span class="label">25 questions · about 15 min</span><h3>'+t+'</h3><span class="muted" style="font-size:14px">'+d+'</span><span class="mono" style="font-size:13px">'+(r?"Best "+r.best+"% · tries "+r.tries:"Not tried yet")+'</span></button>';}).join("");
+  root.querySelectorAll("[data-test]").forEach(b=>b.onclick=()=>startTest(+b.dataset.test));
+}
+function level(p){ return p>=80?["Level 4","Expert! Well beyond the standard."]:p>=70?["Level 3","Meets the standard. Push for Level 4!"]:p>=60?["Level 2","Getting there. Review your misses."]:p>=50?["Level 1","Keep practising with flashcards."]:["Not yet","Go back to flashcards, then retry."]; }
+let curTest=null;
+function startTest(n){
+  $("#testMenu").hidden=true; const area=$("#testArea"); area.hidden=false;
+  const qs=buildTest(n===0?Date.now():n*7919); curTest={n,qs,answers:{}};
+  let html='<div class="row" style="justify-content:space-between"><button class="btn small" type="button" id="tBack">← All tests</button><span class="mono muted" id="tProg">0 / 25 answered</span></div><h2 style="font-size:24px">'+(n?"Mock Test "+n:"Surprise test")+'</h2>';
+  let sec="";
+  qs.forEach((q,i)=>{ if(q.sec!==sec){sec=q.sec; html+='<div class="section-h"><h3>'+esc(sec)+'</h3></div>';} html+=qHtml(q,"t"+i,true).replace('<span class="num">Q'+("t"+i+1)+'</span>','<span class="num">Q'+(i+1)+'</span>'); });
+  html+='<div class="row"><button class="btn primary" type="button" id="submitT">Submit test</button><span class="muted" id="submitMsg" style="font-size:14px"></span></div>';
+  area.innerHTML=html; window.scrollTo({top:0});
+  const prog=()=>$("#tProg").textContent=Object.values(curTest.answers).filter(v=>String(v).trim()).length+" / 25 answered";
+  qs.forEach((q,i)=>{ const box=$("#qt"+i); box.querySelector(".num").textContent="Q"+(i+1);
+    box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ box.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",x===b)); curTest.answers[i]=b.dataset.v; prog(); });
+    const inp=box.querySelector("input"); if(inp) inp.oninput=()=>{curTest.answers[i]=inp.value; prog();};
+  });
+  $("#tBack").onclick=renderTestMenu;
+  let armed=false;
+  $("#submitT").onclick=()=>{
+    const left=25-Object.values(curTest.answers).filter(v=>String(v).trim()).length;
+    if(left&&!armed){ armed=true; $("#submitMsg").textContent=left+" unanswered. Tap Submit again to finish anyway."; return; }
+    gradeTest();
+  };
+}
+function gradeTest(){
+  const {n,qs,answers}=curTest; let right=0; const missed=[];
+  qs.forEach((q,i)=>{ const ans=answers[i]??""; const ok=showFeedback(q,"t"+i,ans); if(ok) right++; else missed.push(i);
+    $("#qt"+i).querySelectorAll(".opt").forEach(b=>b.onclick=null);
+    const w=wordFor(q); if(w) grade(w,ok); });
+  const p=Math.round(right/qs.length*100), [lv,msg]=level(p);
+  const r=S.tests[n]||{best:0,tries:0}; const newBest=p>r.best; S.tests[n]={best:Math.max(r.best,p),tries:r.tries+1,last:p};
+  save(); renderHeader();
+  $("#submitT").parentElement.remove();
+  $("#testArea").insertAdjacentHTML("afterbegin",'<div class="result"><div class="score mono">'+p+'%</div><div><div class="lvl">'+lv+'</div><div>'+right+' of '+qs.length+' correct. '+esc(msg)+(newBest?" New best score! 🏆":"")+'</div><div style="opacity:.8;font-size:14px;margin-top:6px">'+(missed.length?"Scroll down to review the "+missed.length+" red questions. Those words are back in your flashcards.":"Perfect score. You're a Section A expert!")+'</div><div class="row" style="margin-top:10px"><button class="btn small" type="button" id="retry">Try '+(n?"this test":"another")+' again</button><button class="btn small" type="button" id="toMenu">All tests</button></div></div></div>');
+  $("#retry").onclick=()=>startTest(n); $("#toMenu").onclick=renderTestMenu;
+  window.scrollTo({top:0,behavior:"smooth"});
+  toast(p>=80?"Level 4! 🎉":"Score saved: "+p+"%");
+}
+
+/* ================= WORD LIST ================= */
+function renderWords(){
+  let h="";
+  [1,2,3].forEach(n=>{ h+='<tr class="set-h"><td colspan="5">Set '+n+'</td></tr>';
+    VOC.filter(w=>w.set===n).forEach(w=>{ const s=ws(w); h+='<tr><td>'+spk(w.fr)+'</td><td class="fr">'+esc(w.fr)+'</td><td>'+esc(w.en.slice(0,3).join(" / "))+'</td><td class="hook">'+esc(w.hook)+'</td><td><span class="boxes">'+[1,2,3,4].map(i=>'<i class="'+(s.seen&&s.b>=i?"on":"")+'"></i>').join("")+'</span></td></tr>'; }); });
+  $("#wordRows").innerHTML=h;
+}
+
+/* ================= NAV ================= */
+let view="plan";
+function show(v){
+  view=v;
+  root.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.view===v));
+  ["plan","cards","practice","grammar","tests","words"].forEach(x=>$("#v-"+x).hidden=x!==v);
+  if(v==="plan") renderPlan();
+  if(v==="cards"){ buildQueue(); renderCards(); }
+  if(v==="practice") renderPractice();
+  if(v==="grammar") renderGrammar();
+  if(v==="tests") renderTestMenu();
+  if(v==="words") renderWords();
+  try{ localStorage.setItem(KEY+"-view",v);}catch(e){}
+}
+root.querySelectorAll(".tab").forEach(t=>t.onclick=()=>show(t.dataset.view));
+document.addEventListener("click",e=>{const b=e.target.closest("[data-show]"); if(b) show(b.dataset.show);});
+let tt; function toast(m){const t=$("#tToast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2400);}
+
+window.FR={
+  get:()=>S,
+  apply:d=>{ S=Object.assign({words:{},tests:{},lessons:{},testDate:null,streakBest:0},d); try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} renderHeader(); if(view==="plan")renderPlan(); if(view==="words")renderWords(); if(view==="tests"&&!$("#testMenu").hidden)renderTestMenu(); },
+  hasData:()=>Object.keys(S.words).length>0||Object.keys(S.tests).length>0||!!S.video||!!S.testDate
+};
+renderHeader();
+let startV="plan"; try{ startV=localStorage.getItem(KEY+"-view")||"plan"; }catch(e){}
+show(["plan","cards","practice","grammar","tests","words"].includes(startV)?startV:"plan");
+
+})();
+</script>
+<script type="text/plain" id="appJs2">
+
+/* ---------- Online saving (Claude page database) ---------- */
+// Progress lives in two shared documents so it follows the student to any device:
+//   progress/quest  = Quest Log state   ·   progress/french = French Trainer state
+const SYNC={db:null};
+const SYNC_TXT={local:'Saved on this device', online:'Saved online ✓', saving:'Saving…', error:'Offline · will retry', readonly:'View only'};
+function setSync(s){ const el=$('#syncStatus'); if(el){ el.dataset.s=s; el.textContent=SYNC_TXT[s]; } }
+function channel(path, get, apply, hasData){
+  let timer=null, writing=false, again=false, lastSent=null;
+  async function flush(){
+    if(!SYNC.db) return;
+    if(writing){ again=true; return; }
+    writing=true; setSync('saving');
+    try{ const body=JSON.parse(JSON.stringify(get())); lastSent=JSON.stringify(body); await SYNC.db.doc(path).set(body); setSync('online'); }
+    catch(e){ if(e&&e.code==='invalid_argument') setSync('readonly'); else { setSync('error'); setTimeout(flush, 4000+Math.random()*3000); } }
+    writing=false;
+    if(again){ again=false; flush(); }
+  }
+  return {
+    push(){ clearTimeout(timer); timer=setTimeout(flush, 800); },
+    async attach(){
+      const ref=SYNC.db.doc(path);
+      try{ const snap=await ref.get(); if(snap.exists){ const js=JSON.stringify(snap.data()); lastSent=js; apply(JSON.parse(js)); } else if(hasData()) await flush(); }
+      catch(e){ setSync('error'); }
+      ref.onSnapshot(snap=>{
+        if(!snap.exists || snap.metadata.hasPendingWrites) return;
+        const js=JSON.stringify(snap.data());
+        if(js===lastSent || js===JSON.stringify(get())) return;
+        lastSent=js; apply(JSON.parse(js));
+      }, ()=>setSync('error'));
+    }
+  };
+}
+window.QUEST_CH=channel('progress/quest', ()=>store,
+  d=>{ store=Object.assign({state:{},custom:[],dueOverride:{},deleted:{}}, d); try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} renderAll(); },
+  ()=>Object.keys(store.state).length>0||store.custom.length>0||Object.keys(store.deleted||{}).length>0);
+window.FR_CH=channel('progress/french', ()=>window.FR.get(), d=>window.FR.apply(d), ()=>window.FR.hasData());
+(async()=>{
+  const db = window.FB_DB || null;
+  if(!db) return; // opened as a local file: keeps saving in this browser
+  SYNC.db=db; setSync('online');
+  document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
+  $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
+  await QUEST_CH.attach(); await FR_CH.attach();
+})();
+if(location.hash==='#french') showScreen('french');
+if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
+</script>
+
+<script>
+/* ---------- Boot: sign in, load private data, then start the dashboard ---------- */
+const FIREBASE_CONFIG = {"apiKey": "AIzaSyANOoTB9MZh0w2PqtqmSPJfP3g0Vpqr0u0", "authDomain": "quest-log-1f157.firebaseapp.com", "projectId": "quest-log-1f157", "storageBucket": "quest-log-1f157.firebasestorage.app", "messagingSenderId": "484956649879", "appId": "1:484956649879:web:7030b8767cc8218e07ecd2"};
+const PARENT_UID = "5UMEqHWWrFPUYIupMNO9Lclq5cA3";
+firebase.initializeApp(FIREBASE_CONFIG);
+const FB_AUTH = firebase.auth();
+window.FB_DB = firebase.firestore();
+const g = id => document.getElementById(id);
+let started = false;
+
+function gateMessage(text, err){ const m=g('gateMsg'); m.textContent=text; m.className='gate-msg'+(err?' err':''); }
+g('gateForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  g('gBtn').disabled = true; gateMessage('Signing in…');
+  try { await FB_AUTH.signInWithEmailAndPassword(g('gEmail').value.trim(), g('gPass').value); g('gPass').value=''; }
+  catch(err){
+    const c = err && err.code || '';
+    gateMessage(/invalid-credential|wrong-password|user-not-found|invalid-email/.test(c) ? 'That email or password is not right. Try again.' :
+                /too-many-requests/.test(c) ? 'Too many tries. Wait a few minutes and try again.' :
+                'Could not sign in (' + c + '). Check your internet connection.', true);
+  }
+  g('gBtn').disabled = false;
+});
+g('setupSignOut').onclick = () => FB_AUTH.signOut();
+
+async function applyDataFile(file, msgEl){
+  const d = JSON.parse(await file.text());
+  if(!d || typeof d.dataJs!=='string' || typeof d.reviewsJs!=='string' || !d.profile) throw new Error('This is not a Quest Log data file.');
+  await FB_DB.doc('dashboard/main').set({profile:d.profile, dataJs:d.dataJs, reviewsJs:d.reviewsJs, updatedAt:new Date().toISOString()});
+  // Progress is only seeded the first time; it never overwrites saved progress.
+  for (const k of ['quest','french']) {
+    if (d.progress && d.progress[k]) {
+      const ref = FB_DB.doc('progress/'+k); const snap = await ref.get();
+      if (!snap.exists) await ref.set(d.progress[k]);
+    }
+  }
+  if (msgEl) msgEl.textContent = 'Loaded. Opening the dashboard…';
+  location.reload();
+}
+g('setupFile').onchange = e => { const f=e.target.files[0]; if(f) applyDataFile(f, g('setupMsg')).catch(err=>{ g('setupMsg').textContent=err.message; g('setupMsg').className='gate-msg err'; }); };
+g('applyFile').onchange = e => { const f=e.target.files[0]; if(f) applyDataFile(f).catch(err=>alert(err.message)); e.target.value=''; };
+
+function fill(text, p){
+  return text.replaceAll('__NAME__', p.name||'').replaceAll('__SCHOOLLINE__', p.schoolLine||'')
+             .replaceAll('__FRTEACHER__', p.frTeacher||'your teacher').replaceAll('__FRVIDEO__', p.frVideo||'#');
+}
+function runScript(code){ const s=document.createElement('script'); s.textContent=code; document.body.appendChild(s); }
+
+function startDashboard(d, user){
+  if (started) return; started = true;
+  const p = d.profile || {};
+  document.title = fill("__NAME__'s Quest Log", p);
+  g('appRoot').innerHTML = fill(g('appMarkup').innerHTML, p);
+  g('gate').hidden = true; g('appRoot').hidden = false;
+  runScript(d.dataJs);
+  runScript(d.reviewsJs);
+  for (let i = 0; i < 3; i++) runScript(fill(g('appJs'+i).textContent, p));
+  g('signOutBtn').onclick = () => FB_AUTH.signOut().then(() => location.reload());
+  if (user.uid === PARENT_UID) { const b=g('applyBtn'); b.hidden=false; b.onclick=()=>g('applyFile').click(); }
+}
+
+FB_AUTH.onAuthStateChanged(async user => {
+  if (!user) { if (started) location.reload(); g('gateForm').hidden=false; g('gateSetup').hidden=true; return; }
+  gateMessage('Loading your dashboard…');
+  try {
+    const snap = await FB_DB.doc('dashboard/main').get();
+    if (!snap.exists) {
+      if (user.uid === PARENT_UID) { g('gateForm').hidden=true; g('gateSetup').hidden=false; }
+      else gateMessage('The dashboard isn\'t set up yet. Ask a parent to load it.', true);
+      return;
+    }
+    startDashboard(snap.data(), user);
+  } catch (err) {
+    gateMessage(err && err.code==='permission-denied' ? 'This account doesn\'t have access to the dashboard.' : 'Could not load the dashboard (' + (err.code||err.message) + ').', true);
+    await FB_AUTH.signOut();
+  }
+});
+</script>
+</body>
+</html>
