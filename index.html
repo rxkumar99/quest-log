@@ -255,11 +255,11 @@ html[data-skin="scholar"]{
 html[data-skin="scholar"] .top h1,html[data-skin="scholar"] h2,html[data-skin="scholar"] h3{letter-spacing:-.01em}
 html[data-skin="night"]{
   color-scheme:dark;
-  --bg:#0F1526; --surface:#172039; --surface-2:#212C4A; --ink:#E6EBF5; --muted:#9AA6C2; --line:#2C3A5E;
-  --accent:#4CC9C9; --accent-ink:#062A2B; --accent-soft:#16404A;
-  --gold:#F2B45A; --gold-soft:#3A2F1C; --danger:#FF8466; --danger-soft:#46231E; --good:#62D394; --good-soft:#173A2A;
+  --bg:#232B3D; --surface:#2D3750; --surface-2:#38435F; --ink:#EEF1F7; --muted:#B0B9CE; --line:#4A567A;
+  --accent:#5CD0CF; --accent-ink:#0A2E30; --accent-soft:#2A5560;
+  --gold:#F2B45A; --gold-soft:#4A3F2A; --danger:#FF8C70; --danger-soft:#553430; --good:#6BD89C; --good-soft:#284A3A;
   --s-social:#F29468; --s-arts:#BC95F2; --s-music:#F283B4; --s-math:#79A8FF; --s-science:#62D394; --s-french:#F0C75A; --s-home:#A5B7D4; --s-event:#9AA6C2;
-  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2);
 }
 html[data-skin="paper"]{
   --bg:#F4ECD9; --surface:#FFFAEE; --surface-2:#EFE4CD; --ink:#3A2E22; --muted:#7A6A55; --line:#E1D3B8;
@@ -271,10 +271,10 @@ html[data-skin="paper"]{
 }
 /* French trainer follows the theme too */
 html[data-skin="scholar"] #trainerApp{--bg:#F3F1EC;--surface:#FFFFFF;--surface-2:#EBE7DF;--ink:#1E2332;--muted:#5D6170;--line:#D9D2C5;--bleu:#7A2E3A;--bleu-soft:#F2E3E5;--display:"Libre Baskerville",Georgia,serif}
-html[data-skin="night"] #trainerApp{color-scheme:dark;--bg:#0F1526;--surface:#172039;--surface-2:#212C4A;--ink:#E6EBF5;--muted:#9AA6C2;--line:#2C3A5E;--bleu:#86A2FF;--bleu-soft:#1F2B55;--rouge:#FF8466;--rouge-soft:#46231E;--vert:#62D394;--vert-soft:#173A2A;--or:#F2B45A;--or-soft:#3A2F1C}
+html[data-skin="night"] #trainerApp{color-scheme:dark;--bg:#232B3D;--surface:#2D3750;--surface-2:#38435F;--ink:#EEF1F7;--muted:#B0B9CE;--line:#4A567A;--bleu:#93ACFF;--bleu-soft:#34406F;--rouge:#FF8C70;--rouge-soft:#553430;--vert:#6BD89C;--vert-soft:#284A3A;--or:#F2B45A;--or-soft:#4A3F2A}
 html[data-skin="paper"] #trainerApp{--bg:#F4ECD9;--surface:#FFFAEE;--surface-2:#EFE4CD;--ink:#3A2E22;--muted:#7A6A55;--line:#E1D3B8;--bleu:#3F6699;--bleu-soft:#E3E8F0;--or-soft:#F5E6C8;--display:"Lora",Georgia,serif}
-html[data-skin="night"] #trainerApp .result{background:#26325A}
-html[data-skin="night"] .news-item.k-event .news-ico{background:#1F2B55}
+html[data-skin="night"] #trainerApp .result{background:#3A4670}
+html[data-skin="night"] .news-item.k-event .news-ico{background:#34406F}
 /* Theme picker */
 .theme-wrap{position:relative}
 .theme-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:45;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow),0 12px 30px rgba(0,0,0,.18);padding:6px;display:grid;gap:4px;min-width:230px}
@@ -581,7 +581,7 @@ body{padding-block:14px 14px}
         <div class="theme-menu" id="themeMenu" role="menu" hidden>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="classic"><span class="sw"><i style="background:#F5F6F8"></i><i style="background:#0F7F86"></i><i style="background:#1B2233"></i></span><span>Classic<small>Bright and clear</small></span></button>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="scholar"><span class="sw"><i style="background:#F3F1EC"></i><i style="background:#7A2E3A"></i><i style="background:#1E2332"></i></span><span>Scholarly<small>Serif type, library colours</small></span></button>
-          <button type="button" class="theme-opt" role="menuitemradio" data-skin="night"><span class="sw"><i style="background:#0F1526"></i><i style="background:#4CC9C9"></i><i style="background:#E6EBF5"></i></span><span>Night<small>Dark, easy on the eyes after dark</small></span></button>
+          <button type="button" class="theme-opt" role="menuitemradio" data-skin="night"><span class="sw"><i style="background:#232B3D"></i><i style="background:#5CD0CF"></i><i style="background:#EEF1F7"></i></span><span>Night<small>Dark, easy on the eyes after dark</small></span></button>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="paper"><span class="sw"><i style="background:#F4ECD9"></i><i style="background:#8A5A2B"></i><i style="background:#3A2E22"></i></span><span>Paper<small>Soft, creamy notebook look</small></span></button>
         </div></span>
       <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
