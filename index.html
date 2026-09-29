@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Quest Log</title>
+<script>try{document.documentElement.setAttribute('data-skin',localStorage.getItem('ql-skin')||'classic')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:wght@400;700&family=Lora:wght@500;600;700&display=swap">
 <style>
 :root{
   color-scheme: light;
@@ -242,6 +243,48 @@ form.add input,form.add select,form.add textarea{font:inherit;padding:9px 11px;b
 .rv-progress{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
 .rv-progress i{display:block;height:100%;background:var(--accent);transition:width .3s}
 
+/* ---------- Themes (picked with the Theme button; saved per device) ---------- */
+html[data-skin="scholar"]{
+  --bg:#F3F1EC; --surface:#FFFFFF; --surface-2:#EBE7DF; --ink:#1E2332; --muted:#5D6170; --line:#D9D2C5;
+  --accent:#7A2E3A; --accent-ink:#FFFFFF; --accent-soft:#F2E3E5;
+  --gold:#A8844F; --gold-soft:#F3EADB; --danger:#B03A2E; --danger-soft:#F6E0DC; --good:#2F7A52; --good-soft:#E0EFE6;
+  --s-social:#9C4A2A; --s-arts:#6B4A9E; --s-music:#A33E68; --s-math:#2D5A9E; --s-science:#2F7A52; --s-french:#9A7418; --s-home:#56657D; --s-event:#7D8699;
+  --display:"Libre Baskerville", Georgia, "Times New Roman", serif;
+  --shadow:0 1px 2px rgba(30,35,50,.05),0 4px 14px rgba(30,35,50,.05);
+}
+html[data-skin="scholar"] .top h1,html[data-skin="scholar"] h2,html[data-skin="scholar"] h3{letter-spacing:-.01em}
+html[data-skin="night"]{
+  color-scheme:dark;
+  --bg:#0F1526; --surface:#172039; --surface-2:#212C4A; --ink:#E6EBF5; --muted:#9AA6C2; --line:#2C3A5E;
+  --accent:#4CC9C9; --accent-ink:#062A2B; --accent-soft:#16404A;
+  --gold:#F2B45A; --gold-soft:#3A2F1C; --danger:#FF8466; --danger-soft:#46231E; --good:#62D394; --good-soft:#173A2A;
+  --s-social:#F29468; --s-arts:#BC95F2; --s-music:#F283B4; --s-math:#79A8FF; --s-science:#62D394; --s-french:#F0C75A; --s-home:#A5B7D4; --s-event:#9AA6C2;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.3);
+}
+html[data-skin="paper"]{
+  --bg:#F4ECD9; --surface:#FFFAEE; --surface-2:#EFE4CD; --ink:#3A2E22; --muted:#7A6A55; --line:#E1D3B8;
+  --accent:#8A5A2B; --accent-ink:#FFF8EA; --accent-soft:#F1E1C8;
+  --gold:#BF8A3D; --gold-soft:#F5E6C8; --danger:#B0452D; --danger-soft:#F5DDD2; --good:#4E7B39; --good-soft:#E2ECD3;
+  --s-social:#A8562F; --s-arts:#7A5594; --s-music:#A4486F; --s-math:#3F6699; --s-science:#4E7B39; --s-french:#A87D1E; --s-home:#6E6452; --s-event:#8D7F68;
+  --display:"Lora", Georgia, "Times New Roman", serif;
+  --shadow:0 1px 2px rgba(58,46,34,.06),0 4px 14px rgba(58,46,34,.06);
+}
+/* French trainer follows the theme too */
+html[data-skin="scholar"] #trainerApp{--bg:#F3F1EC;--surface:#FFFFFF;--surface-2:#EBE7DF;--ink:#1E2332;--muted:#5D6170;--line:#D9D2C5;--bleu:#7A2E3A;--bleu-soft:#F2E3E5;--display:"Libre Baskerville",Georgia,serif}
+html[data-skin="night"] #trainerApp{color-scheme:dark;--bg:#0F1526;--surface:#172039;--surface-2:#212C4A;--ink:#E6EBF5;--muted:#9AA6C2;--line:#2C3A5E;--bleu:#86A2FF;--bleu-soft:#1F2B55;--rouge:#FF8466;--rouge-soft:#46231E;--vert:#62D394;--vert-soft:#173A2A;--or:#F2B45A;--or-soft:#3A2F1C}
+html[data-skin="paper"] #trainerApp{--bg:#F4ECD9;--surface:#FFFAEE;--surface-2:#EFE4CD;--ink:#3A2E22;--muted:#7A6A55;--line:#E1D3B8;--bleu:#3F6699;--bleu-soft:#E3E8F0;--or-soft:#F5E6C8;--display:"Lora",Georgia,serif}
+html[data-skin="night"] #trainerApp .result{background:#26325A}
+html[data-skin="night"] .news-item.k-event .news-ico{background:#1F2B55}
+/* Theme picker */
+.theme-wrap{position:relative}
+.theme-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:45;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow),0 12px 30px rgba(0,0,0,.18);padding:6px;display:grid;gap:4px;min-width:230px}
+.theme-opt{display:flex;align-items:center;gap:10px;border:0;background:transparent;border-radius:10px;padding:8px 10px;text-align:left;font:inherit;color:var(--ink);cursor:pointer}
+.theme-opt:hover{background:var(--surface-2)}
+.theme-opt[aria-checked="true"]{background:var(--accent-soft);font-weight:700}
+.theme-opt .sw{display:inline-flex;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.12);flex:none}
+.theme-opt .sw i{width:12px;height:22px;display:block}
+.theme-opt small{display:block;color:var(--muted);font-size:12px;font-weight:500}
+
 /* ---------- What's new pop-up + side tab ---------- */
 #newsModal{width:min(560px,calc(100vw - 32px))}
 #newsModal .m-head{background:linear-gradient(135deg,var(--accent-soft),var(--surface))}
@@ -258,7 +301,7 @@ form.add input,form.add select,form.add textarea{font:inherit;padding:9px 11px;b
 .news-item .nw{font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}
 .news-new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;background:var(--danger);color:#fff;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
 .news-empty{color:var(--muted);font-size:14px;padding:6px 2px}
-#newsTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:40;border:0;border-radius:12px 0 0 12px;background:var(--ink);color:#fff;padding:14px 9px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;font:inherit}
+#newsTab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:40;border:0;border-radius:12px 0 0 12px;background:var(--ink);color:var(--bg);padding:14px 9px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;font:inherit}
 #newsTab:hover{padding-right:13px}
 #newsTab .vt{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:700;font-size:13px;letter-spacing:.06em}
 #newsTab .nb{min-width:22px;height:22px;border-radius:99px;background:var(--danger);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;padding:0 5px}
@@ -534,6 +577,13 @@ body{padding-block:14px 14px}
     </div>
     <div class="toolbar">
       <span class="sync" id="syncStatus" data-s="local">Saved on this device</span>
+      <span class="theme-wrap"><button class="btn" id="themeBtn" type="button" aria-haspopup="menu" aria-expanded="false">🎨 Theme</button>
+        <div class="theme-menu" id="themeMenu" role="menu" hidden>
+          <button type="button" class="theme-opt" role="menuitemradio" data-skin="classic"><span class="sw"><i style="background:#F5F6F8"></i><i style="background:#0F7F86"></i><i style="background:#1B2233"></i></span><span>Classic<small>Bright and clear</small></span></button>
+          <button type="button" class="theme-opt" role="menuitemradio" data-skin="scholar"><span class="sw"><i style="background:#F3F1EC"></i><i style="background:#7A2E3A"></i><i style="background:#1E2332"></i></span><span>Scholarly<small>Serif type, library colours</small></span></button>
+          <button type="button" class="theme-opt" role="menuitemradio" data-skin="night"><span class="sw"><i style="background:#0F1526"></i><i style="background:#4CC9C9"></i><i style="background:#E6EBF5"></i></span><span>Night<small>Dark, easy on the eyes after dark</small></span></button>
+          <button type="button" class="theme-opt" role="menuitemradio" data-skin="paper"><span class="sw"><i style="background:#F4ECD9"></i><i style="background:#8A5A2B"></i><i style="background:#3A2E22"></i></span><span>Paper<small>Soft, creamy notebook look</small></span></button>
+        </div></span>
       <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
       <button class="btn primary" id="addBtn" type="button">+ Add assignment</button>
       <button class="btn parent-only" id="applyBtn" type="button" hidden>Apply update</button>
@@ -1013,6 +1063,22 @@ function openDeleted(){
   modal.querySelectorAll('[data-restore-id]').forEach(b=>b.onclick=()=>restoreTask(b.dataset.restoreId,false));
 }
 $('#deletedBtn').onclick=openDeleted;
+
+/* ---------- Theme picker (per device) ---------- */
+function applySkin(s){
+  document.documentElement.setAttribute('data-skin', s);
+  try{ localStorage.setItem('ql-skin', s); }catch(e){}
+  document.querySelectorAll('.theme-opt').forEach(b=>b.setAttribute('aria-checked', String(b.dataset.skin===s)));
+}
+(function initThemePicker(){
+  const btn=$('#themeBtn'), menu=$('#themeMenu'); if(!btn) return;
+  applySkin(document.documentElement.getAttribute('data-skin')||'classic');
+  const close=()=>{ menu.hidden=true; btn.setAttribute('aria-expanded','false'); };
+  btn.onclick=e=>{ e.stopPropagation(); menu.hidden=!menu.hidden; btn.setAttribute('aria-expanded', String(!menu.hidden)); };
+  menu.querySelectorAll('.theme-opt').forEach(o=>o.onclick=()=>{ applySkin(o.dataset.skin); close(); toast(({classic:'Classic',scholar:'Scholarly',night:'Night',paper:'Paper'})[o.dataset.skin]+' theme on'); });
+  document.addEventListener('click',e=>{ if(!menu.hidden && !e.target.closest('.theme-wrap')) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
 
 /* ---------- What's new pop-up ---------- */
 const NEWS_DAYS = 3;
