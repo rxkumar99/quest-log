@@ -1690,9 +1690,12 @@ const SYNC={db:null};
 const SYNC_TXT={local:'Saved on this device', online:'Saved online ✓', saving:'Saving…', error:'Offline · will retry', readonly:'View only'};
 function setSync(s){ const el=$('#syncStatus'); if(el){ el.dataset.s=s; el.textContent=SYNC_TXT[s]; } }
 function channel(path, get, apply, hasData){
-  let timer=null, writing=false, again=false, lastSent=null;
+  // SAFETY: nothing is written until the saved copy has been loaded (ready). Writing earlier would
+  // replace the real progress with this page's empty starting copy.
+  let timer=null, writing=false, again=false, lastSent=null, ready=false, pending=false;
   async function flush(){
     if(!SYNC.db) return;
+    if(!ready){ pending=true; return; }
     if(writing){ again=true; return; }
     writing=true; setSync('saving');
     try{ const body=JSON.parse(JSON.stringify(get())); lastSent=JSON.stringify(body); await SYNC.db.doc(path).set(body); setSync('online'); }
@@ -1700,12 +1703,25 @@ function channel(path, get, apply, hasData){
     writing=false;
     if(again){ again=false; flush(); }
   }
+  async function dailyBackup(data){
+    // one copy per day, e.g. progress/backup-quest-2026-09-30, so progress can always be recovered
+    try{ const id='backup-'+path.split('/')[1]+'-'+ymd(today()); const b=SYNC.db.doc('progress/'+id); const s=await b.get(); if(!s.exists) await b.set({savedAt:new Date().toISOString(), data}); }catch(e){}
+  }
   return {
     push(){ clearTimeout(timer); timer=setTimeout(flush, 800); },
     async attach(){
       const ref=SYNC.db.doc(path);
-      try{ const snap=await ref.get(); if(snap.exists){ const js=JSON.stringify(snap.data()); lastSent=js; apply(JSON.parse(js)); } else if(hasData()) await flush(); }
-      catch(e){ setSync('error'); }
+      for(let attempt=0; attempt<3 && !ready; attempt++){
+        try{
+          const snap=await ref.get({source:'server'});
+          if(snap.exists){ const js=JSON.stringify(snap.data()); lastSent=js; apply(JSON.parse(js)); dailyBackup(JSON.parse(js)); }
+          ready=true;
+          if(!snap.exists && hasData()) await flush();
+        }catch(e){ setSync('error'); await new Promise(r=>setTimeout(r, 3000)); }
+      }
+      if(!ready) return;          // could not load: stay read-only for this visit rather than risk overwriting
+      pending=false;              // changes made before loading were applied to the empty copy; drop them
+      setSync('online');
       ref.onSnapshot(snap=>{
         if(!snap.exists || snap.metadata.hasPendingWrites) return;
         const js=JSON.stringify(snap.data());
