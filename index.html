@@ -524,6 +524,130 @@ body{padding-block:14px 14px}
 @media (prefers-reduced-motion:reduce){#trainerApp *{transition:none!important}
 }
 
+/* ================= SQUARE ROOT TRAINER (scoped; follows the Quest Log theme) ================= */
+#rootsApp{
+  --rt-bg:var(--bg); --rt-grid:var(--surface-2); --rt-paper:var(--surface); --rt-ink:var(--ink); --rt-muted:var(--muted); --rt-line:var(--line);
+  --rt-accent:var(--s-math); --rt-accent-ink:#FFFFFF; --rt-accent-soft:color-mix(in srgb,var(--s-math) 13%,var(--surface)); --rt-mark:var(--gold); --rt-mark-ink:#1B1B1B;
+  --rt-ok:var(--good); --rt-ok-bg:var(--good-soft); --rt-no:var(--danger); --rt-no-bg:var(--danger-soft); --rt-warn-bg:var(--gold-soft);
+  background-color:var(--rt-bg); color:var(--rt-ink); font:17px/1.55 var(--body);
+  background-image:linear-gradient(color-mix(in srgb,var(--rt-grid) 70%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--rt-grid) 70%,transparent) 1px,transparent 1px);
+  background-size:24px 24px; margin-inline:-16px; padding-inline:16px; padding-block:6px 48px; min-height:100vh;
+}
+html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
+#rootsApp .rt-wrap{max-width:760px;margin:0 auto;display:block}
+#rootsApp h1,#rootsApp h2,#rootsApp .fbh{font-family:var(--display);text-wrap:balance;margin:0}
+#rootsApp :focus-visible{outline:3px solid var(--rt-accent);outline-offset:2px;border-radius:6px}
+#rootsApp .eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rt-muted);font-weight:700;margin:0}
+#rootsApp .rt-back{font-weight:600;text-decoration:none;font-size:14px;color:var(--rt-accent);display:inline-block;margin-bottom:6px}
+#rootsApp .hero{display:grid;gap:12px;padding-block:8px 20px}
+#rootsApp .hero h1{font-size:clamp(2.1rem,7vw,3.2rem);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+#rootsApp .hl{background:linear-gradient(transparent 58%,var(--rt-mark) 58%,var(--rt-mark) 92%,transparent 92%);padding-inline:.06em}
+#rootsApp .lede{margin:0;max-width:60ch;color:var(--rt-muted)}
+#rootsApp .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+#rootsApp .expert-count{font-family:var(--mono);font-size:.85rem;color:var(--rt-muted);margin:0}
+#rootsApp .btn{appearance:none;border:1.5px solid var(--rt-line);background:var(--rt-paper);color:var(--rt-ink);border-radius:10px;padding:11px 16px;font-weight:700;font-size:15px;cursor:pointer;min-height:46px}
+#rootsApp .btn:hover{border-color:var(--rt-accent)}
+#rootsApp .btn.primary{background:var(--rt-accent);border-color:var(--rt-accent);color:var(--rt-accent-ink)}
+#rootsApp .btn.primary:hover{filter:brightness(1.07)}
+#rootsApp .btn.ghost{background:transparent}
+#rootsApp .btn:disabled{opacity:.45;cursor:default}
+#rootsApp .rt-link{appearance:none;background:none;border:0;color:var(--rt-accent);font-weight:700;cursor:pointer;padding:6px 0}
+#rootsApp .notes{background:var(--rt-paper);border:1.5px solid var(--rt-line);border-radius:12px;padding:12px 16px;margin-block:4px 22px}
+#rootsApp .notes summary{cursor:pointer;font-weight:700}
+#rootsApp .notes ul{margin:10px 0 4px;padding-left:20px;display:grid;gap:6px}
+#rootsApp .notes .good{color:var(--rt-ok);font-weight:700}
+#rootsApp .sec{font-size:1.3rem;font-weight:800;margin-bottom:12px}
+#rootsApp .skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+#rootsApp .skill{appearance:none;text-align:left;background:var(--rt-paper);color:var(--rt-ink);border:1.5px solid var(--rt-line);border-radius:12px;padding:14px;display:grid;gap:6px;cursor:pointer;min-width:0}
+#rootsApp .skill:hover{border-color:var(--rt-accent)}
+#rootsApp .sname{font-family:var(--display);font-weight:800;font-size:1.08rem;line-height:1.2}
+#rootsApp .sdesc{color:var(--rt-muted);font-size:.9rem;line-height:1.35}
+#rootsApp .meter{height:7px;border-radius:4px;background:var(--rt-grid);overflow:hidden;margin-top:4px}
+#rootsApp .meter i{display:block;height:100%;background:var(--rt-accent);border-radius:4px}
+#rootsApp .sstat{font-size:.8rem;font-family:var(--mono);color:var(--rt-muted)}
+#rootsApp .sstat.expert{color:var(--rt-ok);font-weight:700}
+#rootsApp .rt-foot{color:var(--rt-muted);font-size:.86rem;margin-top:16px}
+#rootsApp .qbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+#rootsApp .prog{flex:1;min-width:150px;display:grid;gap:4px;font-size:.85rem;color:var(--rt-muted);font-family:var(--mono)}
+#rootsApp .pbar{height:6px;background:var(--rt-grid);border-radius:3px;overflow:hidden}
+#rootsApp .pbar i{display:block;height:100%;background:var(--rt-accent)}
+#rootsApp .score{font-family:var(--mono);font-size:.88rem}
+#rootsApp .rt-streak{background:var(--rt-mark);color:var(--rt-mark-ink);padding:1px 6px;border-radius:4px;font-weight:700}
+#rootsApp .qcard{background:var(--rt-paper);border:1.5px solid var(--rt-line);border-radius:16px;box-shadow:var(--shadow);padding:20px;display:grid;gap:16px;min-width:0}
+#rootsApp .retry{color:var(--rt-accent)}
+#rootsApp .prompt{font-size:1.2rem;line-height:1.5;min-width:0;display:grid;gap:10px}
+#rootsApp .big{font-family:var(--mono);font-weight:700;font-size:1.5rem}
+#rootsApp .rad{white-space:nowrap;font-family:var(--mono);font-weight:700}
+#rootsApp .rs{font-family:var(--body);font-weight:400;font-size:1.08em;margin-right:1px}
+#rootsApp .rn{border-top:2px solid currentColor;padding:0 2px;display:inline-block;line-height:1.15}
+#rootsApp .prompt .rad{font-size:1.15em}
+#rootsApp .cmp{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:1.5rem;font-weight:700;padding-block:8px}
+#rootsApp .cbox{display:inline-grid;place-items:center;width:52px;height:52px;border:2px dashed var(--rt-line);border-radius:10px;color:var(--rt-muted)}
+#rootsApp .sqfig{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+#rootsApp .sqfig svg{width:110px;height:110px;flex:none}
+#rootsApp .sqfig rect{fill:var(--rt-accent-soft);stroke:var(--rt-accent);stroke-width:2.5}
+#rootsApp .sqfig text{fill:var(--rt-ink);font-family:var(--mono);font-size:15px;text-anchor:middle}
+#rootsApp .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+#rootsApp .choice{appearance:none;background:var(--rt-paper);color:var(--rt-ink);border:1.5px solid var(--rt-line);border-radius:10px;padding:12px 14px;cursor:pointer;font-size:1.05rem;text-align:left;min-height:52px}
+#rootsApp .choice.sym{text-align:center;font-family:var(--mono);font-size:1.5rem;font-weight:700}
+#rootsApp .choice:hover:not(:disabled){border-color:var(--rt-accent);background:var(--rt-accent-soft)}
+#rootsApp .choice.picked-ok{border-color:var(--rt-ok);background:var(--rt-ok-bg)}
+#rootsApp .choice.picked-no{border-color:var(--rt-no);background:var(--rt-no-bg)}
+#rootsApp .choice.right{border-color:var(--rt-ok)}
+#rootsApp .choice:disabled{cursor:default}
+#rootsApp .ansrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#rootsApp .nb{display:inline-flex;align-items:stretch;border:1.5px solid var(--rt-line);border-radius:10px;overflow:hidden;background:var(--rt-paper)}
+#rootsApp .nb:focus-within{border-color:var(--rt-accent);box-shadow:0 0 0 3px var(--rt-accent-soft)}
+#rootsApp .pm{appearance:none;border:0;border-right:1.5px solid var(--rt-line);background:var(--rt-grid);color:var(--rt-ink);width:44px;font-family:var(--mono);font-size:1.2rem;cursor:pointer}
+#rootsApp .num{border:0;background:transparent;color:var(--rt-ink);font-family:var(--mono);font-size:1.3rem;font-weight:700;padding:10px 12px;width:9.5ch;min-width:0;outline:none}
+#rootsApp .unit{font-family:var(--mono);color:var(--rt-muted)}
+#rootsApp .row{display:flex;gap:8px;flex-wrap:wrap}
+#rootsApp .hint{background:var(--rt-warn-bg);border-radius:10px;padding:10px 14px;font-size:.98rem}
+#rootsApp .msg{color:var(--rt-no);font-size:.92rem;min-height:1.2em;margin:0}
+#rootsApp .nlwrap{overflow-x:auto}
+#rootsApp svg.nl{width:100%;min-width:340px;height:auto;display:block}
+#rootsApp svg.nl.inter{touch-action:none;cursor:crosshair;border-radius:10px;background:var(--rt-accent-soft)}
+#rootsApp .nl .ax,#rootsApp .nl .t1{stroke:var(--rt-ink);stroke-width:2}
+#rootsApp .nl .axh{fill:var(--rt-ink)}
+#rootsApp .nl .t2{stroke:var(--rt-muted);stroke-width:1.2}
+#rootsApp .nl .tl{fill:var(--rt-ink);font-family:var(--mono);font-size:19px;text-anchor:middle}
+#rootsApp .nl .mt{font-family:var(--mono);font-size:19px;font-weight:700;text-anchor:middle}
+#rootsApp .nl .ml{stroke-width:2;stroke-dasharray:3 3}
+#rootsApp .nl .okm circle{fill:var(--rt-ok)} #rootsApp .nl .okm .ml{stroke:var(--rt-ok)} #rootsApp .nl .okm .mt{fill:var(--rt-ok)}
+#rootsApp .nl .nom circle{fill:var(--rt-no)} #rootsApp .nl .nom .ml{stroke:var(--rt-no)} #rootsApp .nl .nom .mt{fill:var(--rt-no)}
+#rootsApp .nl .ptP circle,#rootsApp .nl .you circle{fill:var(--rt-accent)} #rootsApp .nl .ptP .ml,#rootsApp .nl .you .ml{stroke:var(--rt-accent)} #rootsApp .nl .ptP .mt,#rootsApp .nl .you .mt{fill:var(--rt-accent)}
+#rootsApp .linestat{font-size:.9rem;color:var(--rt-muted);margin:0}
+#rootsApp .fb{border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+#rootsApp .fb p{margin:0}
+#rootsApp .fb.ok{background:var(--rt-ok-bg)}
+#rootsApp .fb.no{background:var(--rt-no-bg)}
+#rootsApp .fbh{font-size:1.25rem;font-weight:800}
+#rootsApp .fb.ok .fbh{color:var(--rt-ok)} #rootsApp .fb.no .fbh{color:var(--rt-no)}
+#rootsApp .watch{background:var(--rt-warn-bg);border-radius:8px;padding:8px 12px}
+#rootsApp .sh{font-weight:700;margin-top:4px!important}
+#rootsApp ol.steps{margin:0;padding:0 0 0 22px;display:grid;gap:6px;list-style:decimal}
+#rootsApp ol.steps li{padding-left:2px}
+#rootsApp .fb details summary{cursor:pointer;font-weight:700}
+#rootsApp .fb details[open] summary{margin-bottom:8px}
+#rootsApp .added{font-size:.9rem;color:var(--rt-muted);font-style:italic}
+#rootsApp mark{background:var(--rt-mark);color:var(--rt-mark-ink);padding:0 3px;border-radius:3px}
+#rootsApp table.tries{border-collapse:collapse;font-family:var(--mono);font-size:.95rem;margin-top:6px}
+#rootsApp table.tries td,#rootsApp table.tries th{padding:4px 12px;border-bottom:1px solid var(--rt-line);text-align:left}
+#rootsApp table.tries tr.best td{background:var(--rt-mark);color:var(--rt-mark-ink);font-weight:700}
+#rootsApp .n{font-family:var(--mono)}
+#rootsApp .end{display:grid;gap:16px}
+#rootsApp .bigscore{font-family:var(--display);font-weight:800;font-size:clamp(3rem,14vw,5rem);line-height:1}
+#rootsApp .bk{display:grid;gap:6px}
+#rootsApp .bkrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--rt-line)}
+#rootsApp .bkrow span:last-child{font-family:var(--mono)}
+#rootsApp .missed{margin:0;padding-left:20px;display:grid;gap:6px}
+#rootsApp .drawer{position:fixed;left:0;right:0;bottom:0;background:var(--rt-paper);border-top:1.5px solid var(--rt-line);box-shadow:0 -8px 30px rgba(0,0,0,.15);padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));z-index:30;max-height:60vh;overflow:auto}
+#rootsApp .drawer .dh{display:flex;justify-content:space-between;align-items:center;max-width:760px;margin:0 auto 10px}
+#rootsApp .sqgrid{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:4px 10px;font-family:var(--mono);font-size:.92rem}
+#rootsApp .sqgrid b{color:var(--rt-accent)}
+@media (max-width:480px){#rootsApp{font-size:16px}#rootsApp .qcard{padding:16px}#rootsApp .prompt{font-size:1.1rem}}
+@media (prefers-reduced-motion:no-preference){#rootsApp .fb{animation:rtRise .25s ease-out}@keyframes rtRise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}}
+
 </style>
 
 <style>
@@ -585,6 +709,7 @@ body{padding-block:14px 14px}
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="paper"><span class="sw"><i style="background:#F4ECD9"></i><i style="background:#8A5A2B"></i><i style="background:#3A2E22"></i></span><span>Paper<small>Soft, creamy notebook look</small></span></button>
         </div></span>
       <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
+      <a class="btn" href="#roots" style="text-decoration:none;color:var(--ink)">√ Square Root Trainer</a>
       <button class="btn primary" id="addBtn" type="button">+ Add assignment</button>
       <button class="btn parent-only" id="applyBtn" type="button" hidden>Apply update</button>
       <button class="btn" id="signOutBtn" type="button">Sign out</button>
@@ -747,6 +872,14 @@ body{padding-block:14px 14px}
 
 </div>
 
+<div id="rootsApp" hidden>
+<div class="rt-wrap"><main id="rt-app"></main></div>
+<div id="rt-sq" class="drawer" hidden>
+  <div class="dh"><strong>Perfect squares 1–30</strong><button class="rt-link" type="button" id="rt-sqclose">Close</button></div>
+  <div class="sqgrid" id="rt-sqgrid"></div>
+</div>
+</div>
+
 <button id="newsTab" type="button" aria-label="What's new" hidden><span class="nb" id="newsCount">0</span><span class="vt">What’s new</span></button>
 <dialog id="newsModal" aria-labelledby="newsTitle">
   <div class="m-head"><button class="close" type="button" id="newsClose" aria-label="Close">×</button>
@@ -782,6 +915,24 @@ body{padding-block:14px 14px}
 </template>
 <script type="text/plain" id="appJs0">
 /* Classroom data is loaded from the private database after sign-in. */
+/* ---------- Square Root Trainer assignment ----------
+   Added by the app so it shows even before the Classroom data includes it. Steps tick themselves from the trainer. */
+(function(){
+  if(typeof BUILT_IN==='undefined') return;
+  const m11=BUILT_IN.find(t=>t.id==='math-1-1');
+  const study={label:'Square Root Trainer: practice with step-by-step fixes', url:'#roots', kind:'STUDY'};
+  if(m11 && !(m11.links||[]).some(l=>l.url==='#roots')) m11.links=[study,...(m11.links||[])];
+  if(!BUILT_IN.some(t=>t.id==='math-roots')) BUILT_IN.push({
+    id:'math-roots', title:'Math · Square roots & irrational numbers (Practice 1)', subject:'math', teacher:(m11&&m11.teacher)||'', due:'2026-10-16', time:'End of day', xp:0,
+    turnIn:'Practice in the Square Root Trainer',
+    desc:'Chapter 1 Practice 1 (Representing Square Roots and Irrational Numbers) and the Estimating Square Roots sheet. Practise in the Square Root Trainer until every skill says Expert. Every wrong answer shows how to get to the right one. Steps tick themselves as you go.',
+    steps:['Fix-it set (from the worksheets): 10/12 or better','Expert: Perfect squares','Expert: Rational or irrational','Expert: Exact square roots','Expert: Between two integers','Expert: Estimate, no calculator','Expert: Calculator to 3 places','Expert: Number lines','Expert: Compare roots','Expert: Word problems'],
+    links:[study].concat(m11?(m11.links||[]).filter(l=>l.kind==='PDF').slice(0,1):[]),
+    note:'From the worksheets: keep the minus sign on negative roots, round (don\'t cut off) to 3 decimal places, use the π key instead of 3.14, and always write the two whole numbers a root sits between first.'
+  });
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-roots-trainer'))
+    NEWS.unshift({id:'n-roots-trainer', date:'2026-10-12', kind:'assignment', title:'Math: Square Root Trainer assignment, due Fri Oct 16', detail:'Practise Chapter 1 Practice 1 with explanations for every mistake. Start with the Fix-it set.', open:'math-roots'});
+})();
 /* ---------- Storage ---------- */
 const KEY='quest-log-v1';
 let store = {state:{}, custom:[], dueOverride:{}, deleted:{}};
@@ -1215,19 +1366,25 @@ window.QL={
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
     if(testDate && store.dueOverride.frenchA!==testDate){ store.dueOverride.frenchA=testDate; changed=true; }
     if(changed){ save(); renderAll(); }
+  },
+  rootsProgress(marks){
+    const s=st('math-roots'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(changed){ save(); renderAll(); }
   }
 };
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#rootsApp').hidden=name!=='roots'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
+  if(name==='roots' && window.ROOTS) ROOTS.show();
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#roots"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -1680,6 +1837,484 @@ let startV="plan"; try{ startV=localStorage.getItem(KEY+"-view")||"plan"; }catch
 show(["plan","cards","practice","grammar","tests","words"].includes(startV)?startV:"plan");
 
 })();
+
+/* ================= SQUARE ROOT TRAINER ================= */
+(function(){
+
+/* ---------- maths helpers ---------- */
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[R(0,a.length-1)];
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const isqrt=n=>{let a=Math.floor(Math.sqrt(n));while(a*a>n)a--;while((a+1)*(a+1)<=n)a++;return a};
+const isSq=n=>Number.isInteger(n)&&n>=0&&isqrt(n)**2===n;
+const nonSq=(lo,hi)=>{let n;do{n=R(lo,hi)}while(isSq(n));return n};
+const rnd=(x,d)=>{const f=10**d;return Math.sign(x)*Math.round(Math.abs(x)*f+1e-9)/f};
+const trunc=(x,d)=>{const f=10**d;return Math.sign(x)*Math.floor(Math.abs(x)*f+1e-9)/f};
+const near=(a,b)=>Math.abs(a-b)<1e-9;
+const F=(x,d)=>{let s=d==null?String(+(+x).toFixed(10)):rnd(x,d).toFixed(d);if(/^-0(\.0*)?$/.test(s))s=s.slice(1);return s.replace('-','−')};
+const rad=(n,neg)=>`${neg?'−':''}<span class="rad"><span class="rs">√</span><span class="rn">${n}</span></span>`;
+const plain=(n,neg)=>`${neg?'−':''}√${n}`;
+const ol=a=>`<ol class="steps">${a.filter(Boolean).map(x=>`<li>${x}</li>`).join('')}</ol>`;
+const decs=s=>((s||'').split('.')[1]||'').length;
+const SIGN='Check the sign. The minus sign in front of the root belongs in the answer too.';
+
+/* ---------- number line ---------- */
+const NLW=640,NLP=28,NLY=72;
+function nl(lo,hi,marks,inter){
+  const X=v=>NLP+(v-lo)/(hi-lo)*(NLW-2*NLP);
+  let s=`<svg class="nl${inter?' inter':''}" ${inter?`id="rt-nlq" tabindex="0" aria-label="Number line from ${lo} to ${hi}. Tap to place your point, or use the arrow keys."`:`role="img" aria-label="Number line from ${lo} to ${hi}"`} viewBox="0 0 ${NLW} 118">`;
+  s+=`<rect x="0" y="0" width="${NLW}" height="118" fill="transparent"/>`;
+  s+=`<line class="ax" x1="${NLP-14}" y1="${NLY}" x2="${NLW-NLP+14}" y2="${NLY}"/><path class="axh" d="M${NLP-22} ${NLY} l10 -6 v12z M${NLW-NLP+22} ${NLY} l-10 -6 v12z"/>`;
+  for(let i=Math.round(lo*10);i<=Math.round(hi*10);i++){
+    const v=i/10,x=X(v).toFixed(1),maj=i%10===0,half=i%5===0,h=maj?11:half?7:4;
+    s+=`<line class="${maj?'t1':'t2'}" x1="${x}" x2="${x}" y1="${NLY-h}" y2="${NLY+h}"/>`;
+    if(maj)s+=`<text class="tl" x="${x}" y="${NLY+36}">${F(Math.round(v))}</text>`;
+  }
+  for(const m of marks.filter(Boolean)){
+    const x=X(m.v),tx=Math.min(NLW-40,Math.max(40,x)).toFixed(1);
+    s+=`<g class="${m.c}"><line class="ml" x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${NLY-34}" y2="${NLY}"/><circle cx="${x.toFixed(1)}" cy="${NLY}" r="8"/><text class="mt" x="${tx}" y="${NLY-42}">${m.label}</text></g>`;
+  }
+  if(inter)s+=`<g id="rt-pmk" class="you" style="display:none"><line class="ml" x1="0" x2="0" y1="${NLY-34}" y2="${NLY}"/><circle cx="0" cy="${NLY}" r="9"/><text class="mt" id="rt-pmt" x="0" y="${NLY-42}">${inter}</text></g>`;
+  return `<div class="nlwrap">${s}</svg></div>`;
+}
+const lineRange=(v,a,b)=>{const lo=Math.floor(v)-R(a,b);return [lo,lo+6]};
+
+/* shared 3-decimal calculator working */
+function calcSteps(n,neg){
+  const ex=Math.sqrt(n),a=isqrt(n),s=ex.toFixed(8),[ip,dp]=s.split('.'),d4=+dp[3],ans=rnd(ex,3);
+  return [
+    `Sanity check: ${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so ${rad(n)} is between ${a} and ${a+1}.`,
+    `Calculator: ${rad(n)} = <span class="n">${ip}.${dp.slice(0,3)}<mark>${dp[3]}</mark>${dp.slice(4,6)}…</span>`,
+    `For 3 decimal places, look at the 4th digit after the decimal point. It is <b>${d4}</b>.`,
+    d4>=5?`${d4} is 5 or more, so the 3rd decimal digit goes up by one: <b class="n">${F(ans,3)}</b>.`:`${d4} is less than 5, so the 3rd decimal digit stays the same: <b class="n">${F(ans,3)}</b>.`,
+    neg?`Put the minus sign back: ${rad(n,true)} ≈ <b class="n">−${F(ans,3)}</b>.`:''
+  ];
+}
+function calcDiag(x,raw,ex,ans,d){
+  if(near(x,-ans))return SIGN;
+  const t=trunc(ex,d);
+  if(!near(t,ans)&&near(x,t))return `You cut the number off instead of rounding. The next digit is 5 or more, so round up to ${F(ans,d)}.`;
+  if(decs(raw)!==d&&!near(x,ans))return `The question asks for exactly ${d} decimal place${d>1?'s':''}. Your answer has ${decs(raw)}.`;
+  if(Math.abs(x-ans)<=0.0105*(d===3?1:10))return 'Very close. One digit is off. Read the calculator display again carefully, digit by digit.';
+  return '';
+}
+
+/* ---------- question generators ---------- */
+const G={};
+
+G.perfect=(l,p={})=>{
+  let n=p.n;
+  if(n==null){const k=R([4,9,13][l-1],[15,30,45][l-1]);if(Math.random()<.5)n=k*k;else{do{n=k*k+R(-k,k)}while(isSq(n)||n<5)}}
+  const s=isSq(n),a=isqrt(n),ld=n%10,rule=[2,3,7,8].includes(ld),b=Math.max(2,Math.floor(a/5)*5);
+  const steps=s?[`Look for a whole number that multiplies by itself to make ${n}.`,`${a} × ${a} = ${n}.`,`So ${n} is a perfect square, and ${rad(n)} = ${a}.`]
+    :[rule?`Quick test: perfect squares never end in 2, 3, 7 or 8. ${n} ends in ${ld}, so it cannot be a perfect square.`:`Quick test: ${n} ends in ${ld}, and perfect squares can end in ${ld}, so check the nearby squares.`,
+      `${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}.`,`${n} sits between ${a*a} and ${(a+1)**2}, so no whole number times itself makes ${n}. It is a non-perfect square, and ${rad(n)} is between ${a} and ${a+1}.`];
+  return {kind:'mc',v:'n',prompt:`Is <span class="big">${n}</span> a perfect square?`,choices:['Yes, a perfect square','No, a non-perfect square'],ans:s?0:1,
+    answerText:s?`Yes. ${a} × ${a} = ${n}`:'No, it is a non-perfect square',explain:()=>ol(steps),
+    hint:`Perfect squares never end in 2, 3, 7 or 8. Then compare with nearby squares, starting from one you know, like ${b}² = ${b*b}.`};
+};
+
+G.rational=(l,p={})=>{
+  const pool={
+    sqPerfect:()=>{const k=R(2,l>1?25:15),n=k*k;return[rad(n),0,[`${n} is a perfect square: ${k} × ${k} = ${n}.`,`So ${rad(n)} = ${k}, a whole number.`,`Whole numbers are rational because they can be written as a fraction: ${k} = ${k}/1.`]]},
+    sqNon:()=>{const n=nonSq(2,l>1?400:100),a=isqrt(n);return[rad(n),1,[`Is ${n} a perfect square? ${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so no.`,`The square root of a whole number that is not a perfect square is a decimal that never ends and never repeats.`,`So ${rad(n)} is irrational.`]]},
+    dec3142:()=>['3.142',0,['3.142 looks like π, but it is not π. It stops after 3 decimal places.','A decimal that stops can be written as a fraction: 3.142 = 3142/1000.','So 3.142 is rational. π itself (3.14159…) never ends and never repeats, so π is irrational.']],
+    decEnd:()=>{const x=pick(['2.25','0.875','4.6','12.05','0.125','7.3']),d=decs(x);return[x,0,[`${x} stops after ${d} decimal place${d>1?'s':''}.`,`So it can be written as a fraction: ${x} = ${+x.replace('.','')}/${10**d}.`,'Any decimal that stops is rational.']]},
+    rep:()=>{const[s,f]=pick([['0.333…','1/3'],['0.666…','2/3'],['0.272727…','3/11'],['1.444…','13/9'],['0.090909…','1/11']]);return[s,0,[`${s} goes on forever, but the same digits repeat.`,`Repeating decimals are rational. Here ${s} = ${f}.`,'Irrational decimals never end and never repeat.']]},
+    pi:()=>{const[s,t]=pick([['π/2','Halving'],['2π','Doubling'],['π + 1','Adding 1 to'],['π²','Squaring'],['π − 3','Subtracting 3 from']]);return[s,1,['π = 3.14159… never ends and never repeats, so π is irrational.',`${t} π still gives a decimal that never ends and never repeats.`,`So ${s} is irrational.`]]},
+    frac:()=>{const a=R(1,9),b=R(2,13);return[`${a}/${b}`,0,[`${a}/${b} is a fraction made of two integers.`,'Every fraction of integers is rational, even if its decimal repeats.']]},
+    sqFrac:()=>{const[a,b]=pick([[4,9],[1,16],[9,25],[16,49],[25,64],[1,4]]);return[rad(`${a}/${b}`),0,[`${a} = ${Math.sqrt(a)}² and ${b} = ${Math.sqrt(b)}², so both parts are perfect squares.`,`${rad(`${a}/${b}`)} = ${Math.sqrt(a)}/${Math.sqrt(b)}, a fraction.`,'So it is rational.']]},
+    sqDec:()=>{const[x,r]=pick([['0.25','0.5'],['0.09','0.3'],['1.44','1.2'],['0.16','0.4'],['2.25','1.5']]);return[rad(x),0,[`Check: ${r} × ${r} = ${x}.`,`So ${rad(x)} = ${r}, a decimal that stops.`,'So it is rational.']]},
+    negSq:()=>{const k=R(2,15);return[rad(k*k,true),0,[`${rad(k*k)} = ${k}, so ${rad(k*k,true)} = −${k}.`,`Negative integers are rational too: −${k} = −${k}/1.`]]},
+    pattern:()=>[pick(['0.1010010001…','2.12112111211112…','0.123456789101112…']),1,['The digits go on forever.','There is a pattern, but no single block of digits repeats over and over.','A decimal that never ends and never repeats is irrational.']],
+    sqPlus:()=>{const n=nonSq(2,50),k=R(1,9);return[`${rad(n)} + ${k}`,1,[`${n} is not a perfect square, so ${rad(n)} is irrational.`,'Adding a whole number shifts the value, but the decimal still never ends or repeats.',`So ${rad(n)} + ${k} is irrational.`]]},
+  };
+  const w=l===1?['sqPerfect','sqNon','sqNon','dec3142','decEnd','rep','pi','frac','negSq']:['sqPerfect','sqNon','decEnd','rep','pi','frac','sqFrac','sqDec','negSq','pattern','sqPlus'];
+  const v=p.v||pick(w),[e,ans,steps]=pool[v]();
+  return {kind:'mc',v,fixed:v==='dec3142',prompt:`Is <span class="big">${e}</span> rational or irrational?`,choices:['Rational','Irrational'],ans,answerText:ans?'Irrational':'Rational',
+    explain:()=>ol(steps),hint:'Rational numbers can be written as a fraction: decimals that stop or repeat, and roots of perfect squares. Irrational decimals never stop and never repeat.'};
+};
+
+function sqFig(label){return `<svg viewBox="0 0 110 110" aria-hidden="true"><rect x="8" y="8" width="94" height="94" rx="2"/><text x="55" y="60">${label}</text></svg>`}
+
+G.exact=(l,p={})=>{
+  const v=p.v||pick(l===1?['sqrt','sqrt','area','inverse']:['sqrt','area','inverse','neg','sor']);
+  const k=p.k||R(l===1?2:4,[12,20,30][l-1]),n=k*k,cross=`Find the number that multiplies by itself to make ${n}: ${k} × ${k} = ${n}.`;
+  let prompt,ans,steps,unit='',hint=`Ask yourself: what number times itself makes ${n}?`;
+  if(v==='sqrt'){prompt=`<span class="big">${rad(n)} = ?</span>`;ans=k;steps=[cross,`So ${rad(n)} = ${k}.`]}
+  if(v==='neg'){prompt=`<span class="big">${rad(n,true)} = ?</span>`;ans=-k;steps=[`Work out ${rad(n)} first. ${cross}`,`The minus sign sits outside the root, so keep it: ${rad(n,true)} = −${k}.`]}
+  if(v==='area'){prompt=`<div class="sqfig">${sqFig(`A = ${n} cm²`)}<span>A square has an area of <b>${n} cm²</b>. How long is each side?</span></div>`;ans=k;unit='cm';
+    steps=['Area of a square = side × side.',`So the side is the number that multiplies by itself to make ${n}. That is ${rad(n)}.`,`${k} × ${k} = ${n}, so each side is ${k} cm.`,`Dividing ${n} by a number only gives the side if you already know the side. Asking "what times itself makes ${n}?" always works.`]}
+  if(v==='inverse'){prompt=`The square root of a number is <b class="n">${k}</b>. What is the number?`;ans=n;steps=[`"The square root is ${k}" means ${k} × ${k} = the number.`,`${k} × ${k} = ${n}.`,`Check: ${rad(n)} = ${k}.`];hint=`Undo the square root by squaring: multiply ${k} by itself.`}
+  let m;
+  if(v==='sor'){m=nonSq(2,99);prompt=`<span class="big">(${rad(m)})² = ?</span>`;ans=m;steps=[`Squaring means multiplying a number by itself: ${rad(m)} × ${rad(m)}.`,`${rad(m)} is the number that multiplies by itself to make ${m}.`,`So (${rad(m)})² = ${m}. Squaring undoes the square root.`];hint='Squaring and square-rooting undo each other.'}
+  return {kind:'num',v,prompt,ans,unit,answerText:F(ans)+(unit?' '+unit:''),check:x=>near(x,ans),explain:()=>ol(steps),hint,
+    diag:x=>{if(near(x,-ans))return SIGN;
+      if(v!=='inverse'&&v!=='sor'&&near(Math.abs(x),n/2))return `Halving ${n} gives ${n/2}, but a square root is the number that multiplies by itself to make ${n}. ${F(n/2)} × ${F(n/2)} = ${F((n/2)**2)}, not ${n}.`;
+      if(v==='inverse'&&near(x,2*k))return `${k} × 2 doubles the number. Squaring means ${k} × ${k}.`;
+      if(v==='inverse'&&near(x,k/2))return 'Halving is not the opposite of a square root. Squaring is.';
+      return ''}};
+};
+
+G.between=(l,p={})=>{
+  const rg=[[2,50],[10,150],[50,400]][l-1],n=p.n||nonSq(...rg),neg=p.neg!=null?p.neg:Math.random()<(l>1?.4:.25);
+  const a=isqrt(n),ans=neg?[-(a+1),-a]:[a,a+1],e=rad(n,neg),closer=(n-a*a)<((a+1)**2-n)?a:a+1,val=Math.sqrt(n)*(neg?-1:1);
+  const steps=[`List the perfect squares either side of ${n}: ${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}.`,
+    `${a*a} < ${n} < ${(a+1)**2}, so taking square roots: ${a} < ${rad(n)} < ${a+1}.`,
+    neg?`Now put a minus sign on everything. On the negative side the order flips: −${a+1} < ${e} < −${a}.`:'',
+    neg?`So ${e} is between <b>−${a+1} and −${a}</b>, closer to −${closer}.`:`So ${e} is between <b>${a} and ${a+1}</b>, closer to ${closer}.`];
+  const [lo,hi]=lineRange(val,2,3);
+  const at=neg?`−${a+1} and −${a}`:`${a} and ${a+1}`;
+  return {kind:'pair',v:neg?'neg':'pos',prompt:`${e} is between which two ${neg?'integers':'whole numbers'}?`,ans,answerText:at,
+    check:(x,y)=>{const s=[x,y].sort((m,q)=>m-q);return near(s[0],ans[0])&&near(s[1],ans[1])},
+    diag:(x,y)=>{const s=[x,y].sort((m,q)=>m-q);
+      if(near(Math.abs(s[0]),a*a)||near(Math.abs(s[1]),(a+1)**2)||near(Math.abs(s[1]),a*a))return `${a*a} and ${(a+1)**2} are the perfect squares. Take their square roots to get the answer: ${a} and ${a+1}.`;
+      if(neg&&near(s[0],a)&&near(s[1],a+1))return `${e} is negative, so the answer needs negative integers: −${a+1} and −${a}.`;
+      if(!neg&&near(s[0],-(a+1))&&near(s[1],-a))return `${e} has no minus sign, so it is positive.`;
+      if(Math.abs(s[1]-s[0])!==1)return 'The two numbers should be next to each other, like 6 and 7.';
+      return ''},
+    explain:()=>ol(steps)+nl(lo,hi,[{v:val,label:plain(n,neg),c:'okm'}]),hint:`Which perfect squares are just below and just above ${n}?`};
+};
+
+G.estimate=(l,p={})=>{
+  const rg=[[2,50],[10,120],[20,200]][l-1];let n,a,t,ok,tries=0;
+  do{n=p.n||nonSq(...rg);a=isqrt(n);t=rnd(Math.sqrt(n),1);const c=[t-.1,t,t+.1].map(x=>Math.abs(x*x-n));ok=c[1]<=c[0]&&c[1]<=c[2]&&!near(t,a+1)&&!near(t,a);tries++}while(!ok&&!p.n&&tries<80);
+  const neg=p.neg!=null?p.neg:(l>=2&&Math.random()<.3),ans=neg?-t:t,e=rad(n,neg),frac=(n-a*a)/(2*a+1);
+  const rows=[t-.1,t,t+.1].map(x=>rnd(x,1)).map(x=>`<tr class="${near(x,t)?'best':''}"><td>${F(x,1)}²</td><td>${(x*x).toFixed(2)}</td><td>${(x*x>n?'+':'−')}${Math.abs(x*x-n).toFixed(2)}</td></tr>`).join('');
+  const steps=[`${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so ${rad(n)} is between ${a} and ${a+1}.`,
+    `${n} is ${n-a*a} past ${a*a}, in a gap of ${2*a+1} up to ${(a+1)**2}. That is about ${Math.round(frac*10)} tenths of the way, so test decimals near ${F(a+frac,1)}.`,
+    `Square each try and compare with ${n}:<table class="tries"><tr><th>Try</th><th>Square</th><th>vs ${n}</th></tr>${rows}</table>`,
+    `${F(t,1)}² is closest to ${n}, so ${rad(n)} ≈ <b class="n">${F(t,1)}</b>.`,
+    neg?`Put the minus sign back: ${e} ≈ <b class="n">${F(ans,1)}</b>.`:''];
+  return {kind:'num',v:neg?'neg':'pos',prompt:`Estimate to <b>one decimal place</b>, no calculator:<span class="big">${e} ≈ ?</span>`,ans,answerText:F(ans,1),
+    check:x=>near(x,ans),explain:()=>ol(steps),
+    hint:`First find the two whole numbers. Then square a decimal between them to test it, for example ${a}.5² = ${((a+.5)**2).toFixed(2)}.`,
+    diag:(x,raw)=>{if(near(x,-ans))return SIGN;
+      if(decs(raw)>1&&!near(x,ans))return `Give one decimal place, like ${F(ans,1)}. ${decs(raw)===2&&Math.abs(Math.abs(x)-Math.sqrt(n))>0.3?'Also check the digits: your number squared is '+(x*x).toFixed(2)+', which is not close to '+n+'.':''}`;
+      if(near(Math.abs(x),a)||near(Math.abs(x),a+1))return 'That is only the whole-number part. Find the tenths digit too by testing squares.';
+      if(Math.abs(Math.abs(x)-t)<=0.1001)return `Close. Your answer squared is ${(x*x).toFixed(2)}, but ${F(t,1)}² = ${(t*t).toFixed(2)} is closer to ${n}.`;
+      if(Math.abs(x)<a||Math.abs(x)>a+1)return `${rad(n)} must be between ${a} and ${a+1}, because ${a*a} < ${n} < ${(a+1)**2}.`;
+      return ''}};
+};
+
+G.calc=(l,p={})=>{
+  const n=p.n||nonSq(...[[20,200],[50,2000],[100,9999]][l-1]),neg=p.neg!=null?p.neg:Math.random()<.35;
+  const ex=Math.sqrt(n)*(neg?-1:1),ans=rnd(ex,3),e=rad(n,neg);
+  return {kind:'num',v:neg?'neg':'pos',prompt:`Use a calculator. Round to <b>3 decimal places</b>:<span class="big">${e} ≈ ?</span>`,ans,answerText:F(ans,3),
+    check:x=>near(x,ans),explain:()=>ol(calcSteps(n,neg)),diag:(x,raw)=>calcDiag(x,raw,ex,ans,3),
+    hint:'Press √ on the calculator. Then look at the 4th digit after the decimal point to decide whether to round up.'};
+};
+
+function place(l,p){
+  let n,neg,val,label,lbl,steps;
+  if(p.pi){val=Math.PI**2;label='π²';lbl='π²';
+    steps=['π = 3.14159… (use the π key).','π² = π × π = 9.8696…','So π² is just below 10, at about 9.87.','Using 3.14 gives 3.14 × 3.14 = 9.8596, a little low, because 3.14 is smaller than π.'];
+  }else{
+    n=p.n||nonSq(2,[60,150,300][l-1]);neg=p.neg!=null?p.neg:Math.random()<.45;val=Math.sqrt(n)*(neg?-1:1);label=rad(n,neg);lbl=plain(n,neg);
+    const a=isqrt(n),t=rnd(Math.sqrt(n),1);
+    steps=[`${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so ${rad(n)} is between ${a} and ${a+1}.`,
+      `It is about ${F(t,1)}. Check: ${F(t,1)}² = ${(t*t).toFixed(2)}, close to ${n}.`,
+      neg?`It is negative, so it goes left of zero: between −${a+1} and −${a}, at about −${F(t,1)}.`:`Place it between ${a} and ${a+1}, at about ${F(t,1)}.`,
+      'Each small tick is 0.1, and the medium tick marks the halfway point (0.5).'];
+  }
+  const [lo,hi]=lineRange(val,1,4);
+  return {kind:'line',v:'place',lo,hi,val,lbl,prompt:`Place <span class="big">${label}</span> on the number line.`,answerText:`about ${F(val,2)}`,
+    check:x=>Math.abs(x-val)<=0.12,explain:x=>ol(steps)+nl(lo,hi,[x!=null&&Math.abs(x-val)>0.12?{v:x,label:'yours',c:'nom'}:null,{v:val,label:lbl,c:'okm'}]),
+    hint:p.pi?'Work out π × π with the π key, then find that value.':`Find the two whole numbers it sits between first, then estimate the tenths.${neg?' Negative numbers go left of zero.':''}`,
+    diag:x=>{if(p.pi)return Math.abs(x-val)<=0.4?'Close. π² ≈ 9.87, just left of 10.':'';
+      const a=isqrt(n),[L,H]=neg?[-(a+1),-a]:[a,a+1];
+      if(Math.abs(x+val)<=0.2)return 'You placed the positive value. A negative number goes to the left of zero.';
+      if(x<L||x>H)return `${label} must be between ${F(L)} and ${F(H)}.`;
+      return `Right interval. Use the small ticks (each is 0.1) to get closer to ${F(val,1)}.`}};
+}
+function readPoint(l,p){
+  const neg=p.neg!=null?p.neg:Math.random()<.4,n=p.n||nonSq(2,[60,150,300][l-1]),val=Math.sqrt(n)*(neg?-1:1),[lo,hi]=lineRange(val,1,3);
+  const opts=[{n,neg}];if(neg&&Math.random()<.7)opts.push({n,neg:false});
+  let tries=0;while(opts.length<4&&tries<800){tries++;const m=nonSq(2,400),sv=Math.sqrt(m)*(neg?-1:1);
+    if(sv>lo+.15&&sv<hi-.15&&opts.every(o=>Math.abs(Math.sqrt(o.n)*(o.neg?-1:1)-sv)>0.35))opts.push({n:m,neg})}
+  shuffle(opts);const ans=opts.findIndex(o=>o.n===n&&o.neg===neg),vv=o=>Math.sqrt(o.n)*(o.neg?-1:1);
+  const a=isqrt(n);
+  return {kind:'mc',v:'read',prompt:`Which number is at point <b>P</b>?${nl(lo,hi,[{v:val,label:'P',c:'ptP'}])}`,choices:opts.map(o=>rad(o.n,o.neg)),ans,answerText:rad(n,neg),
+    explain:()=>ol([`P is between ${F(neg?-(a+1):a)} and ${F(neg?-a:a+1)}, at about ${F(val,1)}.`,
+      `Estimate each choice: ${opts.map(o=>`${rad(o.n,o.neg)} ≈ ${F(vv(o),1)}`).join(', ')}.`,
+      `Only ${rad(n,neg)} ≈ ${F(val,1)} matches P.`]),
+    hint:'Estimate each choice by finding the perfect squares on either side. Watch the signs.'};
+}
+G.line=(l,p={})=>((p.v||(Math.random()<.65?'place':'read'))==='place'?place(l,p):readPoint(l,p));
+
+G.compare=(l,p={})=>{
+  const v=p.v||pick(l===1?['int','int','dec','roots','equal']:['int','dec','roots','negInt','negRoots','dec','equal']);
+  const hiR=[80,150,300][l-1];let n=p.n||nonSq(5,hiR),Y,Ysq,Ytxt;
+  const base=v.replace('neg','').toLowerCase();
+  if(base==='int'){const m=Math.max(2,Math.round(Math.sqrt(n))+pick([0,0,1,-1]));Y=String(m);Ysq=m*m;Ytxt=`${m}² = ${m*m}`}
+  else if(base==='dec'){const t=p.t!=null?p.t:rnd(Math.sqrt(n)+pick([0,0,.1,-.1]),1);Y=F(t,1);Ysq=rnd(t*t,4);Ytxt=`${F(t,1)}² = ${F(Ysq)}`}
+  else if(base==='roots'){let b;do{b=R(5,hiR)}while(b===n);Y=rad(b);Ysq=b;Ytxt=`(${rad(b)})² = ${b}`}
+  else{const k=R(3,15);n=k*k;Y=String(k);Ysq=k*k;Ytxt=`${k}² = ${k*k}`}
+  const pos=near(n,Ysq)?'=':n<Ysq?'<':'>',neg=v.startsWith('neg'),flip={'<':'>','>':'<','=':'='},ans=neg?flip[pos]:pos;
+  const A=rad(n,neg),B=neg?`−${Y}`:Y,sy=['<','>','='];
+  const steps=[neg?`Ignore the minus signs for a moment and compare ${rad(n)} with ${Y}.`:'',
+    'Square both. For positive numbers, squaring keeps the order the same.',
+    `(${rad(n)})² = ${n} and ${Ytxt}.`,`${n} ${pos} ${F(Ysq)}, so ${rad(n)} ${pos} ${Y}.`,
+    neg?`Now bring the minus signs back. On the negative side, the number further from zero is smaller, so the symbol flips: ${A} <b>${ans}</b> ${B}.`:''];
+  return {kind:'mc',v,sym:true,fixed:p.n!=null,prompt:`Choose the symbol that makes this true.<div class="cmp"><span>${A}</span><span class="cbox">?</span><span>${B}</span></div>`,
+    choices:sy,ans:sy.indexOf(ans),answerText:`${A} ${ans} ${B}`,explain:()=>ol(steps),
+    hint:'Square both numbers and compare. If both are negative, compare the positive versions first, then flip the symbol.',
+    diag:i=>neg&&sy[i]===pos&&pos!==ans?'You compared the positive versions correctly, but for negatives the symbol flips.':''};
+};
+
+G.word=(l,p={})=>{
+  const v=p.v||pick(['side3','irr','fence','areaOfRoot','pi2','side3','fence']);
+  if(v==='side3'){const A=p.n||nonSq(20,[150,400,900][l-1]),ex=Math.sqrt(A),ans=rnd(ex,3);
+    return {kind:'num',v,unit:'cm',prompt:`<div class="sqfig">${sqFig(`A = ${A} cm²`)}<span>A square has an area of <b>${A} cm²</b>. Find the length of one side, rounded to 3 decimal places.</span></div>`,ans,answerText:`${F(ans,3)} cm`,
+      check:x=>near(x,ans),explain:()=>ol([`Area = side × side, so side = ${rad(A)}.`,...calcSteps(A,false)]),diag:(x,raw)=>near(x,A/4)?'Dividing the area by 4 does not give the side. Side = √area.':calcDiag(x,raw,ex,ans,3),
+      hint:'Area = side × side, so the side is the square root of the area.'}}
+  if(v==='irr'){const A=nonSq(20,300),c=shuffle([rad(A),`${A} ÷ 2`,`${A} ÷ 4`,`${A}²`]);
+    return {kind:'mc',v,prompt:`A square has an area of <b>${A} cm²</b>. Which is the <b>exact</b> length of one side, written as an irrational number?`,choices:c,ans:c.indexOf(rad(A)),answerText:rad(A)+' cm',
+      explain:()=>ol(['Area = side × side.',`So side = ${rad(A)}. ${A} is not a perfect square, so ${rad(A)} is irrational, and that symbol is the exact value.`,`${A} ÷ 2 and ${A} ÷ 4 come from halving or quartering. That is not how area and side are linked.`]),
+      hint:'Which number, multiplied by itself, gives the area?'}}
+  if(v==='fence'){const k=R(5,[15,25,40][l-1]),A=k*k;
+    return {kind:'num',v,unit:'m',prompt:`A square garden has an area of <b>${A} m²</b>. How many metres of fence go all the way around it?`,ans:4*k,answerText:`${4*k} m`,
+      check:x=>near(x,4*k),explain:()=>ol([`Side = ${rad(A)} = ${k} m, because ${k} × ${k} = ${A}.`,'The fence goes around all 4 sides, so perimeter = 4 × side.',`4 × ${k} = ${4*k} m.`]),
+      diag:x=>near(x,k)?'That is one side. The fence goes around all 4 sides.':near(x,A/4)?'Dividing the area by 4 does not give the side. Find the side first with a square root.':'',
+      hint:'Find one side with a square root, then add up all four sides.'}}
+  if(v==='areaOfRoot'){const m=nonSq(2,99);
+    return {kind:'num',v,unit:'cm²',prompt:`A square has sides of length ${rad(m)} cm. What is its area?`,ans:m,answerText:`${m} cm²`,check:x=>near(x,m),
+      explain:()=>ol([`Area = side × side = ${rad(m)} × ${rad(m)}.`,`A square root times itself gives back the number inside: ${m}.`,`So the area is ${m} cm².`]),
+      diag:x=>near(x,4*Math.sqrt(m))||near(x,rnd(4*Math.sqrt(m),3))?'That is the perimeter. Area = side × side.':'',hint:'Area = side × side. What happens when you multiply a square root by itself?'}}
+  return {kind:'num',v:'pi2',fixed:true,prompt:'To place π² on a number line, you need its value. What is π² rounded to <b>2 decimal places</b>?',ans:9.87,answerText:'9.87',check:x=>near(x,9.87),
+    explain:()=>ol(['Use the π key: π = 3.14159265…','π² = π × π = <span class="n">9.86<mark>9</mark>60…</span>','For 2 decimal places look at the 3rd decimal digit. It is 9, so round up: <b class="n">9.87</b>.','Using 3.14 gives 3.14 × 3.14 = 9.8596, which rounds to 9.86. That is slightly low because 3.14 is a bit smaller than π.','On a number line, π² sits just left of 10.']),
+    diag:x=>near(x,9.86)?'3.14 is already rounded, so 3.14 × 3.14 comes out slightly low. Use the π key.':near(x,9.8596)?'Round to 2 decimal places. Also 3.14 is slightly smaller than π, so use the π key.':near(x,6.28)?'6.28 is 2 × π. π² means π × π.':'',
+    hint:'π² means π × π. Use the π key, not 3.14.'};
+};
+
+const SKILLS=[
+  {id:'perfect',name:'Perfect squares',desc:'Tell perfect squares from non-perfect ones'},
+  {id:'rational',name:'Rational or irrational',desc:'Sort numbers into the right family'},
+  {id:'exact',name:'Exact square roots',desc:'Roots of perfect squares, side lengths, squaring back'},
+  {id:'between',name:'Between two integers',desc:'Trap a root between whole numbers, including negatives'},
+  {id:'estimate',name:'Estimate, no calculator',desc:'One decimal place by testing squares'},
+  {id:'calc',name:'Calculator to 3 places',desc:'Round correctly to three decimal places'},
+  {id:'line',name:'Number lines',desc:'Place roots and read points, positive and negative'},
+  {id:'compare',name:'Compare roots',desc:'Choose <, > or = by squaring'},
+  {id:'word',name:'Word problems',desc:'Areas, side lengths, fences and π²'},
+];
+const FIX=[
+  ['between',()=>G.between(1,{n:10,neg:false})],
+  ['estimate',()=>G.estimate(2,{n:47,neg:true})],
+  ['calc',()=>G.calc(2,{n:888,neg:false})],
+  ['word',()=>G.word(2,{v:'pi2'})],
+  ['line',()=>G.line(2,{v:'place',n:34,neg:true})],
+  ['line',()=>G.line(2,{v:'place',n:8,neg:true})],
+  ['exact',()=>G.exact(1,{v:'area',k:8})],
+  ['compare',()=>G.compare(2,{v:'dec',n:30,t:5.5})],
+  ['rational',()=>G.rational(1,{v:'dec3142'})],
+  ['perfect',()=>G.perfect(2,{n:1369})],
+  ['calc',()=>G.calc(3,{n:279,neg:true})],
+  ['estimate',()=>G.estimate(1,{n:30,neg:false})],
+];
+
+
+/* ---------- Square Root Trainer: state, storage and Quest Log sync ---------- */
+const root=document.getElementById('rootsApp'), app=root.querySelector('#rt-app');
+const $=s=>root.querySelector(s);
+const RKEY='dhruv-roots-v1';
+let RS={m:{},fixBest:0};
+try{const r=localStorage.getItem(RKEY); if(r) RS=Object.assign(RS,JSON.parse(r));}catch(e){}
+function persist(){try{localStorage.setItem(RKEY,JSON.stringify(RS))}catch(e){}}
+function save(){persist(); if(window.ROOTS_CH) ROOTS_CH.push(); syncQuest();}
+const record=(id,ok)=>{RS.m[id]=(RS.m[id]||[]).concat(ok?1:0).slice(-20);save()};
+function mast(id){const r=(RS.m[id]||[]).slice(-10),n=r.length,c=r.reduce((a,b)=>a+b,0);
+  const st=n===0?'Not started':(n>=10&&c>=9)?'Expert':c/n>=.7?'Getting there':'Learning';return{n,c,st,pct:n?c/10*100:0}}
+function level(id){const r=(RS.m[id]||[]).slice(-6);if(r.length<3)return 1;const a=r.reduce((x,y)=>x+y,0)/r.length;return a>=.84?3:a>=.6?2:1}
+// Ticks the "Math · Square roots" steps in the Quest Log: Fix-it set 10/12+, then Expert in each skill.
+function syncQuest(){ if(window.QL&&QL.rootsProgress) QL.rootsProgress([RS.fixBest>=10,...SKILLS.map(s=>mast(s.id).st==='Expert')]); }
+const skillName=id=>SKILLS.find(s=>s.id===id).name;
+let S={view:'home'};
+
+/* ---------- home ---------- */
+function home(){
+  S={view:'home'};
+  const experts=SKILLS.filter(s=>mast(s.id).st==='Expert').length;
+  app.innerHTML=`
+  <a class="rt-back" href="#quest">← Back to Quest Log</a>
+  <section class="hero">
+    <p class="eyebrow">Math · Chapter 1 · The Real Number System</p>
+    <h1>Square Root <span class="hl">Trainer</span></h1>
+    <p class="lede">New questions every round. Get one wrong and you'll see exactly how to reach the right answer, then a similar question comes back so you can prove you've got it.</p>
+    <div class="cta">
+      <button class="btn primary" type="button" data-act="mixed">Mixed challenge · 18 questions</button>
+      <button class="btn" type="button" data-act="fix">Fix-it set · 12 questions</button>
+    </div>
+    <p class="expert-count">Expert in ${experts} of ${SKILLS.length} skills${RS.fixBest?` · Fix-it best ${RS.fixBest}/12`:''}</p>
+  </section>
+  <details class="notes">
+    <summary>What the Chapter 1 worksheets showed</summary>
+    <ul>
+      <li><span class="good">Strong:</span> perfect squares, rational vs irrational, and most calculator answers were right.</li>
+      <li>−√47 was written as −6.69. It is between −7 and −6, at about −6.86.</li>
+      <li>√888 was written as 29.790. The calculator shows 29.79932…, so 3 places is 29.799.</li>
+      <li>π²: 3.14 × 3.14 = 9.8596 rounds to 9.86, not 9.87. The π key gives 9.8696… ≈ 9.87.</li>
+      <li>Number line: −√34 and −√8 were labelled without their minus signs, and −√279 was also marked on the positive side.</li>
+      <li>Questions 9–16 asked first for the two whole numbers the root sits between. That step was skipped.</li>
+      <li>Side lengths: dividing 64 ÷ 8 only works if you already know the side is 8. Ask "what times itself makes 64?"</li>
+    </ul>
+    <p style="margin:6px 0 0;color:var(--rt-muted);font-size:.9rem">The Fix-it set practises exactly these.</p>
+  </details>
+  <h2 class="sec">Practise one skill</h2>
+  <div class="skills">${SKILLS.map(s=>{const m=mast(s.id);return `<button class="skill" type="button" data-skill="${s.id}">
+    <span class="sname">${s.name}</span><span class="sdesc">${s.desc.replace('<','&lt;')}</span>
+    <span class="meter"><i style="width:${m.pct}%"></i></span>
+    <span class="sstat ${m.st==='Expert'?'expert':''}">${m.st}${m.n?` · ${m.c}/${m.n} recent`:''}</span></button>`}).join('')}</div>
+  <p class="rt-foot">10 questions per round. Expert means 9 of your last 10 answers in that skill were right. Questions get harder as you improve. Progress saves online with your Quest Log, and the steps on the Math · Square roots quest tick themselves.</p>`;
+}
+
+/* ---------- rounds ---------- */
+function start(mode,skill){
+  let plan=[];
+  if(mode==='skill')for(let i=0;i<10;i++)plan.push({skill});
+  else if(mode==='mixed'){SKILLS.forEach(s=>{plan.push({skill:s.id},{skill:s.id})});shuffle(plan)}
+  else plan=FIX.map(([skill,make])=>({skill,make}));
+  S={view:'quiz',mode,skill,plan,i:0,score:0,streak:0,extra:0,log:[]};
+  showQ();
+}
+function materialize(e){const lvl=level(e.skill),q=e.make?e.make():G[e.skill](lvl);q.skill=e.skill;q.lvl=lvl;q.retry=!!e.retry;return q}
+function numBox(id){return `<span class="nb"><button type="button" class="pm" data-for="${id}" aria-label="Switch between positive and negative">±</button><input id="${id}" class="num" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="Your answer"></span>`}
+
+function showQ(){
+  const e=S.plan[S.i];if(!e.q)e.q=materialize(e);const q=e.q;
+  S.answered=false;S.lineV=null;
+  let area='';
+  if(q.kind==='mc')area=`<div class="choices">${q.choices.map((c,i)=>`<button type="button" class="choice${q.sym?' sym':''}" data-i="${i}">${c}</button>`).join('')}</div>`;
+  if(q.kind==='num')area=`<div class="ansrow">${numBox('rt-a1')}${q.unit?`<span class="unit">${q.unit}</span>`:''}</div>`;
+  if(q.kind==='pair')area=`<div class="ansrow"><span>Between</span>${numBox('rt-a1')}<span>and</span>${numBox('rt-a2')}</div>`;
+  if(q.kind==='line')area=`${nl(q.lo,q.hi,[],q.lbl)}<p class="linestat" id="rt-lineStat">Tap the line to place your point. Drag or use the arrow keys to adjust.</p>`;
+  app.innerHTML=`
+  <div class="qbar">
+    <button class="rt-link" type="button" data-act="home">← All skills</button>
+    <div class="prog"><span>Question ${S.i+1} of ${S.plan.length}</span><div class="pbar"><i style="width:${S.i/S.plan.length*100}%"></i></div></div>
+    <div class="score"><b>${S.score}</b>/${S.log.length} right${S.streak>=3?` <span class="rt-streak">${S.streak} in a row</span>`:''}</div>
+  </div>
+  <article class="qcard">
+    <p class="eyebrow">${skillName(q.skill)}${q.retry?' · <span class="retry">Second chance</span>':''}</p>
+    <div class="prompt">${q.prompt}</div>
+    <div>${area}</div>
+    <p class="msg" id="rt-msg"></p>
+    <div class="row" id="rt-actions">
+      ${q.kind!=='mc'?'<button class="btn primary" type="button" id="rt-check">Check</button>':''}
+      <button class="btn ghost" type="button" id="rt-hintBtn">Hint</button>
+      <button class="btn ghost" type="button" data-act="sq">Squares 1–30</button>
+    </div>
+    <div class="hint" id="rt-hint" hidden>${q.hint}</div>
+    <div id="rt-fb"></div>
+  </article>`;
+  if(q.kind==='line')bindLine(q);
+  const first=$('#rt-a1');if(first&&matchMedia('(pointer:fine)').matches)first.focus();
+}
+
+function bindLine(q){
+  const svg=$('#rt-nlq');let down=false;
+  const X=v=>NLP+(v-q.lo)/(q.hi-q.lo)*(NLW-2*NLP);
+  const clamp=v=>Math.round(Math.max(q.lo,Math.min(q.hi,v))*20)/20;
+  const toV=cx=>{const r=svg.getBoundingClientRect();return clamp(q.lo+(((cx-r.left)/r.width*NLW)-NLP)/(NLW-2*NLP)*(q.hi-q.lo))};
+  const set=v=>{S.lineV=v;const g=$('#rt-pmk');g.setAttribute('transform',`translate(${X(v).toFixed(1)},0)`);g.style.display='';
+    const t=$('#rt-pmt'),x=X(v);t.setAttribute('x',x<40?(40-x).toFixed(1):x>NLW-40?(NLW-40-x).toFixed(1):'0');
+    $('#rt-lineStat').textContent='Point placed. Drag or use the arrow keys to adjust, then press Check.';$('#rt-msg').textContent=''};
+  svg.addEventListener('pointerdown',e=>{if(S.answered)return;down=true;try{svg.setPointerCapture(e.pointerId)}catch(_){}set(toV(e.clientX));e.preventDefault()});
+  svg.addEventListener('pointermove',e=>{if(down&&!S.answered)set(toV(e.clientX))});
+  ['pointerup','pointercancel'].forEach(t=>svg.addEventListener(t,()=>down=false));
+  svg.addEventListener('keydown',e=>{if(S.answered)return;
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const v=S.lineV==null?(q.lo+q.hi)/2:S.lineV;set(clamp(v+(e.key==='ArrowRight'?.1:-.1)))}
+    if(e.key==='Enter'){e.preventDefault();e.stopPropagation();check()}});
+}
+
+function parseNum(s){s=(s||'').replace(/[−–]/g,'-').replace(/[\s,]/g,'');if(!/^-?(\d+\.?\d*|\.\d+)$/.test(s))return NaN;return parseFloat(s)}
+
+function check(choice){
+  if(S.answered)return;const q=S.plan[S.i].q,msg=$('#rt-msg');let ok,shown,note='',ua;
+  if(q.kind==='mc'){ua=choice;ok=ua===q.ans;shown=q.choices[ua];note=!ok&&q.diag?q.diag(ua):''}
+  if(q.kind==='num'){const raw=$('#rt-a1').value.trim();ua=parseNum(raw);if(isNaN(ua)){msg.textContent='Type a number first, for example 6.9 or −7.';return}
+    ok=q.check(ua);shown=raw.replace('-','−')+(q.unit?' '+q.unit:'');note=!ok&&q.diag?q.diag(ua,raw.replace(/[−–]/g,'-')):''}
+  if(q.kind==='pair'){const r1=$('#rt-a1').value.trim(),r2=$('#rt-a2').value.trim(),x=parseNum(r1),y=parseNum(r2);
+    if(isNaN(x)||isNaN(y)){msg.textContent='Fill in both boxes with whole numbers.';return}
+    ua=[x,y];ok=q.check(x,y);shown=`${F(x)} and ${F(y)}`;note=!ok?q.diag(x,y):''}
+  if(q.kind==='line'){if(S.lineV==null){msg.textContent='Tap the number line to place your point first.';return}
+    ua=S.lineV;ok=q.check(ua);shown=`a point at about ${F(ua,2)}`;note=!ok?q.diag(ua):''}
+  msg.textContent='';S.answered=true;S.log.push({skill:q.skill,ok,q});record(q.skill,ok);
+  let added=false;
+  if(ok){S.score++;S.streak++}
+  else{S.streak=0;if(S.extra<6){S.plan.push({skill:q.skill,retry:true,make:()=>G[q.skill](q.lvl,q.fixed?{}:{v:q.v})});S.extra++;added=true}}
+  root.querySelectorAll('.choice').forEach(b=>{b.disabled=true;const i=+b.dataset.i;if(i===ua)b.classList.add(ok?'picked-ok':'picked-no');else if(i===q.ans)b.classList.add('right')});
+  root.querySelectorAll('.num,.pm').forEach(el=>el.disabled=true);
+  $('#rt-hintBtn').disabled=true;
+  const work=q.explain(ua);
+  $('#rt-fb').innerHTML=ok
+    ?`<div class="fb ok"><p class="fbh">Correct${S.streak>=3?` · ${S.streak} in a row`:''}</p><details><summary>See the working</summary>${work}</details></div>`
+    :`<div class="fb no"><p class="fbh">Not quite</p><p>You answered <b>${shown}</b>. The answer is <b>${q.answerText}</b>.</p>
+      ${note?`<p class="watch"><b>Watch out:</b> ${note}</p>`:''}<p class="sh">How to get there</p>${work}
+      ${added?'<p class="added">A similar question has been added to the end of this round.</p>':''}</div>`;
+  const last=S.i===S.plan.length-1;
+  $('#rt-actions').innerHTML=`<button class="btn primary" type="button" id="rt-next">${last?'See results':'Next question'}</button><button class="btn ghost" type="button" data-act="sq">Squares 1–30</button>`;
+  $('#rt-next').focus({preventScroll:true});
+  const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  $('#rt-fb').scrollIntoView({behavior:rm?'auto':'smooth',block:'nearest'});
+}
+function next(){if(S.i<S.plan.length-1){S.i++;showQ();window.scrollTo(0,0)}else end()}
+
+function end(){
+  const total=S.log.length,pct=total?S.score/total:0;
+  if(S.mode==='fix'){const firstTry=S.log.slice(0,FIX.length).filter(r=>r.ok).length;if(firstTry>RS.fixBest){RS.fixBest=firstTry;save()}}
+  S.view='end';
+  const by={};S.log.forEach(r=>{by[r.skill]=by[r.skill]||{r:0,t:0};by[r.skill].t++;if(r.ok)by[r.skill].r++});
+  const weakest=Object.entries(by).sort((a,b)=>(a[1].r/a[1].t)-(b[1].r/b[1].t))[0],hasWeak=weakest&&weakest[1].r<weakest[1].t;
+  const missed=S.log.filter(r=>!r.ok);
+  const line=pct>=.9?'Expert level. Try the mixed challenge again to keep it sharp.':pct>=.7?'Solid work. Read the working on the ones you missed, then go again.':'Keep going. The "How to get there" steps are the fastest way to improve.';
+  app.innerHTML=`<section class="end">
+    <p class="eyebrow">${S.mode==='skill'?skillName(S.skill):S.mode==='mixed'?'Mixed challenge':'Fix-it set'} · round complete</p>
+    <div class="bigscore">${S.score}<span style="color:var(--rt-muted);font-size:.5em"> / ${total}</span></div>
+    <p style="margin:0;max-width:60ch">${line}</p>
+    <div class="bk">${Object.entries(by).map(([k,v])=>`<div class="bkrow"><span>${skillName(k)}</span><span>${v.r}/${v.t}</span></div>`).join('')}</div>
+    ${missed.length?`<div><h2 class="sec" style="margin-top:6px">Answers to review</h2><ul class="missed">${missed.map(r=>`<li>${skillName(r.skill)}: ${r.q.answerText}</li>`).join('')}</ul></div>`:''}
+    <div class="cta">
+      ${hasWeak?`<button class="btn primary" type="button" data-skill="${weakest[0]}">Practise ${skillName(weakest[0])}</button>`:''}
+      <button class="btn${hasWeak?'':' primary'}" type="button" data-act="again">Play this round again</button>
+      <button class="btn ghost" type="button" data-act="home">All skills</button>
+    </div></section>`;
+  window.scrollTo(0,0);
+}
+
+/* ---------- events (scoped to the trainer) ---------- */
+root.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t||!root.contains(t))return;
+  if(t.classList.contains('choice'))return check(+t.dataset.i);
+  if(t.classList.contains('pm')){const inp=$('#'+t.dataset.for);let v=inp.value.trim().replace(/^[−–]/,'-');inp.value=v.startsWith('-')?v.slice(1):'-'+v;inp.focus();return}
+  if(t.id==='rt-check')return check();
+  if(t.id==='rt-next')return next();
+  if(t.id==='rt-hintBtn'){$('#rt-hint').hidden=false;t.disabled=true;return}
+  if(t.id==='rt-sqclose'){$('#rt-sq').hidden=true;return}
+  if(t.dataset.skill)return start('skill',t.dataset.skill);
+  const a=t.dataset.act;
+  if(a==='home')return home();
+  if(a==='mixed')return start('mixed');
+  if(a==='fix')return start('fix');
+  if(a==='again')return start(S.mode,S.skill);
+  if(a==='sq'){$('#rt-sq').hidden=!$('#rt-sq').hidden}
+});
+document.addEventListener('keydown',e=>{
+  if(root.hidden||e.key!=='Enter'||S.view!=='quiz'||!root.contains(e.target)&&e.target!==document.body)return;
+  if(e.target.classList&&e.target.classList.contains('num')&&!S.answered){e.preventDefault();if(e.target.id==='rt-a1'&&$('#rt-a2')&&!$('#rt-a2').value)$('#rt-a2').focus();else check();return}
+  if(S.answered&&e.target.id!=='rt-next'){e.preventDefault();next()}
+});
+$('#rt-sqgrid').innerHTML=Array.from({length:30},(_,i)=>`<div><b>${i+1}²</b> = ${(i+1)**2}</div>`).join('');
+
+window.ROOTS={
+  get:()=>RS,
+  apply:d=>{RS=Object.assign({m:{},fixBest:0},d);persist();if(S.view==='home')home();syncQuest()},
+  hasData:()=>Object.keys(RS.m).length>0||RS.fixBest>0,
+  show:()=>{if(S.view!=='quiz')home()}
+};
+home();
+
+})();
 </script>
 <script type="text/plain" id="appJs2">
 
@@ -1735,15 +2370,17 @@ window.QUEST_CH=channel('progress/quest', ()=>store,
   d=>{ store=Object.assign({state:{},custom:[],dueOverride:{},deleted:{}}, d); try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} renderAll(); },
   ()=>Object.keys(store.state).length>0||store.custom.length>0||Object.keys(store.deleted||{}).length>0);
 window.FR_CH=channel('progress/french', ()=>window.FR.get(), d=>window.FR.apply(d), ()=>window.FR.hasData());
+window.ROOTS_CH=channel('progress/roots', ()=>window.ROOTS.get(), d=>window.ROOTS.apply(d), ()=>window.ROOTS.hasData());
 (async()=>{
   const db = window.FB_DB || null;
   if(!db) return; // opened as a local file: keeps saving in this browser
   SYNC.db=db; setSync('online');
   document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
   $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
-  await QUEST_CH.attach(); await FR_CH.attach();
+  await QUEST_CH.attach(); await FR_CH.attach(); await ROOTS_CH.attach();
 })();
 if(location.hash==='#french') showScreen('french');
+if(location.hash==='#roots') showScreen('roots');
 if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
 </script>
 
