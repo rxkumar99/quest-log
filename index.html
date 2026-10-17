@@ -661,6 +661,109 @@ html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
 .gate-card .btn{justify-content:center;padding:10px 14px}
 .gate-msg{font-size:13.5px;color:var(--muted);min-height:1.2em}
 .gate-msg.err{color:var(--danger)}
+
+/* ================= VOICE TRAINER (Active & Passive Voice; scoped; follows the Quest Log theme) ================= */
+:root{--s-lang:#5145CD}
+html[data-skin="scholar"]{--s-lang:#4B4A8F}
+html[data-skin="night"]{--s-lang:#A9A6FF}
+html[data-skin="paper"]{--s-lang:#5B5A9A}
+#voiceApp{
+  --vt-accent:var(--s-lang); --vt-accent-ink:#FFFFFF; --vt-accent-soft:color-mix(in srgb,var(--s-lang) 12%,var(--surface));
+  background:var(--bg); color:var(--ink); font:17px/1.55 var(--body);
+  margin-inline:-16px; padding-inline:16px; padding-block:6px 48px; min-height:100vh;
+}
+html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
+#voiceApp .vt-wrap{max-width:760px;margin:0 auto}
+#voiceApp h1,#voiceApp h2,#voiceApp .fbh{font-family:var(--display);text-wrap:balance;margin:0}
+#voiceApp :focus-visible{outline:3px solid var(--vt-accent);outline-offset:2px;border-radius:6px}
+#voiceApp .eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+#voiceApp .vt-back{font-weight:600;text-decoration:none;font-size:14px;color:var(--vt-accent);display:inline-block;margin-bottom:6px}
+#voiceApp .hero{display:grid;gap:12px;padding-block:8px 18px}
+#voiceApp .hero h1{font-size:clamp(2rem,6.5vw,3rem);font-weight:800;line-height:1.04;letter-spacing:-.02em}
+#voiceApp .hl{background:linear-gradient(transparent 58%,var(--gold) 58%,var(--gold) 92%,transparent 92%);padding-inline:.06em}
+#voiceApp .lede{margin:0;max-width:62ch;color:var(--muted)}
+#voiceApp .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+#voiceApp .expert-count{font-family:var(--mono);font-size:.85rem;color:var(--muted);margin:0}
+#voiceApp .btn{appearance:none;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:11px 16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;min-height:46px}
+#voiceApp .btn:hover{border-color:var(--vt-accent)}
+#voiceApp .btn.primary{background:var(--vt-accent);border-color:var(--vt-accent);color:var(--vt-accent-ink)}
+#voiceApp .btn.primary:hover{filter:brightness(1.07)}
+#voiceApp .btn.ghost{background:transparent}
+#voiceApp .btn:disabled{opacity:.45;cursor:default}
+#voiceApp .vt-link{appearance:none;background:none;border:0;color:var(--vt-accent);font:inherit;font-weight:700;cursor:pointer;padding:6px 0}
+#voiceApp .notes{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;margin-block:4px 14px}
+#voiceApp .notes summary{cursor:pointer;font-weight:700}
+#voiceApp .notes ul{margin:10px 0 4px;padding-left:20px;display:grid;gap:6px}
+#voiceApp .notes .good{color:var(--good);font-weight:700}
+#voiceApp .notes p{margin:8px 0 0}
+#voiceApp .rules{display:grid;gap:10px;margin-top:10px}
+#voiceApp .rule{border-left:4px solid var(--vt-accent);background:var(--vt-accent-soft);border-radius:0 10px 10px 0;padding:8px 12px}
+#voiceApp .rule.warn{border-left-color:var(--gold);background:var(--gold-soft)}
+#voiceApp .rule b{font-family:var(--display)}
+#voiceApp .tbl{overflow-x:auto}
+#voiceApp table.tense{border-collapse:collapse;width:100%;font-size:.92rem;min-width:420px}
+#voiceApp table.tense th,#voiceApp table.tense td{padding:6px 10px;border-bottom:1px solid var(--line);text-align:left}
+#voiceApp table.tense th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#voiceApp table.tense td:last-child{font-weight:700}
+#voiceApp .sec{font-size:1.3rem;font-weight:800;margin:18px 0 10px}
+#voiceApp .levels{display:grid;gap:8px}
+#voiceApp .lvl{appearance:none;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:center;cursor:pointer;font:inherit}
+#voiceApp .lvl:hover{border-color:var(--vt-accent)}
+#voiceApp .lvl.next{border-color:var(--vt-accent);box-shadow:0 0 0 3px var(--vt-accent-soft)}
+#voiceApp .lvl .ln{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;background:var(--surface-2);grid-row:span 2}
+#voiceApp .lvl.done .ln{background:var(--good);color:#fff}
+#voiceApp .lvl .lname{font-family:var(--display);font-weight:800;font-size:1.05rem;line-height:1.2}
+#voiceApp .lvl .ldesc{color:var(--muted);font-size:.88rem;line-height:1.35;grid-column:2}
+#voiceApp .lvl .lstat{font-family:var(--mono);font-size:.78rem;color:var(--muted);grid-row:1/span 2;grid-column:3;text-align:right}
+#voiceApp .lvl .lstat.expert{color:var(--good);font-weight:700}
+#voiceApp .lvl .meter{grid-column:2/span 2;height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+#voiceApp .lvl .meter i{display:block;height:100%;background:var(--vt-accent);border-radius:4px}
+#voiceApp .vt-foot{color:var(--muted);font-size:.86rem;margin-top:16px}
+#voiceApp .qbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+#voiceApp .prog{flex:1;min-width:150px;display:grid;gap:4px;font-size:.85rem;color:var(--muted);font-family:var(--mono)}
+#voiceApp .pbar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+#voiceApp .pbar i{display:block;height:100%;background:var(--vt-accent)}
+#voiceApp .score{font-family:var(--mono);font-size:.88rem}
+#voiceApp .vt-streak{background:var(--gold);color:#1B1B1B;padding:1px 6px;border-radius:4px;font-weight:700}
+#voiceApp .qcard{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px;display:grid;gap:14px;min-width:0}
+#voiceApp .retry{color:var(--vt-accent)}
+#voiceApp .vt-q{margin:0;font-size:1.05rem}
+#voiceApp .vt-sent{margin:0;font-family:var(--display);font-size:1.35rem;font-weight:700;line-height:1.35;padding:12px 14px;border-radius:12px;background:var(--surface-2)}
+#voiceApp .vt-sent.sm{font-size:1.05rem;padding:8px 12px;background:var(--surface)}
+#voiceApp .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+#voiceApp .choice{appearance:none;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;font:inherit;font-size:1.02rem;text-align:left;min-height:52px}
+#voiceApp .choice:hover:not(:disabled){border-color:var(--vt-accent);background:var(--vt-accent-soft)}
+#voiceApp .choice.picked-ok{border-color:var(--good);background:var(--good-soft)}
+#voiceApp .choice.picked-no{border-color:var(--danger);background:var(--danger-soft)}
+#voiceApp .choice.right{border-color:var(--good);border-width:2.5px}
+#voiceApp .choice:disabled{cursor:default}
+#voiceApp .vt-in{width:100%;font:inherit;font-size:1.08rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);resize:vertical;min-height:80px}
+#voiceApp .vt-in:focus{border-color:var(--vt-accent);box-shadow:0 0 0 3px var(--vt-accent-soft);outline:none}
+#voiceApp .row{display:flex;gap:8px;flex-wrap:wrap}
+#voiceApp .hint{background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-size:.98rem}
+#voiceApp .msg{color:var(--danger);font-size:.92rem;min-height:1.2em;margin:0}
+#voiceApp .fb{border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+#voiceApp .fb p{margin:0}
+#voiceApp .fb.ok{background:var(--good-soft)}
+#voiceApp .fb.no{background:var(--danger-soft)}
+#voiceApp .fbh{font-size:1.25rem;font-weight:800}
+#voiceApp .fb.ok .fbh{color:var(--good)} #voiceApp .fb.no .fbh{color:var(--danger)}
+#voiceApp .watch{background:var(--gold-soft);border-radius:8px;padding:8px 12px}
+#voiceApp .sh{font-weight:700;margin-top:4px!important}
+#voiceApp ol.steps{margin:0;padding:0 0 0 22px;display:grid;gap:6px;list-style:decimal}
+#voiceApp .fb details summary{cursor:pointer;font-weight:700}
+#voiceApp .fb details[open] summary{margin-bottom:8px}
+#voiceApp .added,#voiceApp .vt-also{font-size:.9rem;color:var(--muted);font-style:italic}
+#voiceApp mark{background:var(--gold);color:#1B1B1B;padding:0 3px;border-radius:3px}
+#voiceApp .end{display:grid;gap:16px}
+#voiceApp .bigscore{font-family:var(--display);font-weight:800;font-size:clamp(3rem,14vw,5rem);line-height:1}
+#voiceApp .bk{display:grid;gap:6px}
+#voiceApp .bkrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+#voiceApp .bkrow span:last-child{font-family:var(--mono)}
+#voiceApp .missed{margin:0;padding-left:20px;display:grid;gap:6px}
+@media (max-width:480px){#voiceApp{font-size:16px}#voiceApp .qcard{padding:16px}#voiceApp .vt-sent{font-size:1.18rem}}
+@media (prefers-reduced-motion:no-preference){#voiceApp .fb{animation:vtRise .25s ease-out}@keyframes vtRise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}}
+
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -710,6 +813,7 @@ html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
         </div></span>
       <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
       <a class="btn" href="#roots" style="text-decoration:none;color:var(--ink)">√ Square Root Trainer</a>
+      <a class="btn" href="#voice" style="text-decoration:none;color:var(--ink)">✍️ Voice Trainer</a>
       <button class="btn primary" id="addBtn" type="button">+ Add assignment</button>
       <button class="btn parent-only" id="applyBtn" type="button" hidden>Apply update</button>
       <button class="btn" id="signOutBtn" type="button">Sign out</button>
@@ -872,6 +976,10 @@ html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
 
 </div>
 
+<div id="voiceApp" hidden>
+<div class="vt-wrap"><main id="vt-app"></main></div>
+</div>
+
 <div id="rootsApp" hidden>
 <div class="rt-wrap"><main id="rt-app"></main></div>
 <div id="rt-sq" class="drawer" hidden>
@@ -932,6 +1040,22 @@ html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
   });
   if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-roots-trainer'))
     NEWS.unshift({id:'n-roots-trainer', date:'2026-10-12', kind:'assignment', title:'Math: Square Root Trainer assignment, due Fri Oct 16', detail:'Practise Chapter 1 Practice 1 with explanations for every mistake. Start with the Fix-it set.', open:'math-roots'});
+})();
+/* ---------- Voice Trainer assignment (Language · active & passive voice) ----------
+   Added by the app so it shows even before the Classroom data includes it. Steps tick themselves from the trainer. */
+(function(){
+  if(typeof SUBJECTS!=='undefined' && !SUBJECTS.lang) SUBJECTS.lang={name:'Language', c:'--s-lang'};
+  if(typeof BUILT_IN==='undefined' || BUILT_IN.some(t=>t.id==='lang-voice')) return;
+  BUILT_IN.push({
+    id:'lang-voice', title:'Language · Active & passive voice (practice to expert)', subject:'lang', due:'2026-10-18', time:'End of day', xp:0,
+    turnIn:'Practice in the Voice Trainer',
+    desc:'Built from Lesson 35 (Active and Passive Voice) and Spectrum Lesson 1.12. Seven levels that get harder, then a final exam. Every wrong answer shows how to fix it, and a similar question comes back. Steps tick themselves as you go.',
+    steps:['Fix-it set (from the worksheets): 10/12 or better','Level 1 Expert: Spot it (active or passive)','Level 2 Expert: Find the whole verb','Level 3 Expert: Tricky sentences','Level 4 Expert: Rewrite passive → active','Level 5 Expert: Rewrite active → passive','Level 6 Expert: Tenses & missing doers','Level 7 Expert: Writer’s choice','Final exam: 18/20 (90%) or better'],
+    links:[{label:'Voice Trainer: practice with step-by-step fixes', url:'#voice', kind:'STUDY'}],
+    note:'From the worksheets: passive = a form of be + past participle, even with no "by" phrase (was thrown, were selected). Keep the same tense when you rewrite (is called → call), and always finish the whole sentence.'
+  });
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-voice-trainer'))
+    NEWS.unshift({id:'n-voice-trainer', date:'2026-10-17', kind:'assignment', title:'Language: Active & Passive Voice Trainer, due Sun Oct 18', detail:'7 levels that get harder, then a final exam. Start with the Fix-it set.', open:'lang-voice'});
 })();
 /* ---------- Storage ---------- */
 const KEY='quest-log-v1';
@@ -1371,20 +1495,26 @@ window.QL={
     const s=st('math-roots'); s.steps=s.steps||[]; let changed=false;
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
     if(changed){ save(); renderAll(); }
+  },
+  voiceProgress(marks){
+    const s=st('lang-voice'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(changed){ save(); renderAll(); }
   }
 };
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#rootsApp').hidden=name!=='roots'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
   if(name==='roots' && window.ROOTS) ROOTS.show();
+  if(name==='voice' && window.VOICE) VOICE.show();
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#roots"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#roots"],a[href="#voice"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -2315,6 +2445,458 @@ window.ROOTS={
 home();
 
 })();
+/* ================= VOICE TRAINER (Active & Passive Voice) =================
+   Built from the Lesson 35 (Gage) and Spectrum Lesson 1.12 worksheets.
+   Seven levels that get harder, a Fix-it set from his own answers, and a final exam.
+   Every wrong answer shows how to fix it, then a similar question comes back. */
+(function(){
+const root=document.getElementById('voiceApp'), app=root.querySelector('#vt-app');
+const $=s=>root.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const ol=a=>'<ol class="steps">'+a.filter(Boolean).map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+const norm=s=>String(s||'').toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9' ]+/g,' ').replace(/\s+/g,' ').trim();
+const words=s=>norm(s).split(' ').filter(Boolean);
+const hasWord=(text,w)=>(' '+norm(text)+' ').includes(' '+norm(w)+' ');
+const BE=new Set(['am','is','are','was','were','be','been','being']);
+const PP=new Set('rung won sung written taken given chosen eaten broken built made sold told found held thrown blown drawn known seen done cut put set read hit shut sent spent lent left kept taught caught bought brought paid laid said heard led fed met begun stolen frozen spoken hidden ridden bitten driven shaken grown shown flown torn worn let swept'.split(' '));
+// true when the text has a form of "be" followed by a past participle (skipping one -ly word)
+function bePP(text){const w=words(text);for(let i=0;i<w.length-1;i++){if(!BE.has(w[i]))continue;let j=i+1;if(/ly$/.test(w[j])&&j+1<w.length)j++;const x=w[j];if(/ing$/.test(x))continue;if(/ed$/.test(x)||PP.has(x))return true}return false}
+const verbRe=v=>new RegExp('\\b'+v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b');
+const hl=(s,v)=>esc(s).replace(verbRe(esc(v)),'<mark>'+esc(v)+'</mark>');
+
+/* ---------- Level 1: spot it (sentence, whole verb, A/P, note, doer) ---------- */
+const SPOT=[
+ ["The goalie blocked the penalty shot.","blocked","A"],
+ ["The penalty shot was blocked by the goalie.","was blocked","P"],
+ ["Our science fair projects were judged on Friday.","were judged","P"],
+ ["Maya scored three goals in the final.","scored","A"],
+ ["The cookies were eaten before lunch.","were eaten","P"],
+ ["The CN Tower is visited by millions of tourists every year.","is visited","P","","millions of tourists"],
+ ["The principal announced the winners at the assembly.","announced","A"],
+ ["The winners were announced at the assembly.","were announced","P"],
+ ["The new library will be opened next month.","will be opened","P"],
+ ["Raj has finished his math homework.","has finished","A"],
+ ["The math homework has been finished.","has been finished","P"],
+ ["A thick fog covered the city.","covered","A"],
+ ["The city was covered in thick fog.","was covered","P"],
+ ["The students planted twenty trees.","planted","A"],
+ ["Twenty trees were planted along the creek.","were planted","P"],
+ ["Thunder frightened the puppy.","frightened","A"],
+ ["The puppy was frightened by the thunder.","was frightened","P"],
+ ["Mom drives us to practice every Tuesday.","drives","A"],
+ ["We are driven to practice every Tuesday.","are driven","P"],
+ ["The mail is delivered at noon.","is delivered","P"],
+ ["The window was left open all night.","was left","P"],
+ ["Ancient Egyptians built the pyramids.","built","A"],
+ ["The pyramids were built thousands of years ago.","were built","P"],
+ ["The coach chose __NAME__ as team captain.","chose","A"],
+ ["__NAME__ was chosen as team captain.","was chosen","P"],
+ ["Canada's national anthem was written in 1880.","was written","P"],
+ ["The storm knocked down three power lines.","knocked down","A"],
+ ["Maya will feed the cat tonight.","will feed","A"]
+];
+
+/* ---------- Level 3: tricky sentences (sentence, verb, A/P, note, doer, link) ---------- */
+const TRICK=[
+ ["Lucas was talking by the water fountain when the bell rang.","was talking","A","\"was talking\" is be + an -ing verb, which is active: Lucas is doing the talking. And \"by\" here means beside, not who did it."],
+ ["Kate was riding her horse near the creek.","was riding","A","be + -ing (was riding) is active. Kate is doing the riding."],
+ ["The Caribbean was the site of many pirate attacks.","was","A","","","link"],
+ ["Jupiter is the largest planet in the solar system.","is","A","","","link"],
+ ["The football was thrown out of bounds.","was thrown","P","No \"by\" phrase does not mean active. was + thrown is be + past participle."],
+ ["The first three people were selected for the job openings.","were selected","P","There is no \"by\" phrase, but were + selected is still be + past participle."],
+ ["The decision of the committee was announced yesterday.","was announced","P","\"of the committee\" is part of the subject. Nobody is shown doing the announcing, but was + announced makes it passive."],
+ ["Priya has been practising piano for hours.","has been practising","A","\"been\" is followed by an -ing verb, so this is active: Priya is the one practising."],
+ ["The new rules have been explained to everyone.","have been explained","P",""],
+ ["The gym is being painted this weekend.","is being painted","P","being + painted is still be + past participle. It is passive, happening now."],
+ ["The artists are painting a mural in the gym.","are painting","A","are + painting is be + -ing, so it is active."],
+ ["Several windows had been smashed before the police arrived.","had been smashed","P","Look at the main verb, not \"arrived\" at the end."],
+ ["My little brother was sleeping when the alarm went off.","was sleeping","A",""],
+ ["The bus stopped by the school to pick us up.","stopped","A","\"stopped by\" means visited. The word \"by\" alone never makes a sentence passive."],
+ ["The sun rose at 6:45.","rose","A","\"rose\" has no object, so this sentence can't be passive at all."],
+ ["Ethan was given a medal for bravery.","was given","P","Ethan receives the medal. was + given is be + past participle."],
+ ["A letter was sent to every family.","was sent","P","\"to every family\" tells where it went. It is not the doer."],
+ ["The cookies smell delicious.","smell","A","\"smell\" here describes the cookies. There is no be + past participle, so it is not passive."],
+ ["The robot was built by a team of grade 8 students.","was built","P",""],
+ ["The flag was raised at sunrise.","was raised","P",""],
+ ["Everyone was surprised by the ending.","was surprised","P",""]
+];
+
+function apQ(it,lvl){
+  const [s,v,a,note,doerX,link]=it, P=a==='P';
+  const at=s.search(verbRe(v)), subj=s.slice(0,at).trim().replace(/,$/,'');
+  const m=s.match(/\bby ([^.,!?]+)[.!?]?$/), doer=P?(doerX||(m?m[1]:'')):'';
+  const vw=v.split(' '), part=vw[vw.length-1], helpers=vw.slice(0,-1).join(' ');
+  let steps;
+  if(link) steps=[`The verb is <mark>${esc(v)}</mark> on its own. Here it is a <b>linking verb</b>: it connects <b>${esc(subj)}</b> to a description.`,'It is not a helping verb, and no past participle follows it, so the sentence is not passive.','Your workbook counts sentences like this as active.'];
+  else if(P) steps=[`Find the whole verb: <mark>${esc(v)}</mark>.`,`It has a form of <i>be</i> (<b>${esc(helpers)}</b>) followed by the past participle <b>${esc(part)}</b>. That pattern is the passive voice.`,`The subject <b>${esc(subj)}</b> does not do the action. It receives it.`,doer?`The doer comes after "by": <b>${esc(doer)}</b>.`:'There is no "by" phrase, so we are not told who did it. It is still passive.'];
+  else steps=[`Find the whole verb: <mark>${esc(v)}</mark>.`,`The subject <b>${esc(subj)}</b> does the action.`,'There is no "form of be + past participle" pattern, so it is active.'];
+  if(note) steps.push('<b>Watch for this:</b> '+esc(note));
+  return {kind:'mc',lvl,prompt:`<p class="vt-q">Active or passive?</p><p class="vt-sent">${esc(s)}</p>`,choices:['Active','Passive'],ans:P?1:0,answerText:P?'Passive':'Active',
+    explain:()=>`<p class="vt-sent sm">${hl(s,v)}</p>`+ol(steps),
+    hint:'Find the whole verb first. Is there a form of "be" (is, are, was, were, been, being) followed by a past participle like "thrown" or "selected"? If yes, it is passive, with or without "by".',
+    diag:i=>{
+      if(P&&i===0&&!doer)return `A missing "by" phrase does not make a sentence active. "${esc(v)}" is be + past participle, so it is passive.`;
+      if(P&&i===0)return `"${esc(v)}" is be + past participle, so the subject receives the action.`;
+      if(link&&i===1)return `"${esc(v)}" is the only verb, and no past participle follows it. It links the subject to a description.`;
+      if(!P&&i===1&&/ing$/.test(v))return `"${esc(v)}" is be + an -ing verb. That is active: the subject is still doing it.`;
+      if(!P&&i===1&&/\bby\b/.test(s))return `The word "by" alone does not make a sentence passive. Check the verb: "${esc(v)}" is not be + past participle.`;
+      if(!P&&i===1)return `There is no be + past participle here. "${esc(v)}" is something the subject does.`;
+      return ''}};
+}
+
+/* ---------- Level 2: find the whole verb (sentence, answer, distractors, A/P) ---------- */
+const VERB=[
+ ["The phonograph was invented by Edison.","was invented",["invented","phonograph","Edison"],"P"],
+ ["The bell was rung by the caretaker.","was rung",["rung","was","bell"],"P"],
+ ["The documents have been signed by the mayor.","have been signed",["been signed","signed","documents"],"P"],
+ ["The bridge is being repaired this week.","is being repaired",["being repaired","repaired","is"],"P"],
+ ["Leah will paint the fence tomorrow.","will paint",["paint","fence","tomorrow"],"A"],
+ ["The decision was announced yesterday.","was announced",["announced","decision","yesterday"],"P"],
+ ["The children were laughing at the clown.","were laughing",["laughing","were","clown"],"A"],
+ ["All the tickets had been sold before noon.","had been sold",["been sold","sold","tickets"],"P"],
+ ["The parcel should be delivered on Friday.","should be delivered",["be delivered","delivered","parcel"],"P"],
+ ["Our team has won the championship.","has won",["won","championship","has"],"A"],
+ ["The fence was painted bright red.","was painted",["painted","red","fence"],"P"],
+ ["The movie is loved by kids and adults.","is loved",["loved","movie","kids"],"P"],
+ ["Grandpa can fix almost anything.","can fix",["fix","can","anything"],"A"],
+ ["The cake was being decorated for the party.","was being decorated",["being decorated","decorated","cake"],"P"],
+ ["Many trees were knocked down by the storm.","were knocked down",["knocked down","were knocked","storm"],"P"],
+ ["The test will be marked by Ms. Patel.","will be marked",["be marked","marked","test"],"P"],
+ ["Maya has been reading all afternoon.","has been reading",["been reading","reading","afternoon"],"A"]
+];
+function verbQ(it,lvl){
+  const [s,v,d,a]=it, ch=shuffle([v,...d]);
+  return {kind:'mc',lvl,prompt:`<p class="vt-q">Which is the <b>whole verb</b> in this sentence?</p><p class="vt-sent">${esc(s)}</p>`,choices:ch.map(esc),ans:ch.indexOf(v),answerText:esc(v),
+    explain:()=>`<p class="vt-sent sm">${hl(s,v)}</p>`+ol([`The verb is the whole verb phrase: every helping verb plus the main verb. Here it is <mark>${esc(v)}</mark>.`,a==='P'?`"${esc(v)}" has a form of be + past participle, so this sentence is <b>passive</b>.`:`The subject does the action, so this sentence is <b>active</b>.`,'When a worksheet says "underline each verb", underline all of it.']),
+    hint:'Find the action word, then add every helping verb in front of it (has, have, had, will, can, should, is, was, been, being…).',
+    diag:i=>{const c=ch[i];if(c!==v&&v.includes(c))return `"${esc(c)}" is only part of the verb. Include every helping verb: "${esc(v)}".`;return `"${esc(c)}" is not the verb. Ask: what is the action, and which helping verbs come with it?`}};
+}
+
+/* ---------- Level 4: rewrite passive → active ---------- */
+const PA=[
+ {q:"The bell was rung by the caretaker.",acc:["The caretaker rang the bell."],doer:"The caretaker",rec:"The bell",pv:"was rung",verb:"rang",tense:"past"},
+ {q:"The trophy was won by our team.",acc:["Our team won the trophy."],doer:"Our team",rec:"The trophy",pv:"was won",verb:"won",tense:"past"},
+ {q:"The cake is baked by my grandmother every Sunday.",acc:["My grandmother bakes the cake every Sunday.","Every Sunday, my grandmother bakes the cake."],doer:"My grandmother",rec:"The cake",pv:"is baked",verb:"bakes",tense:"present"},
+ {q:"The windows were washed by the students.",acc:["The students washed the windows."],doer:"The students",rec:"The windows",pv:"were washed",verb:"washed",tense:"past"},
+ {q:"The nation of Japan is called Nippon by the Japanese people.",acc:["The Japanese people call the nation of Japan Nippon.","The Japanese people call Japan Nippon."],doer:"The Japanese people",rec:"The nation of Japan",pv:"is called",verb:"call",tense:"present",tip:"\"is called\" is present tense, so the active verb is \"call\", not \"called\"."},
+ {q:"The phone was finally answered by Ms. Hosaka, the school librarian.",acc:["Ms. Hosaka, the school librarian, finally answered the phone.","Finally, Ms. Hosaka, the school librarian, answered the phone.","Ms. Hosaka, the school librarian, answered the phone finally."],doer:"Ms. Hosaka, the school librarian",rec:"The phone",pv:"was finally answered",verb:"answered",tense:"past",tip:"\"the school librarian\" describes Ms. Hosaka, so put commas around it. Keep \"finally\" right before the verb."},
+ {q:"In Greek mythology, the Gorgon Medusa's head was cut off by Perseus.",acc:["In Greek mythology, Perseus cut off the Gorgon Medusa's head.","In Greek mythology, Perseus cut the Gorgon Medusa's head off.","Perseus cut off the Gorgon Medusa's head in Greek mythology."],doer:"Perseus",rec:"the Gorgon Medusa's head",pv:"was cut off",verb:"cut",tense:"past",tip:"Keep \"In Greek mythology,\" at the start, then finish the whole sentence."},
+ {q:"The letters are sorted by machines.",acc:["Machines sort the letters."],doer:"Machines",rec:"The letters",pv:"are sorted",verb:"sort",tense:"present"},
+ {q:"The song was sung by the whole class.",acc:["The whole class sang the song."],doer:"The whole class",rec:"The song",pv:"was sung",verb:"sang",tense:"past",tip:"Past tense of sing is \"sang\". \"sung\" needs a helper (has sung)."},
+ {q:"The broken swing has been fixed by the city workers.",acc:["The city workers have fixed the broken swing."],doer:"The city workers",rec:"The broken swing",pv:"has been fixed",verb:"have fixed",tense:"present perfect",tip:"\"workers\" is plural, so use \"have\", not \"has\"."},
+ {q:"The test will be marked by Ms. Patel.",acc:["Ms. Patel will mark the test."],doer:"Ms. Patel",rec:"The test",pv:"will be marked",verb:"will mark",tense:"future"},
+ {q:"The road is being repaired by a crew of workers.",acc:["A crew of workers is repairing the road.","A crew of workers are repairing the road."],doer:"A crew of workers",rec:"The road",pv:"is being repaired",verb:"is repairing",tense:"happening now (present progressive)",tip:"\"is being repaired\" is happening now, so the active verb is \"is repairing\"."},
+ {q:"An increase in the desert's size was caused by the overgrazing of cattle.",acc:["The overgrazing of cattle caused an increase in the desert's size."],doer:"The overgrazing of cattle",rec:"An increase in the desert's size",pv:"was caused",verb:"caused",tense:"past",tip:"Keep every word of the original: \"the desert's size\" needs \"the\"."},
+ {q:"Many songs were written by David Foster.",acc:["David Foster wrote many songs."],doer:"David Foster",rec:"Many songs",pv:"were written",verb:"wrote",tense:"past"},
+ {q:"The mouse was chased by two cats.",acc:["Two cats chased the mouse."],doer:"Two cats",rec:"The mouse",pv:"was chased",verb:"chased",tense:"past"},
+ {q:"The essays had been read by the judges before lunch.",acc:["The judges had read the essays before lunch.","Before lunch, the judges had read the essays."],doer:"The judges",rec:"The essays",pv:"had been read",verb:"had read",tense:"past perfect"}
+];
+/* ---------- Level 5: rewrite active → passive ---------- */
+const AP=[
+ {q:"Mr. Sanchez painted the house.",acc:["The house was painted by Mr. Sanchez."],rec:"The house",av:"painted",verb:"was painted",by:"Mr. Sanchez",tense:"past"},
+ {q:"The bus driver opened the door.",acc:["The door was opened by the bus driver."],rec:"The door",av:"opened",verb:"was opened",by:"the bus driver",tense:"past"},
+ {q:"My sister baked a cake.",acc:["A cake was baked by my sister."],rec:"A cake",av:"baked",verb:"was baked",by:"my sister",tense:"past"},
+ {q:"The teacher explains the lesson.",acc:["The lesson is explained by the teacher."],rec:"The lesson",av:"explains",verb:"is explained",by:"the teacher",tense:"present",tip:"\"explains\" is present tense, so use \"is explained\", not \"was explained\"."},
+ {q:"The dog chewed the slippers.",acc:["The slippers were chewed by the dog."],rec:"The slippers",av:"chewed",verb:"were chewed",by:"the dog",tense:"past",tip:"\"slippers\" is plural, so use \"were\", not \"was\"."},
+ {q:"Volunteers clean the park every spring.",acc:["The park is cleaned by volunteers every spring.","Every spring, the park is cleaned by volunteers.","The park is cleaned every spring by volunteers."],rec:"The park",av:"clean",verb:"is cleaned",by:"volunteers",tense:"present"},
+ {q:"The referee will blow the whistle.",acc:["The whistle will be blown by the referee."],rec:"The whistle",av:"will blow",verb:"will be blown",by:"the referee",tense:"future",tip:"The past participle of blow is \"blown\", not \"blowed\"."},
+ {q:"The students have planted the seeds.",acc:["The seeds have been planted by the students."],rec:"The seeds",av:"have planted",verb:"have been planted",by:"the students",tense:"present perfect"},
+ {q:"A tornado destroyed two barns.",acc:["Two barns were destroyed by a tornado."],rec:"Two barns",av:"destroyed",verb:"were destroyed",by:"a tornado",tense:"past"},
+ {q:"The chef is cooking the pasta.",acc:["The pasta is being cooked by the chef."],rec:"The pasta",av:"is cooking",verb:"is being cooked",by:"the chef",tense:"happening now (present progressive)",tip:"\"is cooking\" is happening now, so the passive needs \"is being cooked\"."},
+ {q:"Thousands of fans watched the game.",acc:["The game was watched by thousands of fans."],rec:"The game",av:"watched",verb:"was watched",by:"thousands of fans",tense:"past"},
+ {q:"Mr. Lee displays our sketches in the hallway.",acc:["Our sketches are displayed in the hallway by Mr. Lee.","Our sketches are displayed by Mr. Lee in the hallway."],rec:"Our sketches",av:"displays",verb:"are displayed",by:"Mr. Lee",tense:"present",tip:"\"sketches\" is plural, so use \"are displayed\"."},
+ {q:"The mechanic had repaired the car before noon.",acc:["The car had been repaired by the mechanic before noon.","The car had been repaired before noon by the mechanic.","Before noon, the car had been repaired by the mechanic."],rec:"The car",av:"had repaired",verb:"had been repaired",by:"the mechanic",tense:"past perfect"},
+ {q:"Bees make honey.",acc:["Honey is made by bees."],rec:"Honey",av:"make",verb:"is made",by:"bees",tense:"present"},
+ {q:"The wind blew the leaves across the yard.",acc:["The leaves were blown across the yard by the wind.","The leaves were blown by the wind across the yard."],rec:"The leaves",av:"blew",verb:"were blown",by:"the wind",tense:"past",tip:"The past participle of blow is \"blown\"."},
+ {q:"__NAME__ wrote the winning essay.",acc:["The winning essay was written by __NAME__."],rec:"The winning essay",av:"wrote",verb:"was written",by:"__NAME__",tense:"past"}
+];
+
+function short(raw,model){return words(raw).length<words(model).length*0.6}
+function leftoverBe(raw,model){const mw=new Set(words(model));return words(raw).find(w=>BE.has(w)&&!mw.has(w))}
+function rewQ(it,lvl,toActive){
+  const model=it.acc[0];
+  const steps=toActive
+    ?[`Find the doer (after "by"): <b>${esc(it.doer)}</b>. It becomes the subject.`,`Find the passive verb: <b>${esc(it.pv)}</b> (${esc(it.tense)}). Use one active verb in the same tense: <b>${esc(it.verb)}</b>.`,`The old subject (<b>${esc(it.rec)}</b>) goes after the verb, and "by" disappears.`,`Answer: <b>${esc(model)}</b>`]
+    :[`Find the receiver (the object): <b>${esc(it.rec)}</b>. It becomes the subject.`,`Find the active verb: <b>${esc(it.av)}</b> (${esc(it.tense)}). Passive in the same tense: <b>${esc(it.verb)}</b> (a form of be + past participle).`,`Move the doer to the end with "by": <b>by ${esc(it.by)}</b>.`,`Answer: <b>${esc(model)}</b>`];
+  return {kind:'type',lvl,prompt:`<p class="vt-q">Rewrite this sentence in the <b>${toActive?'active':'passive'}</b> voice.</p><p class="vt-sent">${esc(it.q)}</p>`,answerText:esc(model),
+    check:raw=>it.acc.some(a=>norm(a)===norm(raw)),
+    explain:()=>ol(steps)+(it.tip?`<p class="watch"><b>Tip:</b> ${esc(it.tip)}</p>`:'')+(it.acc.length>1?'<p class="vt-also">Also correct: '+it.acc.slice(1).map(esc).join(' · ')+'</p>':''),
+    hint:toActive?`Start with the doer: "${esc(it.doer)}". Then use ONE active verb in the same tense as "${esc(it.pv)}".`:`Start with "${esc(it.rec)}". Then use a form of be + past participle in the same tense, and end with "by ${esc(it.by)}".`,
+    diag:raw=>{
+      const n=norm(raw);
+      if(short(raw,model))return 'Your sentence is unfinished. Include every part: who did what, to what.';
+      if(toActive){
+        const lb=leftoverBe(raw,model);
+        if(n.includes('by '+norm(it.doer)))return `You kept the "by" phrase. In the active voice the doer (${esc(it.doer)}) moves to the front and "by" disappears.`;
+        if(bePP(raw))return 'There is still a form of "be" + past participle, which is passive. Use one active verb instead.';
+        if(lb)return `"${esc(lb)}" is left over from the passive sentence. The active sentence doesn't need it.`;
+        if(!n.includes(norm(it.doer)))return `Who did the action? <b>${esc(it.doer)}</b>. Make the doer the subject.`;
+        if(!hasWord(raw,it.verb))return `Check the verb. "${esc(it.pv)}" is ${esc(it.tense)}, so the active verb is "${esc(it.verb)}".`;
+        if(n.indexOf(norm(it.doer))>n.search(verbRe(norm(it.verb))))return 'Put the doer before the verb.';
+      }else{
+        if(!bePP(raw))return `Passive needs a form of "be" + past participle. Here that is "${esc(it.verb)}".`;
+        if(!/\bby\b/.test(n))return `Keep the doer at the end with "by": "…by ${esc(it.by)}."`;
+        if(!n.includes(norm(it.verb)))return `Check the verb. "${esc(it.av)}" is ${esc(it.tense)}${/s$/.test(norm(it.rec).split(' ').pop())?' and the new subject is plural':''}, so the passive is "${esc(it.verb)}".`;
+        if(!n.includes(norm(it.rec)))return `The receiver, "${esc(it.rec)}", should become the new subject.`;
+        if(n.indexOf(norm(it.rec))>n.indexOf(norm(it.verb)))return `Start with the receiver: "${esc(it.rec)}".`;
+      }
+      return 'Almost. Compare your sentence with the answer word by word: every word from the original sentence should still be there.'+(it.tip?' '+esc(it.tip):'');
+    }};
+}
+
+/* ---------- Level 6: tenses & missing doers · Level 7: writer's choice (multiple choice) ---------- */
+const TENSE=[
+ {q:"Which passive sentence keeps the <b>same tense</b>?",s:"The chef is cooking the pasta.",a:"The pasta is being cooked by the chef.",d:["The pasta was cooked by the chef.","The pasta is cooked by the chef.","The pasta has been cooked by the chef."],why:["\"is cooking\" is happening right now (present progressive).","Passive for \"happening now\" = is/are + <b>being</b> + past participle.","So: <b>is being cooked</b>."]},
+ {q:"Which passive sentence keeps the <b>same tense</b>?",s:"Workers will build a new school.",a:"A new school will be built by workers.",d:["A new school was built by workers.","A new school is built by workers.","A new school will build by workers."],why:["\"will build\" is future.","Future passive = will be + past participle: <b>will be built</b>.","\"will build by workers\" has no \"be\", so it isn't passive, and it sounds like the school is doing the building."]},
+ {q:"Which passive sentence keeps the <b>same tense</b>?",s:"The class has finished the project.",a:"The project has been finished by the class.",d:["The project was finished by the class.","The project has finished by the class.","The project had been finished by the class."],why:["\"has finished\" is present perfect.","Present perfect passive = has/have + <b>been</b> + past participle.","So: <b>has been finished</b>."]},
+ {q:"Which passive sentence keeps the <b>same tense</b>?",s:"The guards had locked the gates.",a:"The gates had been locked by the guards.",d:["The gates were locked by the guards.","The gates have been locked by the guards.","The gates had locked by the guards."],why:["\"had locked\" is past perfect.","Past perfect passive = had been + past participle: <b>had been locked</b>."]},
+ {q:"Nobody knows who did it. Which passive sentence is <b>best</b>?",s:"Someone stole my bike.",a:"My bike was stolen.",d:["My bike was stolen by someone.","My bike stole.","My bike is stolen by someone yesterday."],why:["When the doer is unknown, leave it out.","\"by someone\" adds nothing, so the best version is <b>My bike was stolen.</b>","\"My bike stole\" makes the bike the thief."]},
+ {q:"This passive sentence has no doer. Which <b>active</b> version is correct?",s:"The window was broken.",a:"Someone broke the window.",d:["The window broke someone.","Broke the window was.","The window was breaking."],why:["Active voice needs a doer as the subject.","We don't know who did it, so use <b>someone</b>.","Same tense: \"was broken\" (past) → <b>broke</b>."]},
+ {q:"Which <b>active</b> sentence means the same thing?",s:"English and French are spoken in Canada.",a:"People speak English and French in Canada.",d:["Canada speaks by English and French.","English and French speak in Canada.","People are spoken English and French in Canada."],why:["Who speaks the languages? <b>People</b>, so they become the subject.","\"are spoken\" is present, so the active verb is <b>speak</b>."]},
+ {q:"Which <b>active</b> sentence keeps the same tense?",s:"The results will be posted tomorrow.",a:"Someone will post the results tomorrow.",d:["The results will post tomorrow.","Someone posted the results tomorrow.","Someone will be posted the results tomorrow."],why:["The doer isn't named, so use <b>someone</b> (or they).","\"will be posted\" is future, so the active verb is <b>will post</b>.","\"posted … tomorrow\" mixes past and future."]},
+ {q:"Which verb is <b>passive</b> AND <b>future</b>?",a:"will be judged",d:["will judge","was judged","is judging"],why:["Future = will.","Passive = be + past participle.","Together: <b>will be judged</b>. \"will judge\" is future but active."]},
+ {q:"Which <b>active</b> sentence matches?",s:"The emails are being sent by Mr. Brown right now.",a:"Mr. Brown is sending the emails right now.",d:["Mr. Brown sends the emails right now.","Mr. Brown sent the emails right now.","Mr. Brown has sent the emails right now."],why:["\"are being sent\" is happening right now.","Active for happening now = is + -ing: <b>is sending</b>."]},
+ {q:"Which <b>active</b> sentence is correct?",s:"A cure has been found by scientists.",a:"Scientists have found a cure.",d:["Scientists has found a cure.","Scientists had found a cure.","Scientists found by a cure."],why:["\"has been found\" is present perfect, so the active verb is has/have + found.","\"Scientists\" is plural, so it takes <b>have</b>: <b>Scientists have found a cure.</b>"]},
+ {q:"Which <b>active</b> sentence keeps the same meaning?",s:"The players were cheered by the crowd.",a:"The crowd cheered the players.",d:["The players cheered the crowd.","The crowd was cheering by the players.","The crowd cheers the players."],why:["The doer is the crowd (after \"by\").","\"The players cheered the crowd\" flips who did what, so the meaning changes.","Past tense: <b>cheered</b>."]},
+ {q:"Which <b>active</b> sentence matches? (The school is the doer.)",s:"Each student is given a locker.",a:"The school gives each student a locker.",d:["Each student gives a locker.","The school is given each student a locker.","The school gave each student a locker."],why:["\"is given\" is present, so the active verb is <b>gives</b>.","\"The school is given…\" is still passive."]},
+ {q:"Which <b>active</b> sentence matches?",s:"The cupcakes were decorated by Maya.",a:"Maya decorated the cupcakes.",d:["The cupcakes decorated Maya.","Maya decorates the cupcakes.","Maya was decorated the cupcakes."],why:["Doer: Maya. Past tense: <b>decorated</b>.","\"Maya was decorated…\" mixes active and passive."]},
+ {q:"Rewrite in the passive and leave out \"they\". Which is correct?",s:"They are building a new arena downtown.",a:"A new arena is being built downtown.",d:["A new arena is built downtown.","A new arena was being built downtown.","A new arena is building downtown."],why:["\"are building\" is happening now, so use <b>is being built</b>.","\"They\" is a vague doer, so it can be left out."]},
+ {q:"Which sentence is passive with <b>no doer</b> named?",a:"The streets were cleared overnight.",d:["The plows cleared the streets overnight.","The streets were cleared by plows overnight.","The plows were clearing the streets overnight."],why:["\"were cleared\" is be + past participle (passive).","There is no \"by\" phrase, so the doer isn't named."]}
+];
+const CHOICE=[
+ {q:"Which verb <b>cannot</b> be used in the passive voice?",a:"arrived",d:["painted","wrote","chose"],why:["Only verbs with an object (transitive verbs) can be passive.","You can't \"arrive something\", so nothing can become the new subject.","\"The house was painted\", \"The note was written\" and \"She was chosen\" all work."]},
+ {q:"Which sentence <b>cannot</b> be rewritten in the passive voice?",a:"The baby slept peacefully.",d:["The baby grabbed my finger.","The nurse weighed the baby.","Dad rocked the baby."],why:["\"slept\" has no object. Nothing receives the action.","The others have objects: my finger, the baby, the baby."]},
+ {q:"A news story wants to focus on the store, not the thief. Which sentence fits best?",a:"The jewellery store was robbed last night.",d:["A thief robbed the jewellery store last night.","Last night robbed the jewellery store.","The thief was robbed by the jewellery store."],why:["The passive puts the receiver (the store) first and lets you leave out a doer nobody knows.","That's a good reason to choose the passive."]},
+ {q:"Which sentence is stronger, livelier writing for a story?",a:"__NAME__ smashed the ball over the fence.",d:["The ball was smashed over the fence by __NAME__.","The ball was smashed over the fence.","Over the fence the ball was smashed by __NAME__."],why:["The active voice is shorter and shows who did the action.","In stories, the active voice usually reads stronger."]},
+ {q:"Why might someone say \"Mistakes were made\" instead of \"I made mistakes\"?",a:"To avoid saying who made the mistakes",d:["Because it is active voice","Because \"mistakes\" is the doer","Because it is more exact"],why:["\"Mistakes were made\" is passive with no doer.","Leaving out the doer can hide who is responsible."]},
+ {q:"How many <b>passive</b> verbs are in this paragraph?",s:"The school was founded in 1975. Students love the big gym. Every June, awards are given to the top athletes, and the yearbook is signed by everyone.",a:"3",d:["1","2","4"],why:["<b>was founded</b> · <b>are given</b> · <b>is signed</b>: all be + past participle.","\"love\" is active."]},
+ {q:"Which sentence uses the passive voice for a <b>good reason</b>?",a:"The new hospital was opened in 2025.",d:["The ball was kicked by me.","The pizza was eaten by us.","The song was sung by me."],why:["For the hospital, who opened it doesn't matter much. The hospital is the focus.","\"by me\" and \"by us\" are wordy: \"I kicked the ball\" is better."]},
+ {q:"Which is the best <b>active</b> rewrite?",s:"It was decided by the student council that the dance would be held on Friday.",a:"The student council decided to hold the dance on Friday.",d:["The student council was deciding the dance on Friday.","It decided the student council that the dance is on Friday.","The dance decided the student council on Friday."],why:["Doer: the student council. Active verb: <b>decided</b>.","Turning \"would be held\" into \"to hold\" keeps it short and clear."]},
+ {q:"Which is the <b>passive</b> verb in this sentence?",s:"When the bell rang, the students who had been waiting were finally let into the gym.",a:"were let",d:["rang","had been waiting","into"],why:["\"were let\" = be + past participle (let).","\"had been waiting\" is be + -ing, so it's active.","\"rang\" is active: the bell did the ringing."]},
+ {q:"Which sentence is in the <b>active</b> voice?",a:"The tired hikers were resting by the lake.",d:["The tents were set up by the lake.","The fire was lit by the hikers.","The trail was closed by the park rangers."],why:["\"were resting\" is be + -ing: the hikers are doing it, so it's active.","\"by the lake\" means beside the lake.","The other three use be + past participle (set, lit, closed)."]},
+ {q:"Which change makes this sentence active <b>without changing the meaning</b>?",s:"Our school was chosen by the judges as the winner.",a:"The judges chose our school as the winner.",d:["The judges were chosen by our school as the winner.","Our school chose the judges as the winner.","Our school was choosing the judges."],why:["The judges did the choosing, so they become the subject.","Past tense: <b>chose</b>."]},
+ {q:"Only transitive verbs can be passive. A transitive verb…",a:"has an object that receives the action",d:["always ends in -ed","always uses \"by\"","is always in the past tense"],why:["Transitive = the action passes to an object (\"kicked <u>the ball</u>\").","That object becomes the subject in the passive."]},
+ {q:"Which sentence is <b>passive</b>?",a:"Ethan was handed the keys.",d:["Ethan was handing out the keys.","Ethan handed the keys to me.","Ethan was happy with the keys."],why:["\"was handed\" = be + past participle. Ethan receives the keys.","\"was handing\" is be + -ing (active). \"was happy\" is a linking verb + adjective."]},
+ {q:"Which <b>active</b> sentence keeps <b>exactly</b> the same meaning?",s:"The final score was posted on the board by the coach.",a:"The coach posted the final score on the board.",d:["The coach posts the final score on the board.","The final score posted the coach on the board.","The board posted the final score by the coach."],why:["Doer: the coach. Past tense: <b>posted</b>.","\"posts\" changes the tense."]},
+ {q:"This sentence is from a science report. Why is the passive a good choice here?",s:"The water was heated to 80 °C for five minutes.",a:"It keeps the focus on the experiment, not on who did it",d:["It hides a mistake","It is the active voice","It makes the sentence longer on purpose"],why:["Science reports often use the passive to focus on what was done.","Who heated the water matters less than the steps."]}
+];
+function mcQ(it,lvl){
+  const ch=shuffle([it.a,...it.d]);
+  return {kind:'mc',lvl,prompt:`<p class="vt-q">${it.q}</p>`+(it.s?`<p class="vt-sent">${esc(it.s)}</p>`:''),choices:ch.map(esc),ans:ch.indexOf(it.a),answerText:esc(it.a),
+    explain:()=>ol(it.why),hint:lvl===6?'Name the tense of the verb first (is/are, was/were, will, has/have, had, is being). The rewrite must keep that tense.':'Ask: who does the action, does the verb have an object, and what should the reader focus on?',diag:()=>''};
+}
+
+/* ---------- levels, fix-it set, exam ---------- */
+const LV=[
+ {id:'L1',name:'Spot it',desc:'Active or passive? Clear examples to start.',items:SPOT,make:it=>apQ(it,1)},
+ {id:'L2',name:'Find the whole verb',desc:'Pick every helping verb plus the main verb.',items:VERB,make:it=>verbQ(it,2)},
+ {id:'L3',name:'Tricky sentences',desc:'No "by", "by" that means beside, -ing verbs, linking verbs.',items:TRICK,make:it=>apQ(it,3)},
+ {id:'L4',name:'Rewrite: passive → active',desc:'Type it. Doer first, same tense, drop "by".',items:PA,make:it=>rewQ(it,4,true)},
+ {id:'L5',name:'Rewrite: active → passive',desc:'Type it. be + past participle + "by".',items:AP,make:it=>rewQ(it,5,false)},
+ {id:'L6',name:'Tenses & missing doers',desc:'Keep the tense. Handle "someone" and "they".',items:TENSE,make:it=>mcQ(it,6)},
+ {id:'L7',name:'Writer\'s choice',desc:'When to use each voice. Expert-level traps.',items:CHOICE,make:it=>mcQ(it,7)}
+];
+const lvBy=id=>LV.find(l=>l.id===id);
+const find=(arr,t)=>arr.find(x=>(Array.isArray(x)?x[0]:x.q).includes(t));
+const FIX=[
+ ['L3',find(TRICK,'football was thrown')],['L3',find(TRICK,'first three people')],['L3',find(TRICK,'decision of the committee')],
+ ['L2',find(VERB,'phonograph')],['L4',find(PA,'Nippon')],['L4',find(PA,'Hosaka')],['L4',find(PA,'Medusa')],['L4',find(PA,'desert')],
+ ['L1',find(SPOT,'Twenty trees were planted')],['L5',find(AP,'teacher explains')],['L3',find(TRICK,'Kate was riding')],['L5',find(AP,'slippers')]
+];
+const EXAM=[['L1',2],['L3',3],['L2',3],['L4',4],['L5',4],['L6',2],['L7',2]];
+
+/* ---------- state, storage and Quest Log sync ---------- */
+const VKEY='dhruv-voice-v1';
+let VS={m:{},fixBest:0,examBest:0};
+try{const r=localStorage.getItem(VKEY); if(r) VS=Object.assign(VS,JSON.parse(r));}catch(e){}
+function persist(){try{localStorage.setItem(VKEY,JSON.stringify(VS))}catch(e){}}
+function save(){persist(); if(window.VOICE_CH) VOICE_CH.push(); syncQuest();}
+const record=(id,ok)=>{VS.m[id]=(VS.m[id]||[]).concat(ok?1:0).slice(-20);save()};
+function mast(id){const r=(VS.m[id]||[]).slice(-10),n=r.length,c=r.reduce((a,b)=>a+b,0);
+  const st=n===0?'Not started':(n>=10&&c>=9)?'Expert':c/n>=.7?'Getting there':'Learning';return{n,c,st,pct:n?c/10*100:0}}
+// Ticks the Language · Active & passive voice quest: Fix-it 10/12+, Expert in each level, then the final exam at 90%+.
+function syncQuest(){ if(window.QL&&QL.voiceProgress) QL.voiceProgress([VS.fixBest>=10,...LV.map(l=>mast(l.id).st==='Expert'),VS.examBest>=90]); }
+let S={view:'home'};
+
+/* ---------- home ---------- */
+function home(){
+  S={view:'home'};
+  const experts=LV.filter(l=>mast(l.id).st==='Expert').length, nextL=LV.find(l=>mast(l.id).st!=='Expert');
+  const fresh=!Object.keys(VS.m).length;
+  app.innerHTML=`
+  <a class="vt-back" href="#quest">← Back to Quest Log</a>
+  <section class="hero">
+    <p class="eyebrow">Language · Grammar · Lesson 35 &amp; Spectrum 1.12</p>
+    <h1>Active &amp; Passive <span class="hl">Voice</span> Trainer</h1>
+    <p class="lede">Seven levels that get harder, then a final exam. Get one wrong and you'll see exactly how to fix it, then a similar question comes back so you can prove you've got it.</p>
+    <div class="cta">
+      <button class="btn${VS.fixBest>=10?'':' primary'}" type="button" data-act="fix">Fix-it set · 12 questions</button>
+      ${nextL?`<button class="btn${VS.fixBest>=10?' primary':''}" type="button" data-level="${nextL.id}">Next: Level ${nextL.id.slice(1)} · ${esc(nextL.name)}</button>`:''}
+      <button class="btn${!nextL?' primary':''}" type="button" data-act="exam">Final exam · 20 questions</button>
+    </div>
+    <p class="expert-count">Expert in ${experts} of ${LV.length} levels${VS.fixBest?` · Fix-it best ${VS.fixBest}/12`:''}${VS.examBest?` · Exam best ${VS.examBest}%`:''}</p>
+  </section>
+  <details class="notes"${fresh?' open':''}>
+    <summary>The rules in one minute</summary>
+    <div class="rules">
+      <div class="rule"><b>Active:</b> the subject <u>does</u> the action. <i>The club made the decorations.</i></div>
+      <div class="rule"><b>Passive:</b> the subject <u>receives</u> the action. The verb is a form of <b>be</b> + a <b>past participle</b>. <i>The decorations were made (by the club).</i></div>
+      <div class="rule warn"><b>The "by" phrase is optional.</b> "The football was thrown out of bounds." has no "by", and it is still passive.</div>
+      <div class="rule warn"><b>Traps:</b> be + -ing is active (<i>Kate was riding</i>). "by" can mean beside (<i>talking by the fountain</i>). "was" on its own can be a linking verb (<i>was the site</i>), which counts as active. Only verbs with an object can be passive.</div>
+      <div class="tbl"><table class="tense"><tr><th>Tense</th><th>Active</th><th>Passive</th></tr>
+        <tr><td>Present</td><td>makes</td><td>is / are made</td></tr>
+        <tr><td>Past</td><td>made</td><td>was / were made</td></tr>
+        <tr><td>Future</td><td>will make</td><td>will be made</td></tr>
+        <tr><td>Present perfect</td><td>has / have made</td><td>has / have been made</td></tr>
+        <tr><td>Past perfect</td><td>had made</td><td>had been made</td></tr>
+        <tr><td>Happening now</td><td>is making</td><td>is being made</td></tr></table></div>
+      <div class="rule"><b>Passive → active:</b> ① find the doer after "by" ② make it the subject ③ use one active verb in the <u>same tense</u> ④ the old subject goes after the verb, and "by" disappears.</div>
+      <div class="rule"><b>Active → passive:</b> ① the object becomes the subject ② add be (matching tense and singular/plural) + past participle ③ add "by" + the doer, or leave it out if the doer is unknown.</div>
+    </div>
+  </details>
+  <details class="notes">
+    <summary>What the Lesson 35 worksheets showed</summary>
+    <ul>
+      <li><span class="good">Strong:</span> most active/passive answers were right, including the "talking by the water fountain" trap. Rewrites 1, 2, 6, 8, 9 and 10 and all four Try It sentences were good.</li>
+      <li>Lesson 35 #4 ("The football was thrown out of bounds") and #8 ("The first three people were selected…") were marked active. Both are passive: <b>was thrown</b>, <b>were selected</b>. A missing "by" phrase doesn't make a sentence active.</li>
+      <li>Lesson 35 also asks you to underline each verb. That step was skipped. Level 2 practises it.</li>
+      <li>Rewrite #3 mixed both voices ("…answered the phone was finally"). Active: "Ms. Hosaka, the school librarian, finally answered the phone."</li>
+      <li>Rewrite #4: "is called" is present tense, so the active verb is "call", not "called".</li>
+      <li>Rewrite #5 needs "the desert's size", and #7 was left unfinished: "In Greek mythology, Perseus cut off the Gorgon Medusa's head."</li>
+    </ul>
+    <p style="color:var(--muted);font-size:.9rem">The Fix-it set practises exactly these.</p>
+  </details>
+  <h2 class="sec">Your path to expert</h2>
+  <div class="levels">${LV.map((l,i)=>{const m=mast(l.id),done=m.st==='Expert';return `<button class="lvl${done?' done':''}${nextL&&nextL.id===l.id?' next':''}" type="button" data-level="${l.id}">
+    <span class="ln">${done?'✓':i+1}</span><span class="lname">${esc(l.name)}</span><span class="lstat${done?' expert':''}">${m.st}${m.n?`<br>${m.c}/${m.n} recent`:''}</span>
+    <span class="ldesc">${esc(l.desc)}</span><span class="meter"><i style="width:${m.pct}%"></i></span></button>`}).join('')}
+    <button class="lvl${VS.examBest>=90?' done':''}${!nextL&&VS.examBest<90?' next':''}" type="button" data-act="exam"><span class="ln">${VS.examBest>=90?'✓':'★'}</span><span class="lname">Final exam</span><span class="lstat${VS.examBest>=90?' expert':''}">${VS.examBest?'Best '+VS.examBest+'%':'Not tried'}</span><span class="ldesc">20 questions from every level, getting harder as you go. 18/20 (90%) = expert.</span><span class="meter"><i style="width:${VS.examBest}%"></i></span></button>
+  </div>
+  <p class="vt-foot">10 questions per round. Expert means 9 of your last 10 answers in that level were right. Typed answers ignore commas and capitals, but always start with a capital letter and end with a period. Progress saves online with your Quest Log, and the steps on the Language quest tick themselves.</p>`;
+}
+
+/* ---------- rounds ---------- */
+function start(mode,lid){
+  let plan=[];
+  if(mode==='level'){const l=lvBy(lid);plan=shuffle(l.items).slice(0,10).map(item=>({lid,item}))}
+  else if(mode==='fix')plan=FIX.map(([lid,item])=>({lid,item}));
+  else{EXAM.forEach(([lid,n])=>shuffle(lvBy(lid).items).slice(0,n).forEach(item=>plan.push({lid,item})))}
+  S={view:'quiz',mode,lid,plan,i:0,score:0,streak:0,extra:0,log:[],used:new Set(plan.map(p=>p.item))};
+  showQ();
+}
+function altItem(lid){const pool=lvBy(lid).items.filter(x=>!S.used.has(x));const it=pool.length?pool[Math.floor(Math.random()*pool.length)]:null;if(it)S.used.add(it);return it}
+const title=()=>S.mode==='level'?`Level ${S.lid.slice(1)} · ${lvBy(S.lid).name}`:S.mode==='fix'?'Fix-it set':'Final exam';
+
+function showQ(){
+  const e=S.plan[S.i];if(!e.q){e.q=lvBy(e.lid).make(e.item);e.q.lid=e.lid}
+  const q=e.q;S.answered=false;
+  const area=q.kind==='mc'?`<div class="choices">${q.choices.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${c}</button>`).join('')}</div>`
+    :`<textarea id="vt-in" class="vt-in" rows="2" autocomplete="off" spellcheck="true" aria-label="Your sentence" placeholder="Type the whole sentence, then press Check"></textarea>`;
+  app.innerHTML=`
+  <div class="qbar">
+    <button class="vt-link" type="button" data-act="home">← All levels</button>
+    <div class="prog"><span>${esc(title())} · Question ${S.i+1} of ${S.plan.length}</span><div class="pbar"><i style="width:${S.i/S.plan.length*100}%"></i></div></div>
+    <div class="score"><b>${S.score}</b>/${S.log.length} right${S.streak>=3?` <span class="vt-streak">${S.streak} in a row</span>`:''}</div>
+  </div>
+  <article class="qcard">
+    <p class="eyebrow">Level ${q.lvl} · ${esc(lvBy(e.lid).name)}${e.retry?' · <span class="retry">Second chance</span>':''}</p>
+    <div>${q.prompt}</div>
+    <div>${area}</div>
+    <p class="msg" id="vt-msg"></p>
+    <div class="row" id="vt-actions">
+      ${q.kind==='type'?'<button class="btn primary" type="button" id="vt-check">Check</button>':''}
+      <button class="btn ghost" type="button" id="vt-hintBtn">Hint</button>
+    </div>
+    <div class="hint" id="vt-hint" hidden>${q.hint}</div>
+    <div id="vt-fb"></div>
+  </article>`;
+  const inp=$('#vt-in');if(inp&&matchMedia('(pointer:fine)').matches)inp.focus();
+}
+
+function check(choice){
+  if(S.answered)return;const e=S.plan[S.i],q=e.q,msg=$('#vt-msg');let ok,shown,note='',polish='';
+  if(q.kind==='mc'){ok=choice===q.ans;shown=q.choices[choice];note=ok?'':q.diag(choice)}
+  else{const raw=$('#vt-in').value.trim();if(!raw){msg.textContent='Type your sentence first.';return}
+    ok=q.check(raw);shown=esc(raw);
+    if(ok&&(!/^["“]?[A-Z]/.test(raw)||!/[.!?]["”]?$/.test(raw)))polish='Polish it: start with a capital letter and end with a period.';
+    if(!ok)note=q.diag(raw)}
+  msg.textContent='';S.answered=true;S.log.push({lid:e.lid,ok,q});record(e.lid,ok);
+  let added=false;
+  if(ok){S.score++;S.streak++}
+  else{S.streak=0;if(S.mode!=='exam'&&S.extra<5){const it=altItem(e.lid);if(it){S.plan.push({lid:e.lid,item:it,retry:true});S.extra++;added=true}}}
+  root.querySelectorAll('.choice').forEach(b=>{b.disabled=true;const i=+b.dataset.i;if(i===choice)b.classList.add(ok?'picked-ok':'picked-no');else if(i===q.ans)b.classList.add('right')});
+  const inp=$('#vt-in');if(inp)inp.disabled=true;
+  $('#vt-hintBtn').disabled=true;
+  const work=q.explain();
+  $('#vt-fb').innerHTML=ok
+    ?`<div class="fb ok"><p class="fbh">Correct${S.streak>=3?` · ${S.streak} in a row`:''}</p>${polish?`<p class="watch">${polish}</p>`:''}<details><summary>See why</summary>${work}</details></div>`
+    :`<div class="fb no"><p class="fbh">Not quite</p><p>You answered: <b>${shown}</b><br>Correct answer: <b>${q.answerText}</b></p>
+      ${note?`<p class="watch"><b>Watch out:</b> ${note}</p>`:''}<p class="sh">How to fix it</p>${work}
+      ${added?'<p class="added">A similar question has been added to the end of this round.</p>':''}</div>`;
+  const last=S.i===S.plan.length-1;
+  $('#vt-actions').innerHTML=`<button class="btn primary" type="button" id="vt-next">${last?'See results':'Next question'}</button>`;
+  $('#vt-next').focus({preventScroll:true});
+  const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  $('#vt-fb').scrollIntoView({behavior:rm?'auto':'smooth',block:'nearest'});
+}
+function next(){if(S.i<S.plan.length-1){S.i++;showQ();window.scrollTo(0,0)}else end()}
+
+function end(){
+  const total=S.log.length;
+  if(S.mode==='fix'){const first=S.log.slice(0,FIX.length).filter(r=>r.ok).length;if(first>VS.fixBest){VS.fixBest=first;save()}}
+  let examPct=0;
+  if(S.mode==='exam'){examPct=Math.round(S.score/S.plan.length*100);if(examPct>VS.examBest){VS.examBest=examPct;save()}}
+  const pct=total?S.score/total:0;
+  S.view='end';
+  const by={};S.log.forEach(r=>{by[r.lid]=by[r.lid]||{r:0,t:0};by[r.lid].t++;if(r.ok)by[r.lid].r++});
+  const weakest=Object.entries(by).sort((a,b)=>(a[1].r/a[1].t)-(b[1].r/b[1].t))[0],hasWeak=weakest&&weakest[1].r<weakest[1].t;
+  const missed=S.log.filter(r=>!r.ok);
+  const line=S.mode==='exam'?(examPct>=90?'Expert! You really know active and passive voice. 🎉':'Not 90% yet. Practise the weakest level below, then try the exam again.')
+    :pct>=.9?'Expert level. Move on to the next level.':pct>=.7?'Solid work. Read "How to fix it" on the ones you missed, then go again.':'Keep going. The "How to fix it" steps are the fastest way to improve.';
+  app.innerHTML=`<section class="end">
+    <p class="eyebrow">${esc(title())} · round complete</p>
+    <div class="bigscore">${S.score}<span style="color:var(--muted);font-size:.5em"> / ${total}</span></div>
+    <p style="margin:0;max-width:60ch">${line}</p>
+    <div class="bk">${Object.entries(by).map(([k,v])=>`<div class="bkrow"><span>Level ${k.slice(1)} · ${esc(lvBy(k).name)}</span><span>${v.r}/${v.t}</span></div>`).join('')}</div>
+    ${missed.length?`<div><h2 class="sec" style="margin-top:6px">Answers to review</h2><ul class="missed">${missed.map(r=>`<li>${esc(lvBy(r.lid).name)}: ${r.q.answerText}</li>`).join('')}</ul></div>`:''}
+    <div class="cta">
+      ${hasWeak?`<button class="btn primary" type="button" data-level="${weakest[0]}">Practise ${esc(lvBy(weakest[0]).name)}</button>`:''}
+      <button class="btn${hasWeak?'':' primary'}" type="button" data-act="again">Play this round again</button>
+      <button class="btn ghost" type="button" data-act="home">All levels</button>
+    </div></section>`;
+  window.scrollTo(0,0);
+  if(window.boom&&(S.mode==='exam'&&examPct>=90)) boom();
+}
+
+/* ---------- events (scoped to the trainer) ---------- */
+root.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t||!root.contains(t))return;
+  if(t.classList.contains('choice'))return check(+t.dataset.i);
+  if(t.id==='vt-check')return check();
+  if(t.id==='vt-next')return next();
+  if(t.id==='vt-hintBtn'){$('#vt-hint').hidden=false;t.disabled=true;return}
+  if(t.dataset.level)return start('level',t.dataset.level);
+  const a=t.dataset.act;
+  if(a==='home')return home();
+  if(a==='fix')return start('fix');
+  if(a==='exam')return start('exam');
+  if(a==='again')return start(S.mode,S.lid);
+});
+document.addEventListener('keydown',e=>{
+  if(root.hidden||e.key!=='Enter'||S.view!=='quiz')return;
+  if(e.target.id==='vt-in'&&!S.answered&&!e.shiftKey){e.preventDefault();check();return}
+  if(S.answered&&e.target.id!=='vt-next'&&(root.contains(e.target)||e.target===document.body)){e.preventDefault();next()}
+});
+
+window.VOICE={
+  get:()=>VS,
+  apply:d=>{VS=Object.assign({m:{},fixBest:0,examBest:0},d);persist();if(S.view==='home')home();syncQuest()},
+  hasData:()=>Object.keys(VS.m).length>0||VS.fixBest>0||VS.examBest>0,
+  show:()=>{if(S.view!=='quiz')home()}
+};
+home();
+})();
 </script>
 <script type="text/plain" id="appJs2">
 
@@ -2371,16 +2953,18 @@ window.QUEST_CH=channel('progress/quest', ()=>store,
   ()=>Object.keys(store.state).length>0||store.custom.length>0||Object.keys(store.deleted||{}).length>0);
 window.FR_CH=channel('progress/french', ()=>window.FR.get(), d=>window.FR.apply(d), ()=>window.FR.hasData());
 window.ROOTS_CH=channel('progress/roots', ()=>window.ROOTS.get(), d=>window.ROOTS.apply(d), ()=>window.ROOTS.hasData());
+window.VOICE_CH=channel('progress/voice', ()=>window.VOICE.get(), d=>window.VOICE.apply(d), ()=>window.VOICE.hasData());
 (async()=>{
   const db = window.FB_DB || null;
   if(!db) return; // opened as a local file: keeps saving in this browser
   SYNC.db=db; setSync('online');
   document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
   $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
-  await QUEST_CH.attach(); await FR_CH.attach(); await ROOTS_CH.attach();
+  await QUEST_CH.attach(); await FR_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach();
 })();
 if(location.hash==='#french') showScreen('french');
 if(location.hash==='#roots') showScreen('roots');
+if(location.hash==='#voice') showScreen('voice');
 if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
 </script>
 
