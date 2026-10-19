@@ -276,7 +276,10 @@ html[data-skin="paper"] #trainerApp{--bg:#F4ECD9;--surface:#FFFAEE;--surface-2:#
 html[data-skin="night"] #trainerApp .result{background:#3A4670}
 html[data-skin="night"] .news-item.k-event .news-ico{background:#34406F}
 /* Theme picker */
-.theme-wrap{position:relative}
+.theme-wrap,.menu-wrap{position:relative}
+a.theme-opt{text-decoration:none}
+.theme-opt .pi{width:26px;text-align:center;font-size:1.1rem;flex:none}
+#moreMenu{min-width:180px}
 .theme-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:45;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow),0 12px 30px rgba(0,0,0,.18);padding:6px;display:grid;gap:4px;min-width:230px}
 .theme-opt{display:flex;align-items:center;gap:10px;border:0;background:transparent;border-radius:10px;padding:8px 10px;text-align:left;font:inherit;color:var(--ink);cursor:pointer}
 .theme-opt:hover{background:var(--surface-2)}
@@ -829,6 +832,63 @@ html[data-skin="night"] #mathApp{--mt-accent-ink:#0B1530}
 #mathApp .lock{font-size:.78rem;color:var(--muted)}
 @media (max-width:560px){#mathApp{font-size:16px}#mathApp .stats{grid-template-columns:repeat(2,minmax(0,1fr))}#mathApp .steps3{grid-template-columns:1fr}#mathApp .warm{grid-template-columns:auto minmax(0,1fr)}#mathApp .warm .btn{grid-column:1/-1}#mathApp .qcard{padding:16px}}
 @media (prefers-reduced-motion:no-preference){#mathApp .fb{animation:mtRise .25s ease-out}@keyframes mtRise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}}
+/* ---------- calmer navigation: compact top bar, tabs, rows, collapsible refreshers, pinned actions ---------- */
+#mathApp .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:4px 6px}
+#mathApp .topbar .mt-back{margin:0}
+#mathApp .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#mathApp .chipx{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+#mathApp .chipx.warn{background:var(--gold-soft);border-color:var(--gold)}
+#mathApp .mt-title{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:2px 0 0}
+#mathApp .mt-title.sm{font-size:clamp(1.35rem,4.2vw,1.8rem)}
+#mathApp .sub1{margin:4px 0 12px;color:var(--muted);font-size:.92rem}
+#mathApp .muted{margin:0 0 8px;color:var(--muted);font-size:.9rem}
+#mathApp .mtabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:12px;margin-bottom:14px;overflow-x:auto}
+#mathApp .mtab{flex:1;appearance:none;border:0;background:transparent;font:inherit;font-weight:700;font-size:.92rem;color:var(--muted);padding:8px 10px;border-radius:9px;cursor:pointer;white-space:nowrap}
+#mathApp .mtab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#mathApp .tabbody{display:grid;gap:10px}
+#mathApp .next{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:2px solid var(--mt-accent);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+#mathApp .next .ico{font-size:2rem}
+#mathApp .next h2{font-size:1.15rem;margin-top:2px}
+#mathApp .next p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+#mathApp .row-btn,#mathApp .lrow{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+#mathApp .row-btn:hover,#mathApp .lrow:hover:not(:disabled){border-color:var(--mt-accent)}
+#mathApp .row-btn small,#mathApp .lrow small{display:block;color:var(--muted);font-size:.82rem;font-weight:500}
+#mathApp .row-btn>span:first-child{font-size:1.4rem}
+#mathApp .chev{color:var(--muted);font-size:1.3rem;line-height:1}
+#mathApp .path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#mathApp .path>div{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:4px}
+#mathApp .path b{font-family:var(--mono);font-size:1.15rem}
+#mathApp .path span{font-size:.78rem;color:var(--muted);font-weight:600}
+#mathApp .list{display:grid;gap:8px}
+#mathApp .lrow{grid-template-columns:auto minmax(0,1fr) auto auto}
+#mathApp .lrow:disabled{opacity:.55;cursor:default}
+#mathApp .lrow.done{border-color:var(--good)}
+#mathApp .lrow.final{background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:var(--gold)}
+#mathApp .lno{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.9rem;background:var(--mt-soft);color:var(--mt-accent)}
+#mathApp .lrow.done .lno{background:var(--good);color:#fff}
+#mathApp .lname b{font-family:var(--display);font-size:1rem;line-height:1.25}
+#mathApp .dots{display:flex;gap:4px}
+#mathApp .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.62rem;font-weight:800;color:#fff}
+#mathApp .dot.on{background:var(--good);border-color:var(--good)}
+#mathApp .stepline{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+#mathApp .stepline span{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+#mathApp .stepline span.ok{background:var(--good-soft);color:var(--good)}
+#mathApp details.acc{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+#mathApp details.acc>summary{font-family:var(--display);font-weight:800;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+#mathApp details.acc>summary::-webkit-details-marker{display:none}
+#mathApp details.acc>summary::after{content:"＋";color:var(--muted);font-weight:700}
+#mathApp details.acc[open]>summary::after{content:"−"}
+#mathApp details.acc[open]>summary{margin-bottom:10px}
+#mathApp details.acc .ex{margin-bottom:8px}
+#mathApp .dock{position:sticky;bottom:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));margin-top:6px;background:linear-gradient(to top,var(--bg) 75%,transparent)}
+#mathApp .dock .btn{flex:1;min-width:140px}
+#mathApp .qcard #mt-actions{position:sticky;bottom:0;z-index:3;background:var(--surface);padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));margin-block:-8px}
+#mathApp .multi{display:flex;flex-wrap:wrap;gap:8px}
+#mathApp .mchip{appearance:none;font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:9px 16px;cursor:pointer}
+#mathApp .mchip[aria-pressed="true"]{background:var(--mt-accent);border-color:var(--mt-accent);color:var(--mt-accent-ink)}
+#mathApp .mchip[aria-pressed="true"]::before{content:"✓ "}
+#mathApp .mchip:disabled{cursor:default}
+@media (max-width:560px){#mathApp .next{grid-template-columns:auto minmax(0,1fr)}#mathApp .next .btn{grid-column:1/-1}#mathApp .path{grid-template-columns:repeat(3,minmax(0,1fr))}#mathApp .path span{font-size:.7rem}#mathApp .dots{display:none}}
 
 
 /* ================= VOICE TRAINER (Active & Passive Voice; scoped; follows the Quest Log theme) ================= */
@@ -973,20 +1033,27 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
     </div>
     <div class="toolbar">
       <span class="sync" id="syncStatus" data-s="local">Saved on this device</span>
-      <span class="theme-wrap"><button class="btn" id="themeBtn" type="button" aria-haspopup="menu" aria-expanded="false">🎨 Theme</button>
+      <span class="menu-wrap"><button class="btn primary" id="practiceBtn" type="button" data-menu="practiceMenu" aria-haspopup="menu" aria-expanded="false">📚 Practice ▾</button>
+        <div class="theme-menu" id="practiceMenu" role="menu" hidden>
+          <a class="theme-opt" role="menuitem" href="#math"><span class="pi">➗</span><span>Math Mastery<small>Chapters 1–2 · lessons, exams, daily warm-up</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#roots"><span class="pi">√</span><span>Square Root Trainer<small>Lesson 1.1 extra practice</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#voice"><span class="pi">✍️</span><span>Voice Trainer<small>Active &amp; passive voice</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#french"><span class="pi">🇫🇷</span><span>French · Section A<small>Flashcards &amp; mock tests</small></span></a>
+        </div></span>
+      <button class="btn" id="addBtn" type="button">+ Add</button>
+      <span class="theme-wrap"><button class="btn" id="themeBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Theme" title="Theme">🎨</button>
         <div class="theme-menu" id="themeMenu" role="menu" hidden>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="classic"><span class="sw"><i style="background:#F5F6F8"></i><i style="background:#0F7F86"></i><i style="background:#1B2233"></i></span><span>Classic<small>Bright and clear</small></span></button>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="scholar"><span class="sw"><i style="background:#F3F1EC"></i><i style="background:#7A2E3A"></i><i style="background:#1E2332"></i></span><span>Scholarly<small>Serif type, library colours</small></span></button>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="night"><span class="sw"><i style="background:#232B3D"></i><i style="background:#5CD0CF"></i><i style="background:#EEF1F7"></i></span><span>Night<small>Dark, easy on the eyes after dark</small></span></button>
           <button type="button" class="theme-opt" role="menuitemradio" data-skin="paper"><span class="sw"><i style="background:#F4ECD9"></i><i style="background:#8A5A2B"></i><i style="background:#3A2E22"></i></span><span>Paper<small>Soft, creamy notebook look</small></span></button>
         </div></span>
-      <button class="btn" id="deletedBtn" type="button" hidden>Deleted (0)</button>
-      <a class="btn" href="#roots" style="text-decoration:none;color:var(--ink)">√ Square Root Trainer</a>
-      <a class="btn" href="#voice" style="text-decoration:none;color:var(--ink)">✍️ Voice Trainer</a>
-      <a class="btn" href="#math" style="text-decoration:none;color:var(--ink)">➗ Math Trainer</a>
-      <button class="btn primary" id="addBtn" type="button">+ Add assignment</button>
-      <button class="btn parent-only" id="applyBtn" type="button" hidden>Apply update</button>
-      <button class="btn" id="signOutBtn" type="button">Sign out</button>
+      <span class="menu-wrap"><button class="btn" id="moreBtn" type="button" data-menu="moreMenu" aria-haspopup="menu" aria-expanded="false" aria-label="More" title="More">⋯</button>
+        <div class="theme-menu" id="moreMenu" role="menu" hidden>
+          <button class="theme-opt" id="deletedBtn" type="button" hidden>Deleted (0)</button>
+          <button class="theme-opt parent-only" id="applyBtn" type="button" hidden>Apply update</button>
+          <button class="theme-opt" id="signOutBtn" type="button">Sign out</button>
+        </div></span>
       <button class="btn local-only" id="exportBtn" type="button">Back up progress</button>
       <label class="btn local-only" for="importFile" style="margin:0">Restore</label>
       <input type="file" id="importFile" accept="application/json" hidden>
@@ -1540,6 +1607,14 @@ function applySkin(s){
   btn.onclick=e=>{ e.stopPropagation(); menu.hidden=!menu.hidden; btn.setAttribute('aria-expanded', String(!menu.hidden)); };
   menu.querySelectorAll('.theme-opt').forEach(o=>o.onclick=()=>{ applySkin(o.dataset.skin); close(); toast(({classic:'Classic',scholar:'Scholarly',night:'Night',paper:'Paper'})[o.dataset.skin]+' theme on'); });
   document.addEventListener('click',e=>{ if(!menu.hidden && !e.target.closest('.theme-wrap')) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
+
+/* ---------- Toolbar menus (Practice, More) ---------- */
+(function(){
+  const close=()=>document.querySelectorAll('[data-menu]').forEach(b=>{ b.setAttribute('aria-expanded','false'); const m=document.getElementById(b.dataset.menu); if(m) m.hidden=true; });
+  document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation(); const m=document.getElementById(b.dataset.menu), open=m.hidden; close(); m.hidden=!open; b.setAttribute('aria-expanded',String(open)); }));
+  document.addEventListener('click',e=>{ if(!e.target.closest('.menu-wrap')) close(); else if(e.target.closest('.theme-opt')) setTimeout(close,0); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
 })();
 
@@ -3142,6 +3217,7 @@ const neat=s=>String(s).replace('-','−');
 const cmpC=(a,b)=>{const d=val(a)-val(b);return d<0?-1:d>0?1:0};
 
 /* ---------- roots helpers ---------- */
+const gcd=(a,b)=>b?gcd(b,a%b):a;
 const isq=n=>{let a=Math.floor(Math.sqrt(n));while(a*a>n)a--;while((a+1)**2<=n)a++;return a};
 const isSq=n=>isq(n)**2===n;
 const nonSq=(lo,hi)=>{let n;do n=R(lo,hi);while(isSq(n));return n};
@@ -3176,6 +3252,11 @@ function SCI(o){ // o.target canon value; o.tol relative tolerance for rounded a
       }
       return ''},
     explain:()=>ol(o.why)},o);
+}
+function MULTI(o){ // tick every option that applies; o.ans = array of indices
+  const A=o.ans.slice().sort((a,b)=>a-b);
+  return Object.assign({kind:'multi',answerText:A.map(i=>o.opts[i]).join(', '),correct:A,
+    check:sel=>{const s=[...new Set(sel)].sort((a,b)=>a-b);return s.length===A.length&&s.every((x,i)=>x===A[i])},explain:()=>ol(o.why)},o);
 }
 function ORDER(o){ // o.items [{h,v}], ascending
   const idx=o.items.map((x,i)=>i).sort((a,b)=>o.items[a].v-o.items[b].v);
@@ -3236,21 +3317,55 @@ A.area=l=>{const dp=l===1?1:l===2?2:3;let Ar=nonSq(5,[60,200,999][l-1]);const v=
    B · 1.2 The real number system
    ===================================================================== */
 const B={};
-const FAM=['Whole number','Negative integer','Rational, not an integer','Irrational'];
-B.classify=l=>{const pool=[
-  ()=>{const k=R(0,40);return [String(k),0,`${k} is a whole number (and also an integer and rational).`]},
-  ()=>{const k=R(2,12);return [rt(k*k),0,`${rt(k*k)} = ${k}, a whole number.`]},
-  ()=>{const k=R(1,40);return [`−${k}`,1,`−${k} is a negative integer (and rational).`]},
-  ()=>{const k=R(3,11);return [rt(k*k,true),1,`${rt(k*k,true)} = −${k}, a negative integer.`]},
-  ()=>{let a=R(1,9),b=R(2,9);while(a%b===0)a++;return [`${a}/${b}`,2,`${a}/${b} is a fraction that is not a whole number, so it is rational but not an integer.`]},
-  ()=>{const x=fx(-R(101,999)/100,2);return [neat(x),2,`${neat(x)} stops after 2 decimal places, so it is rational, but it is not an integer.`]},
-  ()=>['0.666…',2,'A repeating decimal is rational (it equals 2/3), and it is not an integer.'],
-  ()=>{const n=nonSq(2,90);return [rt(n),3,`${n} is not a perfect square, so ${rt(n)} is irrational.`]},
-  ()=>{const n=nonSq(2,90);return [rt(n,true),3,`${rt(n,true)} is the opposite of an irrational number, so it is irrational.`]},
-  ()=>[pick(['π','2π','π/2','π²']),3,'Anything built from π (multiplied or squared) never ends and never repeats.']];
-  const [d,a,w]=pick(pool)();
-  return MC({prompt:`Which family does <span class="big">${d}</span> belong to? Choose the <b>most specific</b> one.`,choices:FAM,ans:a,why:[w,'Real numbers = rational + irrational. Rational includes integers (negative integers, zero and whole numbers) and non-integers (decimals that stop or repeat).'],
-    hint:'Simplify first (√49 = 7). Then: is it an integer? If not, does its decimal stop or repeat?'});};
+const GROUPS=['Natural','Whole','Integer','Rational','Irrational','Real'];
+const GWHY={Natural:'natural numbers are the counting numbers 1, 2, 3, …',Whole:'whole numbers are 0, 1, 2, 3, …',Integer:'integers are whole numbers and their negatives',Rational:'rational numbers can be written as a fraction of integers (decimals that stop or repeat)',Irrational:'irrational numbers never stop and never repeat',Real:'every rational and irrational number is real'};
+function realItem(l){ // a number for the class-notes style questions, with the groups it belongs to
+  const pool=[
+    ()=>{const k=R(1,60);return {h:String(k),g:[0,1,2,3,5],v:`${k}`}},
+    ()=>({h:'0',g:[1,2,3,5],v:'0',note:'0 is a whole number but not a natural number: natural numbers start at 1.'}),
+    ()=>{const k=R(1,40);return {h:`−${k}`,g:[2,3,5],v:`−${k}`,note:`−${k} is negative, so it is not natural or whole.`}},
+    ()=>{const k=R(2,12);return {h:rt(k*k),g:[0,1,2,3,5],v:`${k}`,note:`${rt(k*k)} = ${k} because ${k} × ${k} = ${k*k}. Simplify the root first.`}},
+    ()=>{const k=R(2,10);return {h:rt(k*k,true),g:[2,3,5],v:`−${k}`,note:`${rt(k*k,true)} = −${k}, a negative integer.`}},
+    ()=>{let a=R(1,9),b=R(2,9);while(a%b===0)a++;return {h:`${a}/${b}`,g:[3,5],v:`${a}/${b}`,note:`${a}/${b} is a fraction of integers, but not a whole number.`}},
+    ()=>{const x=pick(['0.25','0.75','0.5','−2.5','1.125','−0.4']);return {h:neat(x),g:[3,5],v:x,note:`${neat(x)} stops, so it is rational, but it is not an integer.`}},
+    ()=>({h:'0.333…',g:[3,5],v:'1/3',note:'A repeating decimal is rational (0.333… = 1/3).'}),
+    ()=>{const n=nonSq(2,99);return {h:rt(n),g:[4,5],v:rt(n),note:`${n} is not a perfect square, so ${rt(n)} never stops and never repeats: irrational, not rational.`}},
+    ()=>{const n=nonSq(2,60);return {h:rt(n,true),g:[4,5],v:rt(n,true),note:`${n} is not a perfect square, so ${rt(n,true)} is irrational.`}},
+    ()=>({h:pick(['π','2π','π/2']),g:[4,5],v:'π',note:'Anything made from π never stops and never repeats.'}),
+    ()=>{const k=R(2,9),d=pick([2,3,4]);return {h:`${k*d}/${d}`,g:[0,1,2,3,5],v:`${k}`,note:`${k*d}/${d} simplifies to ${k}, a natural number.`}}];
+  const w=l===1?[0,1,2,3,5,6,8,10]:l===2?[0,1,2,3,4,5,6,7,8,9,10]:[1,3,4,5,7,8,9,11];
+  return pool[pick(w)]();
+}
+B.groups=l=>{const it=realItem(l);
+  return Object.assign(MULTI({prompt:`Which groups does <span class="big">${it.h}</span> belong to? Tick <b>all</b> that apply.`,opts:GROUPS,ans:it.g,
+    why:[it.note||`${it.h} is a counting number.`,'It belongs to: <b>'+it.g.map(i=>GROUPS[i]).join(', ')+'</b>.','Nested groups: natural ⊂ whole ⊂ integer ⊂ rational ⊂ real. Irrational is the other part of real.'],
+    hint:'Simplify first (√16 = 4). Then go up the ladder: natural → whole → integer → rational → real. Irrational numbers are only irrational and real.'}),
+    {diag:sel=>{const miss=it.g.filter(i=>!sel.includes(i)),extra=sel.filter(i=>!it.g.includes(i));const out=[];
+      if(extra.includes(3)&&it.g.includes(4))out.push(`${it.h} is <b>not rational</b>. ${it.note}`);
+      else if(extra.includes(4))out.push(`${it.h} is <b>not irrational</b>: it can be written as a fraction (or it stops or repeats).`);
+      if(extra.includes(0)&&it.v==='0')out.push('0 is <b>not natural</b>: natural numbers start at 1.');
+      else if(extra.some(i=>i<=1)&&it.g.includes(2))out.push(`Negative numbers are <b>not natural or whole</b>.`);
+      else if(extra.some(i=>i<=2)&&!it.g.includes(2)&&!it.g.includes(4))out.push(`${it.h} is <b>not an integer</b>, so it can't be natural or whole either.`);
+      if(miss.includes(5))out.push('You missed <b>Real</b>: every number here is a real number.');
+      const m2=miss.filter(i=>i!==5&&i!==4);if(m2.length)out.push(`You missed <b>${m2.map(i=>GROUPS[i]).join(', ')}</b>: ${m2.map(i=>GWHY[GROUPS[i]]).join('; ')}.${it.note&&/Simplify|simplifies/.test(it.note)?' '+it.note:''}`);
+      if(miss.includes(4)&&!extra.includes(3))out.push(`You missed <b>Irrational</b>. ${it.note}`);
+      return out.join(' ')}});};
+B.isIt=l=>{const it=realItem(l),g=pick(l===1?[0,1,2,3]:[0,1,2,3,4]);const yes=it.g.includes(g);
+  const art=g===2||g===4?'an':'a';
+  return MC({prompt:`Is <span class="big">${it.h}</span> ${art} <b>${GROUPS[g].toLowerCase()}</b> number?`.replace('integer number','integer'),choices:['Yes','No'],ans:yes?0:1,
+    why:[`${GWHY[GROUPS[g]][0].toUpperCase()+GWHY[GROUPS[g]].slice(1)}.`,it.note||'',`${it.h} belongs to: ${it.g.map(i=>GROUPS[i]).join(', ')}. So the answer is <b>${yes?'yes':'no'}</b>.`],
+    hint:'Simplify first, then check the definition of the group.'});};
+B.cmpRoots=l=>{const t=pick(l===1?['rr','dr']:['rr','nrr','dr','ndr']);let A_,B_,ex;
+  if(t==='rr'||t==='nrr'){const a=R(2,60);let b;do b=R(2,60);while(b===a);const ng=t==='nrr';A_={h:rt(a,ng),v:(ng?-1:1)*Math.sqrt(a)};B_={h:rt(b,ng),v:(ng?-1:1)*Math.sqrt(b)};
+    ex=ng?`Compare ${a} and ${b} first, then flip for negatives: the root of the bigger number is further from 0, so it is smaller.`:`Bigger number under the root → bigger root: ${Math.min(a,b)} &lt; ${Math.max(a,b)}.`}
+  else{const n=nonSq(3,99),ng=t==='ndr',d=(Math.round(Math.sqrt(n)*2)/2+pick([0,0.5,-0.5]));const dd=d===Math.sqrt(n)?d+.5:d;
+    A_={h:rt(n,ng),v:(ng?-1:1)*Math.sqrt(n)};B_={h:neat(((ng?-1:1)*dd).toFixed(1)),v:(ng?-1:1)*dd};
+    ex=`Square the decimal: ${dd.toFixed(1)}² = ${(dd*dd).toFixed(2)}, and compare with ${n}.${ng?' Both are negative, so the symbol flips.':''}`}
+  const [P,Q]=coin()?[A_,B_]:[B_,A_],ans=P.v<Q.v?0:1;
+  return MC({sym:true,prompt:`Choose &lt; or &gt;.<span class="big" style="text-align:center">${P.h} &nbsp;?&nbsp; ${Q.h}</span>`,choices:['<','>'],ans,
+    why:[ex,`${P.h} ≈ ${neat(P.v.toFixed(3))} and ${Q.h} ≈ ${neat(Q.v.toFixed(3))}.`,`So ${P.h} <b>${ans?'&gt;':'&lt;'}</b> ${Q.h}.`],
+    hint:'For two roots, compare the numbers under the root. For a decimal, square it. With negatives, the one further from 0 is smaller.',
+    diag:i=>P.v<0&&Q.v<0?'With negative numbers the order flips: the number further from 0 is the smaller one.':''});};
 B.abs=l=>{const f=pick(l===1?['root']:['root','root','pi2','pi']);let d,v;
   if(f==='root'){const n=nonSq(5,[60,200,999][l-1]);d=rt(n,true);v=Math.sqrt(n)}else if(f==='pi2'){d='−π²';v=Math.PI**2}else{const k=R(2,9);d=`−${k}π`;v=k*Math.PI}
   const ans=fx(v,3);
@@ -3261,10 +3376,10 @@ function realForm(l){ // a random real number with a display and a value
   const k=pick(l===1?['root','nroot','frac','dec']:['root','nroot','frac','dec','pi','mixed']);
   if(k==='root'){const n=nonSq(2,120);return {h:rt(n),t:rtT(n),v:Math.sqrt(n)}}
   if(k==='nroot'){const n=nonSq(2,120);return {h:rt(n,true),t:rtT(n,true),v:-Math.sqrt(n)}}
-  if(k==='frac'){let a=R(1,40),b=R(3,13);if(a%b===0)a++;const s=coin(.35)?-1:1;return {h:`${s<0?'−':''}${a}/${b}`,t:`${s<0?'-':''}${a}/${b}`,v:s*a/b}}
+  if(k==='frac'){let a,b;do{a=R(1,40);b=R(3,13)}while(gcd(a,b)!==1||a%b===0);const s=coin(.35)?-1:1;return {h:`${s<0?'−':''}${a}/${b}`,t:`${s<0?'-':''}${a}/${b}`,v:s*a/b}}
   if(k==='dec'){const x=(coin()?-1:1)*R(10,1099)/100;return {h:neat(x.toFixed(2)),t:x.toFixed(2),v:x}}
   if(k==='pi'){const o=pick([['π',Math.PI],['π²',Math.PI**2],['2π',2*Math.PI],['−π',-Math.PI],['π/2',Math.PI/2],['−π²',-(Math.PI**2)]]);return {h:o[0],t:o[0],v:o[1]}}
-  const w=R(1,6),a=R(1,10),b=R(a+1,13);return {h:`${w} ${a}/${b}`,t:`${w} ${a}/${b}`,v:w+a/b};
+  const w=R(1,6);let a,b;do{a=R(1,10);b=R(a+1,13)}while(gcd(a,b)!==1);return {h:`${w} ${a}/${b}`,t:`${w} ${a}/${b}`,v:w+a/b};
 }
 B.compare=l=>{let A_,Bv,tries=0;
   do{A_=realForm(l);const dl=l===1?R(15,60)/100:l===2?R(2,12)/100:R(1,9)/1000;const s=coin()?1:-1;const d=l===3?3:2;const x=+(A_.v+s*dl).toFixed(d);Bv={h:neat(x.toFixed(d)),v:x};tries++}while((Math.abs(A_.v-Bv.v)<1e-6)&&tries<20);
@@ -3518,15 +3633,17 @@ const REF={
    ex:[['Estimate √12 without a calculator',['9 &lt; 12 &lt; 16, so 3 &lt; √12 &lt; 4.','12 is 3 past 9 in a gap of 7 (9 to 16), so try 3.4: 3.4² = 11.56, 3.5² = 12.25.','√12 ≈ 3.5 (calculator: 3.464…).']],
        ['Square from an area',['A square has an area of 59 cm². Side = √59.','√59 = 7.681 145… ≈ 7.681 cm (3 decimal places).']]],
    flips:[['Is √49 rational or irrational?','Rational: √49 = 7'],['√20 is between which two whole numbers?','4 and 5 (16 &lt; 20 &lt; 25)'],['Round 3.872 98 to 2 decimal places.','3.87'],['−√7 is between which integers?','−3 and −2']]},
- B:{ideas:['<b>Real numbers</b> = all rational numbers + all irrational numbers. Every point on the number line is a real number.',
-   '<b>Rational</b>: integers (negative integers, zero, whole numbers), fractions, and decimals that <b>stop or repeat</b> (0.25, 0.333…, 22/7).',
-   '<b>Irrational</b>: decimals that <b>never stop and never repeat</b> (√2, √15, π, π²).',
-   '<b>Absolute value</b> is the distance from 0: |−√15| = |√15| ≈ 3.873. It is never negative.',
-   'To <b>order</b> real numbers, write each as a decimal (3 places), then order them. With negatives, the number further from 0 is <b>smaller</b>.'],
+ B:{ideas:['<b>Natural</b> numbers are the counting numbers 1, 2, 3, … <b>Whole</b> numbers are the natural numbers and 0. <b>Integers</b> add the negatives: …, −2, −1, 0, 1, 2, …',
+   '<b>Rational</b>: can be written as a fraction of integers. That includes every integer, fractions like ½ and 3/4, and decimals that <b>stop or repeat</b> (0.75, 0.333…).',
+   '<b>Irrational</b>: cannot be written as a fraction of integers. The decimal <b>never stops and never repeats</b>: √2, √7, √10, π.',
+   '<b>Real</b> numbers are all the rational and irrational numbers. A number usually belongs to <b>several groups</b>: 5 is natural, whole, integer, rational and real; −3 is integer, rational and real; √5 is irrational and real.',
+   'Simplify roots first: <b>√16 = 4</b>, so it is natural, whole, integer, rational and real. But <b>√10 is irrational</b>: 10 is not a perfect square.',
+   '<b>Absolute value</b> is the distance from 0: |−6| = 6 and |−√15| = √15 ≈ 3.873. To <b>compare or order</b>, change each number to a decimal; with negatives, the one further from 0 is smaller (−√9 &lt; −√4).'],
    warn:[4],
-   ex:[['Order 5 11/13, −√30, −84/25, π²',['5 11/13 ≈ 5.846, −√30 ≈ −5.477, −84/25 = −3.36, π² ≈ 9.870.','Least to greatest: −√30 &lt; −84/25 &lt; 5 11/13 &lt; π².']],
-       ['Which family?',['√49 = 7: whole number. −√81 = −9: negative integer.','0.666… repeats: rational. √20: irrational.']]],
-   flips:[['Is 22/7 rational?','Yes. It is a fraction (close to π, but not π).'],['Is 0.333… rational?','Yes. Repeating decimals are rational (1/3).'],['|−√15| ≈ ?','3.873'],['Which is smaller: −2.23 or −√5 (≈ −2.236)?','−√5']]},
+   ex:[['Which groups does each number belong to?',['8 → natural, whole, integer, rational, real.','0 → whole, integer, rational, real (0 is not a natural number).','½ → rational, real.  √16 = 4 → natural, whole, integer, rational, real.','√10 → irrational, real (10 is not a perfect square).']],
+       ['Compare with &lt; or &gt;',['√10 &lt; √12 (10 &lt; 12).  −√4 &gt; −√9 (−2 is closer to 0 than −3).','3.5 &lt; √13 (3.5² = 12.25 &lt; 13).  −√7 &lt; −2.5 (√7 ≈ 2.646).']],
+       ['Order 5 11/13, −√30, −84/25, π²',['5 11/13 ≈ 5.846, −√30 ≈ −5.477, −84/25 = −3.36, π² ≈ 9.870.','Least to greatest: −√30 &lt; −84/25 &lt; 5 11/13 &lt; π².']]],
+   flips:[['Is 0 a natural number?','No. Natural numbers start at 1 (0 is whole).'],['√10: rational or irrational?','Irrational: 10 is not a perfect square.'],['Groups for −12?','Integer, rational, real (not whole, not natural).'],['Which is bigger: −√4 or −√9?','−√4 (−2 is closer to 0)']]},
  C:{ideas:['Number words: <b>thousand</b> = 10³, <b>million</b> = 10⁶ (1 000 000), <b>billion</b> = 10⁹, <b>trillion</b> = 10¹².',
    'Small words: <b>thousandth</b> = 0.001, <b>millionth</b> = 0.000 001, <b>billionth</b> = 10⁻⁹, <b>trillionth</b> = 10⁻¹².',
    'Standard form groups digits in threes: 14.2 trillion = <b>14 200 000 000 000</b>; 1.4 ten thousandths = <b>0.000 14</b>.',
@@ -3614,90 +3731,84 @@ const BADGES=[
 let S={view:'home'};let timer=null;
 const stopTimer=()=>{if(timer){clearInterval(timer);timer=null}};
 
-/* ---------- home ---------- */
-function home(){
-  stopTimer();S={view:'home'};
-  const rk=rank(),st=streak(),due=dueReviews().length,done=SECTIONS.filter(s=>mastered(s.id)).length;
-  const nextSec=SECTIONS.find(s=>!mastered(s.id));
-  app.innerHTML=`
-  <a class="mt-back" href="#quest">← Back to Quest Log</a>
-  <section class="hero">
-    <p class="eyebrow">Math · Chapter 1 The Real Number System · Chapter 2 Number Relationships</p>
-    <h1>Math Mastery <span class="hl">Trainer</span></h1>
-    <p class="lede">Six lessons. Each one starts with a quick refresher, then practice that adapts to you, then a section test. When you're ready: five practice exams, then the Final Exam for expert Grade 8 students.</p>
-  </section>
-  <div class="stats">
-    <div class="st"><b>${esc(rk.name)}</b><span>${M.xp} XP${rk.next?` · ${rk.next-rk.into} to next rank`:''}</span><div class="xpbar"><i style="width:${rk.next?rk.into/rk.next*100:100}%"></i></div></div>
-    <div class="st"><b>${st} 🔥</b><span>day streak</span></div>
-    <div class="st"><b>${done}/6</b><span>sections mastered</span></div>
-    <div class="st"><b>${due}</b><span>review${due===1?'':'s'} due today</span></div>
-  </div>
-  <div class="warm"><span class="ico">☀️</span><div><h2>Daily Warm-up · 5 questions</h2><p>${due?`${Math.min(3,due)} of your past mistakes are due for review, mixed with other topics.`:'A quick mix of topics to keep everything fresh. Do it every day to grow your streak.'}</p></div><button class="btn" type="button" data-act="warm">Start warm-up</button></div>
-  <h2 class="sec">Lessons</h2>
-  <div class="secs">${SECTIONS.map(s=>{const m=mast(s.id),st2=ss(s.id),ok=mastered(s.id);return `<button class="scard${ok?' done':''}" type="button" data-sec="${s.id}">
-    <span class="top"><span class="badge">${ok?'✓':s.id}</span><span><span class="ls">LESSON ${s.lesson}</span><br><span class="nm">${esc(s.name)}</span></span></span>
-    <span class="pips"><span class="pip${st2.read?' on':''}">Refresher</span><span class="pip${m.expert?' on':''}">Practice ${m.n?m.c+'/'+m.n:''}</span><span class="pip${st2.test>=80?' on':''}">Test ${st2.tests?st2.test+'%':''}</span></span>
-    <span class="meter"><i style="width:${(st2.read?20:0)+(m.pct*.5)+(st2.test>=80?30:st2.test*.3)}%"></i></span></button>`}).join('')}</div>
-  ${nextSec?`<p class="foot" style="margin-top:8px">Suggested next: <button class="link" type="button" data-sec="${nextSec.id}">Lesson ${nextSec.lesson} · ${esc(nextSec.name)} →</button></p>`:''}
-  <h2 class="sec">Exams</h2>
-  <div class="exams">${EXAMS.map(e=>{const u=unlocked(e.id),b=exBest(e.id),t=exTries(e.id),pass=e.id==='final'?PASS.final:PASS.exam;return `<button class="ecard${e.id==='final'?' final':''}" type="button" data-exam="${e.id}" ${u?'':'disabled'}>
-    <b>${e.id==='final'?'🏁 ':''}${esc(e.name)}</b><small>${e.n} questions · ${esc(e.sub)}</small>
-    <span class="sc${b>=pass?' pass':''}">${u?(t?`Best ${b}% · ${t} tr${t===1?'y':'ies'}`:'Not tried yet'):`🔒 ${e.id==='final'?'Score 80%+ on all five practice exams':'Try the exam before this one first'}`}</span></button>`}).join('')}</div>
-  <h2 class="sec">Badges</h2>
-  <div class="badges">${BADGES.map(b=>`<div class="bdg${b[3]()?'':' off'}"><span class="e">${b[0]}</span><b>${b[1]}</b><span>${b[2]}</span></div>`).join('')}</div>
-  <p class="foot">How it helps you remember: each lesson starts with flip cards you answer from memory first, practice gets harder as you improve, and every mistake comes back for review after 1, 3, 7 and 14 days. Progress saves online with your Quest Log, and the Math · Chapters 1–2 quest ticks itself.</p>`;
+/* ---------- home: tabs (Today · Lessons · Exams · Badges) ---------- */
+const TABS=[['today','Today'],['lessons','Lessons'],['exams','Exams'],['badges','Badges']];
+function getTab(){try{return localStorage.getItem('mt-tab')||'today'}catch(e){return 'today'}}
+function setTab(t){try{localStorage.setItem('mt-tab',t)}catch(e){}}
+function nextStep(){
+  const due=dueReviews().length;
+  if(due)return {ico:'🔁',t:'Daily Warm-up',d:`${due} past mistake${due>1?'s are':' is'} due for review. 5 quick questions.`,b:'Start warm-up',act:'warm'};
+  const s=SECTIONS.find(x=>!mastered(x.id));
+  if(s){const st=ss(s.id),m=mast(s.id);
+    if(!st.read)return {ico:'📖',t:`Lesson ${s.lesson}: read the refresher`,d:esc(s.name),b:'Open lesson',sec:s.id};
+    if(!m.expert)return {ico:'🎯',t:`Lesson ${s.lesson}: practise to Expert`,d:`${esc(s.name)} · ${m.n?m.c+'/'+m.n+' recent':'not started'}`,b:'Practise',go:'practice',sec:s.id};
+    return {ico:'📝',t:`Lesson ${s.lesson}: section test`,d:`${esc(s.name)} · pass with 80%`,b:'Take the test',go:'test',sec:s.id}}
+  const e=EXAMS.find(x=>unlocked(x.id)&&exBest(x.id)<(x.id==='final'?PASS.final:PASS.exam));
+  if(e)return {ico:e.id==='final'?'🏁':'🧪',t:e.name,d:`${e.n} questions · ${esc(e.sub)}`,b:'Start exam',exam:e.id};
+  return {ico:'☀️',t:'Daily Warm-up',d:'Everything is mastered. A quick mix keeps it fresh.',b:'Start warm-up',act:'warm'};
+}
+const pip=(on,label)=>`<span class="dot${on?' on':''}" title="${label}">${on?'✓':''}</span>`;
+function home(tab){
+  stopTimer();tab=tab||getTab();setTab(tab);S={view:'home',tab};
+  const rk=rank(),st=streak(),due=dueReviews().length,done=SECTIONS.filter(s=>mastered(s.id)).length,passed=EXAMS.slice(0,5).filter(e=>exBest(e.id)>=PASS.exam).length;
+  let body='';
+  if(tab==='today'){const n=nextStep();
+    body=`<div class="next">
+      <span class="ico">${n.ico}</span><div><p class="eyebrow">Next step</p><h2>${n.t}</h2><p>${n.d}</p></div>
+      <button class="btn primary" type="button" ${n.act?`data-act="${n.act}"`:n.go?`data-start="${n.go}" data-sid="${n.sec}"`:n.exam?`data-exam="${n.exam}"`:`data-sec="${n.sec}"`}>${n.b} →</button></div>
+    ${n.act!=='warm'?`<button class="row-btn" type="button" data-act="warm"><span>☀️</span><span><b>Daily Warm-up</b><small>5 mixed questions${due?` · ${due} review${due>1?'s':''} due`:''}. Keeps your streak going.</small></span><span class="chev">›</span></button>`:''}
+    <div class="path"><div><b>${done}/6</b><span>lessons mastered</span><div class="meter"><i style="width:${done/6*100}%"></i></div></div><div><b>${passed}/5</b><span>practice exams passed</span><div class="meter"><i style="width:${passed/5*100}%"></i></div></div><div><b>${exBest('final')>=PASS.final?'✓':'—'}</b><span>Final Exam</span><div class="meter"><i style="width:${Math.min(100,exBest('final'))}%"></i></div></div></div>`}
+  if(tab==='lessons')body=`<div class="list">${SECTIONS.map(s=>{const m=mast(s.id),x=ss(s.id),ok=mastered(s.id);return `<button class="lrow${ok?' done':''}" type="button" data-sec="${s.id}">
+      <span class="lno">${ok?'✓':s.lesson}</span><span class="lname"><b>${esc(s.name)}</b><small>${m.n||x.tests?`${m.n?`Practice ${m.c}/${m.n}`:''}${m.n&&x.tests?' · ':''}${x.tests?`Test best ${x.test}%`:''}`:(x.read?'Refresher read':'Not started')}</small></span>
+      <span class="dots">${pip(x.read,'Refresher')}${pip(m.expert,'Practice Expert')}${pip(x.test>=PASS.test,'Test 80%+')}</span><span class="chev">›</span></button>`}).join('')}</div>
+    <p class="foot">The three dots are the steps for each lesson: refresher, practice to Expert, section test 80%+.</p>`;
+  if(tab==='exams')body=`<div class="list">${EXAMS.map(e=>{const u=unlocked(e.id),b=exBest(e.id),t=exTries(e.id),pass=e.id==='final'?PASS.final:PASS.exam;return `<button class="lrow${b>=pass?' done':''}${e.id==='final'?' final':''}" type="button" data-exam="${e.id}" ${u?'':'disabled'}>
+      <span class="lno">${b>=pass?'✓':e.id==='final'?'🏁':e.id.slice(1)}</span><span class="lname"><b>${esc(e.name)}</b><small>${u?`${e.n} questions · ${esc(e.sub)}${t?` · best ${b}%`:''}`:`🔒 ${e.id==='final'?'Pass all five practice exams (80%+)':'Try the exam before this one first'}`}</small></span><span class="chev">${u?'›':''}</span></button>`}).join('')}</div>`;
+  if(tab==='badges')body=`<div class="badges">${BADGES.map(b=>`<div class="bdg${b[3]()?'':' off'}"><span class="e">${b[0]}</span><b>${b[1]}</b><span>${b[2]}</span></div>`).join('')}</div>
+    <p class="foot">How it helps you remember: lessons start with flip cards you answer from memory, practice gets harder as you improve, and every mistake comes back after 1, 3, 7 and 14 days.</p>`;
+  app.innerHTML=`<div class="topbar"><a class="mt-back" href="#quest">← Quest Log</a><span class="chips"><span class="chipx" title="${M.xp} XP">⭐ ${esc(rk.name)}</span><span class="chipx">🔥 ${st}</span>${due?`<span class="chipx warn">🔁 ${due}</span>`:''}</span></div>
+  <h1 class="mt-title">Math Mastery <span class="hl">Trainer</span></h1>
+  <p class="sub1">Chapter 1 The Real Number System · Chapter 2 Number Relationships</p>
+  <div class="mtabs" role="tablist">${TABS.map(([k,l])=>`<button type="button" role="tab" class="mtab" data-tab="${k}" aria-selected="${k===tab}">${l}</button>`).join('')}</div>
+  <div class="tabbody">${body}</div>`;
 }
 
-/* ---------- section page (refresher + path) ---------- */
+/* ---------- section page: learn first, actions always in reach ---------- */
 function refresherHtml(id,full){
-  const r=REF[id];
-  return `<div class="card"><h3>${full?'Refresher':'Quick refresher'} · Lesson ${secOf(id).lesson}</h3>
-    ${full?'<p style="margin:0;color:var(--muted)">First, try to answer each card from memory, then tap to check. Recalling before reading is what makes it stick.</p>':''}
-    <div class="flips">${(full?r.flips:r.flips.slice(0,2)).map(f=>`<button type="button" class="flip"><span class="q">${f[0]}</span><span class="a">${f[1]}</span><span class="tap">Think of the answer, then tap</span></button>`).join('')}</div>
-    <ul class="ideas">${(full?r.ideas:r.ideas.slice(0,3)).map((x,i)=>`<li class="${r.warn.includes(i)?'warn':''}">${x}</li>`).join('')}</ul>
-    ${full?r.ex.map(e=>`<div class="ex"><span class="t">Example: ${e[0]}</span>${e[1].map(x=>`<span>${x}</span>`).join('')}</div>`).join(''):''}
-    ${full&&id==='F'?PFX_TABLE():''}
-  </div>`;
+  const r=REF[id],cards=full?r.flips:r.flips.slice(0,2),ideas=full?r.ideas:r.ideas.slice(0,3);
+  return `<details class="acc" open><summary>🧠 Recall first: flip cards</summary><p class="muted">Answer each one in your head, then tap to check.</p><div class="flips">${cards.map(f=>`<button type="button" class="flip"><span class="q">${f[0]}</span><span class="a">${f[1]}</span><span class="tap">Think, then tap</span></button>`).join('')}</div></details>
+    <details class="acc" open><summary>📌 Key ideas</summary><ul class="ideas">${ideas.map((x,i)=>`<li class="${r.warn.includes(i)?'warn':''}">${x}</li>`).join('')}</ul></details>
+    ${full?`<details class="acc"><summary>✏️ Worked examples</summary>${r.ex.map(e=>`<div class="ex"><span class="t">${e[0]}</span>${e[1].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</details>`:''}
+    ${full&&id==='F'?`<details class="acc"><summary>📏 Prefix table</summary>${PFX_TABLE()}</details>`:''}`;
 }
 function section(id){
-  stopTimer();S={view:'section',sec:id};const s=secOf(id),st=ss(id),m=mast(id);
-  app.innerHTML=`<button class="link" type="button" data-act="home">← All lessons</button>
-  <section class="hero"><p class="eyebrow">Lesson ${s.lesson}</p><h1>${esc(s.name)}</h1></section>
-  <div class="steps3">
-    <div class="step${st.read?' ok':''}"><span class="n">STEP 1</span><b>Refresher</b><span style="font-size:.88rem">${st.read?'Done ✓ Come back any time.':'Read it and try the flip cards.'}</span></div>
-    <div class="step${m.expert?' ok':''}"><span class="n">STEP 2</span><b>Practice to Expert</b><span style="font-size:.88rem">${m.expert?'Expert ✓':'9 of your last 10 right'} · level ${level(id)}</span><div class="meter"><i style="width:${m.pct}%"></i></div></div>
-    <div class="step${st.test>=80?' ok':''}"><span class="n">STEP 3</span><b>Section test</b><span style="font-size:.88rem">12 questions · pass 80%${st.tests?` · best ${st.test}%`:''}</span></div>
-  </div>
+  stopTimer();S={view:'section',sec:id};const s=secOf(id),st=ss(id),m=mast(id),testNext=m.expert&&st.test<PASS.test;
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="lessons">← Lessons</button><span class="chips"><span class="chipx">Level ${level(id)}</span></span></div>
+  <p class="eyebrow">Lesson ${s.lesson}</p><h1 class="mt-title sm">${esc(s.name)}</h1>
+  <div class="stepline"><span class="${st.read?'ok':''}">1 Refresher</span><span class="${m.expert?'ok':''}">2 Practice ${m.n?m.c+'/'+m.n:''}</span><span class="${st.test>=PASS.test?'ok':''}">3 Test ${st.tests?st.test+'%':''}</span></div>
   ${refresherHtml(id,true)}
-  <div class="cta" style="margin-top:14px">
-    <button class="btn primary" type="button" data-act="practice">${st.read?'Practise':'Got it · start practising'} (10 questions)</button>
-    <button class="btn" type="button" data-act="test">Section test (12)</button>
-  </div>`;
+  <div class="dock"><button class="btn${testNext?'':' primary'}" type="button" data-act="practice">Practise · 10</button><button class="btn${testNext?' primary':''}" type="button" data-act="test">Section test · 12</button></div>`;
 }
-
-/* ---------- starting rounds (always via a refresher) ---------- */
 function intro(mode,arg){
   stopTimer();
   if(mode==='practice'||mode==='test'){const id=arg;S={view:'intro',mode,sec:id};
-    app.innerHTML=`<button class="link" type="button" data-act="back">← Lesson ${secOf(id).lesson}</button>
-    <section class="hero"><p class="eyebrow">${mode==='test'?'Section test':'Practice'} · Lesson ${secOf(id).lesson}</p><h1>Before you start</h1>
-    <p class="lede">${mode==='test'?'12 questions, getting harder. No feedback until the end, just like a real test. Pass mark: 80%.':'10 questions at your level. Get one wrong and you’ll see how to fix it, then a similar question comes back.'}</p></section>
+    app.innerHTML=`<div class="topbar"><button class="link" type="button" data-act="back">← Lesson ${secOf(id).lesson}</button></div>
+    <p class="eyebrow">${mode==='test'?'Section test':'Practice'} · Lesson ${secOf(id).lesson}</p><h1 class="mt-title sm">Quick refresher</h1>
+    <p class="sub1">${mode==='test'?'12 questions, getting harder. Answers are checked at the end. Pass: 80%.':'10 questions at your level. Wrong answers show you how to fix them.'}</p>
     ${refresherHtml(id,false)}
-    <div class="cta" style="margin-top:14px"><button class="btn primary" type="button" data-go="${mode}">I’m ready →</button><button class="btn ghost" type="button" data-sec="${id}">Read the full refresher</button></div>`;return}
-  if(mode==='exam'){const e=EXAMS.find(x=>x.id===arg);S={view:'intro',mode,exam:arg};
-    app.innerHTML=`<button class="link" type="button" data-act="home">← Home</button>
-    <section class="hero"><p class="eyebrow">${esc(e.sub)}</p><h1>${esc(e.name)}</h1>
-    <p class="lede">${e.n} questions from all six lessons, mixed together and getting harder as you go. No feedback until you finish; then every mistake is explained and added to your review queue. Pass mark: ${arg==='final'?PASS.final:PASS.exam}%. A calculator is allowed.</p></section>
-    <div class="card"><h3>Formula sheet: one minute to refresh</h3><ul class="ideas">
+    <div class="dock"><button class="btn primary" type="button" data-go="${mode}">I’m ready →</button></div>`;return}
+  const e=EXAMS.find(x=>x.id===arg);S={view:'intro',mode,exam:arg};
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="exams">← Exams</button></div>
+    <p class="eyebrow">${esc(e.sub)}</p><h1 class="mt-title sm">${esc(e.name)}</h1>
+    <p class="sub1">${e.n} questions from all six lessons, getting harder. Answers are checked at the end, then every mistake is explained. Pass: ${arg==='final'?PASS.final:PASS.exam}%. Calculator allowed.</p>
+    <details class="acc"><summary>📋 Formula sheet (1-minute refresh)</summary><ul class="ideas">
       <li>√n: trap between perfect squares (36 &lt; 40 &lt; 49 → 6 &lt; √40 &lt; 7). Non-perfect squares have irrational roots.</li>
-      <li>Rational = stops or repeats (incl. integers, fractions, 22/7). Irrational = never stops, never repeats (√2, π). |x| = distance from 0.</li>
+      <li>Natural 1, 2, 3… · Whole = natural + 0 · Integers add negatives · Rational = stops or repeats (fractions, 22/7) · Irrational = never stops, never repeats (√10, π) · all are real. |x| = distance from 0.</li>
       <li>million 10⁶ · billion 10⁹ · trillion 10¹² · millionth 10⁻⁶ · billionth 10⁻⁹ · trillionth 10⁻¹². Each step is × 1000.</li>
       <li>10⁰ = 1 · 10⁻ⁿ = 1 ÷ 10ⁿ · × 10ⁿ moves the point right · ÷ 10ⁿ moves it left · × 10⁻ⁿ = ÷ 10ⁿ.</li>
       <li>Scientific notation A × 10ⁿ with 1 ≤ A &lt; 10. Compare exponents first, then coefficients.</li>
-      <li>pico 10⁻¹² · nano 10⁻⁹ · micro 10⁻⁶ · milli 10⁻³ · kilo 10³ · mega 10⁶ · giga 10⁹ · tera 10¹². Convert to the same unit before comparing.</li></ul></div>
-    <div class="cta" style="margin-top:14px"><button class="btn primary" type="button" data-go="exam">Start the exam →</button></div>`;return}
-  // warm-up
-  S={view:'intro',mode:'warm'};start('warm');
+      <li>pico 10⁻¹² · nano 10⁻⁹ · micro 10⁻⁶ · milli 10⁻³ · kilo 10³ · mega 10⁶ · giga 10⁹ · tera 10¹². Convert to the same unit before comparing.</li></ul></details>
+    <div class="dock"><button class="btn primary" type="button" data-go="exam">Start the exam →</button></div>`;
 }
 function planFor(mode,arg){
   if(mode==='practice'){const keys=keysOf(arg),lv=level(arg),p=[];const ks=shuffle(keys.concat(keys)).slice(0,10);ks.forEach(k=>p.push({k,l:lv}));return p}
@@ -3728,6 +3839,7 @@ function showQ(){
   if(q.kind==='num')area=`<div class="ansrow">${numBox('mt-a1','wide')}${q.unit?`<span class="unit">${esc(q.unit)}</span>`:''}</div><p class="foot" style="margin:0">Type the number. Spaces are optional.</p>`;
   if(q.kind==='pair')area=`<div class="ansrow"><span>Between</span>${numBox('mt-a1')}<span>and</span>${numBox('mt-a2')}</div>`;
   if(q.kind==='sci')area=`<div class="ansrow"><span class="sciin">${numBox('mt-a1','coef')}<span>× 10</span><span class="ten">${numBox('mt-a2','exp')}</span></span>${q.unit?`<span class="unit">${esc(q.unit)}</span>`:''}</div><p class="foot" style="margin:0">Coefficient (at least 1, less than 10) × 10 to the power of the exponent. Use ± for negative exponents.</p>`;
+  if(q.kind==='multi')area=`<div class="multi">${q.opts.map((o,i)=>`<button type="button" class="mchip" data-m="${i}" aria-pressed="false">${o}</button>`).join('')}</div><p class="foot" style="margin:0">Tap every group that fits, then Check.</p>`;
   if(q.kind==='order')area=`<div class="tray ans" id="mt-ans" aria-label="Your order"></div><div class="tray" id="mt-pool">${q.items.map((x,i)=>`<button type="button" class="chip" data-o="${i}">${x.h}</button>`).join('')}</div><div class="row"><button class="btn small ghost" type="button" data-act="oreset">Start over</button></div>`;
   const tot=S.plan.length;
   app.innerHTML=`<div class="qbar">
@@ -3757,6 +3869,8 @@ function readAnswer(q,choice){
     return {ok:q.check(a,b),shown:`${esc(neat(a))} and ${esc(neat(b))}`,note:q.diag?q.diag(a,b):''}}
   if(q.kind==='sci'){const a=$('#mt-a1').value.trim(),b=$('#mt-a2').value.trim();if(!canon(clean(a))||!/^-?\d+$/.test(clean(b)))return {err:'Fill in the coefficient and a whole-number exponent.'};
     return {ok:q.check(a,b),shown:sciH(clean(a),clean(b))+(q.unit?' '+esc(q.unit):''),note:q.diag?q.diag(a,b):''}}
+  if(q.kind==='multi'){const sel=[...root.querySelectorAll('.mchip[aria-pressed="true"]')].map(b=>+b.dataset.m);if(!sel.length)return {err:'Tap at least one group.'};
+    return {ok:q.check(sel),shown:sel.map(i=>q.opts[i]).join(', '),note:q.diag?q.diag(sel):''}}
   if(q.kind==='order'){if(S.order.length!==q.items.length)return {err:'Tap every number to put them all in order.'};return {ok:q.check(S.order),shown:S.order.map(i=>q.items[i].h).join(' &lt; ')}}
 }
 function check(choice){
@@ -3773,7 +3887,7 @@ function check(choice){
   let added=false;
   if(!r.ok&&S.extra<4){S.plan.push({k:q.key,l:Math.max(1,(e.l||1)),retry:true});S.extra++;added=true}
   root.querySelectorAll('.choice').forEach(b=>{b.disabled=true;const i=+b.dataset.i;if(i===r.ua)b.classList.add(r.ok?'picked-ok':'picked-no');else if(i===q.ans)b.classList.add('right')});
-  root.querySelectorAll('.num,.pm,.chip').forEach(x=>x.disabled=true);
+  root.querySelectorAll('.num,.pm,.chip,.mchip').forEach(x=>x.disabled=true);
   const hb=$('#mt-hintBtn');if(hb)hb.disabled=true;
   const work=q.explain();
   $('#mt-fb').innerHTML=r.ok?`<div class="fb ok"><p class="fbh">Correct${S.streak>=3?` · ${S.streak} in a row 🔥`:''} <span class="xpf">+${10+(e.rev?5:0)} XP</span></p><details><summary>See why</summary>${work}</details></div>`
@@ -3808,7 +3922,7 @@ function end(){
     <p style="margin:0" class="xpf">+${S.xp+bonus} XP · ${esc(rank().name)}</p>
     <div>${Object.entries(by).map(([k,v])=>`<div class="bkrow"><span>Lesson ${secOf(k).lesson} · ${esc(secOf(k).name)}</span><span>${v.r}/${v.t}</span></div>`).join('')}</div>
     <div class="cta">${weakest&&weakest[1].r<weakest[1].t?`<button class="btn primary" type="button" data-sec="${weakest[0]}">Practise Lesson ${secOf(weakest[0]).lesson}</button>`:''}
-      <button class="btn" type="button" data-act="again">Try again (new questions)</button><button class="btn ghost" type="button" data-act="home">Home</button></div>
+      <button class="btn" type="button" data-act="again">Try again (new questions)</button><button class="btn ghost" type="button" data-tabgo="${S.mode==='exam'?'exams':S.mode==='warm'?'today':'lessons'}">Done</button></div>
     ${S.deferred||S.log.some(r=>!r.ok)?`<h2 class="sec" style="margin-top:6px">${S.deferred?'Review every question':'Questions to look at again'}</h2><div style="display:grid;gap:8px">${S.deferred?review:review.split('<div class="rv').filter(x=>x.startsWith(' no')).map(x=>'<div class="rv'+x).join('')}</div>`:''}
   </section>`;
   S.view='end';window.scrollTo(0,0);
@@ -3818,6 +3932,10 @@ function end(){
 root.addEventListener('click',ev=>{
   const fl=ev.target.closest('.flip');if(fl&&root.contains(fl)){fl.classList.toggle('open');return}
   const t=ev.target.closest('button');if(!t||!root.contains(t))return;
+  if(t.classList.contains('mchip')){if(!S.answered)t.setAttribute('aria-pressed',String(t.getAttribute('aria-pressed')!=='true'));return}
+  if(t.dataset.tab)return home(t.dataset.tab);
+  if(t.dataset.tabgo)return home(t.dataset.tabgo);
+  if(t.dataset.start){S.sec=t.dataset.sid;ss(S.sec).read=true;save();return intro(t.dataset.start,t.dataset.sid)}
   if(t.classList.contains('choice')){if(S.deferred){root.querySelectorAll('.choice').forEach(b=>b.classList.toggle('sel',b===t));S.sel=+t.dataset.i;return}return check(+t.dataset.i)}
   if(t.classList.contains('pm')){const inp=$('#'+t.dataset.for);const v=inp.value.trim().replace(/^[−–]/,'-');inp.value=v.startsWith('-')?v.slice(1):'-'+v;inp.focus();return}
   if(t.classList.contains('chip')&&S.view==='quiz'&&!S.answered){const i=+t.dataset.o;if(t.parentElement.id==='mt-pool'){S.order.push(i);$('#mt-ans').appendChild(t)}else{S.order=S.order.filter(x=>x!==i);$('#mt-pool').appendChild(t)}return}
@@ -3834,7 +3952,7 @@ root.addEventListener('click',ev=>{
   if(a==='practice'){ss(S.sec).read=true;save();return intro('practice',S.sec)}
   if(a==='test'){ss(S.sec).read=true;save();return intro('test',S.sec)}
   if(a==='oreset'){S.order=[];root.querySelectorAll('#mt-ans .chip').forEach(c=>$('#mt-pool').appendChild(c));return}
-  if(a==='quit'){if(S.log.length===0||confirm('Leave this round? Answers so far are kept in your progress.')){return S.sec?section(S.sec):home()}return}
+  if(a==='quit'){if(S.log.length===0||confirm('Leave this round? Answers so far are kept in your progress.')){return S.sec?section(S.sec):home(S.mode==='exam'?'exams':'today')}return}
   if(a==='again')return S.mode==='practice'||S.mode==='test'?intro(S.mode,S.sec):S.mode==='exam'?intro('exam',S.arg):start('warm');
 });
 document.addEventListener('keydown',ev=>{
