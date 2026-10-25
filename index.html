@@ -447,7 +447,7 @@ body{padding-block:14px 14px}
 #trainerApp{margin:0}
 #trainerApp{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);}
 #trainerApp [hidden]{display:none!important}
-#trainerApp .wrap{max-width:900px;margin:0 auto;display:grid;gap:18px}
+#trainerApp .wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
 #trainerApp h1,#trainerApp h2,#trainerApp h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
 #trainerApp button{font:inherit;color:inherit;cursor:pointer}
 #trainerApp button:focus-visible,#trainerApp a:focus-visible,#trainerApp input:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
@@ -566,6 +566,145 @@ body{padding-block:14px 14px}
 }
 @media (prefers-reduced-motion:reduce){#trainerApp *{transition:none!important}
 }
+
+/* ================= FRENCH SECTION B TRAINER (scoped copy of Section A styles) ================= */
+#frbApp{
+  color-scheme: light;
+  --bg:#F3F5FB; --surface:#FFFFFF; --surface-2:#E9EDF7; --ink:#17203B; --muted:#5A6583; --line:#D4DBEA;
+  --bleu:#2447C7; --bleu-soft:#DEE5FB; --rouge:#D6452A; --rouge-soft:#FBE2DC; --vert:#23945A; --vert-soft:#DCF2E5; --or:#D99A1E; --or-soft:#FBEFD5;
+  --shadow:0 1px 2px rgba(23,32,59,.06),0 6px 20px rgba(23,32,59,.07);
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+#frbApp *{box-sizing:border-box}
+#frbApp{margin:0}
+#frbApp{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);}
+#frbApp [hidden]{display:none!important}
+#frbApp .wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+#frbApp h1,#frbApp h2,#frbApp h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+#frbApp button{font:inherit;color:inherit;cursor:pointer}
+#frbApp button:focus-visible,#frbApp a:focus-visible,#frbApp input:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
+#frbApp a{color:var(--bleu)}
+#frbApp .label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+#frbApp .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#frbApp .back{font-weight:600;text-decoration:none;font-size:14px}
+#frbApp .hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end}
+#frbApp .hero h1{font-size:clamp(26px,4.4vw,40px);font-weight:800;letter-spacing:-.02em}
+#frbApp .hero h1 em{font-style:normal;color:var(--bleu)}
+#frbApp .flag{display:inline-flex;height:6px;width:54px;border-radius:3px;overflow:hidden;margin-bottom:10px}
+#frbApp .flag i{flex:1}
+#frbApp .meter{display:flex;gap:14px}
+#frbApp .ring{--p:0;width:76px;height:76px;border-radius:50%;background:conic-gradient(var(--bleu) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center}
+#frbApp .ring span{width:60px;height:60px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:15px}
+#frbApp .meter .txt{display:grid;align-content:center;font-size:13px;color:var(--muted)}
+#frbApp .meter .txt b{font-family:var(--display);font-size:20px;color:var(--ink)}
+#frbApp .tabs{display:flex;gap:6px;background:var(--surface-2);padding:4px;border-radius:12px;overflow-x:auto}
+#frbApp .tab{border:0;background:transparent;padding:8px 14px;border-radius:9px;font-weight:600;color:var(--muted);white-space:nowrap;font-size:15px}
+#frbApp .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#frbApp .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+#frbApp .btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 16px;font-weight:600;font-size:15px}
+#frbApp .btn:hover{border-color:var(--bleu)}
+#frbApp .btn.primary{background:var(--bleu);border-color:var(--bleu);color:#fff}
+#frbApp .btn.good{background:var(--vert);border-color:var(--vert);color:#fff}
+#frbApp .btn.bad{background:var(--rouge-soft);border-color:var(--rouge);color:var(--rouge)}
+#frbApp .btn.small{padding:5px 10px;font-size:13px}
+#frbApp .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#frbApp .stack{display:grid;gap:14px}
+#frbApp .muted{color:var(--muted)}
+#frbApp .speak{border:1px solid var(--line);background:var(--surface);border-radius:50%;width:34px;height:34px;display:inline-grid;place-items:center;font-size:15px;flex:none}
+#frbApp .speak:hover{border-color:var(--bleu);background:var(--bleu-soft)}
+#frbApp .plan{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:s}
+#frbApp .plan li{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;counter-increment:s}
+#frbApp .plan li::before{content:counter(s);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-family:var(--mono);font-weight:700;font-size:14px}
+#frbApp .plan li.ok::before{content:"✓";background:var(--vert);color:#fff}
+#frbApp .plan li.now{border-color:var(--bleu);background:var(--bleu-soft)}
+#frbApp .plan .t{font-weight:700}
+#frbApp .plan .d{font-size:13.5px;color:var(--muted)}
+#frbApp .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+#frbApp .tip{background:var(--surface-2);border-radius:12px;padding:12px 14px}
+#frbApp .tip b{display:block;font-family:var(--display);font-size:16px;margin-bottom:2px}
+#frbApp .tip p{margin:0;font-size:13.5px;color:var(--muted)}
+#frbApp .countdown{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--or-soft);border-radius:12px;padding:12px 14px}
+#frbApp .countdown input{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+#frbApp .sets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#frbApp .setcard{border:1px solid var(--line);border-radius:12px;padding:12px}
+#frbApp .setcard .bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:8px}
+#frbApp .setcard .bar i{display:block;height:100%;background:var(--bleu)}
+#frbApp .fc-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+#frbApp .seg{display:inline-flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:3px;flex-wrap:wrap}
+#frbApp .seg button{border:0;background:transparent;padding:6px 12px;border-radius:8px;font-weight:600;font-size:14px;color:var(--muted)}
+#frbApp .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#frbApp .card{perspective:1200px;height:260px;margin-top:16px}
+#frbApp .card-in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d;cursor:pointer}
+#frbApp .card.flip .card-in{transform:rotateY(180deg)}
+#frbApp .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:24px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+#frbApp .face.front{background:linear-gradient(180deg,var(--surface),var(--bleu-soft))}
+#frbApp .face.back{transform:rotateY(180deg);background:linear-gradient(180deg,var(--surface),var(--or-soft))}
+#frbApp .face .big{font-family:var(--display);font-size:clamp(30px,6vw,48px);font-weight:800}
+#frbApp .face .hook{font-size:15px;color:var(--muted);max-width:44ch;margin-top:8px}
+#frbApp .face .hint{font-size:13px;color:var(--muted);margin-top:10px}
+#frbApp .boxes{display:inline-flex;gap:3px}
+#frbApp .boxes i{width:10px;height:10px;border-radius:3px;background:var(--surface-2)}
+#frbApp .boxes i.on{background:var(--bleu)}
+#frbApp .q{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px;background:var(--surface)}
+#frbApp .q .num{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:700}
+#frbApp .q .prompt{font-size:18px;font-weight:600}
+#frbApp .q .prompt .fr{font-family:var(--display);font-size:22px;color:var(--bleu)}
+#frbApp .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+#frbApp .opt{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;text-align:left;font-weight:600}
+#frbApp .opt:hover{border-color:var(--bleu)}
+#frbApp .opt[aria-pressed="true"]{border-color:var(--bleu);background:var(--bleu-soft)}
+#frbApp .opt.right{border-color:var(--vert);background:var(--vert-soft)}
+#frbApp .opt.wrong{border-color:var(--rouge);background:var(--rouge-soft)}
+#frbApp .q input[type=text]{font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;width:100%;max-width:360px;background:var(--surface);color:var(--ink)}
+#frbApp .q.right{border-color:var(--vert)}
+#frbApp .q.wrong{border-color:var(--rouge)}
+#frbApp .fb{font-size:14.5px;padding:10px 12px;border-radius:10px}
+#frbApp .fb.right{background:var(--vert-soft)}
+#frbApp .fb.wrong{background:var(--rouge-soft)}
+#frbApp .section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:10px}
+#frbApp .section-h h3{font-size:18px}
+#frbApp .streak{font-family:var(--mono);font-weight:700;padding:4px 10px;border-radius:99px;background:var(--or-soft)}
+#frbApp .result{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--ink);color:#fff;border-radius:16px;padding:20px}
+#frbApp .result .score{font-family:var(--display);font-size:52px;font-weight:800;line-height:1}
+#frbApp .result .lvl{font-family:var(--display);font-size:22px;font-weight:800;color:#FFD27A}
+#frbApp .tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+#frbApp .test-card{border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px;text-align:left;background:var(--surface)}
+#frbApp .test-card:hover{border-color:var(--bleu)}
+#frbApp .test-card h3{font-size:19px}
+#frbApp .lesson{border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px}
+#frbApp .lesson h3{font-size:20px}
+#frbApp .ex{display:grid;gap:6px}
+#frbApp .ex div{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:15.5px}
+#frbApp .ex .arrow{color:var(--muted)}
+#frbApp .ex code{font-family:var(--mono);background:var(--surface-2);padding:2px 6px;border-radius:6px;font-size:14px}
+#frbApp .done-pill{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--vert-soft);color:var(--vert)}
+#frbApp .tbl-wrap{overflow-x:auto}
+#frbApp table{width:100%;border-collapse:collapse;font-size:15px}
+#frbApp th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px;border-bottom:1px solid var(--line)}
+#frbApp td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle}
+#frbApp td.fr{font-weight:700;white-space:nowrap}
+#frbApp td.hook{color:var(--muted);font-size:13.5px}
+#frbApp tr.set-h td{background:var(--surface-2);font-weight:700;font-size:13px}
+#frbApp .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:calc(100vw - 32px);text-align:center}
+#frbApp .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#frbApp .foot{font-size:12.5px;color:var(--muted);text-align:center}
+@media (max-width:640px){#frbApp .hero{grid-template-columns:1fr}
+#frbApp .sets{grid-template-columns:1fr}
+#frbApp .card{height:230px}
+#frbApp .result{grid-template-columns:1fr}
+#frbApp .plan li{grid-template-columns:32px 1fr}
+#frbApp .plan li .btn{grid-column:2}
+
+}
+@media (prefers-reduced-motion:reduce){#frbApp *{transition:none!important}
+}
+
+html[data-skin="scholar"] #frbApp{--bg:#F3F1EC;--surface:#FFFFFF;--surface-2:#EBE7DF;--ink:#1E2332;--muted:#5D6170;--line:#D9D2C5;--bleu:#7A2E3A;--bleu-soft:#F2E3E5;--display:"Libre Baskerville",Georgia,serif}
+html[data-skin="night"] #frbApp{color-scheme:dark;--bg:#232B3D;--surface:#2D3750;--surface-2:#38435F;--ink:#EEF1F7;--muted:#B0B9CE;--line:#4A567A;--bleu:#93ACFF;--bleu-soft:#34406F;--rouge:#FF8C70;--rouge-soft:#553430;--vert:#6BD89C;--vert-soft:#284A3A;--or:#F2B45A;--or-soft:#4A3F2A}
+html[data-skin="paper"] #frbApp{--bg:#F4ECD9;--surface:#FFFAEE;--surface-2:#EFE4CD;--ink:#3A2E22;--muted:#7A6A55;--line:#E1D3B8;--bleu:#3F6699;--bleu-soft:#E3E8F0;--or-soft:#F5E6C8;--display:"Lora",Georgia,serif}
+html[data-skin="night"] #frbApp .result{background:#3A4670}
 
 /* ================= SQUARE ROOT TRAINER (scoped; follows the Quest Log theme) ================= */
 #rootsApp{
@@ -1321,6 +1460,7 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
           <a class="theme-opt" role="menuitem" href="#roots"><span class="pi">√</span><span>Square Root Trainer<small>Lesson 1.1 extra practice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#voice"><span class="pi">✍️</span><span>Voice Trainer<small>Active &amp; passive voice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#french"><span class="pi">🇫🇷</span><span>French · Section A<small>Flashcards &amp; mock tests</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#frenchb"><span class="pi">🇫🇷</span><span>French · Section B<small>40 new words · flashcards &amp; mock tests</small></span></a>
         </div></span>
       <button class="btn" id="addBtn" type="button">+ Add</button>
       <span class="theme-wrap"><button class="btn" id="themeBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Theme" title="Theme">🎨</button>
@@ -1511,6 +1651,111 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
 
 </div>
 
+<div id="frbApp" hidden>
+<div class="wrap">
+  <a class="back" href="#quest">← Back to Quest Log</a>
+  <header class="hero">
+    <div>
+      <div class="flag" aria-hidden="true"><i style="background:var(--bleu)"></i><i style="background:#fff;border-block:1px solid var(--line)"></i><i style="background:var(--rouge)"></i></div>
+      <div class="label">French · __FRTEACHER__ · Section B</div>
+      <h1>Le garçon qui joue des tours <em>Section B</em></h1>
+      <div class="muted" style="margin-top:4px">40 words · flashcards, practice, grammar and 3 mock tests</div>
+    </div>
+    <div class="meter">
+      <div class="ring" id="ring"><span id="ringTxt">0%</span></div>
+      <div class="txt"><b id="mastered">0 / 40</b>words mastered<span id="dueTxt"></span></div>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-view="plan" aria-selected="true" type="button">Study plan</button>
+    <button class="tab" role="tab" data-view="cards" aria-selected="false" type="button">Flashcards</button>
+    <button class="tab" role="tab" data-view="practice" aria-selected="false" type="button">Practice</button>
+    <button class="tab" role="tab" data-view="grammar" aria-selected="false" type="button">Grammar</button>
+    <button class="tab" role="tab" data-view="tests" aria-selected="false" type="button">Mock tests</button>
+    <button class="tab" role="tab" data-view="words" aria-selected="false" type="button">Word list</button>
+  </div>
+
+  <!-- PLAN -->
+  <section id="v-plan" class="stack">
+    <div class="countdown">
+      <label for="testDateB"><b>Test date:</b></label>
+      <input type="date" id="testDateB">
+      <span id="cdText" class="muted">Ask __FRTEACHER__ for the date and enter it here.</span>
+    </div>
+    <div class="panel stack">
+      <h2 style="font-size:22px">Your path to Level 4</h2>
+      <ol class="plan" id="planList"></ol>
+    </div>
+    <div class="panel stack">
+      <div class="label">Your three word sets</div>
+      <div class="sets" id="setCards"></div>
+    </div>
+    <div class="stack">
+      <div class="label">How to study so it sticks</div>
+      <div class="tips">
+        <div class="tip"><b>Test yourself first</b><p>Try to remember the word before you flip the card. The effort of remembering is what makes it stick.</p></div>
+        <div class="tip"><b>Little and often</b><p>10 minutes a day beats one hour the night before. The flashcards bring back each word just before you'd forget it.</p></div>
+        <div class="tip"><b>Say it out loud</b><p>Tap 🔊, then say the word yourself. Use the actions from class too. Hearing and moving help you remember.</p></div>
+        <div class="tip"><b>Mix it up</b><p>Practice mixes all three sets and question types, just like the real test.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="v-cards" class="panel" hidden>
+    <div class="fc-top">
+      <div class="seg" id="setSeg" aria-label="Word set">
+        <button type="button" data-set="1" aria-pressed="false">Set 1</button>
+        <button type="button" data-set="2" aria-pressed="false">Set 2</button>
+        <button type="button" data-set="3" aria-pressed="false">Set 3</button>
+        <button type="button" data-set="0" aria-pressed="true">All due</button>
+      </div>
+      <div class="seg" id="dirSeg" aria-label="Direction">
+        <button type="button" data-dir="fe" aria-pressed="true">French → English</button>
+        <button type="button" data-dir="ef" aria-pressed="false">English → French</button>
+      </div>
+    </div>
+    <div id="fcArea"></div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section id="v-practice" class="panel stack" hidden>
+    <div class="row" style="justify-content:space-between">
+      <div><h2 style="font-size:22px">Quick practice</h2><div class="muted" style="font-size:14px">10 mixed questions. You'll see the answer right away, and your weakest words come up more often.</div></div>
+      <span class="streak" id="streak">🔥 0</span>
+    </div>
+    <div id="prArea"></div>
+  </section>
+
+  <!-- GRAMMAR -->
+  <section id="v-grammar" class="stack" hidden></section>
+
+  <!-- TESTS -->
+  <section id="v-tests" class="stack" hidden>
+    <div id="testMenu" class="stack">
+      <div class="panel stack">
+        <h2 style="font-size:22px">Mock tests</h2>
+        <p class="muted" style="margin:0">Each test has 25 questions in 7 parts, like a real vocabulary test: meanings, translation, fill in the blank, grammar, reading and conversation. Try it without looking at notes, then go over every mistake. Words you miss go back into your flashcards automatically.</p>
+      </div>
+      <div class="tests" id="testCards"></div>
+    </div>
+    <div id="testArea" class="stack" hidden></div>
+  </section>
+
+  <!-- WORDS -->
+  <section id="v-words" class="panel" hidden>
+    <div class="row" style="justify-content:space-between;margin-bottom:10px"><h2 style="font-size:22px">All Section B words</h2><span class="muted" style="font-size:13px">Blue squares = how well you know it (4 = mastered)</span></div>
+    <div class="tbl-wrap"><table><thead><tr><th></th><th>French</th><th>English</th><th>Memory hook</th><th>Level</th></tr></thead><tbody id="wordRows"></tbody></table></div>
+  </section>
+
+  <p class="foot">Vocabulary from __FRTEACHER__'s "Section B vocabulary" list (posted Oct 8). Section A words show up in sentences too, so you keep them fresh. Practice sentences use only these words and aren't quoted from the play. Progress saves online with your Quest Log.</p>
+</div>
+<div class="toast" id="tToast" role="status" aria-live="polite"></div>
+
+</div>
+
+
 <div id="fracApp" hidden>
 <div class="fr-wrap"><main id="fr-app"></main></div>
 </div>
@@ -1627,6 +1872,20 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
     note:'“Master” = Expert in practice (9 of the last 10 right) and 80%+ on the topic test. Lesson 3.1 rule: change mixed numbers to improper fractions first, and give answers as whole or mixed numbers in simplest form.'
   });
   if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-frac-trainer')) NEWS.unshift({id:'n-frac-trainer', date:'2026-10-24', kind:'assignment', title:'Math: Chapter 3 Fractions Trainer (Recall + Lesson 3.1)', detail:'Refresher, practice and a test for each topic, then five practice exams and the Final. Every wrong answer explains what went wrong.', open:'math-ch3-frac'});
+})();
+/* ---------- French Section B assignment ----------
+   The Classroom data has the Section B task; point it at the trainer and use steps the trainer can tick. */
+(function(){
+  if(typeof BUILT_IN==='undefined') return;
+  const steps=['Watch the Section B video and copy the actions','Learn Set 1 (écoute → tout le temps)','Learn Set 2 (lève-toi → au revoir)','Learn Set 3 (eau → oui)','Grammar spotlight: il/elle, commands, est-ce que, au/aux, veut/peut','Mock Test 1: 80%+','Mock Test 2: 80%+','Mock Test 3: 90%+ (expert)'];
+  const link={label:'Section B Trainer: flashcards, practice and mock tests', url:'#frenchb', kind:'STUDY'};
+  let t=BUILT_IN.find(x=>x.id==='frenchB');
+  if(!t){ const a=BUILT_IN.find(x=>x.id==='frenchA')||{}; t={id:'frenchB', title:'French · Le garçon qui joue des tours (Section B)', subject:'french', teacher:a.teacher||'', due:null, xp:0, links:[]}; BUILT_IN.push(t); }
+  t.steps=steps;
+  t.desc='Section B adds 40 new words (écoute → oui). Learn them in the Section B Trainer: flashcards that bring words back just before you forget, quick practice, five grammar mini-lessons and three mock tests. Steps tick themselves as you go.';
+  t.links=[link,...(t.links||[]).filter(l=>l.url!=='#frenchb')];
+  t.note='Enter the test date in the trainer once it is announced: it becomes the due date here.';
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-frenchB-trainer')) NEWS.unshift({id:'n-frenchB-trainer', date:'2026-10-25', kind:'assignment', title:'French: Section B Trainer is ready (40 words)', detail:'Flashcards, practice, grammar and three mock tests for the Section B vocabulary.', open:'frenchB'});
 })();
 /* ---------- Storage ---------- */
 const KEY='quest-log-v1';
@@ -2135,6 +2394,12 @@ window.QL={
     if(testDate && store.dueOverride.frenchA!==testDate){ store.dueOverride.frenchA=testDate; changed=true; }
     if(changed){ save(); renderAll(); }
   },
+  frenchBProgress(marks, testDate){
+    const s=st('frenchB'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(testDate && store.dueOverride.frenchB!==testDate){ store.dueOverride.frenchB=testDate; changed=true; }
+    if(changed){ save(); renderAll(); }
+  },
   rootsProgress(marks){
     const s=st('math-roots'); s.steps=s.steps||[]; let changed=false;
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
@@ -2159,18 +2424,19 @@ window.QL={
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
   if(name==='roots' && window.ROOTS) ROOTS.show();
   if(name==='voice' && window.VOICE) VOICE.show();
+  if(name==='frenchb') window.scrollTo({top:0});
   if(name==='math' && window.MATH) MATH.show();
   if(name==='fractions' && window.FRAC) FRAC.show();
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -2614,6 +2880,441 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-show]"); i
 let tt; function toast(m){const t=$("#tToast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2400);}
 
 window.FR={
+  get:()=>S,
+  apply:d=>{ S=Object.assign({words:{},tests:{},lessons:{},testDate:null,streakBest:0},d); try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} renderHeader(); if(view==="plan")renderPlan(); if(view==="words")renderWords(); if(view==="tests"&&!$("#testMenu").hidden)renderTestMenu(); },
+  hasData:()=>Object.keys(S.words).length>0||Object.keys(S.tests).length>0||!!S.video||!!S.testDate
+};
+renderHeader();
+let startV="plan"; try{ startV=localStorage.getItem(KEY+"-view")||"plan"; }catch(e){}
+show(["plan","cards","practice","grammar","tests","words"].includes(startV)?startV:"plan");
+
+})();
+
+/* ================= FRENCH SECTION B TRAINER ================= */
+(function(){
+const root=document.getElementById("frbApp");
+/* French Section B: same study method as Section A, with the Section B word list. */
+const FRB_TASK=(typeof BUILT_IN!=="undefined"&&BUILT_IN.find(t=>t.id==="frenchB"))||{};
+const FRB_VIDEO=((FRB_TASK.links||[]).find(l=>l.kind==="VIDEO")||{}).url||"";
+
+/* ================= DATA ================= */
+const VOC = [
+  // Set 1 (words 1–13)
+  {fr:"écoute", en:["listen","listens","listen up"], set:1, hook:"Sounds like \"a coot\": a bird that listens. Écoute ! = Listen!"},
+  {fr:"très", en:["very","really"], set:1, hook:"très bien = very good. Think \"tray\" piled VERY high"},
+  {fr:"elle", en:["she","it"], set:1, hook:"elle = she. The L in \"lady\""},
+  {fr:"s’appelle", en:["is called","is named","calls herself","calls himself"], set:1, hook:"Like je m’appelle, but for him or her: il/elle s’appelle"},
+  {fr:"est", en:["is"], set:1, hook:"Silent letters: sounds like \"eh\". Elle est = she is"},
+  {fr:"une", en:["a","an","one"], set:1, hook:"une for feminine words: une fille. (un for masculine)"},
+  {fr:"fille", en:["girl","daughter"], set:1, hook:"fille sounds like \"fee\": a girl paying a fee"},
+  {fr:"il", en:["he","it"], set:1, hook:"il = he. Short and simple, like \"ill\" without the extra l"},
+  {fr:"garçon", en:["boy"], set:1, hook:"Le garçon qui joue des tours = the boy who plays tricks"},
+  {fr:"pour", en:["for"], set:1, hook:"Pour = for. \"Pour some juice FOR me\""},
+  {fr:"regarde", en:["watches","looks at","look","watch","looks","look at"], set:1, hook:"re-GARD: a guard watches and looks at everything"},
+  {fr:"comprend", en:["understands","understand"], set:1, hook:"comprend → comprehend = understand"},
+  {fr:"tout le temps", en:["all the time","always"], set:1, hook:"tout (all) + le temps (the time) = all the time"},
+  // Set 2 (words 14–27)
+  {fr:"lève-toi !", en:["stand up","get up","stand up!"], set:2, hook:"lever = lift, like a lever. Lift yourself up!"},
+  {fr:"saute", en:["jump","jumps"], set:2, hook:"saute sounds like \"so-t\": you jump SO high"},
+  {fr:"assieds-toi !", en:["sit down","sit","sit down!"], set:2, hook:"Same family as s’assoit from Section A: sit!"},
+  {fr:"marche", en:["walk","walks","march"], set:2, hook:"marche → march: walk in step"},
+  {fr:"court", en:["run","runs"], set:2, hook:"Sounds like \"coo\": you run around the basketball COURT"},
+  {fr:"fantastique", en:["fantastic","great","amazing"], set:2, hook:"Same as English, just say it the French way: fan-tas-TEEK"},
+  {fr:"on", en:["let's","shall we","we'll","we","one"], set:2, hook:"On marche ? = Shall we walk? On y va ! = Let's go!"},
+  {fr:"fait", en:["does","makes","do","make"], set:2, hook:"fait → \"fact\": a fact is something done or made"},
+  {fr:"les", en:["the"], set:2, hook:"les = the, for more than one: les actions, les toilettes", noType:true},
+  {fr:"action", en:["action"], set:2, hook:"Same as English. Lights, camera, ACTION! (say ak-SYON)"},
+  {fr:"quand", en:["when"], set:2, hook:"quand sounds like \"con\": WHEN will it start?"},
+  {fr:"à", en:["to","at","in"], set:2, hook:"Little à with an accent = to / at. (a without the accent means \"has\")", noType:true},
+  {fr:"finit", en:["finishes","ends","finish"], set:2, hook:"finit → finish. Silent t: \"fee-nee\""},
+  {fr:"au revoir", en:["goodbye","bye","see you"], set:2, hook:"re-voir = see again: until we see each other again"},
+  // Set 3 (words 28–40)
+  {fr:"eau", en:["water"], set:3, hook:"eau sounds like \"oh\": Oh, I need water!"},
+  {fr:"pardon", en:["excuse me","sorry","pardon","pardon me"], set:3, hook:"Same as \"pardon me\" in English"},
+  {fr:"si", en:["if"], set:3, hook:"si = if. \"See IF you can\""},
+  {fr:"boit", en:["drinks","drink"], set:3, hook:"boit sounds like \"bwah\": a big gulp of water"},
+  {fr:"non", en:["no"], set:3, hook:"non = no. Easy: just add an n"},
+  {fr:"veut", en:["wants","want"], set:3, hook:"veut sounds like \"vuh\": il veut = he wants"},
+  {fr:"est-ce que", en:["question marker","is it that","do","does"], set:3, hook:"Put est-ce que at the front to turn a sentence into a question", noType:true},
+  {fr:"peut", en:["can","is able to","may"], set:3, hook:"peut sounds like \"puh\": il peut = he can (he is able)"},
+  {fr:"parler", en:["to speak","speak","to talk","talk"], set:3, hook:"parler → parliament, where people speak"},
+  {fr:"au(x)", en:["to the","at the"], set:3, hook:"à + le = au, à + les = aux: aux toilettes", noType:true},
+  {fr:"toilettes", en:["washroom","toilet","bathroom","restroom"], set:3, hook:"Always plural in French: les toilettes"},
+  {fr:"s’il te plaît", en:["please"], set:3, hook:"Literally \"if it pleases you\". Say it to a friend"},
+  {fr:"oui", en:["yes"], set:3, hook:"oui sounds like \"we\": WE say yes!"}
+];
+VOC.forEach((w,i)=>w.i=i);
+
+// Sentences use only Section A and B words (plus a few names). Manual distractors keep one right answer.
+const SENT = [
+  {s:"La fille ___ tout le temps.", a:"écoute", d:["pour","quand","eau"], en:"The girl listens all the time."},
+  {s:"Elle ___ Sophie.", a:"s’appelle", d:["boit","pour","très"], en:"Her name is Sophie."},
+  {s:"___ s’appelle Sophie. C’est une fille.", a:"Elle", d:["Il","Pour","Non"], en:"Her name is Sophie. She is a girl."},
+  {s:"___ s’appelle Marc. C’est un garçon.", a:"Il", d:["Elle","Si","Eau"], en:"His name is Marc. He is a boy."},
+  {s:"Sophie est ___ fille.", a:"une", d:["les","au","on"], en:"Sophie is a girl."},
+  {s:"Elle ___ fantastique !", a:"est", d:["une","les","pour"], en:"She is fantastic!"},
+  {s:"Elle parle ___ bien.", a:"très", d:["quand","eau","non"], en:"She speaks very well."},
+  {s:"Le garçon ___ la fille.", a:"regarde", d:["très","pour","quand"], en:"The boy looks at the girl."},
+  {s:"La fille ne ___ pas l’anglais.", a:"comprend", d:["toilettes","pour","eau"], en:"The girl does not understand English."},
+  {s:"Le garçon ___ de l’eau.", a:"boit", d:["court","quand","très"], en:"The boy drinks some water."},
+  {s:"Le garçon boit de l’___.", a:"eau", d:["action","oui","pour"], en:"The boy drinks some water."},
+  {s:"Elle ___ parler français.", a:"veut", d:["boit","finit","très"], en:"She wants to speak French."},
+  {s:"Est-ce que le garçon ___ parler anglais ?", a:"peut", d:["boit","saute","pour"], en:"Can the boy speak English?"},
+  {s:"Elle veut ___ français.", a:"parler", d:["eau","non","quand"], en:"She wants to speak French."},
+  {s:"___ la classe finit, tout le monde dit au revoir.", a:"Quand", d:["Pour","Eau","Très"], en:"When the class finishes, everyone says goodbye."},
+  {s:"Quand la classe ___, tout le monde dit au revoir.", a:"finit", d:["boit","pour","très"], en:"When the class finishes, everyone says goodbye."},
+  {s:"Quand la classe finit, tout le monde dit « ___ ! »", a:"Au revoir", d:["Pardon","Pour","Assieds-toi"], en:"When the class finishes, everyone says \"Goodbye!\""},
+  {s:"Le garçon va ___ toilettes.", a:"aux", d:["une","très","si"], en:"The boy goes to the washroom."},
+  {s:"De l’eau, ___ !", a:"s’il te plaît", d:["tout le temps","au revoir","fantastique"], en:"Some water, please!"},
+  {s:"___ ! La classe commence.", a:"Assieds-toi", d:["Pour","Très","Eau"], en:"Sit down! Class is starting."},
+  {s:"Le garçon court et ___.", a:"saute", d:["pour","très","eau"], en:"The boy runs and jumps."},
+  {s:"Le garçon ___ et saute.", a:"court", d:["pour","une","très"], en:"The boy runs and jumps."},
+  {s:"Tout le monde ___ ici.", a:"marche", d:["pour","une","eau"], en:"Everyone walks here."},
+  {s:"___ marche ? — Oui !", a:"On", d:["Pour","Une","Eau"], en:"Shall we walk? — Yes!"},
+  {s:"Le garçon ___ l’action.", a:"fait", d:["pour","très","eau"], en:"The boy does the action."},
+  {s:"Tout le monde fait ___ actions.", a:"les", d:["une","très","si"], en:"Everyone does the actions."},
+  {s:"C’est ___ toi !", a:"pour", d:["très","eau","quand"], en:"It’s for you!"},
+  {s:"___ tu veux, on marche.", a:"Si", d:["Eau","Une","Très"], en:"If you want, we’ll walk."},
+  {s:"___, madame !", a:"Pardon", d:["Pour","Une","Très"], en:"Excuse me, madam!"},
+  {s:"Est-ce qu’elle veut de l’eau ? — ___, elle veut de l’eau.", a:"Oui", d:["Non","Pour","Quand"], en:"Does she want some water? — Yes, she wants some water."},
+  {s:"Est-ce qu’il comprend ? — ___, il ne comprend pas.", a:"Non", d:["Oui","Pour","Très"], en:"Does he understand? — No, he doesn’t understand."},
+  {s:"___ ! Ne t’assieds pas.", a:"Lève-toi", d:["Pour","Eau","Très"], en:"Stand up! Don’t sit down."}
+];
+
+const GRAM = [
+  {id:"g1", topic:"ilelle", q:"___ s’appelle Sophie. (a girl)", o:["Elle","Il","On"], a:"Elle", why:"elle = she, for a girl or a feminine noun."},
+  {id:"g2", topic:"ilelle", q:"___ s’appelle Marc. (a boy)", o:["Il","Elle","On"], a:"Il", why:"il = he, for a boy or a masculine noun."},
+  {id:"g3", topic:"ilelle", q:"Je m’appelle Sophie. Il ___ Marc.", o:["s’appelle","m’appelle","t’appelles"], a:"s’appelle", why:"je m’appelle · tu t’appelles · il/elle s’appelle."},
+  {id:"g4", topic:"ilelle", q:"Sophie est ___ fille.", o:["une","un","les"], a:"une", why:"fille is feminine, so a = une (un is for masculine words)."},
+  {id:"g5", topic:"ilelle", q:"___ garçon regarde la fille.", o:["Le","La","Une"], a:"Le", why:"garçon is masculine: le garçon."},
+  {id:"g6", topic:"cmd", q:"Your teacher wants you to stand up. She says:", o:["Lève-toi !","Assieds-toi !","Saute !"], a:"Lève-toi !", why:"lève-toi = stand up (lift yourself)."},
+  {id:"g7", topic:"cmd", q:"What does « Assieds-toi ! » mean?", o:["Sit down!","Stand up!","Run!"], a:"Sit down!", why:"assieds-toi = sit down. It comes from s’asseoir, like s’assoit in Section A."},
+  {id:"g8", topic:"cmd", q:"Which one is a command to jump?", o:["Saute !","Marche !","Écoute !"], a:"Saute !", why:"saute = jump. marche = walk, écoute = listen."},
+  {id:"g9", topic:"cmd", q:"What does « Écoute ! » mean?", o:["Listen!","Look!","Walk!"], a:"Listen!", why:"écoute = listen. regarde = look."},
+  {id:"g10", topic:"question", q:"Make it a question: « Elle comprend. »", o:["Est-ce qu’elle comprend ?","Est-ce que elle comprend ?","Elle est-ce que comprend ?"], a:"Est-ce qu’elle comprend ?", why:"Put est-ce que at the front. que becomes qu’ before a vowel (elle)."},
+  {id:"g11", topic:"question", q:"Make it a question: « Le garçon boit de l’eau. »", o:["Est-ce que le garçon boit de l’eau ?","Le garçon est-ce que boit de l’eau ?","Est-ce le garçon boit que de l’eau ?"], a:"Est-ce que le garçon boit de l’eau ?", why:"est-ce que goes at the very start; the rest of the sentence stays the same."},
+  {id:"g12", topic:"question", q:"« Est-ce que tu veux de l’eau ? » is…", o:["a question","a command","an answer"], a:"a question", why:"est-ce que marks a yes/no question: Do you want some water?"},
+  {id:"g13", topic:"question", q:"Best answer to « Est-ce que tu comprends ? » if you do:", o:["Oui !","Non !","Pardon !"], a:"Oui !", why:"oui = yes, non = no."},
+  {id:"g14", topic:"au", q:"à + le = ?", o:["au","aux","à le"], a:"au", why:"à and le always join to make au."},
+  {id:"g15", topic:"au", q:"à + les = ?", o:["aux","au","à les"], a:"aux", why:"à and les always join to make aux."},
+  {id:"g16", topic:"au", q:"Le garçon va ___ toilettes.", o:["aux","au","à la"], a:"aux", why:"toilettes is plural (les toilettes), so à + les = aux."},
+  {id:"g17", topic:"au", q:"Elle parle ___ garçon.", o:["au","aux","à le"], a:"au", why:"le garçon → à + le = au garçon."},
+  {id:"g18", topic:"au", q:"Il parle ___ fille.", o:["à la","au","aux"], a:"à la", why:"à + la does NOT join: à la fille."},
+  {id:"g19", topic:"verb", q:"Elle veut ___ français.", o:["parler","parle","parlez"], a:"parler", why:"After veut or peut, the next verb stays in its -er (infinitive) form: veut parler."},
+  {id:"g20", topic:"verb", q:"Le garçon ___ parler anglais. (can)", o:["peut","veut","boit"], a:"peut", why:"peut = can. veut = wants."},
+  {id:"g21", topic:"verb", q:"La fille ___ de l’eau. (wants)", o:["veut","peut","finit"], a:"veut", why:"veut = wants. peut = can."},
+  {id:"g22", topic:"verb", q:"Which verb means \"finishes\"?", o:["finit","fait","boit"], a:"finit", why:"finit = finishes. fait = does/makes, boit = drinks."}
+];
+
+const DLG = [
+  {q:"Madame says: « Assieds-toi ! » What do you do?", a:"Sit down", d:["Stand up","Jump","Run"]},
+  {q:"Madame says: « Lève-toi ! » What do you do?", a:"Stand up", d:["Sit down","Walk","Listen"]},
+  {q:"Madame says: « Saute ! » What do you do?", a:"Jump", d:["Walk","Sit down","Drink water"]},
+  {q:"« Le garçon court. » What is the boy doing?", a:"Running", d:["Jumping","Standing up","Looking"]},
+  {q:"Madame says: « Écoute ! » What do you do?", a:"Listen", d:["Look","Run","Say goodbye"]},
+  {q:"You ask a friend for water. You say:", a:"De l’eau, s’il te plaît !", d:["Au revoir !","Assieds-toi !","Pardon, non."]},
+  {q:"Class is over. You say to your friend:", a:"Au revoir !", d:["Bonjour !","Lève-toi !","Pardon !"]},
+  {q:"You bump into someone by accident. You say:", a:"Pardon !", d:["Oui !","Fantastique !","Saute !"]},
+  {q:"« Est-ce que tu comprends ? » You don’t. You say:", a:"Non.", d:["Oui !","Au revoir !","Fantastique !"]},
+  {q:"« Comment elle s’appelle ? » (about Sophie)", a:"Elle s’appelle Sophie.", d:["Il s’appelle Sophie.","Je m’appelle Sophie.","Elle est très."]},
+  {q:"Your friend says « On marche ? ». It means:", a:"Shall we walk?", d:["Walk!","He walks.","Are you running?"]},
+  {q:"« Est-ce que je peux aller aux toilettes ? » The student is asking…", a:"to go to the washroom", d:["for water","to sit down","to say goodbye"]}
+];
+
+const LESSONS = [
+  {id:"ilelle", title:"il, elle and s’appelle · un/une", body:"il = he and elle = she. To say someone's name, use s’appelle: il s’appelle, elle s’appelle (je m’appelle → il/elle s’appelle). une goes with feminine words (une fille), un with masculine ones (un garçon).",
+    ex:[["Il s’appelle Marc.","His name is Marc."],["Elle s’appelle Sophie.","Her name is Sophie."],["une fille","a girl"],["le garçon","the boy"]]},
+  {id:"cmd", title:"Commands from class: lève-toi, assieds-toi, saute…", body:"A command tells someone what to do. Words like lève-toi, assieds-toi, saute, marche, court, écoute and regarde are the action words from the video: do the action as you say it.",
+    ex:[["Lève-toi !","Stand up!"],["Assieds-toi !","Sit down!"],["Saute !","Jump!"],["Marche !","Walk!"],["Écoute !","Listen!"]]},
+  {id:"question", title:"Asking yes/no questions with est-ce que", body:"Put est-ce que at the front of any sentence to make a yes/no question. The rest of the sentence does not change. Before a vowel, que becomes qu’ (est-ce qu’elle, est-ce qu’il). Answer with oui or non.",
+    ex:[["Elle comprend.","Est-ce qu’elle comprend ?"],["Tu veux de l’eau.","Est-ce que tu veux de l’eau ?"],["Il peut parler français.","Est-ce qu’il peut parler français ?"]]},
+  {id:"au", title:"à + le = au · à + les = aux", body:"à means to or at. When à meets le or les, they join together: à + le = au and à + les = aux. à la and à l’ do not change.",
+    ex:[["à + le garçon","au garçon"],["à + les toilettes","aux toilettes"],["à + la fille","à la fille"]]},
+  {id:"verb", title:"veut and peut + a verb", body:"veut (wants) and peut (can) are often followed by a second verb. That second verb stays in its basic form ending in -er, like parler.",
+    ex:[["Elle veut parler.","She wants to speak."],["Il peut parler français.","He can speak French."],["On peut marcher ?","Can we walk?"]]}
+];
+
+/* ================= STATE ================= */
+const KEY="quest-french-sectionB-v1";
+let S={words:{}, tests:{}, lessons:{}, testDate:null, streakBest:0};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} if(window.FRB_CH) FRB_CH.push(); syncQuest();}
+
+const INT=[0,1,2,4,7]; // Leitner review gaps in days
+const $=s=>root.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const TODAY=ymd(new Date());
+const dayDiff=(a,b)=>Math.round((new Date(b+"T00:00")-new Date(a+"T00:00"))/86400000);
+const ws=w=>S.words[w.fr]||{b:0,last:null,seen:false};
+function setW(w,o){S.words[w.fr]=Object.assign(ws(w),o);}
+const isDue=w=>{const s=ws(w); return !s.seen || dayDiff(s.last,TODAY)>=INT[s.b];};
+const isMastered=w=>ws(w).seen&&ws(w).b>=3;
+const setLearned=n=>VOC.filter(w=>w.set===n).every(w=>ws(w).seen&&ws(w).b>=2);
+function grade(w,ok){ const s=ws(w); setW(w,{seen:true,last:TODAY,b: ok?Math.min(4,s.b+1):0}); }
+
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(a,r=Math.random){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’']/g,"").replace(/[^a-z\s-]/g," ").replace(/-/g," ").replace(/\s+/g," ").trim();
+const cap=(s,like)=>/^[A-ZÀ-Ý]/.test(like)?s.charAt(0).toUpperCase()+s.slice(1):s;
+
+/* ================= SPEECH ================= */
+let frVoice=null;
+function pickVoice(){ const v=speechSynthesis.getVoices(); frVoice=v.find(x=>/fr-CA/i.test(x.lang))||v.find(x=>/^fr/i.test(x.lang))||null; }
+const canSpeak='speechSynthesis' in window;
+if(canSpeak){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function say(t){ if(!canSpeak) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t.replace(/ \/ /g,", ")); u.lang=frVoice?frVoice.lang:"fr-CA"; if(frVoice)u.voice=frVoice; u.rate=.85; speechSynthesis.speak(u); }
+const spk=t=>canSpeak?'<button class="speak" type="button" data-say="'+esc(t)+'" aria-label="Hear '+esc(t)+'">🔊</button>':'';
+
+/* ================= QUESTION FACTORY ================= */
+const disjoint=(a,b)=>!a.en.some(x=>b.en.map(norm).includes(norm(x)));
+function distract(w,n,r,key){
+  const pool=shuffle(VOC.filter(x=>x!==w&&disjoint(x,w)),r); const out=[],seen=new Set([key(w)]);
+  for(const x of pool){ if(!seen.has(key(x))){seen.add(key(x));out.push(x);} if(out.length===n)break; }
+  return out;
+}
+function qFrEn(w,r){ const opts=shuffle([w,...distract(w,3,r,x=>x.en[0])],r).map(x=>x.en[0]); return {kind:"mc",sec:"Word meanings",prompt:'What does <span class="fr">'+esc(w.fr)+'</span> mean?',say:w.fr,opts,a:w.en[0],word:w,why:w.fr+" = "+w.en.slice(0,3).join(" / ")}; }
+function qEnFr(w,r){ const opts=shuffle([w,...distract(w,3,r,x=>x.fr)],r).map(x=>x.fr); return {kind:"mc",sec:"English to French",prompt:'How do you say <b>"'+esc(w.en[0])+'"</b> in French?',opts,a:w.fr,word:w,why:w.en[0]+" = "+w.fr}; }
+function qType(w){ return {kind:"type",sec:"Type the English",prompt:'Type the English for <span class="fr">'+esc(w.fr)+'</span>',say:w.fr,accept:w.en,a:w.en[0],word:w,why:"Accepted: "+w.en.slice(0,4).join(", ")}; }
+function qFill(s,r){ const opts=shuffle([s.a,...s.d],r); return {kind:"mc",sec:"Fill in the blank",prompt:esc(s.s).replace("___",'<span style="display:inline-block;min-width:64px;border-bottom:2px solid var(--bleu)">&nbsp;</span>'),sub:"Hint: "+s.en,opts,a:s.a,wordFr:s.a,why:s.s.replace("___",s.a)+" = "+s.en}; }
+function qGram(g,r){ return {kind:"mc",sec:"Grammar",prompt:esc(g.q).replace("___",'<span style="display:inline-block;min-width:48px;border-bottom:2px solid var(--bleu)">&nbsp;</span>'),opts:shuffle(g.o,r),a:g.a,why:g.why}; }
+function qComp(s,r){ const full=s.s.replace("___",s.a); const others=shuffle([...new Set(SENT.filter(x=>x.en!==s.en).map(x=>x.en))],r).slice(0,3); return {kind:"mc",sec:"Understand the sentence",prompt:'What does this mean?<br><span class="fr">'+esc(full)+'</span>',say:full,opts:shuffle([s.en,...others],r),a:s.en,why:full+" = "+s.en}; }
+function qDlg(d,r){ return {kind:"mc",sec:"Conversation",prompt:esc(d.q),opts:shuffle([d.a,...d.d],r),a:d.a,why:"Best answer: "+d.a}; }
+const correct=(q,ans)=> q.kind==="type" ? q.accept.some(x=>norm(x)===norm(ans)) : ans===q.a;
+function wordFor(q){ if(q.word) return q.word; if(q.wordFr) return VOC.find(w=>norm(w.fr)===norm(q.wordFr)); return null; }
+
+function buildTest(seed){
+  const r=rng(seed);
+  const words=shuffle(VOC,r), typeable=shuffle(VOC.filter(w=>!w.noType),r);
+  const used=new Set(); const take=(arr,n)=>{const out=[];for(const w of arr){if(!used.has(w.fr)){used.add(w.fr);out.push(w);} if(out.length===n)break;} return out;};
+  const sents=shuffle(SENT,r);
+  return [
+    ...take(words,6).map(w=>qFrEn(w,r)),
+    ...take(words,4).map(w=>qEnFr(w,r)),
+    ...take(typeable,4).map(w=>qType(w)),
+    ...sents.slice(0,4).map(s=>qFill(s,r)),
+    ...shuffle(GRAM,r).slice(0,3).map(g=>qGram(g,r)),
+    ...sents.slice(4,6).map(s=>qComp(s,r)),
+    ...shuffle(DLG,r).slice(0,2).map(d=>qDlg(d,r))
+  ];
+}
+
+/* ================= QUEST LOG SYNC ================= */
+// Ticks steps on the "French · Section B" task in __NAME__'s Quest Log when it's opened in the same browser.
+function syncQuest(){
+  const best=n=>(S.tests[n]&&S.tests[n].best)||0;
+  const marks=[!!S.video, setLearned(1), setLearned(2), setLearned(3), LESSONS.every(l=>S.lessons[l.id]), best(1)>=80, best(2)>=80, best(3)>=90];
+  if(window.QL&&QL.frenchBProgress) QL.frenchBProgress(marks, S.testDate);
+}
+
+/* ================= HEADER ================= */
+function renderHeader(){
+  const m=VOC.filter(isMastered).length, p=Math.round(m/VOC.length*100);
+  $("#ring").style.setProperty("--p",p); $("#ringTxt").textContent=p+"%";
+  $("#mastered").textContent=m+" / "+VOC.length;
+  const due=VOC.filter(w=>ws(w).seen&&isDue(w)).length;
+  $("#dueTxt").textContent=due?due+" words ready for review":"";
+}
+
+/* ================= PLAN ================= */
+function renderPlan(){
+  const best=n=>(S.tests[n]&&S.tests[n].best)||0;
+  const steps=[
+    {t:"Watch the Section B video", d:"Copy the actions (lève-toi, assieds-toi, saute, marche, court) and say the words out loud with the video.", ok:!!S.video, act:(FRB_VIDEO?'<a class="btn small" href="'+esc(FRB_VIDEO)+'" target="_blank" rel="noopener">Open video ↗</a> ':'')+'<button class="btn small" type="button" id="vidDone">'+(S.video?"Watched ✓":"I watched it")+'</button>'},
+    {t:"Learn Set 1 (écoute → tout le temps)", d:"Words 1–13. Every word at level 2+ in flashcards.", ok:setLearned(1), go:["cards",1]},
+    {t:"Learn Set 2 (lève-toi → au revoir)", d:"Words 14–27. Every word at level 2+.", ok:setLearned(2), go:["cards",2]},
+    {t:"Learn Set 3 (eau → oui)", d:"Words 28–40. Every word at level 2+.", ok:setLearned(3), go:["cards",3]},
+    {t:"Grammar spotlight", d:"Five mini-lessons: il/elle, commands, est-ce que, au/aux, veut/peut + verb.", ok:LESSONS.every(l=>S.lessons[l.id]), go:["grammar"]},
+    {t:"Mock Test 1: score 80%+", d:"Best: "+best(1)+"%", ok:best(1)>=80, go:["test",1]},
+    {t:"Mock Test 2: score 80%+", d:"Best: "+best(2)+"%", ok:best(2)>=80, go:["test",2]},
+    {t:"Mock Test 3: score 90%+ (expert!)", d:"Best: "+best(3)+"%", ok:best(3)>=90, go:["test",3]}
+  ];
+  const nowIdx=steps.findIndex(s=>!s.ok);
+  $("#planList").innerHTML=steps.map((s,i)=>'<li class="'+(s.ok?"ok":"")+(i===nowIdx?" now":"")+'"><div><div class="t">'+esc(s.t)+'</div><div class="d">'+esc(s.d)+'</div></div><div class="row">'+(s.act||(s.go?'<button class="btn small '+(i===nowIdx?"primary":"")+'" type="button" data-go="'+s.go.join(",")+'">'+(s.ok?"Review":"Start")+'</button>':''))+'</div></li>').join("");
+  $("#vidDone").onclick=()=>{S.video=!S.video; save(); renderPlan(); if(S.video) toast("Nice! Step 1 done");};
+  root.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{const [v,n]=b.dataset.go.split(","); if(v==="cards"){fcSet=+n; show("cards");} else if(v==="test"){show("tests"); startTest(+n);} else show(v);});
+  $("#setCards").innerHTML=[1,2,3].map(n=>{const ws_=VOC.filter(w=>w.set===n), m=ws_.filter(isMastered).length; return '<div class="setcard"><div class="row" style="justify-content:space-between"><b>Set '+n+'</b><span class="mono" style="font-size:13px">'+m+'/'+ws_.length+'</span></div><div class="muted" style="font-size:13px">'+esc(ws_[0].fr)+' → '+esc(ws_[ws_.length-1].fr)+'</div><div class="bar"><i style="width:'+(m/ws_.length*100)+'%"></i></div></div>';}).join("");
+  $("#testDateB").value=S.testDate||"";
+  if(S.testDate){ const n=dayDiff(TODAY,S.testDate); $("#cdText").innerHTML = n>0 ? '<b>'+n+' day'+(n>1?"s":"")+'</b> to go. '+(n>=4?"Aim for one set per day, then mock tests.":"Do a mock test every day and review your mistakes.") : n===0 ? "<b>Test day!</b> Quick flashcard warm-up, then you've got this." : "Test date has passed. Update it if there's a new one."; }
+}
+$("#testDateB").onchange=e=>{S.testDate=e.target.value||null; save(); renderPlan(); toast(S.testDate?"Test date saved (also added to your Quest Log)":"Test date cleared");};
+
+/* ================= FLASHCARDS ================= */
+let fcSet=0, fcDir="fe", fcQueue=[], fcIdx=0, fcStats={k:0,n:0};
+function buildQueue(){
+  let pool=VOC.filter(w=>fcSet===0||w.set===fcSet);
+  let due=pool.filter(isDue);
+  if(fcSet===0) due=due.filter(w=>ws(w).seen).concat(due.filter(w=>!ws(w).seen).slice(0,8));
+  if(!due.length && fcSet!==0) due=pool.slice().sort((a,b)=>ws(a).b-ws(b).b);
+  fcQueue=shuffle(due).slice(0,12); fcIdx=0; fcStats={k:0,n:0};
+}
+function renderCards(){
+  root.querySelectorAll("#setSeg button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.set===fcSet));
+  root.querySelectorAll("#dirSeg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.dir===fcDir));
+  const area=$("#fcArea");
+  if(fcIdx>=fcQueue.length){
+    area.innerHTML='<div class="stack" style="text-align:center;padding:30px 0"><h2>'+(fcQueue.length?"Round done! 🎉":"Nothing due right now ✓")+'</h2><p class="muted" style="margin:0">'+(fcQueue.length?"You knew "+fcStats.k+" of "+fcQueue.length+". Missed words come back sooner.":"Your brain needs time between reviews. Come back tomorrow, or try Practice.")+'</p><div class="row" style="justify-content:center"><button class="btn primary" type="button" id="again">Another round</button><button class="btn" type="button" data-showb="practice">Go to Practice</button></div></div>';
+    $("#again").onclick=()=>{buildQueue(); if(!fcQueue.length){fcQueue=shuffle(VOC.filter(w=>fcSet===0||w.set===fcSet)).slice(0,10);} renderCards();};
+    return;
+  }
+  const w=fcQueue[fcIdx], s=ws(w);
+  const front=fcDir==="fe"?'<div><div class="big">'+esc(w.fr)+'</div><div class="hint">Say it, remember it, then tap to flip</div></div>':'<div><div class="big" style="font-size:clamp(26px,5vw,40px)">'+esc(w.en[0])+'</div><div class="hint">What\'s the French? Say it, then tap to flip</div></div>';
+  const back='<div><div class="big" style="font-size:clamp(24px,5vw,38px)">'+esc(fcDir==="fe"?w.en.slice(0,3).join(" / "):w.fr)+'</div><div class="hook">💡 '+esc(w.hook)+'</div></div>';
+  area.innerHTML='<div class="row" style="justify-content:space-between;margin-top:14px"><span class="mono muted" style="font-size:13px">Card '+(fcIdx+1)+' of '+fcQueue.length+' · Set '+w.set+'</span><span class="row" style="gap:8px"><span class="boxes" title="Level '+s.b+' of 4">'+[1,2,3,4].map(i=>'<i class="'+(s.seen&&s.b>=i?"on":"")+'"></i>').join("")+'</span>'+spk(w.fr)+'</span></div>'+
+    '<div class="card" id="card"><div class="card-in" tabindex="0" role="button" aria-label="Flip card"><div class="face front">'+front+'</div><div class="face back">'+back+'</div></div></div>'+
+    '<div class="row" style="justify-content:center;margin-top:16px" id="fcBtns"><button class="btn primary" type="button" id="flipBtn">Flip card</button></div>';
+  const flip=()=>{ $("#card").classList.add("flip"); if(fcDir==="ef") say(w.fr);
+    $("#fcBtns").innerHTML='<button class="btn bad" type="button" id="nope">Not yet</button><button class="btn good" type="button" id="yep">I knew it!</button>';
+    $("#nope").onclick=()=>next(false); $("#yep").onclick=()=>next(true); };
+  const next=ok=>{ grade(w,ok); fcStats.n++; if(ok)fcStats.k++; if(!ok) fcQueue.push(w); save(); fcIdx++; renderHeader(); renderCards(); };
+  $("#card").onclick=e=>{ if(!e.target.closest("[data-say]")) flip(); };
+  $("#card .card-in").onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();} };
+  $("#flipBtn").onclick=flip;
+}
+root.querySelectorAll("#setSeg button").forEach(b=>b.onclick=()=>{fcSet=+b.dataset.set; buildQueue(); renderCards();});
+root.querySelectorAll("#dirSeg button").forEach(b=>b.onclick=()=>{fcDir=b.dataset.dir; renderCards();});
+
+/* ================= QUESTION UI ================= */
+function qHtml(q,i,withNum){
+  let h='<div class="q" id="q'+i+'">'+(withNum?'<span class="num">Q'+(i+1)+'</span>':'')+'<div class="prompt">'+q.prompt+' '+(q.say?spk(q.say):"")+'</div>'+(q.sub?'<div class="muted" style="font-size:13.5px">'+esc(q.sub)+'</div>':'');
+  if(q.kind==="mc") h+='<div class="opts">'+q.opts.map(o=>'<button type="button" class="opt" data-q="'+i+'" data-v="'+esc(o)+'" aria-pressed="false">'+esc(o)+'</button>').join("")+'</div>';
+  else h+='<input type="text" id="in'+i+'" data-q="'+i+'" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type in English">';
+  return h+'<div class="fb" hidden></div></div>';
+}
+function showFeedback(q,i,ans){
+  const box=$("#q"+i), ok=correct(q,ans);
+  box.classList.add(ok?"right":"wrong");
+  box.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; if(b.dataset.v===q.a) b.classList.add("right"); else if(b.dataset.v===ans) b.classList.add("wrong"); });
+  const inp=box.querySelector("input"); if(inp) inp.disabled=true;
+  const fb=box.querySelector(".fb"); fb.hidden=false; fb.className="fb "+(ok?"right":"wrong");
+  fb.innerHTML=(ok?"<b>Correct!</b> ":"<b>Answer: "+esc(q.a)+"</b>. ")+esc(q.why||"");
+  return ok;
+}
+
+/* ================= PRACTICE ================= */
+let pr=null, streak=0;
+function newRound(){
+  const weak=VOC.slice().sort((a,b)=>(ws(a).seen?ws(a).b:1.5)-(ws(b).seen?ws(b).b:1.5)+ (Math.random()-.5)*2);
+  const qs=[]; let wi=0;
+  for(let k=0;k<10;k++){
+    const t=["fe","fe","ef","type","fill","gram","comp","dlg"][Math.floor(Math.random()*8)];
+    const w=weak[wi++%weak.length];
+    if(t==="fe") qs.push(qFrEn(w,Math.random));
+    else if(t==="ef") qs.push(qEnFr(w,Math.random));
+    else if(t==="type") qs.push(w.noType?qFrEn(w,Math.random):qType(w));
+    else if(t==="fill") qs.push(qFill(SENT[Math.floor(Math.random()*SENT.length)],Math.random));
+    else if(t==="gram") qs.push(qGram(GRAM[Math.floor(Math.random()*GRAM.length)],Math.random));
+    else if(t==="comp") qs.push(qComp(SENT[Math.floor(Math.random()*SENT.length)],Math.random));
+    else qs.push(qDlg(DLG[Math.floor(Math.random()*DLG.length)],Math.random));
+  }
+  pr={qs,i:0,right:0};
+}
+function renderPractice(){
+  if(!pr) newRound();
+  $("#streak").textContent="🔥 "+streak+(S.streakBest?" · best "+S.streakBest:"");
+  const area=$("#prArea");
+  if(pr.i>=pr.qs.length){
+    area.innerHTML='<div class="stack" style="text-align:center;padding:24px 0"><h2>'+pr.right+' / 10</h2><p class="muted" style="margin:0">'+(pr.right>=9?"Expert level! Try a mock test.":pr.right>=7?"Strong! One more round to lock it in.":"Keep going. Every miss makes the next try easier.")+'</p><div class="row" style="justify-content:center"><button class="btn primary" type="button" id="prAgain">New round</button><button class="btn" type="button" data-showb="tests">Mock tests</button></div></div>';
+    $("#prAgain").onclick=()=>{pr=null; renderPractice();}; return;
+  }
+  const q=pr.qs[pr.i];
+  area.innerHTML='<div class="mono muted" style="font-size:13px;margin-bottom:8px">Question '+(pr.i+1)+' of 10 · '+esc(q.sec)+'</div>'+qHtml(q,"p")+'<div class="row" style="margin-top:12px"><button class="btn primary" type="button" id="prNext" hidden>Next →</button></div>';
+  const done=ans=>{ const ok=showFeedback(q,"p",ans); const w=wordFor(q); if(w) grade(w,ok);
+    if(ok){pr.right++;streak++; if(streak>S.streakBest)S.streakBest=streak; if(streak%5===0) toast("🔥 "+streak+" in a row!");} else streak=0;
+    save(); renderHeader(); $("#streak").textContent="🔥 "+streak+" · best "+S.streakBest; $("#prNext").hidden=false; $("#prNext").focus(); };
+  area.querySelectorAll(".opt").forEach(b=>b.onclick=()=>done(b.dataset.v));
+  const inp=$("#inp"); if(inp){ inp.focus(); area.querySelector(".row").insertAdjacentHTML("afterbegin",'<button class="btn" type="button" id="chk">Check</button>'); const go=()=>{ if(!inp.value.trim())return; $("#chk").remove(); done(inp.value); }; $("#chk").onclick=go; inp.onkeydown=e=>{if(e.key==="Enter")go();}; }
+  $("#prNext").onclick=()=>{pr.i++; renderPractice();};
+}
+
+/* ================= GRAMMAR ================= */
+function renderGrammar(){
+  const box=$("#v-grammar");
+  box.innerHTML=LESSONS.map(l=>{
+    const qs=GRAM.filter(g=>g.topic===l.id);
+    return '<div class="lesson panel" id="L-'+l.id+'"><div class="row" style="justify-content:space-between"><h3>'+esc(l.title)+'</h3>'+(S.lessons[l.id]?'<span class="done-pill">Done ✓</span>':'')+'</div><p style="margin:0">'+esc(l.body)+'</p><div class="ex">'+l.ex.map(e=>'<div><code>'+esc(e[0])+'</code><span class="arrow">→</span><b>'+esc(e[1])+'</b>'+spk(l.id==="question"||l.id==="au"?e[1]:e[0])+'</div>').join("")+'</div>'+
+      '<div class="label" style="margin-top:6px">Check yourself</div><div class="stack">'+qs.map((g,i)=>qHtml(qGram(g,Math.random),l.id+"-"+i)).join("")+'</div></div>';
+  }).join("");
+  LESSONS.forEach(l=>{
+    const qs=GRAM.filter(g=>g.topic===l.id); let answered=0, right=0;
+    qs.forEach((g,i)=>{ const id=l.id+"-"+i; const q={kind:"mc",a:g.a,why:g.why};
+      root.querySelectorAll('#q'+CSS.escape(id)+' .opt').forEach(b=>b.onclick=()=>{ const ok=showFeedback(q,id,b.dataset.v); answered++; if(ok)right++;
+        if(answered===qs.length){ if(right===qs.length){ S.lessons[l.id]=true; save(); toast("Lesson mastered ✓"); renderPlan(); } else toast(right+"/"+qs.length+". Reread the rule and try again tomorrow."); } }); });
+  });
+}
+
+/* ================= MOCK TESTS ================= */
+function renderTestMenu(){
+  $("#testMenu").hidden=false; $("#testArea").hidden=true;
+  const cards=[[1,"Mock Test 1","Target 80%+"],[2,"Mock Test 2","Target 80%+"],[3,"Mock Test 3","Target 90%+ (expert)"],[0,"Surprise test","New random questions every time"]];
+  $("#testCards").innerHTML=cards.map(([n,t,d])=>{const r=S.tests[n]; return '<button class="test-card" type="button" data-test="'+n+'"><span class="label">25 questions · about 15 min</span><h3>'+t+'</h3><span class="muted" style="font-size:14px">'+d+'</span><span class="mono" style="font-size:13px">'+(r?"Best "+r.best+"% · tries "+r.tries:"Not tried yet")+'</span></button>';}).join("");
+  root.querySelectorAll("[data-test]").forEach(b=>b.onclick=()=>startTest(+b.dataset.test));
+}
+function level(p){ return p>=80?["Level 4","Expert! Well beyond the standard."]:p>=70?["Level 3","Meets the standard. Push for Level 4!"]:p>=60?["Level 2","Getting there. Review your misses."]:p>=50?["Level 1","Keep practising with flashcards."]:["Not yet","Go back to flashcards, then retry."]; }
+let curTest=null;
+function startTest(n){
+  $("#testMenu").hidden=true; const area=$("#testArea"); area.hidden=false;
+  const qs=buildTest(n===0?Date.now():n*7919); curTest={n,qs,answers:{}};
+  let html='<div class="row" style="justify-content:space-between"><button class="btn small" type="button" id="tBack">← All tests</button><span class="mono muted" id="tProg">0 / 25 answered</span></div><h2 style="font-size:24px">'+(n?"Mock Test "+n:"Surprise test")+'</h2>';
+  let sec="";
+  qs.forEach((q,i)=>{ if(q.sec!==sec){sec=q.sec; html+='<div class="section-h"><h3>'+esc(sec)+'</h3></div>';} html+=qHtml(q,"t"+i,true).replace('<span class="num">Q'+("t"+i+1)+'</span>','<span class="num">Q'+(i+1)+'</span>'); });
+  html+='<div class="row"><button class="btn primary" type="button" id="submitT">Submit test</button><span class="muted" id="submitMsg" style="font-size:14px"></span></div>';
+  area.innerHTML=html; window.scrollTo({top:0});
+  const prog=()=>$("#tProg").textContent=Object.values(curTest.answers).filter(v=>String(v).trim()).length+" / 25 answered";
+  qs.forEach((q,i)=>{ const box=$("#qt"+i); box.querySelector(".num").textContent="Q"+(i+1);
+    box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ box.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",x===b)); curTest.answers[i]=b.dataset.v; prog(); });
+    const inp=box.querySelector("input"); if(inp) inp.oninput=()=>{curTest.answers[i]=inp.value; prog();};
+  });
+  $("#tBack").onclick=renderTestMenu;
+  let armed=false;
+  $("#submitT").onclick=()=>{
+    const left=25-Object.values(curTest.answers).filter(v=>String(v).trim()).length;
+    if(left&&!armed){ armed=true; $("#submitMsg").textContent=left+" unanswered. Tap Submit again to finish anyway."; return; }
+    gradeTest();
+  };
+}
+function gradeTest(){
+  const {n,qs,answers}=curTest; let right=0; const missed=[];
+  qs.forEach((q,i)=>{ const ans=answers[i]??""; const ok=showFeedback(q,"t"+i,ans); if(ok) right++; else missed.push(i);
+    $("#qt"+i).querySelectorAll(".opt").forEach(b=>b.onclick=null);
+    const w=wordFor(q); if(w) grade(w,ok); });
+  const p=Math.round(right/qs.length*100), [lv,msg]=level(p);
+  const r=S.tests[n]||{best:0,tries:0}; const newBest=p>r.best; S.tests[n]={best:Math.max(r.best,p),tries:r.tries+1,last:p};
+  save(); renderHeader();
+  $("#submitT").parentElement.remove();
+  $("#testArea").insertAdjacentHTML("afterbegin",'<div class="result"><div class="score mono">'+p+'%</div><div><div class="lvl">'+lv+'</div><div>'+right+' of '+qs.length+' correct. '+esc(msg)+(newBest?" New best score! 🏆":"")+'</div><div style="opacity:.8;font-size:14px;margin-top:6px">'+(missed.length?"Scroll down to review the "+missed.length+" red questions. Those words are back in your flashcards.":"Perfect score. You're a Section B expert!")+'</div><div class="row" style="margin-top:10px"><button class="btn small" type="button" id="retry">Try '+(n?"this test":"another")+' again</button><button class="btn small" type="button" id="toMenu">All tests</button></div></div></div>');
+  $("#retry").onclick=()=>startTest(n); $("#toMenu").onclick=renderTestMenu;
+  window.scrollTo({top:0,behavior:"smooth"});
+  toast(p>=80?"Level 4! 🎉":"Score saved: "+p+"%");
+}
+
+/* ================= WORD LIST ================= */
+function renderWords(){
+  let h="";
+  [1,2,3].forEach(n=>{ h+='<tr class="set-h"><td colspan="5">Set '+n+'</td></tr>';
+    VOC.filter(w=>w.set===n).forEach(w=>{ const s=ws(w); h+='<tr><td>'+spk(w.fr)+'</td><td class="fr">'+esc(w.fr)+'</td><td>'+esc(w.en.slice(0,3).join(" / "))+'</td><td class="hook">'+esc(w.hook)+'</td><td><span class="boxes">'+[1,2,3,4].map(i=>'<i class="'+(s.seen&&s.b>=i?"on":"")+'"></i>').join("")+'</span></td></tr>'; }); });
+  $("#wordRows").innerHTML=h;
+}
+
+/* ================= NAV ================= */
+let view="plan";
+function show(v){
+  view=v;
+  root.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.view===v));
+  ["plan","cards","practice","grammar","tests","words"].forEach(x=>$("#v-"+x).hidden=x!==v);
+  if(v==="plan") renderPlan();
+  if(v==="cards"){ buildQueue(); renderCards(); }
+  if(v==="practice") renderPractice();
+  if(v==="grammar") renderGrammar();
+  if(v==="tests") renderTestMenu();
+  if(v==="words") renderWords();
+  try{ localStorage.setItem(KEY+"-view",v);}catch(e){}
+}
+root.querySelectorAll(".tab").forEach(t=>t.onclick=()=>show(t.dataset.view));
+root.addEventListener("click",e=>{const b=e.target.closest("[data-showb]"); if(b) show(b.dataset.showb);});
+let tt; function toast(m){const t=$("#tToast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2400);}
+
+window.FRB={
   get:()=>S,
   apply:d=>{ S=Object.assign({words:{},tests:{},lessons:{},testDate:null,streakBest:0},d); try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} renderHeader(); if(view==="plan")renderPlan(); if(view==="words")renderWords(); if(view==="tests"&&!$("#testMenu").hidden)renderTestMenu(); },
   hasData:()=>Object.keys(S.words).length>0||Object.keys(S.tests).length>0||!!S.video||!!S.testDate
@@ -5092,6 +5793,7 @@ window.QUEST_CH=channel('progress/quest', ()=>store,
   d=>{ store=Object.assign({state:{},custom:[],dueOverride:{},deleted:{}}, d); try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} renderAll(); },
   ()=>Object.keys(store.state).length>0||store.custom.length>0||Object.keys(store.deleted||{}).length>0);
 window.FR_CH=channel('progress/french', ()=>window.FR.get(), d=>window.FR.apply(d), ()=>window.FR.hasData());
+window.FRB_CH=channel('progress/frenchb', ()=>window.FRB.get(), d=>window.FRB.apply(d), ()=>window.FRB.hasData());
 window.ROOTS_CH=channel('progress/roots', ()=>window.ROOTS.get(), d=>window.ROOTS.apply(d), ()=>window.ROOTS.hasData());
 window.VOICE_CH=channel('progress/voice', ()=>window.VOICE.get(), d=>window.VOICE.apply(d), ()=>window.VOICE.hasData());
 window.MATH_CH=channel('progress/math', ()=>window.MATH.get(), d=>window.MATH.apply(d), ()=>window.MATH.hasData());
@@ -5102,9 +5804,10 @@ window.FRAC_CH=channel('progress/fractions', ()=>window.FRAC.get(), d=>window.FR
   SYNC.db=db; setSync('online');
   document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
   $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
-  await QUEST_CH.attach(); await FR_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach();
+  await QUEST_CH.attach(); await FR_CH.attach(); await FRB_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach();
 })();
 if(location.hash==='#french') showScreen('french');
+if(location.hash==='#frenchb') showScreen('frenchb');
 if(location.hash==='#roots') showScreen('roots');
 if(location.hash==='#voice') showScreen('voice');
 if(location.hash==='#math') showScreen('math');
