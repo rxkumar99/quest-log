@@ -7,7 +7,7 @@
 <script>try{document.documentElement.setAttribute('data-skin',localStorage.getItem('ql-skin')||'classic')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:wght@400;700&family=Lora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:wght@400;700&family=Lora:wght@500;600;700&family=Noto+Music&display=swap">
 <style>
 :root{
   color-scheme: light;
@@ -1224,6 +1224,259 @@ html[data-skin="night"] #fracApp{--fr-accent-ink:#0B1530}
 #fracApp .choice .fr{font-size:.95em}
 
 
+/* ================= MUSIC THEORY TRAINER (copy of the Fractions Trainer styles; scoped; follows the Quest Log theme) ================= */
+#musApp{
+  --fr-accent:var(--s-math); --fr-accent-ink:#FFFFFF; --fr-soft:color-mix(in srgb,var(--s-math) 12%,var(--surface));
+  background:var(--bg); color:var(--ink); font:17px/1.55 var(--body);
+  margin-inline:-16px; padding-inline:16px; padding-block:6px 56px; min-height:100vh;
+}
+html[data-skin="night"] #musApp{--fr-accent-ink:#0B1530}
+#musApp .fr-wrap{max-width:820px;margin:0 auto}
+#musApp h1,#musApp h2,#musApp h3,#musApp .fbh{font-family:var(--display);text-wrap:balance;margin:0}
+#musApp :focus-visible{outline:3px solid var(--fr-accent);outline-offset:2px;border-radius:6px}
+#musApp .eyebrow{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+#musApp .fr-back{font-weight:600;text-decoration:none;font-size:14px;color:var(--fr-accent);display:inline-block;margin-bottom:6px}
+#musApp .hero{display:grid;gap:10px;padding-block:6px 14px}
+#musApp .hero h1{font-size:clamp(1.9rem,6vw,2.8rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+#musApp .hl{background:linear-gradient(transparent 58%,var(--gold) 58%,var(--gold) 92%,transparent 92%);padding-inline:.06em}
+#musApp .lede{margin:0;max-width:64ch;color:var(--muted)}
+#musApp .btn{appearance:none;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;min-height:44px}
+#musApp .btn:hover:not(:disabled){border-color:var(--fr-accent)}
+#musApp .btn.primary{background:var(--fr-accent);border-color:var(--fr-accent);color:var(--fr-accent-ink)}
+#musApp .btn.primary:hover{filter:brightness(1.07)}
+#musApp .btn.ghost{background:transparent}
+#musApp .btn.small{padding:6px 12px;min-height:34px;font-size:13.5px}
+#musApp .btn:disabled{opacity:.45;cursor:default}
+#musApp .link{appearance:none;background:none;border:0;color:var(--fr-accent);font:inherit;font-weight:700;cursor:pointer;padding:6px 0}
+#musApp .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#musApp .cta{display:flex;flex-wrap:wrap;gap:10px}
+/* stats strip */
+#musApp .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#musApp .st{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+#musApp .st b{font-family:var(--mono);font-size:1.25rem;line-height:1.1}
+#musApp .st span{font-size:.78rem;color:var(--muted);font-weight:600}
+#musApp .xpbar{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin-top:4px}
+#musApp .xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--fr-accent))}
+/* warm-up card */
+#musApp .warm{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--ink);color:var(--bg);border-radius:16px;padding:16px 18px;margin-top:14px}
+#musApp .warm .ico{font-size:2rem}
+#musApp .warm h2{font-size:1.2rem}
+#musApp .warm p{margin:2px 0 0;font-size:.9rem;opacity:.85}
+#musApp .warm .btn{background:var(--gold);border-color:var(--gold);color:#1B1B1B}
+#musApp .sec{font-size:1.25rem;font-weight:800;margin:22px 0 10px}
+/* section cards */
+#musApp .secs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+#musApp .scard{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px;text-align:left;cursor:pointer;font:inherit;color:inherit;appearance:none}
+#musApp .scard:hover{border-color:var(--fr-accent)}
+#musApp .scard.done{border-color:var(--good);box-shadow:0 0 0 2px color-mix(in srgb,var(--good) 25%,transparent)}
+#musApp .scard .top{display:flex;gap:10px;align-items:center}
+#musApp .scard .badge{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-family:var(--display);font-weight:800;background:var(--fr-soft);color:var(--fr-accent);flex:none}
+#musApp .scard.done .badge{background:var(--good);color:#fff}
+#musApp .scard .nm{font-family:var(--display);font-weight:800;font-size:1.02rem;line-height:1.2}
+#musApp .scard .ls{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.04em}
+#musApp .pips{display:flex;gap:6px;flex-wrap:wrap}
+#musApp .pip{font-size:.74rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+#musApp .pip.on{background:var(--good-soft);color:var(--good)}
+#musApp .meter{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+#musApp .meter i{display:block;height:100%;background:var(--fr-accent)}
+/* exams */
+#musApp .exams{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+#musApp .ecard{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:4px;text-align:left;font:inherit;color:inherit;cursor:pointer;appearance:none}
+#musApp .ecard:hover:not(:disabled){border-color:var(--fr-accent)}
+#musApp .ecard:disabled{opacity:.55;cursor:default}
+#musApp .ecard.final{grid-column:1/-1;background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:var(--gold)}
+#musApp .ecard b{font-family:var(--display);font-size:1.05rem}
+#musApp .ecard small{color:var(--muted);font-size:.8rem}
+#musApp .ecard .sc{font-family:var(--mono);font-size:.82rem}
+#musApp .ecard .sc.pass{color:var(--good);font-weight:700}
+#musApp .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+#musApp .bdg{border:1.5px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:2px;background:var(--surface);font-size:.85rem}
+#musApp .bdg.off{opacity:.45}
+#musApp .bdg .e{font-size:1.5rem}
+#musApp .bdg b{font-size:.92rem}
+#musApp .foot{color:var(--muted);font-size:.85rem;margin-top:16px}
+/* section page + refresher */
+#musApp .steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+#musApp .step{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px}
+#musApp .step.ok{border-color:var(--good)}
+#musApp .step .n{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-weight:700}
+#musApp .step b{font-family:var(--display)}
+#musApp .card{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px;box-shadow:var(--shadow)}
+#musApp .ideas{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+#musApp .ideas li{border-left:4px solid var(--fr-accent);background:var(--fr-soft);border-radius:0 10px 10px 0;padding:8px 12px}
+#musApp .ideas li.warn{border-left-color:var(--gold);background:var(--gold-soft)}
+#musApp .ex{background:var(--surface-2);border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:.97rem}
+#musApp .ex .t{font-weight:700}
+#musApp .ex code,#musApp .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#musApp .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+#musApp .flip{appearance:none;font:inherit;color:inherit;text-align:left;border:1.5px dashed var(--fr-accent);background:var(--surface);border-radius:12px;padding:12px;min-height:84px;cursor:pointer;display:grid;gap:6px;align-content:start}
+#musApp .flip .q{font-weight:700}
+#musApp .flip .a{display:none;color:var(--good);font-weight:700}
+#musApp .flip.open{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+#musApp .flip.open .a{display:block}
+#musApp .flip .tap{font-size:.78rem;color:var(--muted)}
+#musApp .flip.open .tap{display:none}
+#musApp table.pfx{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+#musApp table.pfx td,#musApp table.pfx th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
+#musApp table.pfx th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#musApp table.pfx tr.hi td{background:var(--gold-soft);font-weight:700}
+#musApp .tbl{overflow-x:auto}
+/* quiz */
+#musApp .qbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#musApp .prog{flex:1;min-width:160px;display:grid;gap:4px;font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+#musApp .pbar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+#musApp .pbar i{display:block;height:100%;background:var(--fr-accent);transition:width .3s}
+#musApp .score{font-family:var(--mono);font-size:.86rem}
+#musApp .streak{background:var(--gold);color:#1B1B1B;padding:1px 6px;border-radius:4px;font-weight:700}
+#musApp .qcard{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px;display:grid;gap:14px;min-width:0}
+#musApp .qcard .tag{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:6px;background:var(--gold-soft);color:var(--ink);margin-left:6px}
+#musApp .prompt{font-size:1.15rem;line-height:1.6;min-width:0}
+#musApp .big{display:block;margin-top:8px;font-family:var(--mono);font-weight:700;font-size:1.45rem;overflow-wrap:anywhere}
+#musApp .rad{white-space:nowrap}
+#musApp .ov{border-top:2px solid currentColor;padding:0 2px}
+#musApp sup{font-size:.72em}
+#musApp .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+#musApp .choice{appearance:none;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;font:inherit;font-size:1.02rem;text-align:left;min-height:50px}
+#musApp .choice.sym{text-align:center;font-family:var(--mono);font-size:1.5rem;font-weight:700}
+#musApp .choice:hover:not(:disabled){border-color:var(--fr-accent);background:var(--fr-soft)}
+#musApp .choice.sel{border-color:var(--fr-accent);background:var(--fr-soft)}
+#musApp .choice.picked-ok{border-color:var(--good);background:var(--good-soft)}
+#musApp .choice.picked-no{border-color:var(--danger);background:var(--danger-soft)}
+#musApp .choice.right{border-color:var(--good);border-width:2.5px}
+#musApp .choice:disabled{cursor:default}
+#musApp .ansrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#musApp .nb{display:inline-flex;align-items:stretch;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+#musApp .nb:focus-within{border-color:var(--fr-accent);box-shadow:0 0 0 3px var(--fr-soft)}
+#musApp .pm{appearance:none;border:0;border-right:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);width:42px;font-family:var(--mono);font-size:1.15rem;cursor:pointer}
+#musApp .num{border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:1.2rem;font-weight:700;padding:10px 12px;width:12ch;min-width:0;outline:none}
+#musApp .num.wide{width:18ch}
+#musApp .num.exp{width:5ch}
+#musApp .sciin{display:inline-flex;align-items:center;gap:6px;flex-wrap:nowrap;font-family:var(--mono);font-size:1.2rem;font-weight:700}
+#musApp .num.coef{width:8ch}
+#musApp .foot{text-align:left}
+#musApp .sciin .ten{display:inline-flex;align-items:flex-start;gap:2px}
+#musApp .sciin .ten .nb{transform:translateY(-10px)}
+#musApp .unit{font-family:var(--mono);color:var(--muted)}
+#musApp .tray{display:flex;gap:8px;flex-wrap:wrap;min-height:52px;padding:8px;border:1.5px dashed var(--line);border-radius:12px}
+#musApp .tray.ans{border-color:var(--fr-accent);background:var(--fr-soft)}
+#musApp .chip{appearance:none;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-family:var(--mono);font-weight:700;cursor:pointer}
+#musApp .chip:hover:not(:disabled){border-color:var(--fr-accent)}
+#musApp .chip .ix{font-size:.7rem;color:var(--muted);margin-right:4px}
+#musApp .lt{align-self:center;color:var(--muted);font-family:var(--mono)}
+#musApp .hint{background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-size:.97rem}
+#musApp .msg{color:var(--danger);font-size:.92rem;min-height:1.2em;margin:0}
+#musApp .fb{border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+#musApp .fb p{margin:0}
+#musApp .fb.ok{background:var(--good-soft)}
+#musApp .fb.no{background:var(--danger-soft)}
+#musApp .fbh{font-size:1.2rem;font-weight:800}
+#musApp .fb.ok .fbh{color:var(--good)} #musApp .fb.no .fbh{color:var(--danger)}
+#musApp .watch{background:var(--gold-soft);border-radius:8px;padding:8px 12px}
+#musApp ol.steps{margin:0;padding:0 0 0 22px;display:grid;gap:6px}
+#musApp details summary{cursor:pointer;font-weight:700}
+#musApp details[open] summary{margin-bottom:8px}
+#musApp .added{font-size:.9rem;color:var(--muted);font-style:italic}
+#musApp mark{background:var(--gold);color:#1B1B1B;padding:0 3px;border-radius:3px}
+#musApp .xpf{font-family:var(--mono);font-weight:700;color:var(--fr-accent)}
+/* results */
+#musApp .end{display:grid;gap:14px}
+#musApp .bigscore{font-family:var(--display);font-weight:800;font-size:clamp(3rem,13vw,4.6rem);line-height:1}
+#musApp .bkrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+#musApp .bkrow span:last-child{font-family:var(--mono)}
+#musApp .rv{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px;background:var(--surface)}
+#musApp .rv.no{border-color:var(--danger)}
+#musApp .rv .h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+#musApp .rv .qn{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-weight:700}
+#musApp .timer{font-family:var(--mono);font-size:.86rem;color:var(--muted)}
+#musApp .lock{font-size:.78rem;color:var(--muted)}
+@media (max-width:560px){#musApp{font-size:16px}#musApp .stats{grid-template-columns:repeat(2,minmax(0,1fr))}#musApp .steps3{grid-template-columns:1fr}#musApp .warm{grid-template-columns:auto minmax(0,1fr)}#musApp .warm .btn{grid-column:1/-1}#musApp .qcard{padding:16px}}
+@media (prefers-reduced-motion:no-preference){#musApp .fb{animation:frRise .25s ease-out}@keyframes frRise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}}
+/* ---------- calmer navigation: compact top bar, tabs, rows, collapsible refreshers, pinned actions ---------- */
+#musApp .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:4px 6px}
+#musApp .topbar .fr-back{margin:0}
+#musApp .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#musApp .chipx{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+#musApp .chipx.warn{background:var(--gold-soft);border-color:var(--gold)}
+#musApp .fr-title{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:2px 0 0}
+#musApp .fr-title.sm{font-size:clamp(1.35rem,4.2vw,1.8rem)}
+#musApp .sub1{margin:4px 0 12px;color:var(--muted);font-size:.92rem}
+#musApp .muted{margin:0 0 8px;color:var(--muted);font-size:.9rem}
+#musApp .mtabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:12px;margin-bottom:14px;overflow-x:auto}
+#musApp .mtab{flex:1;appearance:none;border:0;background:transparent;font:inherit;font-weight:700;font-size:.92rem;color:var(--muted);padding:8px 10px;border-radius:9px;cursor:pointer;white-space:nowrap}
+#musApp .mtab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#musApp .tabbody{display:grid;gap:10px}
+#musApp .next{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:2px solid var(--fr-accent);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+#musApp .next .ico{font-size:2rem}
+#musApp .next h2{font-size:1.15rem;margin-top:2px}
+#musApp .next p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+#musApp .row-btn,#musApp .lrow{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+#musApp .row-btn:hover,#musApp .lrow:hover:not(:disabled){border-color:var(--fr-accent)}
+#musApp .row-btn small,#musApp .lrow small{display:block;color:var(--muted);font-size:.82rem;font-weight:500}
+#musApp .row-btn>span:first-child{font-size:1.4rem}
+#musApp .chev{color:var(--muted);font-size:1.3rem;line-height:1}
+#musApp .path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#musApp .path>div{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:4px}
+#musApp .path b{font-family:var(--mono);font-size:1.15rem}
+#musApp .path span{font-size:.78rem;color:var(--muted);font-weight:600}
+#musApp .list{display:grid;gap:8px}
+#musApp .lrow{grid-template-columns:auto minmax(0,1fr) auto auto}
+#musApp .lrow:disabled{opacity:.55;cursor:default}
+#musApp .lrow.done{border-color:var(--good)}
+#musApp .lrow.final{background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:var(--gold)}
+#musApp .lno{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.9rem;background:var(--fr-soft);color:var(--fr-accent)}
+#musApp .lrow.done .lno{background:var(--good);color:#fff}
+#musApp .lname b{font-family:var(--display);font-size:1rem;line-height:1.25}
+#musApp .dots{display:flex;gap:4px}
+#musApp .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.62rem;font-weight:800;color:#fff}
+#musApp .dot.on{background:var(--good);border-color:var(--good)}
+#musApp .stepline{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+#musApp .stepline span{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+#musApp .stepline span.ok{background:var(--good-soft);color:var(--good)}
+#musApp details.acc{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+#musApp details.acc>summary{font-family:var(--display);font-weight:800;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+#musApp details.acc>summary::-webkit-details-marker{display:none}
+#musApp details.acc>summary::after{content:"＋";color:var(--muted);font-weight:700}
+#musApp details.acc[open]>summary::after{content:"−"}
+#musApp details.acc[open]>summary{margin-bottom:10px}
+#musApp details.acc .ex{margin-bottom:8px}
+#musApp .dock{position:sticky;bottom:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));margin-top:6px;background:linear-gradient(to top,var(--bg) 75%,transparent)}
+#musApp .dock .btn{flex:1;min-width:140px}
+#musApp .qcard #mu-actions{position:sticky;bottom:0;z-index:3;background:var(--surface);padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));margin-block:-8px}
+#musApp .multi{display:flex;flex-wrap:wrap;gap:8px}
+#musApp .mchip{appearance:none;font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:9px 16px;cursor:pointer}
+#musApp .mchip[aria-pressed="true"]{background:var(--fr-accent);border-color:var(--fr-accent);color:var(--fr-accent-ink)}
+#musApp .mchip[aria-pressed="true"]::before{content:"✓ "}
+#musApp .mchip:disabled{cursor:default}
+@media (max-width:560px){#musApp .next{grid-template-columns:auto minmax(0,1fr)}#musApp .next .btn{grid-column:1/-1}#musApp .path{grid-template-columns:repeat(3,minmax(0,1fr))}#musApp .path span{font-size:.7rem}#musApp .dots{display:none}}
+/* ---------- fractions: stacked display and the whole / numerator / denominator answer boxes ---------- */
+#musApp .fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;margin:0 .1em;font-variant-numeric:tabular-nums;font-size:.92em}
+#musApp .fr>span{padding:0 .18em}
+#musApp .fr>span:first-child{border-bottom:2px solid currentColor}
+#musApp .mxn{white-space:nowrap;display:inline-flex;align-items:center;gap:.06em;vertical-align:middle}
+#musApp .big{line-height:1.3}
+#musApp .ideas .fr,#musApp .flip .fr,#musApp .ex .fr,#musApp ol.steps .fr{font-size:.85em}
+#musApp .fin{display:inline-flex;align-items:center;gap:10px}
+#musApp .fin .num{border:1.5px solid var(--line);border-radius:10px;background:var(--surface);width:5ch;text-align:center;padding:8px 4px}
+#musApp .fin .num:focus{border-color:var(--fr-accent);box-shadow:0 0 0 3px var(--fr-soft)}
+#musApp .fin .whole{width:4.5ch;font-size:1.6rem;padding-block:14px}
+#musApp .fstack{display:inline-flex;flex-direction:column;gap:5px;align-items:stretch}
+#musApp .fstack i{display:block;height:3px;background:var(--ink);border-radius:2px}
+#musApp .ansrow .nb .num{width:9ch}
+#musApp .choice .fr{font-size:.95em}
+
+
+#musApp .mus{font-family:'Noto Music',serif;font-weight:400;font-size:1.3em;line-height:1;font-style:normal}
+#musApp .big{font-family:inherit;font-size:1.9rem;margin-top:12px}
+#musApp .big .mus{font-size:1.6em}
+#musApp .choice.sym{font-family:inherit;font-weight:400;font-size:1.25rem}
+#musApp .choice .mus{font-size:1.4em}
+#musApp .mterm{font-family:var(--serif,'Lora',serif);font-style:italic;font-weight:600}
+#musApp .art{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1}
+#musApp .art .mk{display:flex;flex-direction:column;align-items:center;font-family:Arial,sans-serif;font-weight:900;font-size:1.15em;line-height:.85;margin-bottom:-.05em}
+#musApp .choice .art .mk,#musApp .big .art .mk{font-size:1.5em}
+#musApp .trip{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1}
+#musApp .trip small{font-style:italic;font-weight:800;font-size:.75em}
+#musApp .tfl{display:inline-block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:var(--muted);margin-right:6px}
 /* ================= DIVIDING FRACTIONS TRAINER (Lessons 3.2–3.3, copy of the Fractions Trainer; scoped; follows the Quest Log theme) ================= */
 #frac2App{
   --fr-accent:var(--s-math); --fr-accent-ink:#FFFFFF; --fr-soft:color-mix(in srgb,var(--s-math) 12%,var(--surface));
@@ -1838,6 +2091,7 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
           <a class="theme-opt" role="menuitem" href="#math"><span class="pi">➗</span><span>Math Mastery<small>Chapters 1–2 · lessons, exams, daily warm-up</small></span></a>
           <a class="theme-opt" role="menuitem" href="#fractions"><span class="pi">½</span><span>Fractions<small>Chapter 3 recall + Lesson 3.1 · exams</small></span></a>
           <a class="theme-opt" role="menuitem" href="#fractions32"><span class="pi">÷</span><span>Dividing Fractions<small>Lessons 3.2 + 3.3 · due Tue Nov 10</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#music"><span class="pi">🎵</span><span>Music Theory<small>Six answer sheets · test Fri Nov 13</small></span></a>
           <a class="theme-opt" role="menuitem" href="#roots"><span class="pi">√</span><span>Square Root Trainer<small>Lesson 1.1 extra practice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#voice"><span class="pi">✍️</span><span>Voice Trainer<small>Active &amp; passive voice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#french"><span class="pi">🇫🇷</span><span>French · Section A<small>Flashcards &amp; mock tests</small></span></a>
@@ -2251,6 +2505,10 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
 <div class="fr-wrap"><main id="f2-app"></main></div>
 </div>
 
+<div id="musApp" hidden>
+<div class="fr-wrap"><main id="mu-app"></main></div>
+</div>
+
 <div id="mathApp" hidden>
 <div class="mt-wrap"><main id="mt-app"></main></div>
 </div>
@@ -2379,6 +2637,15 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
   });
   ['math-3-2','math-3-3'].forEach(id=>{ const t=BUILT_IN.find(x=>x.id===id); if(t && !(t.links||[]).some(l=>l.url==='#fractions32')) t.links=[...(t.links||[]),link]; });
   if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-frac32-trainer')) NEWS.unshift({id:'n-frac32-trainer', date:'2026-11-07', kind:'assignment', title:'Math: Dividing Fractions Trainer (Lessons 3.2 + 3.3), due Tue Nov 10', detail:'Refresher, practice and a test for each topic, then three practice exams and the Final. Every wrong answer explains what went wrong.', open:'math-3-2-3-3-practice'});
+})();
+/* ---------- Music Theory Test: link the Music Theory Trainer ----------
+   The Classroom steps stay as they are (sheets 1–6, flashcards, quiz yourself); the trainer ticks them. */
+(function(){
+  if(typeof BUILT_IN==='undefined') return;
+  const t=BUILT_IN.find(x=>x.id==='music-theory-test'); if(!t) return;
+  const link={label:'Music Theory Trainer: all six answer sheets, practice and mock tests', url:'#music', kind:'STUDY'};
+  t.links=[link,...(t.links||[]).filter(l=>l.url!=='#music')];
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-music-trainer')) NEWS.unshift({id:'n-music-trainer', date:'2026-11-07', kind:'assignment', title:'Music: Music Theory Trainer is ready (test Fri Nov 13)', detail:'Built from Ms. Streiter’s six answer sheets: refreshers, practice, topic tests and mock tests with 10 True or False + 10 Multiple Choice, like the real test.', open:'music-theory-test'});
 })();
 /* ---------- French Section B assignment ----------
    The Classroom data has the Section B task; point it at the trainer and use steps the trainer can tick. */
@@ -2942,6 +3209,11 @@ window.QL={
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
     if(changed){ save(); renderAll(); }
   },
+  musicProgress(marks){
+    const s=st('music-theory-test'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(changed){ save(); renderAll(); }
+  },
   frac32Progress(marks){
     const s=st('math-3-2-3-3-practice'); s.steps=s.steps||[]; let changed=false;
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
@@ -2956,7 +3228,7 @@ window.QL={
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#frac2App').hidden=name!=='fractions32'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#frac2App').hidden=name!=='fractions32'; $('#musApp').hidden=name!=='music'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
@@ -2967,10 +3239,11 @@ function showScreen(name){
   if(name==='math' && window.MATH) MATH.show();
   if(name==='fractions' && window.FRAC) FRAC.show();
   if(name==='fractions32' && window.FRAC2) FRAC2.show();
+  if(name==='music' && window.MUS) MUS.show();
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#fractions32"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#fractions32"],a[href="#music"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -7144,6 +7417,626 @@ window.FRAC2={
 home();
 })();
 
+/* ================= MUSIC THEORY TRAINER · questions =================
+   Built from Ms. Streiter's six answer sheets (Music Theory Answers for Studying). Every question is
+   multiple choice or True/False, like the class test (10 True or False + 10 Multiple Choice). */
+const MUSG=(function(){
+const R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const coin=p=>Math.random()<(p==null?.5:p);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ol=a=>'<ol class="steps">'+a.filter(Boolean).map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---------- drawing symbols (Noto Music font) ---------- */
+const G=s=>`<span class="mus">${s}</span>`;
+const DL={p:'𝆏',m:'𝆐',f:'𝆑',s:'𝆍',z:'𝆎'};
+const dyn=t=>`<span class="mus dyn">${[...t].map(c=>DL[c]||c).join('')}</span>`;
+const ital=t=>`<i class="mterm">${t}</i>`;
+const N={w:'𝅝',h:'𝅗𝅥',q:'𝅘𝅥',e:'𝅘𝅥𝅮',s:'𝅘𝅥𝅯',dot:'𝅭',ee:'♫',ss:'♬'};
+const RS={w:'𝄻',h:'𝄼',q:'𝄽',e:'𝄾',s:'𝄿'};
+const art=(marks,note)=>`<span class="art"><span class="mk">${marks.map(m=>`<b>${m}</b>`).join('')}</span>${G(note||N.q)}</span>`;
+const trip=()=>`<span class="trip"><small>3</small>${G(N.e+N.e+N.e)}</span>`;
+/* beats as text: 0.25 → ¼, 1.5 → 1½ */
+function bt(x){const w=Math.floor(x),f=x-w,fs={0.25:'¼',0.5:'½',0.75:'¾'}[f]||'';return (w||!fs?String(w):'')+fs}
+const beatsTxt=x=>`${bt(x)} beat${x<=1?'':'s'}`;
+
+/* ---------- content from the six answer sheets ---------- */
+/* 1. Notes, rests, staff and clefs */
+const NOTES=[
+  {id:'nw',name:'whole note',sym:G(N.w),beats:4},{id:'nh',name:'half note',sym:G(N.h),beats:2},{id:'nq',name:'quarter note',sym:G(N.q),beats:1},
+  {id:'ne',name:'eighth note',sym:G(N.e),beats:.5},{id:'ns',name:'sixteenth note',sym:G(N.s),beats:.25},
+  {id:'rw',name:'whole rest',sym:G(RS.w),beats:4,rest:1},{id:'rh',name:'half rest',sym:G(RS.h),beats:2,rest:1},{id:'rq',name:'quarter rest',sym:G(RS.q),beats:1,rest:1},
+  {id:'re',name:'eighth rest',sym:G(RS.e),beats:.5,rest:1},{id:'rs',name:'sixteenth rest',sym:G(RS.s),beats:.25,rest:1}];
+const STAFF=[
+  {id:'tc',name:'treble clef',sym:G('𝄞'),mean:'the G clef, for higher notes'},{id:'bc',name:'bass clef',sym:G('𝄢'),mean:'the F clef, for lower notes'},
+  {id:'cc',name:'C clef',sym:G('𝄡'),mean:'a movable clef that marks middle C'},
+  {id:'sh',name:'sharp',sym:G('♯'),mean:'raises a note by a half step'},{id:'fl',name:'flat',sym:G('♭'),mean:'lowers a note by a half step'},
+  {id:'na',name:'natural',sym:G('♮'),mean:'cancels a sharp or a flat'},
+  {id:'st',name:'staff',sym:G('𝄚'),mean:'5 lines and 4 spaces that music is written on'},
+  {id:'bl',name:'barline',sym:G('𝄀'),mean:'divides the music into measures'},{id:'db',name:'double barline',sym:G('𝄁'),mean:'marks the end of a section'},
+  {id:'fb',name:'final barline',sym:G('𝄂'),mean:'marks the end of the piece'}];
+/* look-alikes that get mixed up */
+const LOOK={rw:'rh',rh:'rw',nw:'nh',nh:'nw',ne:'ns',ns:'ne',re:'rs',rs:'re',rq:'re',tc:'bc',bc:'tc',cc:'bc',sh:'na',na:'sh',fl:'na',db:'fb',fb:'db',bl:'db',nq:'ne',st:'bl'};
+const TIP={rw:'The whole rest hangs <b>down</b> from a line (it is heavier, 4 beats). The half rest sits <b>on top</b> of a line like a hat.',
+  rh:'The half rest sits <b>on top</b> of a line like a hat. The whole rest hangs <b>down</b> from a line (it is heavier, 4 beats).',
+  nw:'A whole note is an open oval with <b>no stem</b>; a half note is open <b>with a stem</b>.',nh:'A half note is open <b>with a stem</b>; a whole note has no stem.',
+  ne:'Count the flags: 1 flag = eighth, 2 flags = sixteenth.',ns:'Count the flags: 1 flag = eighth, 2 flags = sixteenth.',
+  re:'Count the flags on the rest: 1 = eighth rest, 2 = sixteenth rest.',rs:'Count the flags on the rest: 1 = eighth rest, 2 = sixteenth rest.',
+  tc:'The treble clef curls around the G line; the bass clef has two dots around the F line.',bc:'The bass clef has two dots around the F line; the treble clef curls around the G line.',
+  sh:'A sharp looks like a hashtag #; a natural is a box with two tails ♮.',na:'A natural is a box with two tails; a sharp looks like a hashtag.',fl:'A flat looks like a small b.',
+  db:'Double barline: two thin lines (end of a section). Final barline: thin + thick (end of the piece).',fb:'Final barline: thin + thick line (the end). Double barline: two thin lines.'};
+
+/* 2. Expressions I */
+const EXPR=[['legato','smoothly'],['marcato','accented, separated'],['tutti','all play'],['espressivo','expressive'],['dolce','sweetly, softly'],['leggiero','lightly'],
+  ['a2','two parts playing in unison'],['simile','in the same way'],['sempre','always'],['subito','suddenly'],['meno mosso','less quickly'],['cantabile','singing'],['pesante','heavily']];
+
+/* 3. Articulations */
+const ARTS=[
+  {id:'acc',name:'accent',sym:art(['&gt;']),mean:'accented: play the note louder'},
+  {id:'sta',name:'staccato',sym:art(['•']),mean:'play the note shorter than written'},
+  {id:'mar',name:'marcato',sym:art(['^']),mean:'very accented and separated'},
+  {id:'ten',name:'tenuto',sym:art(['–']),mean:'hold the note for its full value'},
+  {id:'tre',name:'tremolo',sym:G('𝅘𝅩𝅥'),mean:'repeat the note very quickly (the slashes on the stem)'},
+  {id:'act',name:'accent + tenuto',sym:art(['&gt;','–']),mean:'accented and held to full value'},
+  {id:'tst',name:'tenuto + staccato',sym:art(['–','•']),mean:'play full value but detached'},
+  {id:'sac',name:'staccato + accent',sym:art(['&gt;','•']),mean:'short and accented'},
+  {id:'brm',name:'breath mark',sym:`<span class="art">${G(N.q)}${G('𝄒')}</span>`,mean:'take a breath (or a short break) here'}];
+/* 3. Matching II: symbol or word → meaning */
+const MATCH=[
+  {t:dyn('pp'),k:'pp',m:'pianissimo'},{t:ital('Adagio'),k:'Adagio',m:'slow, at ease'},{t:ital('espressivo'),k:'espressivo',m:'expressive'},
+  {t:G('𝄉'),k:'D.S.',m:'dal segno: go back to the sign 𝄋'},{t:G('♯'),k:'♯',m:'sharp'},{t:dyn('f'),k:'f',m:'forte'},
+  {t:G('𝄐'),k:'fermata',m:'fermata: hold the note longer'},{t:dyn('fp'),k:'fp',m:'forte piano'},{t:dyn('sfz'),k:'sfz',m:'sforzando'},
+  {t:G('𝄌'),k:'coda',m:'coda sign: jump to the ending section'},{t:G('𝄊'),k:'D.C.',m:'da capo: go back to the beginning'},{t:ital('Moderato'),k:'Moderato',m:'medium tempo'},
+  {t:ital('Allegro'),k:'Allegro',m:'fast, cheerful'},{t:dyn('ff'),k:'ff',m:'fortissimo'},{t:ital('meno mosso'),k:'meno mosso',m:'less quickly'},
+  {t:dyn('p'),k:'p',m:'piano'},{t:G('♮'),k:'♮',m:'natural'},{t:ital('Andante'),k:'Andante',m:'walking tempo'}];
+
+/* 4. Dynamic markings I + II */
+const DYNM=[
+  {t:G('𝆒'),k:'crescendo',m:'getting louder'},{t:G('𝆓'),k:'decrescendo',m:'getting softer'},
+  {t:dyn('mf'),k:'mf',m:'medium loud',it:'mezzo forte'},{t:dyn('mp'),k:'mp',m:'medium soft',it:'mezzo piano'},
+  {t:dyn('p'),k:'p',m:'soft',it:'piano'},{t:dyn('f'),k:'f',m:'loud',it:'forte'},{t:dyn('pp'),k:'pp',m:'very soft',it:'pianissimo'},
+  {t:dyn('ff'),k:'ff',m:'very loud',it:'fortissimo'},{t:dyn('ppp'),k:'ppp',m:'very very soft',it:'pianississimo'},{t:dyn('fff'),k:'fff',m:'very very loud',it:'fortississimo'},
+  {t:dyn('fp'),k:'fp',m:'loud, then immediately soft',it:'forte piano'},
+  {t:ital('diminuendo'),k:'diminuendo',m:'decrease in loudness'},{t:ital('cresc.'),k:'cresc.',m:'increasing loudness'},
+  {t:`${ital('subito')} ${dyn('p')}`,k:'subito p',m:'suddenly soft'},{t:dyn('ffff'),k:'ffff',m:'as loud as possible'},{t:dyn('pppp'),k:'pppp',m:'as soft as possible'},
+  {t:dyn('sfz'),k:'sfz',m:'a strong, sudden accent',it:'sforzando'},{t:ital('cresc. poco a poco'),k:'cresc. poco a poco',m:'increase loudness little by little'},
+  {t:ital('molto cresc.'),k:'molto cresc.',m:'quick increase in loudness'}];
+/* 5. Orders */
+const DORDER=['pppp','ppp','pp','p','mp','mf','f','ff','fff','ffff'];
+const TORDER=['Largo','Lento','Adagio','Adagietto','Andante','Moderato','Allegretto','Allegro','Vivace','Presto','Prestissimo'];
+const TMEAN={Largo:'very slow and broad',Lento:'slow',Adagio:'slow, at ease',Adagietto:'a little faster than Adagio',Andante:'walking tempo',Moderato:'medium tempo',
+  Allegretto:'a little slower than Allegro',Allegro:'fast, cheerful',Vivace:'lively and fast',Presto:'very fast',Prestissimo:'as fast as possible'};
+
+/* 6. Kodály rhythm names and note math */
+const KOD=[
+  {k:'tika-tika',sym:G(N.ss+N.ss),d:'four sixteenth notes',b:1},{k:'tika',sym:G(N.ss),d:'two sixteenth notes',b:.5},
+  {k:'ti-ti',sym:G(N.ee),d:'two eighth notes',b:1},{k:'ti-ti-ti-ti',sym:G(N.ee+N.ee),d:'four eighth notes',b:2},
+  {k:'ta',sym:G(N.q),d:'a quarter note',b:1},{k:'ta-a',sym:G(N.h),d:'a half note',b:2},{k:'ta-a-a',sym:G(N.h+N.dot),d:'a dotted half note',b:3},
+  {k:'ta-a-a-a',sym:G(N.w),d:'a whole note',b:4},
+  {k:'rest',sym:G(RS.q),d:'a quarter rest',b:1},{k:'rest-rest',sym:G(RS.h),d:'a half rest',b:2},{k:'rest-rest-rest',sym:G(RS.h+N.dot),d:'a dotted half rest',b:3},
+  {k:'rest-rest-rest-rest',sym:G(RS.w),d:'a whole rest',b:4},
+  {k:'syn-co-pah',sym:G(N.e+N.q+N.e),d:'eighth, quarter, eighth (syncopation)',b:2},
+  {k:'ti-tika',sym:G(N.e+N.ss),d:'an eighth note + two sixteenth notes',b:1},{k:'tika-ti',sym:G(N.ss+N.e),d:'two sixteenth notes + an eighth note',b:1},
+  {k:'tum-ti',sym:G(N.q+N.dot+N.e),d:'a dotted quarter note + an eighth note',b:2},{k:'tim-ka',sym:G(N.e+N.dot+N.s),d:'a dotted eighth note + a sixteenth note',b:1},
+  {k:'tri-o-la',sym:trip(),d:'a triplet (three eighth notes in one beat)',b:1}];
+const VAL=[
+  {n:'sixteenth note',sym:G(N.s),b:.25},{n:'eighth note',sym:G(N.e),b:.5},{n:'quarter note',sym:G(N.q),b:1},{n:'dotted quarter note',sym:G(N.q+N.dot),b:1.5},
+  {n:'half note',sym:G(N.h),b:2},{n:'dotted half note',sym:G(N.h+N.dot),b:3},{n:'whole note',sym:G(N.w),b:4},
+  {n:'sixteenth rest',sym:G(RS.s),b:.25},{n:'eighth rest',sym:G(RS.e),b:.5},{n:'quarter rest',sym:G(RS.q),b:1},{n:'half rest',sym:G(RS.h),b:2},
+  {n:'dotted half rest',sym:G(RS.h+N.dot),b:3},{n:'whole rest',sym:G(RS.w),b:4},{n:'triplet',sym:trip(),b:1}];
+
+/* ---------- question builders ---------- */
+/* multiple choice: opts = [[html, message-if-picked]], first is right */
+function MC(o){
+  const seen=new Set(),opts=o.opts.filter(x=>x&&!seen.has(x[0])&&seen.add(x[0])).slice(0,o.max||4);
+  const order=shuffle(opts.map((_,i)=>i)),choices=order.map(i=>opts[i][0]),ans=order.indexOf(0);
+  return Object.assign({kind:'mc',choices,ans,answerText:opts[0][0],diag:i=>opts[order[i]][1]||'',explain:()=>ol(o.why||[])},o);
+}
+/* True or False, always in that order */
+function TF(o){
+  const ans=o.truth?0:1;
+  return Object.assign({kind:'mc',tf:true,choices:['True','False'],ans,answerText:o.truth?'True':'False',
+    prompt:`<span class="tfl">True or False?</span> ${o.st}`,diag:()=>o.wrong||'',explain:()=>ol(o.why||[])},o);
+}
+/* distractors: n other items, preferring a look-alike */
+function others(list,item,n,key,prefer){const pool=shuffle(list.filter(x=>x!==item&&key(x)!==key(item)));if(prefer){const p=list.find(x=>x!==item&&prefer(x));if(p){pool.splice(pool.indexOf(p),1);pool.unshift(p)}}return pool.slice(0,n)}
+
+/* ---------- W1 · Notes, rests, staff and clefs ---------- */
+const ALL1=[...NOTES,...STAFF];
+const byId=id=>ALL1.find(x=>x.id===id);
+const W1={
+  name(l){const it=pick(l===1?ALL1.filter(x=>!['cc','st'].includes(x.id)):ALL1),pool=it.beats!=null?NOTES:STAFF;
+    const ds=others(pool,it,3,x=>x.name,x=>x.id===LOOK[it.id]);
+    return MC({prompt:`What is this called?<span class="big">${it.sym}</span>`,opts:[[cap(it.name),''],...ds.map(d=>[cap(d.name),TIP[it.id]||`That is the ${d.name}. Look again at the shape.`])],
+      hint:it.beats!=null?(it.rest?'It is a rest (silence). Count its flags or look where it sits.':'It is a note. Is it filled in? Does it have a stem or flags?'):'Is it a clef, an accidental or a barline?',
+      why:[`This is the <b>${it.name}</b>.`,TIP[it.id]||'',it.mean?`It means: ${it.mean}.`:'',it.beats!=null?`It is worth ${beatsTxt(it.beats)}.`:'']})},
+  symbol(l){const it=pick(ALL1.filter(x=>x.id!=='st')),pool=it.beats!=null?NOTES:STAFF;
+    const ds=others(pool.filter(x=>x.id!=='st'),it,3,x=>x.name,x=>x.id===LOOK[it.id]);
+    return MC({sym:true,prompt:`Which one is the <b>${it.name}</b>?`,opts:[[it.sym,''],...ds.map(d=>[d.sym,`That is the ${d.name}. ${TIP[it.id]||''}`])],
+      hint:TIP[it.id]||'Picture the answer sheet.',why:[`${it.sym} is the ${it.name}.`,TIP[it.id]||'']})},
+  meaning(l){const it=pick(STAFF.filter(x=>!['st'].includes(x.id)||l>1));const ds=others(STAFF,it,3,x=>x.mean,x=>x.id===LOOK[it.id]);
+    return MC({prompt:`What does the <b>${it.name}</b> ${it.sym} do?`,opts:[[cap(it.mean),''],...ds.map(d=>[cap(d.mean),`That describes the ${d.name}.`])],
+      hint:'Clefs set the pitch range, accidentals change a note, barlines divide the music.',why:[`The ${it.name}: ${it.mean}.`]})},
+  noteVsRest(l){const it=pick(NOTES),twin=NOTES.find(x=>x.beats===it.beats&&x.rest!==it.rest);
+    return MC({prompt:`This ${it.rest?'rest':'note'} is worth how many beats?<span class="big">${it.sym}</span>`,opts:[[beatsTxt(it.beats),''],...shuffle(NOTES.filter(x=>x.beats!==it.beats&&!x.rest)).slice(0,3).map(d=>[beatsTxt(d.beats),`That is the value of a ${d.name}${d.rest?'':' (or '+d.name.replace('note','rest')+')'}.`])],
+      hint:'Whole 4, half 2, quarter 1, eighth ½, sixteenth ¼. Rests are worth the same as the matching notes.',
+      why:[`This is a ${it.name}: ${beatsTxt(it.beats)}.`,`The matching ${twin.rest?'rest':'note'} (${twin.sym}) is worth the same.`]})},
+  tf(l){const it=pick(ALL1),t=coin();const other=byId(LOOK[it.id])||pick(ALL1.filter(x=>x!==it&&(x.beats!=null)===(it.beats!=null)));const said=t?it:other;
+    return TF({truth:t,st:`This symbol is a <b>${said.name}</b>.<span class="big">${it.sym}</span>`,
+      wrong:t?`It really is the ${it.name}.`:`It is the ${it.name}, not the ${other.name}. ${TIP[it.id]||''}`,hint:TIP[it.id]||'Look closely at the shape.',
+      why:[`This is the <b>${it.name}</b>.`,TIP[it.id]||'']})}
+};
+
+/* ---------- W2 · Dynamic comparison and Expressions I ---------- */
+const di=k=>DORDER.indexOf(k);
+const W2={
+  compare(l){let a,b;do{a=pick(DORDER.slice(l===1?2:0,l===1?8:10));b=pick(DORDER.slice(l===1?2:0,l===1?8:10))}while(a===b);const up=di(b)>di(a);
+    return MC({prompt:`The music goes from ${dyn(a)} to ${dyn(b)}. Is that a crescendo or a decrescendo?<span class="big">${dyn(a)} → ${dyn(b)}</span>`,max:2,
+      opts:up?[[`Crescendo ${G('𝆒')} (getting louder)`,''],[`Decrescendo ${G('𝆓')} (getting softer)`,`${dyn(b)} is louder than ${dyn(a)}, so the music gets louder.`]]
+             :[[`Decrescendo ${G('𝆓')} (getting softer)`,''],[`Crescendo ${G('𝆒')} (getting louder)`,`${dyn(b)} is softer than ${dyn(a)}, so the music gets softer.`]],
+      hint:'Soft to loud: pppp ppp pp p mp mf f ff fff ffff.',why:[`${dyn(a)} = ${DYNM.find(x=>x.k===a).m}; ${dyn(b)} = ${DYNM.find(x=>x.k===b).m}.`,up?'Soft → loud is a crescendo (opens up like <).':'Loud → soft is a decrescendo (closes like >).']})},
+  term(l){const [t,m]=pick(EXPR),ds=shuffle(EXPR.filter(x=>x[0]!==t)).slice(0,3);
+    return MC({prompt:`What does ${ital(t)} mean?`,opts:[[cap(m),''],...ds.map(d=>[cap(d[1]),`That is ${d[0]}.`])],hint:'Think of an English word that sounds like it.',why:[`${ital(t)} = ${m}.`]})},
+  word(l){const [t,m]=pick(EXPR),ds=shuffle(EXPR.filter(x=>x[0]!==t)).slice(0,3);
+    return MC({prompt:`Which Italian term means <b>“${m}”</b>?`,opts:[[ital(t),''],...ds.map(d=>[ital(d[0]),`${d[0]} means “${d[1]}”.`])],hint:'Picture the Expressions I list.',why:[`“${m}” = ${ital(t)}.`]})},
+  tf(l){if(coin(.35)){let a,b;do{a=pick(DORDER);b=pick(DORDER)}while(a===b);const up=di(b)>di(a),t=coin();const said=t===up;
+      return TF({truth:t,st:`Going from ${dyn(a)} to ${dyn(b)} is a <b>${said?'crescendo':'decrescendo'}</b>.`,wrong:`${dyn(a)} → ${dyn(b)} gets ${up?'louder: a crescendo':'softer: a decrescendo'}.`,
+        hint:'Soft to loud: pppp … ffff.',why:[`${dyn(a)} → ${dyn(b)} gets ${up?'louder (crescendo)':'softer (decrescendo)'}.`]})}
+    const [t,m]=pick(EXPR),tr=coin(),fake=pick(EXPR.filter(x=>x[0]!==t))[1];
+    return TF({truth:tr,st:`${ital(t)} means “${tr?m:fake}”.`,wrong:`${t} means “${m}”.`,hint:'Expressions I list.',why:[`${ital(t)} = ${m}.`]})}
+};
+
+/* ---------- W3 · Articulations and Matching II ---------- */
+const W3={
+  artName(l){const it=pick(l===1?ARTS.slice(0,5).concat(ARTS[8]):ARTS),ds=others(ARTS,it,3,x=>x.name);
+    return MC({prompt:`What is this articulation called?<span class="big">${it.sym}</span>`,opts:[[cap(it.name),''],...ds.map(d=>[cap(d.name),`The ${d.name} looks like this: ${d.sym}`])],
+      hint:'Dot = staccato, > = accent, ^ = marcato, line = tenuto.',why:[`${it.sym} is <b>${it.name}</b>: ${it.mean}.`]})},
+  artMean(l){const it=pick(ARTS),ds=others(ARTS,it,3,x=>x.mean);
+    return MC({prompt:`How do you play this?<span class="big">${it.sym}</span>`,opts:[[cap(it.mean),''],...ds.map(d=>[cap(d.mean),`That is the ${d.name}.`])],
+      hint:'Which mark is it? Then think about what it does to the note.',why:[`${it.sym} = ${it.name}: ${it.mean}.`]})},
+  artSym(l){const it=pick(ARTS.filter(x=>x.id!=='brm')),ds=others(ARTS.filter(x=>x.id!=='brm'),it,3,x=>x.name);
+    return MC({sym:true,prompt:`Which mark means <b>“${it.mean}”</b>?`,opts:[[it.sym,''],...ds.map(d=>[d.sym,`That is ${d.name}: ${d.mean}.`])],hint:'Dot = short, line = full value, > = accent, ^ = strong accent.',why:[`${it.name} ${it.sym}: ${it.mean}.`]})},
+  match(l){const it=pick(MATCH),ds=others(MATCH,it,3,x=>x.m);
+    return MC({prompt:`What does this mean?<span class="big">${it.t}</span>`,opts:[[cap(it.m),''],...ds.map(d=>[cap(d.m),`That matches ${d.t}.`])],hint:'This is from Matching II.',why:[`${it.t} = ${it.m}.`]})},
+  tf(l){if(coin()){const it=pick(ARTS),tr=coin(),f=pick(ARTS.filter(x=>x!==it));
+      return TF({truth:tr,st:`This mark means “${tr?it.mean:f.mean}”.<span class="big">${it.sym}</span>`,wrong:`It is ${it.name}: ${it.mean}.`,hint:'Which articulation is it?',why:[`${it.sym} = ${it.name}: ${it.mean}.`]})}
+    const it=pick(MATCH),tr=coin(),f=pick(MATCH.filter(x=>x!==it&&x.m!==it.m));
+    return TF({truth:tr,st:`${it.t} means “${tr?it.m:f.m}”.`,wrong:`${it.t} means ${it.m}.`,hint:'Matching II.',why:[`${it.t} = ${it.m}.`]})}
+};
+
+/* ---------- W4 · Dynamic markings I + II ---------- */
+const W4={
+  mean(l){const pool=l===1?DYNM.slice(0,11):DYNM,it=pick(pool),near=DYNM.filter(x=>x!==it&&x.m!==it.m);
+    const close=x=>di(x.k)>=0&&di(it.k)>=0&&Math.abs(di(x.k)-di(it.k))===1;
+    const ds=others(near,it,3,x=>x.m,close);
+    return MC({prompt:`What does this mean?<span class="big">${it.t}</span>`,opts:[[cap(it.m),''],...ds.map(d=>[cap(d.m),`That is ${d.t}.`])],
+      hint:'p = soft, f = loud, m = medium. More letters = more extreme.',why:[`${it.t} = ${it.m}${it.it?` (${ital(it.it)})`:''}.`,di(it.k)>=0?'Soft to loud: pppp ppp pp p mp mf f ff fff ffff.':'']})},
+  marking(l){const it=pick(DYNM),ds=others(DYNM,it,3,x=>x.m,x=>di(x.k)>=0&&di(it.k)>=0&&Math.abs(di(x.k)-di(it.k))===1);
+    return MC({sym:true,prompt:`Which marking means <b>“${it.m}”</b>?`,opts:[[it.t,''],...ds.map(d=>[d.t,`That means ${d.m}.`])],hint:'p = soft, f = loud, m = medium.',why:[`“${it.m}” = ${it.t}.`]})},
+  italian(l){const pool=DYNM.filter(x=>x.it&&(l>1||!/ississ/.test(x.it))),it=pick(pool),ds=others(pool,it,3,x=>x.it);
+    return MC({prompt:`What is the Italian name for ${it.t}?`,opts:[[ital(it.it),''],...ds.map(d=>[ital(d.it),`${d.it} is ${d.t}.`])],hint:'piano = soft, forte = loud, mezzo = medium, -issimo = very.',why:[`${it.t} = ${ital(it.it)} = ${it.m}.`]})},
+  tf(l){const it=pick(DYNM),tr=coin(),f=pick(DYNM.filter(x=>x.m!==it.m));
+    return TF({truth:tr,st:`${it.t} means “${tr?it.m:f.m}”.`,wrong:`${it.t} means ${it.m}.`,hint:'p = soft, f = loud, m = medium.',why:[`${it.t} = ${it.m}.`]})}
+};
+
+/* ---------- W5 · Dynamics and tempos in order ---------- */
+const listD=a=>a.map(dyn).join('&ensp;'),listT=a=>a.join(' → ');
+function swapOne(a){a=a.slice();const i=R(0,a.length-2);[a[i],a[i+1]]=[a[i+1],a[i]];return a}
+const W5={
+  louder(l){let a,b;const pool=l===1?DORDER.slice(2,8):DORDER;do{a=pick(pool);b=pick(pool)}while(a===b);const soft=coin(.4);
+    const ans=soft?(di(a)<di(b)?a:b):(di(a)>di(b)?a:b),other=ans===a?b:a;
+    return MC({sym:true,max:2,prompt:`Which is <b>${soft?'softer':'louder'}</b>?`,opts:[[dyn(ans),''],[dyn(other),`Soft to loud: ${listD(DORDER)}. ${dyn(other)} is ${soft?'louder':'softer'}.`]],
+      hint:'Soft to loud: pppp ppp pp p mp mf f ff fff ffff.',why:[`Soft → loud: ${listD(DORDER)}`,`${dyn(ans)} is ${soft?'softer':'louder'} than ${dyn(other)}.`]})},
+  faster(l){let a,b;do{a=R(0,10);b=R(0,10)}while(a===b||(l===1&&Math.abs(a-b)<2));const slow=coin(.4),ans=slow?Math.min(a,b):Math.max(a,b),other=ans===a?b:a;
+    return MC({max:2,prompt:`Which tempo is <b>${slow?'slower':'faster'}</b>?`,opts:[[ital(TORDER[ans]),''],[ital(TORDER[other]),`${TORDER[other]} is ${slow?'faster':'slower'}. Slow to fast: ${listT(TORDER)}.`]],
+      hint:'Slow to fast: Largo, Lento, Adagio, Adagietto, Andante, Moderato, Allegretto, Allegro, Vivace, Presto, Prestissimo.',
+      why:[`Slow → fast: ${listT(TORDER)}`,`${TORDER[ans]} (${TMEAN[TORDER[ans]]}) is ${slow?'slower':'faster'} than ${TORDER[other]} (${TMEAN[TORDER[other]]}).`]})},
+  order(l){const tempo=coin(),src=tempo?TORDER:DORDER,n=l===1?4:l===2?5:6;const st=R(0,src.length-n),seg=src.slice(st,st+n),show=tempo?listT:listD;
+    const bad=[swapOne(seg),swapOne(seg),seg.slice().reverse(),swapOne(swapOne(seg)),swapOne(seg),swapOne(swapOne(seg)),swapOne(seg)].map(show);
+    return MC({sym:!tempo,prompt:`Which list goes from <b>${tempo?'slowest to fastest':'softest to loudest'}</b>?`,opts:[[show(seg),''],...bad.map(b=>[b,'Two of these are in the wrong order. '+(tempo?'Slow to fast: ':'Soft to loud: ')+show(src)])],
+      hint:tempo?'Largo is the slowest, Prestissimo the fastest. Andante (walking) is in the middle.':'pppp is the softest, ffff the loudest. mp comes before mf.',why:[(tempo?'Slow → fast: ':'Soft → loud: ')+show(src)]})},
+  between(l){const tempo=coin(.6),src=tempo?TORDER:DORDER,i=R(1,src.length-2),show=tempo?ital:dyn;
+    const ds=shuffle(src.filter((_,j)=>j!==i&&j!==i-1&&j!==i+1)).slice(0,3);
+    return MC({sym:!tempo,prompt:`What comes <b>between</b> ${show(src[i-1])} and ${show(src[i+1])}?`,opts:[[show(src[i]),''],...ds.map(d=>[show(d),`That is not next to them. ${tempo?'Slow to fast: ':'Soft to loud: '}${tempo?listT(TORDER):listD(DORDER)}`])],
+      hint:tempo?'Slow to fast: Largo, Lento, Adagio, Adagietto, Andante, Moderato, Allegretto, Allegro, Vivace, Presto, Prestissimo.':'Soft to loud: pppp ppp pp p mp mf f ff fff ffff.',
+      why:[(tempo?'Slow → fast: '+listT(TORDER):'Soft → loud: '+listD(DORDER))]})},
+  tf(l){if(coin()){let a,b;do{a=R(0,10);b=R(0,10)}while(a===b);const t=b>a;
+      return TF({truth:t,st:`${ital(TORDER[b])} is faster than ${ital(TORDER[a])}.`,wrong:`Slow to fast: ${listT(TORDER)}.`,hint:'Largo is slowest, Prestissimo fastest.',why:[`Slow → fast: ${listT(TORDER)}`]})}
+    let a,b;do{a=R(0,9);b=R(0,9)}while(a===b);const t=b>a;
+    return TF({truth:t,st:`${dyn(DORDER[b])} is louder than ${dyn(DORDER[a])}.`,wrong:`Soft to loud: ${listD(DORDER)}.`,hint:'pppp is softest, ffff loudest.',why:[`Soft → loud: ${listD(DORDER)}`]})}
+};
+
+/* ---------- W6 · Note values, music math and Kodály ---------- */
+function beatOpts(b){const s=new Set([b]);[b+.5,b-.5,b+1,b*2,b/2,b-1,b+.25,b+2].forEach(x=>{if(x>0&&Number.isInteger(x*4)&&s.size<4&&x!==b)s.add(x)});return [...s]}
+const W6={
+  value(l){const it=pick(l===1?VAL.filter(x=>!/dotted|triplet/.test(x.n)):VAL);
+    return MC({prompt:`How many beats is this ${it.n.includes('rest')?'rest':it.n==='triplet'?'group':'note'} worth?<span class="big">${it.sym}</span>`,
+      opts:beatOpts(it.b).map((x,i)=>[beatsTxt(x),i?'':'']).map((o,i)=>i?[o[0],`A ${it.n} is ${beatsTxt(it.b)}.`]:o),
+      hint:'Whole 4, half 2, quarter 1, eighth ½, sixteenth ¼. A dot adds half the note’s value.',
+      why:[`${it.sym} = ${it.n} = ${beatsTxt(it.b)}.`,/dotted/.test(it.n)?`The dot adds half: ${bt(it.b/1.5)} + ${bt(it.b/3)} = ${bt(it.b)}.`:'',it.n==='triplet'?'Three eighth notes squeezed into one beat.':'']})},
+  math(l){const pool=l===1?VAL.filter(x=>!/dotted|triplet|rest/.test(x.n)):VAL,k=l===3?3:2;let parts,sum;
+    do{parts=Array.from({length:k},()=>pick(pool));sum=parts.reduce((a,x)=>a+x.b,0)}while(sum>8);
+    return MC({prompt:`Music math: how many beats in all?<span class="big">${parts.map(x=>x.sym).join(' <b>+</b> ')}</span>`,
+      opts:beatOpts(sum).map((x,i)=>[beatsTxt(x),i?'Add the value of each one again: '+parts.map(p=>`${p.n} ${bt(p.b)}`).join(' + ')+'.':'']),
+      hint:'Write the value under each symbol, then add.',why:[parts.map(p=>`${p.n} = ${bt(p.b)}`).join('; '),`${parts.map(p=>bt(p.b)).join(' + ')} = ${beatsTxt(sum)}`]})},
+  kodaly(l){const it=pick(l===1?KOD.filter(x=>!/rest|tim|tum|syn|tri/.test(x.k)):KOD),ds=others(KOD,it,3,x=>x.k,x=>x.b===it.b&&x.k!==it.k);
+    return MC({prompt:`What is the Kodály name for this rhythm?<span class="big">${it.sym}</span>`,opts:[[ital(it.k),''],...ds.map(d=>[ital(d.k),`${d.k} is ${d.d}.`])],
+      hint:'ta = quarter, ti-ti = two eighths, tika-tika = four sixteenths. Each extra -a adds a beat.',why:[`${it.sym} = ${it.d} = ${ital(it.k)} (${beatsTxt(it.b)}).`]})},
+  kodalySym(l){const it=pick(KOD.filter(x=>!/^tika$/.test(x.k))),ds=others(KOD,it,3,x=>x.d,x=>x.b===it.b);
+    return MC({prompt:`Which rhythm is ${ital(it.k)}?`,opts:[[cap(it.d),''],...ds.map(d=>[cap(d.d),`That is ${d.k}.`])],
+      hint:'ta = quarter, ti = eighth, tika = sixteenths, tum = dotted quarter, tim = dotted eighth.',why:[`${ital(it.k)} = ${it.d} (${beatsTxt(it.b)}).`]})},
+  tf(l){const r=R(0,2);
+    if(r===0){const it=pick(VAL),tr=coin(),fake=pick(beatOpts(it.b).slice(1));
+      return TF({truth:tr,st:`A ${it.n} ${it.sym} is worth ${beatsTxt(tr?it.b:fake)}.`,wrong:`A ${it.n} is ${beatsTxt(it.b)}.`,hint:'Whole 4, half 2, quarter 1, eighth ½, sixteenth ¼.',why:[`${it.n} = ${beatsTxt(it.b)}.`]})}
+    if(r===1){const it=pick(KOD),tr=coin(),f=pick(KOD.filter(x=>x.d!==it.d));
+      return TF({truth:tr,st:`${ital(it.k)} is ${tr?it.d:f.d}.`,wrong:`${it.k} is ${it.d}.`,hint:'ta = quarter, ti-ti = two eighths, tika-tika = four sixteenths.',why:[`${ital(it.k)} = ${it.d}.`]})}
+    const a=pick(VAL),b=pick(VAL),s=a.b+b.b,tr=coin(),said=tr?s:pick(beatOpts(s).slice(1));
+    return TF({truth:tr,st:`${a.sym} + ${b.sym} = ${beatsTxt(said)}`,wrong:`${a.n} (${bt(a.b)}) + ${b.n} (${bt(b.b)}) = ${beatsTxt(s)}.`,hint:'Add the beats of each one.',why:[`${bt(a.b)} + ${bt(b.b)} = ${beatsTxt(s)}`]})}
+};
+
+const SECTIONS=[
+  {id:'A',no:'1',lesson:'Sheet 1',name:'Notes, rests, staff & clefs',gens:{name:W1.name,symbol:W1.symbol,meaning:W1.meaning,noteVsRest:W1.noteVsRest,tf:W1.tf}},
+  {id:'B',no:'2',lesson:'Sheet 2',name:'Dynamic comparison & Expressions I',gens:{compare:W2.compare,term:W2.term,word:W2.word,tf:W2.tf}},
+  {id:'C',no:'3',lesson:'Sheet 3',name:'Articulations & Matching II',gens:{artName:W3.artName,artMean:W3.artMean,artSym:W3.artSym,match:W3.match,tf:W3.tf}},
+  {id:'D',no:'4',lesson:'Sheet 4',name:'Dynamic markings I + II',gens:{mean:W4.mean,marking:W4.marking,italian:W4.italian,tf:W4.tf}},
+  {id:'E',no:'5',lesson:'Sheet 5',name:'Dynamics & tempos in order',gens:{louder:W5.louder,faster:W5.faster,order:W5.order,between:W5.between,tf:W5.tf}},
+  {id:'F',no:'6',lesson:'Sheet 6',name:'Note values, music math & Kodály',gens:{value:W6.value,math:W6.math,kodaly:W6.kodaly,kodalySym:W6.kodalySym,tf:W6.tf}}];
+function make(key,l){const [s,g]=key.split('.');const q=SECTIONS.find(x=>x.id===s).gens[g](l||1);q.key=key;q.sec=s;return q}
+const keysOf=s=>Object.keys(SECTIONS.find(x=>x.id===s).gens).map(g=>s+'.'+g);
+const none=()=>'';
+return {SECTIONS,make,keysOf,parse:()=>({err:'Choose an answer.'}),userHtml:none,fr:(n,d)=>n+'/'+d,mx:none,shuffle,pick,esc,ol,
+  G,dyn,ital,art,trip,N,RS,DORDER,TORDER,EXPR,ARTS,listD,listT};
+})();
+
+/* ================= MUSIC THEORY TRAINER · same screens as the Fractions Trainer =================
+   Same plan as the Math Mastery Trainer: refresher → practice → test for each lesson, then
+   5 practice exams and a final exam. Mistakes come back on a spaced schedule (1, 3, 7, 14 days),
+   the Daily Warm-up mixes topics, and every wrong answer is checked for the usual slip-ups. */
+(function(){
+const root=document.getElementById('musApp'),app=root.querySelector('#mu-app');
+const $=s=>root.querySelector(s);
+const {SECTIONS,make,keysOf,parse,userHtml,fr,mx,shuffle,pick,esc,ol}=MUSG;
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const TODAY=()=>ymd(new Date());
+const addDays=(s,n)=>{const [y,m,d]=s.split('-').map(Number);return ymd(new Date(y,m-1,d+n))};
+const secOf=id=>SECTIONS.find(s=>s.id===id);
+
+/* ---------- refreshers (Chapter 3 Recall pages, Lesson 3.1 and the class notes) ---------- */
+const {G:mG,dyn,ital,art,trip,N:NT,RS,listD,listT,DORDER,TORDER}=MUSG;
+const REF={
+ A:{ideas:[`<b>Notes</b> (sound): whole ${mG(NT.w)} 4 beats · half ${mG(NT.h)} 2 · quarter ${mG(NT.q)} 1 · eighth ${mG(NT.e)} ½ · sixteenth ${mG(NT.s)} ¼.`,
+   `<b>Rests</b> (silence) are worth the same as their notes: ${mG(RS.w)} whole · ${mG(RS.h)} half · ${mG(RS.q)} quarter · ${mG(RS.e)} eighth · ${mG(RS.s)} sixteenth.`,
+   `Whole rest vs half rest: the <b>whole rest hangs down</b> from a line (heavier, 4 beats); the <b>half rest sits on top</b> like a hat (2 beats).`,
+   `Clefs: treble ${mG('𝄞')} (G clef) · bass ${mG('𝄢')} (F clef) · C clef ${mG('𝄡')}. Accidentals: sharp ${mG('♯')} · flat ${mG('♭')} · natural ${mG('♮')}.`,
+   `The staff ${mG('𝄚')} has 5 lines. Barline ${mG('𝄀')} · double barline ${mG('𝄁')} (end of a section) · final barline ${mG('𝄂')} (thin + thick: the end).`],
+   warn:[2],
+   ex:[['Flags tell you the value',['No flag (filled, with stem) = quarter note: 1 beat.','1 flag = eighth note: ½ beat.','2 flags = sixteenth note: ¼ beat.']],['Accidentals',['Sharp ♯ raises a note a half step.','Flat ♭ lowers it a half step.','Natural ♮ cancels a sharp or flat.']]],
+   flips:[[`What is ${mG(RS.w)}?`,'Whole rest (hangs down)'],[`What is ${mG(RS.h)}?`,'Half rest (sits on top)'],[`What is ${mG('𝄢')}?`,'Bass clef'],[`What is ${mG('𝄂')}?`,'Final barline'],[`What is ${mG('♮')}?`,'Natural'],[`What is ${mG(NT.s)}?`,'Sixteenth note']]},
+ B:{ideas:[`Soft → loud: ${listD(DORDER)}.`,
+   `Going <b>softer to louder</b> (for example ${dyn('p')} → ${dyn('f')}) is a <b>crescendo</b> ${mG('𝆒')}. Going <b>louder to softer</b> is a <b>decrescendo</b> ${mG('𝆓')}.`,
+   `Expressions I: legato = smoothly · marcato = accented, separated · tutti = all play · espressivo = expressive · dolce = sweetly, softly · leggiero = lightly · a2 = two parts playing in unison.`,
+   `simile = in the same way · sempre = always · subito = suddenly · meno mosso = less quickly · cantabile = singing · pesante = heavily.`],
+   warn:[],
+   ex:[['mp → ff',['mp is medium soft, ff is very loud.','Soft to loud = crescendo.']],['Memory hooks',['dolce sounds like “dulce” (sweet).','cantabile sounds like “can-sing”.','pesante sounds like “pesado” (heavy).','leggiero = light as a feather.']]],
+   flips:[[`${dyn('ff')} → ${dyn('mp')}?`,'Decrescendo'],[`${ital('sempre')}?`,'Always'],[`${ital('subito')}?`,'Suddenly'],[`${ital('tutti')}?`,'All play'],[`${ital('simile')}?`,'In the same way'],[`${ital('a2')}?`,'Two parts playing in unison']]},
+ C:{ideas:[`Articulations: accent ${art(['&gt;'])} = accented · staccato ${art(['•'])} = shorter than written · marcato ${art(['^'])} = very accented, separated · tenuto ${art(['–'])} = held to full value.`,
+   `Combined: accent + tenuto = accented and held full value · tenuto + staccato = full value but detached · staccato + accent = short and accented. Tremolo ${mG('𝅘𝅩𝅥')} = repeat very fast. Breath mark ${mG('𝄒')}.`,
+   `Matching II words: ${dyn('pp')} pianissimo · ${dyn('p')} piano · ${dyn('f')} forte · ${dyn('ff')} fortissimo · ${dyn('fp')} forte piano · ${dyn('sfz')} sforzando.`,
+   `Signs: fermata ${mG('𝄐')} (hold) · D.C. ${mG('𝄊')} da capo (from the beginning) · D.S. ${mG('𝄉')} dal segno (from the sign ${mG('𝄋')}) · coda ${mG('𝄌')}.`,
+   `Tempo words: Adagio = slow, at ease · Andante = walking · Moderato = medium · Allegro = fast, cheerful · meno mosso = less quickly.`],
+   warn:[0],
+   ex:[['Staccato vs tenuto',['Dot = short, detached.','Line = hold it for the full value.','Both together: full value but detached.']]],
+   flips:[[`${art(['^'])}?`,'Marcato: very accented, separated'],[`${art(['–'])}?`,'Tenuto: full value'],[`${art(['•'])}?`,'Staccato: shorter'],[`${mG('𝄐')}?`,'Fermata'],[`${dyn('sfz')}?`,'Sforzando'],['D.C.?','Da capo: from the beginning']]},
+ D:{ideas:[`p = soft (piano) · f = loud (forte) · m = medium (mezzo): ${dyn('mp')} medium soft · ${dyn('mf')} medium loud.`,
+   `More letters = more extreme: ${dyn('pp')} very soft · ${dyn('ppp')} very very soft · ${dyn('pppp')} as soft as possible · ${dyn('ff')} very loud · ${dyn('fff')} very very loud · ${dyn('ffff')} as loud as possible.`,
+   `${mG('𝆒')} crescendo / ${ital('cresc.')} = getting louder · ${mG('𝆓')} decrescendo / ${ital('diminuendo')} = getting softer.`,
+   `${dyn('fp')} = loud then immediately soft · ${dyn('sfz')} = strong sudden accent · ${ital('subito')} ${dyn('p')} = suddenly soft.`,
+   `${ital('cresc. poco a poco')} = louder little by little · ${ital('molto cresc.')} = quick increase in loudness.`],
+   warn:[0],
+   ex:[['Don’t mix up mp and mf',['mp: mezzo piano, medium SOFT (p).','mf: mezzo forte, medium LOUD (f).','The last letter tells you soft or loud.']]],
+   flips:[[`${dyn('mp')}?`,'Medium soft'],[`${dyn('fp')}?`,'Loud then immediately soft'],[`${ital('poco a poco')}?`,'Little by little'],[`${dyn('pppp')}?`,'As soft as possible'],[`${ital('diminuendo')}?`,'Getting softer'],[`${ital('molto cresc.')}?`,'Quick increase in loudness']]},
+ E:{ideas:[`Dynamics, softest to loudest: ${listD(DORDER)}.`,
+   `Tempos, slowest to fastest: ${listT(TORDER)}.`,
+   `Hooks: <b>L</b>argo and <b>L</b>ento are the <b>L</b>azy ones · Andante = walking · Moderato = medium · Allegretto is a little slower than Allegro · Presto = very fast, Prestissimo = as fast as possible.`,
+   `-etto / -etta makes a word “a little”: Adagietto is a little faster than Adagio; Allegretto is a little slower than Allegro.`],
+   warn:[3],
+   ex:[['Is Allegretto faster than Allegro?',['No. Allegretto = “a little Allegro”, so slightly slower.','Order: … Moderato, Allegretto, Allegro, Vivace …']]],
+   flips:[['Slowest tempo?','Largo'],['Fastest tempo?','Prestissimo'],['Between Andante and Allegretto?','Moderato'],[`Between ${dyn('p')} and ${dyn('mf')}?`,dyn('mp')],['Between Lento and Adagietto?','Adagio'],['Between Vivace and Prestissimo?','Presto']]},
+ F:{ideas:[`Beats: sixteenth ¼ · eighth ½ · quarter 1 · dotted quarter 1½ · half 2 · dotted half 3 · whole 4. A <b>dot adds half</b> of the note’s value.`,
+   `Groups worth 1 beat: 2 eighths ${mG(NT.e+NT.e)}, 4 sixteenths, eighth + 2 sixteenths, 2 sixteenths + eighth, dotted eighth + sixteenth, a triplet ${trip()}. Dotted quarter + eighth = 2 beats.`,
+   `Kodály: ta = quarter · ti-ti = 2 eighths · tika-tika = 4 sixteenths · ta-a = half · ta-a-a = dotted half · ta-a-a-a = whole.`,
+   `Kodály: ti-tika = eighth + 2 sixteenths · tika-ti = 2 sixteenths + eighth · tum-ti = dotted quarter + eighth · tim-ka = dotted eighth + sixteenth · syn-co-pah = eighth, quarter, eighth · tri-o-la = triplet.`,
+   `Rests: rest = quarter rest · rest-rest = half rest · rest-rest-rest = dotted half rest · rest-rest-rest-rest = whole rest.`],
+   warn:[0],
+   ex:[['Dotted half note',['Half note = 2 beats.','The dot adds half of 2 = 1.','2 + 1 = 3 beats.']],['Music math: half + eighth + eighth',['2 + ½ + ½ = 3 beats.']]],
+   flips:[['tum-ti?','Dotted quarter + eighth (2 beats)'],['tim-ka?','Dotted eighth + sixteenth (1 beat)'],['syn-co-pah?','Eighth, quarter, eighth (2 beats)'],['Dotted quarter = ? beats','1½'],['tika-tika?','4 sixteenth notes (1 beat)'],['ta-a-a?','Dotted half note (3 beats)']]}
+};
+
+/* ---------- exams ---------- */
+const EXAMS=[
+  {id:'p1',name:'Mock Test 1',n:20,lv:[1,1,2],sub:'10 True or False + 10 Multiple Choice · warm start'},
+  {id:'p2',name:'Mock Test 2',n:20,lv:[1,2,3],sub:'10 True or False + 10 Multiple Choice · building up'},
+  {id:'p3',name:'Mock Test 3',n:20,lv:[2,3,3],sub:'10 True or False + 10 Multiple Choice · test-ready'},
+  {id:'final',name:'Final Mock Test',n:20,lv:[3,3,3],sub:'Like the real test, at expert level'}];
+const PASS={test:80,exam:80,final:90};
+
+/* ---------- state, storage and Quest Log sync ---------- */
+const FKEY='ql-music-v1';
+let M={sec:{},ex:{},rev:[],xp:0,days:[],badges:{},retired:0};
+try{const r=localStorage.getItem(FKEY);if(r)M=Object.assign(M,JSON.parse(r))}catch(e){}
+function persist(){try{localStorage.setItem(FKEY,JSON.stringify(M))}catch(e){}}
+function save(){persist();if(window.MUS_CH)MUS_CH.push();syncQuest()}
+const ss=id=>M.sec[id]||(M.sec[id]={read:false,m:[],test:0,tests:0});
+function mast(id){const r=(ss(id).m||[]).slice(-10),n=r.length,c=r.reduce((a,b)=>a+b,0);return {n,c,expert:n>=10&&c>=9,pct:n?c*10:0}}
+function level(id){const r=(ss(id).m||[]).slice(-6);if(r.length<3)return 1;const a=r.reduce((x,y)=>x+y,0)/r.length;return a>=.84?3:a>=.6?2:1}
+const mastered=id=>mast(id).expert&&ss(id).test>=PASS.test;
+const exBest=id=>(M.ex[id]&&M.ex[id].best)||0;
+const exTries=id=>(M.ex[id]&&M.ex[id].tries)||0;
+function unlocked(id){const i=EXAMS.findIndex(e=>e.id===id);if(i===0)return true;if(id==='final')return EXAMS.slice(0,-1).every(e=>exBest(e.id)>=PASS.exam);return exTries(EXAMS[i-1].id)>0}
+/* the Music Theory Test quest has 8 steps: sheets 1–6, flashcards, quiz yourself (true/false + multiple choice) */
+function syncQuest(){if(window.QL&&QL.musicProgress)QL.musicProgress([...SECTIONS.map(s=>mastered(s.id)),SECTIONS.every(s=>ss(s.id).read),EXAMS.some(e=>exBest(e.id)>=PASS.exam)])}
+function markDay(){const t=TODAY();if(!M.days.includes(t)){M.days.push(t);M.days=M.days.slice(-60)}}
+function streak(){let n=0,d=TODAY();if(!M.days.includes(d))d=addDays(d,-1);while(M.days.includes(d)){n++;d=addDays(d,-1)}return n}
+const RANKS=['Rookie','Rhythm Rookie','Beat Keeper','Staff Scout','Clef Captain','Dynamics Detective','Tempo Tamer','Articulation Ace','Maestro','Legend'];
+const rank=()=>{const i=Math.min(RANKS.length-1,Math.floor(M.xp/300));return {name:RANKS[i]}};
+/* spaced review: a missed skill comes back after 1, 3, 7 and 14 days */
+const GAPS=[1,3,7,14];
+function miss(key){const r=M.rev.find(x=>x.k===key);if(r){r.box=0;r.due=addDays(TODAY(),1)}else M.rev.push({k:key,box:0,due:addDays(TODAY(),1)})}
+function reviewHit(key){const r=M.rev.find(x=>x.k===key);if(!r||r.due>TODAY())return false;r.box++;if(r.box>=GAPS.length){M.rev=M.rev.filter(x=>x!==r);M.retired=(M.retired||0)+1}else r.due=addDays(TODAY(),GAPS[r.box]);return true}
+const dueReviews=()=>M.rev.filter(r=>r.due<=TODAY());
+
+const BADGES=[
+  ['🚀','First steps','Finish your first practice round',()=>!!M.badges.first],
+  ['📖','Refreshed','Read all six refreshers',()=>SECTIONS.every(s=>ss(s.id).read)],
+  ['⭐','Section star','Master your first topic',()=>SECTIONS.some(s=>mastered(s.id))],
+  ['🏆','Full house','Master all six topics',()=>SECTIONS.every(s=>mastered(s.id))],
+  ['🔥','On fire','Get 8 in a row in one round',()=>!!M.badges.fire],
+  ['🔁','Comeback','Clear 3 mistakes from your review queue',()=>(M.retired||0)>=3],
+  ['📅','Week streak','Practise 7 days in a row',()=>streak()>=7||!!M.badges.week],
+  ['🎯','Exam ready','Score 80%+ on a mock test',()=>EXAMS.slice(0,-1).some(e=>exBest(e.id)>=80)],
+  ['🏃','Marathon','Try all three mock tests',()=>EXAMS.slice(0,-1).every(e=>exTries(e.id)>0)],
+  ['🧠','Music theory expert','Score 90%+ on the final mock test',()=>exBest('final')>=90]];
+
+let S={view:'home'};let timer=null;
+const stopTimer=()=>{if(timer){clearInterval(timer);timer=null}};
+const lessonName=id=>secOf(id).lesson;
+
+/* ---------- home: tabs (Today · Topics · Exams · Badges) ---------- */
+const TABS=[['today','Today'],['lessons','Topics'],['exams','Exams'],['badges','Badges']];
+function getTab(){try{return localStorage.getItem('mu-tab')||'today'}catch(e){return 'today'}}
+function setTab(t){try{localStorage.setItem('mu-tab',t)}catch(e){}}
+function nextStep(){
+  const due=dueReviews().length;
+  if(due)return {ico:'🔁',t:'Daily Warm-up',d:`${due} past mistake${due>1?'s are':' is'} due for review. 5 quick questions.`,b:'Start warm-up',act:'warm'};
+  const s=SECTIONS.find(x=>!mastered(x.id));
+  if(s){const st=ss(s.id),m=mast(s.id);
+    if(!st.read)return {ico:'📖',t:`${s.lesson}: read the refresher`,d:esc(s.name),b:'Open topic',sec:s.id};
+    if(!m.expert)return {ico:'🎯',t:`${s.lesson}: practise to Expert`,d:`${esc(s.name)} · ${m.n?m.c+'/'+m.n+' recent':'not started'}`,b:'Practise',go:'practice',sec:s.id};
+    return {ico:'📝',t:`${s.lesson}: topic test`,d:`${esc(s.name)} · pass with 80%`,b:'Take the test',go:'test',sec:s.id}}
+  const e=EXAMS.find(x=>unlocked(x.id)&&exBest(x.id)<(x.id==='final'?PASS.final:PASS.exam));
+  if(e)return {ico:e.id==='final'?'🏁':'🧪',t:e.name,d:`${e.n} questions · ${esc(e.sub)}`,b:'Start exam',exam:e.id};
+  return {ico:'☀️',t:'Daily Warm-up',d:'Everything is mastered. A quick mix keeps it fresh.',b:'Start warm-up',act:'warm'};
+}
+const pip=(on,label)=>`<span class="dot${on?' on':''}" title="${label}">${on?'✓':''}</span>`;
+function home(tab){
+  stopTimer();tab=tab||getTab();setTab(tab);S={view:'home',tab};
+  const rk=rank(),st=streak(),due=dueReviews().length,done=SECTIONS.filter(s=>mastered(s.id)).length,passed=EXAMS.slice(0,-1).filter(e=>exBest(e.id)>=PASS.exam).length;
+  let body='';
+  if(tab==='today'){const n=nextStep();
+    body=`<div class="next">
+      <span class="ico">${n.ico}</span><div><p class="eyebrow">Next step</p><h2>${n.t}</h2><p>${n.d}</p></div>
+      <button class="btn primary" type="button" ${n.act?`data-act="${n.act}"`:n.go?`data-start="${n.go}" data-sid="${n.sec}"`:n.exam?`data-exam="${n.exam}"`:`data-sec="${n.sec}"`}>${n.b} →</button></div>
+    ${n.act!=='warm'?`<button class="row-btn" type="button" data-act="warm"><span>☀️</span><span><b>Daily Warm-up</b><small>5 mixed questions${due?` · ${due} review${due>1?'s':''} due`:''}. Keeps your streak going.</small></span><span class="chev">›</span></button>`:''}
+    <div class="path"><div><b>${done}/6</b><span>topics mastered</span><div class="meter"><i style="width:${done/6*100}%"></i></div></div><div><b>${passed}/3</b><span>mock tests passed</span><div class="meter"><i style="width:${passed/3*100}%"></i></div></div><div><b>${exBest('final')>=PASS.final?'✓':'—'}</b><span>Final Mock Test</span><div class="meter"><i style="width:${Math.min(100,exBest('final'))}%"></i></div></div></div>`}
+  if(tab==='lessons')body=`<div class="list">${SECTIONS.map(s=>{const m=mast(s.id),x=ss(s.id),ok=mastered(s.id);return `<button class="lrow${ok?' done':''}" type="button" data-sec="${s.id}">
+      <span class="lno">${ok?'✓':s.no}</span><span class="lname"><b>${esc(s.name)}</b><small>${esc(s.lesson)} · ${m.n||x.tests?`${m.n?`Practice ${m.c}/${m.n}`:''}${m.n&&x.tests?' · ':''}${x.tests?`Test best ${x.test}%`:''}`:(x.read?'Refresher read':'Not started')}</small></span>
+      <span class="dots">${pip(x.read,'Refresher')}${pip(m.expert,'Practice Expert')}${pip(x.test>=PASS.test,'Test 80%+')}</span><span class="chev">›</span></button>`}).join('')}</div>
+    <p class="foot">One topic for each of Ms. Streiter’s six answer sheets. The three dots are the steps for each topic: refresher, practice to Expert, topic test 80%+.</p>`;
+  if(tab==='exams')body=`<div class="list">${EXAMS.map(e=>{const u=unlocked(e.id),b=exBest(e.id),t=exTries(e.id),pass=e.id==='final'?PASS.final:PASS.exam;return `<button class="lrow${b>=pass?' done':''}${e.id==='final'?' final':''}" type="button" data-exam="${e.id}" ${u?'':'disabled'}>
+      <span class="lno">${b>=pass?'✓':e.id==='final'?'🏁':e.id.slice(1)}</span><span class="lname"><b>${esc(e.name)}</b><small>${u?`${e.n} questions · ${esc(e.sub)}${t?` · best ${b}%`:''}`:`🔒 ${e.id==='final'?'Pass all three mock tests (80%+)':'Try the exam before this one first'}`}</small></span><span class="chev">${u?'›':''}</span></button>`}).join('')}</div>`;
+  if(tab==='badges')body=`<div class="badges">${BADGES.map(b=>`<div class="bdg${b[3]()?'':' off'}"><span class="e">${b[0]}</span><b>${b[1]}</b><span>${b[2]}</span></div>`).join('')}</div>
+    <p class="foot">How it helps you remember: topics start with flip cards you answer from memory, practice gets harder as you improve, and every mistake comes back after 1, 3, 7 and 14 days.</p>`;
+  app.innerHTML=`<div class="topbar"><a class="fr-back" href="#quest">← Quest Log</a><span class="chips"><span class="chipx" title="${M.xp} XP">⭐ ${esc(rk.name)}</span><span class="chipx">🔥 ${st}</span>${due?`<span class="chipx warn">🔁 ${due}</span>`:''}</span></div>
+  <h1 class="fr-title">Music Theory <span class="hl">Trainer</span></h1>
+  <p class="sub1">Ms. Streiter’s six answer sheets · test Fri Nov 13: 10 True or False + 10 Multiple Choice</p>
+  <div class="mtabs" role="tablist">${TABS.map(([k,l])=>`<button type="button" role="tab" class="mtab" data-tab="${k}" aria-selected="${k===tab}">${l}</button>`).join('')}</div>
+  <div class="tabbody">${body}</div>`;
+}
+
+/* ---------- topic page: learn first, actions always in reach ---------- */
+function refresherHtml(id,full){
+  const r=REF[id],cards=full?r.flips:r.flips.slice(0,2),ideas=full?r.ideas:r.ideas.slice(0,3);
+  return `<details class="acc" open><summary>🧠 Recall first: flip cards</summary><p class="muted">Answer each one in your head, then tap to check.</p><div class="flips">${cards.map(f=>`<button type="button" class="flip"><span class="q">${f[0]}</span><span class="a">${f[1]}</span><span class="tap">Think, then tap</span></button>`).join('')}</div></details>
+    <details class="acc" open><summary>📌 Key ideas</summary><ul class="ideas">${ideas.map((x,i)=>`<li class="${r.warn.includes(i)?'warn':''}">${x}</li>`).join('')}</ul></details>
+    ${full?`<details class="acc"><summary>✏️ Worked examples</summary>${r.ex.map(e=>`<div class="ex"><span class="t">${e[0]}</span>${e[1].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</details>`:''}`;
+}
+function section(id){
+  stopTimer();S={view:'section',sec:id};const s=secOf(id),st=ss(id),m=mast(id),testNext=m.expert&&st.test<PASS.test;
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="lessons">← Topics</button><span class="chips"><span class="chipx">Level ${level(id)}</span></span></div>
+  <p class="eyebrow">${esc(s.lesson)}</p><h1 class="fr-title sm">${esc(s.name)}</h1>
+  <div class="stepline"><span class="${st.read?'ok':''}">1 Refresher</span><span class="${m.expert?'ok':''}">2 Practice ${m.n?m.c+'/'+m.n:''}</span><span class="${st.test>=PASS.test?'ok':''}">3 Test ${st.tests?st.test+'%':''}</span></div>
+  ${refresherHtml(id,true)}
+  <div class="dock"><button class="btn${testNext?'':' primary'}" type="button" data-act="practice">Practise · 10</button><button class="btn${testNext?' primary':''}" type="button" data-act="test">Topic test · 12</button></div>`;
+}
+function intro(mode,arg){
+  stopTimer();
+  if(mode==='practice'||mode==='test'){const id=arg;S={view:'intro',mode,sec:id};
+    app.innerHTML=`<div class="topbar"><button class="link" type="button" data-act="back">← ${esc(lessonName(id))}</button></div>
+    <p class="eyebrow">${mode==='test'?'Topic test':'Practice'} · ${esc(lessonName(id))}</p><h1 class="fr-title sm">Quick refresher</h1>
+    <p class="sub1">${mode==='test'?'12 questions, getting harder. Answers are checked at the end. Pass: 80%.':'10 questions at your level. Wrong answers show you what went wrong and how to fix it.'}</p>
+    ${refresherHtml(id,false)}
+    <div class="dock"><button class="btn primary" type="button" data-go="${mode}">I’m ready →</button></div>`;return}
+  const e=EXAMS.find(x=>x.id===arg);S={view:'intro',mode,exam:arg};
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="exams">← Exams</button></div>
+    <p class="eyebrow">${esc(e.sub)}</p><h1 class="fr-title sm">${esc(e.name)}</h1>
+    <p class="sub1">Like the real test: 10 True or False, then 10 Multiple Choice, from all six sheets. Answers are checked at the end, then every mistake is explained. Pass: ${arg==='final'?PASS.final:PASS.exam}%.</p>
+    <details class="acc"><summary>📋 Cheat sheet (1-minute refresh)</summary><ul class="ideas">
+      <li>Beats: whole 4 · half 2 · quarter 1 · eighth ½ · sixteenth ¼. A dot adds half. Rests = same as notes.</li>
+      <li>Soft → loud: ${MUSG.listD(MUSG.DORDER)}. Soft to loud = crescendo; loud to soft = decrescendo.</li>
+      <li>Slow → fast: ${MUSG.listT(MUSG.TORDER)}.</li>
+      <li>Staccato (dot) short · tenuto (line) full value · accent (&gt;) · marcato (^) very accented.</li>
+      <li>Kodály: ta · ti-ti · tika-tika · ta-a · ta-a-a · ta-a-a-a · tum-ti · tim-ka · syn-co-pah · tri-o-la.</li></ul></details>
+    <div class="dock"><button class="btn primary" type="button" data-go="exam">Start the exam →</button></div>`;
+}
+/* n keys from a topic: every question type appears before any repeats */
+function deal(id,n){let out=[];while(out.length<n)out=out.concat(shuffle(keysOf(id)));return out.slice(0,n)}
+function planFor(mode,arg){
+  if(mode==='practice'){const lv=level(arg);return deal(arg,10).map(k=>({k,l:lv}))}
+  if(mode==='test')return shuffle(deal(arg,12)).map((k,i)=>({k,l:i<4?2:3}));
+  if(mode==='warm'){const p=dueReviews().slice(0,3).map(r=>({k:r.k,l:level(r.k[0]),rev:true}));
+    const started=SECTIONS.filter(s=>ss(s.id).m.length||ss(s.id).read).map(s=>s.id);const pool=(started.length?started:SECTIONS.map(s=>s.id));
+    while(p.length<5){const s=pick(pool);p.push({k:pick(keysOf(s)),l:level(s)})}return shuffle(p)}
+  /* like the class test: 10 True or False (one or two per sheet), then 10 Multiple Choice */
+  const e=EXAMS.find(x=>x.id===arg),ids=SECTIONS.map(s=>s.id);
+  const tf=shuffle(shuffle(ids).concat(shuffle(ids)).slice(0,10)).map(s=>s+'.tf');
+  const mc=shuffle(shuffle(ids).concat(shuffle(ids)).slice(0,10).map(s=>pick(keysOf(s).filter(k=>!k.endsWith('.tf')))));
+  const ks=[...tf,...mc];return ks.map((k,i)=>({k,l:e.lv[Math.min(2,Math.floor((i%10)/(10/3)))]}));
+}
+function start(mode,arg){
+  stopTimer();const plan=planFor(mode,arg);
+  S={view:'quiz',mode,arg,sec:mode==='practice'||mode==='test'?arg:null,plan,i:0,score:0,streak:0,best:0,extra:0,log:[],xp:0,t0:Date.now(),deferred:mode==='test'||mode==='exam'};
+  if(S.deferred)timer=setInterval(()=>{const el=$('#mu-timer');if(el)el.textContent=clock()},1000);
+  showQ();
+}
+const clock=()=>{const s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const titleOf=()=>S.mode==='practice'?`Practice · ${lessonName(S.sec)}`:S.mode==='test'?`Topic test · ${lessonName(S.sec)}`:S.mode==='warm'?'Daily Warm-up':EXAMS.find(e=>e.id===S.arg).name;
+
+/* ---------- question screen ---------- */
+const box=(id,cls,label)=>`<input id="${id}" class="num ${cls||''}" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="${label}">`;
+function showQ(){
+  const e=S.plan[S.i];if(!e.q)e.q=make(e.k,e.l);const q=e.q;S.answered=false;S.sel=null;
+  let area='';
+  if(q.kind==='mc')area=`<div class="choices">${q.choices.map((c,i)=>`<button type="button" class="choice${q.sym?' sym':''}" data-i="${i}">${c}</button>`).join('')}</div>`;
+  if(q.kind==='int')area=`<div class="ansrow">${q.pre?`<span class="unit">${esc(q.pre)}</span>`:''}<span class="nb">${box('mu-i','','Your answer')}</span></div>`;
+  if(q.kind==='frac'){const noW=q.form==='any';
+    area=`<div class="fin">${noW?'':box('mu-w','whole','Whole number part')}<span class="fstack">${box('mu-n','','Numerator (top)')}<i></i>${box('mu-d','','Denominator (bottom)')}</span></div>
+    <p class="foot" style="margin:0">${noW?'Type the numerator on top and the denominator below.':q.form==='improper'?'Give an improper fraction (top and bottom boxes). A whole number answer goes in the big box.':'Mixed number: whole number in the big box, fraction on the right. A whole number answer: leave the fraction empty.'}</p>`}
+  const tot=S.plan.length;
+  app.innerHTML=`<div class="qbar">
+    <button class="link" type="button" data-act="quit">← Quit</button>
+    <div class="prog"><span>${esc(titleOf())} · ${S.i+1} of ${tot}${S.deferred?` · <span id="mu-timer" class="timer">${clock()}</span>`:''}</span><div class="pbar"><i style="width:${S.i/tot*100}%"></i></div></div>
+    ${S.deferred?'':`<div class="score"><b>${S.score}</b>/${S.log.length}${S.streak>=3?` <span class="streak">${S.streak} in a row</span>`:''} · <span class="xpf">+${S.xp} XP</span></div>`}
+  </div>
+  <article class="qcard">
+    <p class="eyebrow">${esc(lessonName(q.sec))} · ${esc(secOf(q.sec).name)}${e.retry?' <span class="tag">Second chance</span>':''}${e.rev?' <span class="tag">Review</span>':''}${q.book?' <span class="tag">From the textbook</span>':''}</p>
+    <div class="prompt">${q.prompt}</div>
+    <div>${area}</div>
+    <p class="msg" id="mu-msg"></p>
+    <div class="row" id="mu-actions">
+      ${q.kind!=='mc'||S.deferred?`<button class="btn primary" type="button" id="mu-check">${S.deferred?(S.i===tot-1?'Finish':'Next →'):'Check'}</button>`:''}
+      ${S.deferred?'':'<button class="btn ghost" type="button" id="mu-hintBtn">Hint</button>'}
+    </div>
+    <div class="hint" id="mu-hint" hidden>${q.hint||''}</div>
+    <div id="mu-fb"></div>
+  </article>`;
+  const f=root.querySelector('.num');if(f&&matchMedia('(pointer:fine)').matches)f.focus();
+}
+const val=id=>{const el=$('#'+id);return el?el.value.trim():''};
+function readAnswer(q,choice){
+  if(q.kind==='mc'){const i=choice!=null?choice:S.sel;if(i==null)return {err:'Choose an answer first.'};return {ok:i===q.ans,shown:q.choices[i],ua:i,note:i!==q.ans&&q.diag?q.diag(i):''}}
+  if(q.kind==='int'){const raw=val('mu-i').replace(/[\s$,]/g,'');if(!raw)return {err:'Type your answer first.'};if(!/^\d+$/.test(raw))return {err:'Type a whole number.'};
+    return {ok:q.check(raw),shown:(q.pre||'')+raw,note:q.diag(raw)}}
+  const u={w:val('mu-w'),n:val('mu-n'),d:val('mu-d')},p=parse(u);if(p.err)return {err:p.err};
+  return {ok:q.check(u),shown:userHtml(p),note:q.diag(u)};
+}
+function check(choice){
+  if(S.answered)return;const e=S.plan[S.i],q=e.q,msg=$('#mu-msg');const r=readAnswer(q,choice);
+  if(r.err){msg.textContent=r.err;return}
+  msg.textContent='';S.answered=true;
+  const lid=q.sec;if(S.mode==='practice'||S.mode==='warm'){ss(lid).m=(ss(lid).m||[]).concat(r.ok?1:0).slice(-20)}
+  if(r.ok){S.score++;S.streak++;S.best=Math.max(S.best,S.streak);S.xp+=S.deferred?15:10;if(e.rev&&reviewHit(q.key))S.xp+=5}
+  else{S.streak=0;S.xp+=2;miss(q.key)}
+  S.log.push({q,ok:r.ok,shown:r.shown,note:r.note,e});
+  if(S.best>=8)M.badges.fire=true;
+  save();
+  if(S.deferred){next();return}
+  let added=false;
+  if(!r.ok&&S.extra<4){S.plan.push({k:q.key,l:Math.max(1,(e.l||1)),retry:true});S.extra++;added=true}
+  root.querySelectorAll('.choice').forEach(b=>{b.disabled=true;const i=+b.dataset.i;if(i===r.ua)b.classList.add(r.ok?'picked-ok':'picked-no');else if(i===q.ans)b.classList.add('right')});
+  root.querySelectorAll('.num').forEach(x=>x.disabled=true);
+  const hb=$('#mu-hintBtn');if(hb)hb.disabled=true;
+  const work=q.explain();
+  $('#mu-fb').innerHTML=r.ok?`<div class="fb ok"><p class="fbh">Correct${S.streak>=3?` · ${S.streak} in a row 🔥`:''} <span class="xpf">+${10+(e.rev?5:0)} XP</span></p><details><summary>See why</summary>${work}</details></div>`
+    :`<div class="fb no"><p class="fbh">Not quite</p><p>You answered: <b>${r.shown}</b><br>Correct answer: <b>${q.answerText}</b></p>${r.note?`<p class="watch"><b>What went wrong:</b> ${r.note}</p>`:''}<p style="font-weight:700">How to get there</p>${work}${added?'<p class="added">A similar question has been added to the end of this round. It will also come back in your Daily Warm-up.</p>':'<p class="added">This skill will come back in your Daily Warm-up.</p>'}</div>`;
+  const last=S.i===S.plan.length-1;
+  $('#mu-actions').innerHTML=`<button class="btn primary" type="button" id="mu-next">${last?'See results':'Next question →'}</button>`;
+  $('#mu-next').focus({preventScroll:true});
+  $('#mu-fb').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
+}
+function next(){if(S.i<S.plan.length-1){S.i++;showQ();window.scrollTo(0,0)}else end()}
+
+/* ---------- results ---------- */
+function end(){
+  stopTimer();const total=S.log.length,pct=Math.round(S.score/(S.deferred?S.plan.length:total)*100);
+  let headline='',bonus=0;
+  if(S.mode==='practice'){bonus=20;M.badges.first=true;headline=mast(S.sec).expert?'Expert in this topic! Take the topic test when you’re ready.':pct>=70?'Good round. Another one will push you towards Expert.':'Keep going. Read the “What went wrong” notes, then try again.'}
+  if(S.mode==='warm'){bonus=20;headline=`Warm-up done. Streak: ${streak()+(M.days.includes(TODAY())?0:1)} day${streak()===0?'':'s'} 🔥`}
+  if(S.mode==='test'){const st=ss(S.sec);st.tests=(st.tests||0)+1;const nb=pct>st.test;st.test=Math.max(st.test,pct);bonus=pct>=PASS.test?50:10;
+    headline=pct>=PASS.test?`Passed! ${mastered(S.sec)?'Topic mastered ✓':'Get to Expert in practice to master the topic.'}`:'Not 80% yet. Practise the questions you missed, then try again.';if(nb&&pct>=PASS.test)headline+=' New best!'}
+  if(S.mode==='exam'){const id=S.arg,r=M.ex[id]||{best:0,tries:0};const nb=pct>r.best;M.ex[id]={best:Math.max(r.best,pct),tries:r.tries+1,last:pct};const pass=id==='final'?PASS.final:PASS.exam;bonus=pct>=pass?(id==='final'?300:100):20;
+    headline=pct>=pass?(id==='final'?'🏆 Music theory expert. Outstanding!':'Passed! On to the next exam.'):`You need ${pass}% to pass. Review every mistake below, then try again: the questions change every time.`;if(nb)headline+=' New best score!'}
+  M.xp+=S.xp+bonus;markDay();if(streak()>=7)M.badges.week=true;save();
+  if((S.mode==='exam'||S.mode==='test')&&pct>=80&&window.boom)boom();
+  const by={};S.log.forEach(r=>{const s=r.q.sec;by[s]=by[s]||{r:0,t:0};by[s].t++;if(r.ok)by[s].r++});
+  const weakest=Object.entries(by).sort((a,b)=>a[1].r/a[1].t-b[1].r/b[1].t)[0];
+  const rv=(r,i)=>`<div class="rv${r.ok?'':' no'}"><div class="h"><span class="qn">Q${i+1}</span><b>${r.ok?'✓':'✗'}</b><span style="font-size:.85rem;color:var(--muted)">${esc(lessonName(r.q.sec))}</span></div><div>${r.q.prompt}</div>
+    <div>You answered: <b>${r.shown}</b>${r.ok?'':`<br>Correct answer: <b>${r.q.answerText}</b>`}</div>${r.ok?`<details><summary>See why</summary>${r.q.explain()}</details>`:`${r.note?`<p class="watch" style="margin:0"><b>What went wrong:</b> ${r.note}</p>`:''}${r.q.explain()}`}</div>`;
+  const review=S.log.map((r,i)=>S.deferred||!r.ok?rv(r,i):'').join('');
+  app.innerHTML=`<section class="end">
+    <p class="eyebrow">${esc(titleOf())} · complete${S.deferred?' · time '+clock():''}</p>
+    <div class="bigscore">${S.score}<span style="color:var(--muted);font-size:.45em"> / ${S.deferred?S.plan.length:total}${S.deferred?` · ${pct}%`:''}</span></div>
+    <p style="margin:0;max-width:62ch;font-weight:600">${headline}</p>
+    <p style="margin:0" class="xpf">+${S.xp+bonus} XP · ${esc(rank().name)}</p>
+    <div>${Object.entries(by).map(([k,v])=>`<div class="bkrow"><span>${esc(lessonName(k))} · ${esc(secOf(k).name)}</span><span>${v.r}/${v.t}</span></div>`).join('')}</div>
+    <div class="cta">${weakest&&weakest[1].r<weakest[1].t?`<button class="btn primary" type="button" data-sec="${weakest[0]}">Practise ${esc(lessonName(weakest[0]))}</button>`:''}
+      <button class="btn" type="button" data-act="again">Try again (new questions)</button><button class="btn ghost" type="button" data-tabgo="${S.mode==='exam'?'exams':S.mode==='warm'?'today':'lessons'}">Done</button></div>
+    ${review?`<h2 class="sec" style="margin-top:6px">${S.deferred?'Review every question':'Questions to look at again'}</h2><div style="display:grid;gap:8px">${review}</div>`:''}
+  </section>`;
+  S.view='end';window.scrollTo(0,0);
+}
+
+/* ---------- events (scoped to the trainer) ---------- */
+root.addEventListener('click',ev=>{
+  const fl=ev.target.closest('.flip');if(fl&&root.contains(fl)){fl.classList.toggle('open');return}
+  const t=ev.target.closest('button');if(!t||!root.contains(t))return;
+  if(t.dataset.tab)return home(t.dataset.tab);
+  if(t.dataset.tabgo)return home(t.dataset.tabgo);
+  if(t.dataset.start){S.sec=t.dataset.sid;ss(S.sec).read=true;save();return intro(t.dataset.start,t.dataset.sid)}
+  if(t.classList.contains('choice')){if(S.deferred){root.querySelectorAll('.choice').forEach(b=>b.classList.toggle('sel',b===t));S.sel=+t.dataset.i;return}return check(+t.dataset.i)}
+  if(t.id==='mu-check')return check();
+  if(t.id==='mu-next')return next();
+  if(t.id==='mu-hintBtn'){$('#mu-hint').hidden=false;t.disabled=true;return}
+  if(t.dataset.sec)return section(t.dataset.sec);
+  if(t.dataset.exam)return intro('exam',t.dataset.exam);
+  if(t.dataset.go){const g=t.dataset.go;if(g==='practice'||g==='test'){ss(S.sec).read=true;save();return start(g,S.sec)}return start('exam',S.exam)}
+  const a=t.dataset.act;
+  if(a==='back')return section(S.sec);
+  if(a==='warm')return start('warm');
+  if(a==='practice'){ss(S.sec).read=true;save();return intro('practice',S.sec)}
+  if(a==='test'){ss(S.sec).read=true;save();return intro('test',S.sec)}
+  if(a==='quit'){if(S.log.length===0||confirm('Leave this round? Answers so far are kept in your progress.')){return S.sec?section(S.sec):home(S.mode==='exam'?'exams':'today')}return}
+  if(a==='again')return S.mode==='practice'||S.mode==='test'?intro(S.mode,S.sec):S.mode==='exam'?intro('exam',S.arg):start('warm');
+});
+document.addEventListener('keydown',ev=>{
+  if(root.hidden||ev.key!=='Enter'||S.view!=='quiz'||!(root.contains(ev.target)||ev.target===document.body))return;
+  if(ev.target.classList&&ev.target.classList.contains('num')&&!S.answered){ev.preventDefault();
+    const boxes=[...root.querySelectorAll('.num')],i=boxes.indexOf(ev.target),nxt=boxes.slice(i+1).find(b=>!b.value);
+    if(nxt&&ev.target.value)nxt.focus();else check();return}
+  if(S.answered&&ev.target.id!=='mu-next'){ev.preventDefault();next()}
+});
+
+window.MUS={
+  get:()=>M,
+  apply:d=>{M=Object.assign({sec:{},ex:{},rev:[],xp:0,days:[],badges:{},retired:0},d);persist();if(S.view==='home')home();syncQuest()},
+  hasData:()=>M.xp>0||Object.keys(M.sec).length>0,
+  show:()=>{if(S.view!=='quiz')home()},
+  _q:()=>S.view==='quiz'?S.plan[S.i].q:null
+};
+home();
+})();
+
 </script>
 <script type="text/plain" id="appJs2">
 
@@ -7206,13 +8099,14 @@ window.VOICE_CH=channel('progress/voice', ()=>window.VOICE.get(), d=>window.VOIC
 window.MATH_CH=channel('progress/math', ()=>window.MATH.get(), d=>window.MATH.apply(d), ()=>window.MATH.hasData());
 window.FRAC_CH=channel('progress/fractions', ()=>window.FRAC.get(), d=>window.FRAC.apply(d), ()=>window.FRAC.hasData());
 window.FRAC2_CH=channel('progress/fractions32', ()=>window.FRAC2.get(), d=>window.FRAC2.apply(d), ()=>window.FRAC2.hasData());
+window.MUS_CH=channel('progress/music', ()=>window.MUS.get(), d=>window.MUS.apply(d), ()=>window.MUS.hasData());
 (async()=>{
   const db = window.FB_DB || null;
   if(!db) return; // opened as a local file: keeps saving in this browser
   SYNC.db=db; setSync('online');
   document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
   $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
-  await QUEST_CH.attach(); await FR_CH.attach(); await FRB_CH.attach(); await FRC_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach(); await FRAC2_CH.attach();
+  await QUEST_CH.attach(); await FR_CH.attach(); await FRB_CH.attach(); await FRC_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach(); await FRAC2_CH.attach(); await MUS_CH.attach();
 })();
 if(location.hash==='#french') showScreen('french');
 if(location.hash==='#frenchb') showScreen('frenchb');
@@ -7222,6 +8116,7 @@ if(location.hash==='#voice') showScreen('voice');
 if(location.hash==='#math') showScreen('math');
 if(location.hash==='#fractions') showScreen('fractions');
 if(location.hash==='#fractions32') showScreen('fractions32');
+if(location.hash==='#music') showScreen('music');
 if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
 </script>
 
