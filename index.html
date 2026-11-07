@@ -1224,6 +1224,247 @@ html[data-skin="night"] #fracApp{--fr-accent-ink:#0B1530}
 #fracApp .choice .fr{font-size:.95em}
 
 
+/* ================= DIVIDING FRACTIONS TRAINER (Lessons 3.2–3.3, copy of the Fractions Trainer; scoped; follows the Quest Log theme) ================= */
+#frac2App{
+  --fr-accent:var(--s-math); --fr-accent-ink:#FFFFFF; --fr-soft:color-mix(in srgb,var(--s-math) 12%,var(--surface));
+  background:var(--bg); color:var(--ink); font:17px/1.55 var(--body);
+  margin-inline:-16px; padding-inline:16px; padding-block:6px 56px; min-height:100vh;
+}
+html[data-skin="night"] #frac2App{--fr-accent-ink:#0B1530}
+#frac2App .fr-wrap{max-width:820px;margin:0 auto}
+#frac2App h1,#frac2App h2,#frac2App h3,#frac2App .fbh{font-family:var(--display);text-wrap:balance;margin:0}
+#frac2App :focus-visible{outline:3px solid var(--fr-accent);outline-offset:2px;border-radius:6px}
+#frac2App .eyebrow{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+#frac2App .fr-back{font-weight:600;text-decoration:none;font-size:14px;color:var(--fr-accent);display:inline-block;margin-bottom:6px}
+#frac2App .hero{display:grid;gap:10px;padding-block:6px 14px}
+#frac2App .hero h1{font-size:clamp(1.9rem,6vw,2.8rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+#frac2App .hl{background:linear-gradient(transparent 58%,var(--gold) 58%,var(--gold) 92%,transparent 92%);padding-inline:.06em}
+#frac2App .lede{margin:0;max-width:64ch;color:var(--muted)}
+#frac2App .btn{appearance:none;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;min-height:44px}
+#frac2App .btn:hover:not(:disabled){border-color:var(--fr-accent)}
+#frac2App .btn.primary{background:var(--fr-accent);border-color:var(--fr-accent);color:var(--fr-accent-ink)}
+#frac2App .btn.primary:hover{filter:brightness(1.07)}
+#frac2App .btn.ghost{background:transparent}
+#frac2App .btn.small{padding:6px 12px;min-height:34px;font-size:13.5px}
+#frac2App .btn:disabled{opacity:.45;cursor:default}
+#frac2App .link{appearance:none;background:none;border:0;color:var(--fr-accent);font:inherit;font-weight:700;cursor:pointer;padding:6px 0}
+#frac2App .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#frac2App .cta{display:flex;flex-wrap:wrap;gap:10px}
+/* stats strip */
+#frac2App .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#frac2App .st{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+#frac2App .st b{font-family:var(--mono);font-size:1.25rem;line-height:1.1}
+#frac2App .st span{font-size:.78rem;color:var(--muted);font-weight:600}
+#frac2App .xpbar{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden;margin-top:4px}
+#frac2App .xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--fr-accent))}
+/* warm-up card */
+#frac2App .warm{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--ink);color:var(--bg);border-radius:16px;padding:16px 18px;margin-top:14px}
+#frac2App .warm .ico{font-size:2rem}
+#frac2App .warm h2{font-size:1.2rem}
+#frac2App .warm p{margin:2px 0 0;font-size:.9rem;opacity:.85}
+#frac2App .warm .btn{background:var(--gold);border-color:var(--gold);color:#1B1B1B}
+#frac2App .sec{font-size:1.25rem;font-weight:800;margin:22px 0 10px}
+/* section cards */
+#frac2App .secs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+#frac2App .scard{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px;text-align:left;cursor:pointer;font:inherit;color:inherit;appearance:none}
+#frac2App .scard:hover{border-color:var(--fr-accent)}
+#frac2App .scard.done{border-color:var(--good);box-shadow:0 0 0 2px color-mix(in srgb,var(--good) 25%,transparent)}
+#frac2App .scard .top{display:flex;gap:10px;align-items:center}
+#frac2App .scard .badge{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-family:var(--display);font-weight:800;background:var(--fr-soft);color:var(--fr-accent);flex:none}
+#frac2App .scard.done .badge{background:var(--good);color:#fff}
+#frac2App .scard .nm{font-family:var(--display);font-weight:800;font-size:1.02rem;line-height:1.2}
+#frac2App .scard .ls{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.04em}
+#frac2App .pips{display:flex;gap:6px;flex-wrap:wrap}
+#frac2App .pip{font-size:.74rem;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+#frac2App .pip.on{background:var(--good-soft);color:var(--good)}
+#frac2App .meter{height:6px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+#frac2App .meter i{display:block;height:100%;background:var(--fr-accent)}
+/* exams */
+#frac2App .exams{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+#frac2App .ecard{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:4px;text-align:left;font:inherit;color:inherit;cursor:pointer;appearance:none}
+#frac2App .ecard:hover:not(:disabled){border-color:var(--fr-accent)}
+#frac2App .ecard:disabled{opacity:.55;cursor:default}
+#frac2App .ecard.final{grid-column:1/-1;background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:var(--gold)}
+#frac2App .ecard b{font-family:var(--display);font-size:1.05rem}
+#frac2App .ecard small{color:var(--muted);font-size:.8rem}
+#frac2App .ecard .sc{font-family:var(--mono);font-size:.82rem}
+#frac2App .ecard .sc.pass{color:var(--good);font-weight:700}
+#frac2App .badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+#frac2App .bdg{border:1.5px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:2px;background:var(--surface);font-size:.85rem}
+#frac2App .bdg.off{opacity:.45}
+#frac2App .bdg .e{font-size:1.5rem}
+#frac2App .bdg b{font-size:.92rem}
+#frac2App .foot{color:var(--muted);font-size:.85rem;margin-top:16px}
+/* section page + refresher */
+#frac2App .steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+#frac2App .step{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:6px}
+#frac2App .step.ok{border-color:var(--good)}
+#frac2App .step .n{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-weight:700}
+#frac2App .step b{font-family:var(--display)}
+#frac2App .card{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px;box-shadow:var(--shadow)}
+#frac2App .ideas{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+#frac2App .ideas li{border-left:4px solid var(--fr-accent);background:var(--fr-soft);border-radius:0 10px 10px 0;padding:8px 12px}
+#frac2App .ideas li.warn{border-left-color:var(--gold);background:var(--gold-soft)}
+#frac2App .ex{background:var(--surface-2);border-radius:12px;padding:12px 14px;display:grid;gap:4px;font-size:.97rem}
+#frac2App .ex .t{font-weight:700}
+#frac2App .ex code,#frac2App .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#frac2App .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+#frac2App .flip{appearance:none;font:inherit;color:inherit;text-align:left;border:1.5px dashed var(--fr-accent);background:var(--surface);border-radius:12px;padding:12px;min-height:84px;cursor:pointer;display:grid;gap:6px;align-content:start}
+#frac2App .flip .q{font-weight:700}
+#frac2App .flip .a{display:none;color:var(--good);font-weight:700}
+#frac2App .flip.open{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+#frac2App .flip.open .a{display:block}
+#frac2App .flip .tap{font-size:.78rem;color:var(--muted)}
+#frac2App .flip.open .tap{display:none}
+#frac2App table.pfx{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+#frac2App table.pfx td,#frac2App table.pfx th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left}
+#frac2App table.pfx th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#frac2App table.pfx tr.hi td{background:var(--gold-soft);font-weight:700}
+#frac2App .tbl{overflow-x:auto}
+/* quiz */
+#frac2App .qbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+#frac2App .prog{flex:1;min-width:160px;display:grid;gap:4px;font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+#frac2App .pbar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+#frac2App .pbar i{display:block;height:100%;background:var(--fr-accent);transition:width .3s}
+#frac2App .score{font-family:var(--mono);font-size:.86rem}
+#frac2App .streak{background:var(--gold);color:#1B1B1B;padding:1px 6px;border-radius:4px;font-weight:700}
+#frac2App .qcard{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px;display:grid;gap:14px;min-width:0}
+#frac2App .qcard .tag{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:6px;background:var(--gold-soft);color:var(--ink);margin-left:6px}
+#frac2App .prompt{font-size:1.15rem;line-height:1.6;min-width:0}
+#frac2App .big{display:block;margin-top:8px;font-family:var(--mono);font-weight:700;font-size:1.45rem;overflow-wrap:anywhere}
+#frac2App .rad{white-space:nowrap}
+#frac2App .ov{border-top:2px solid currentColor;padding:0 2px}
+#frac2App sup{font-size:.72em}
+#frac2App .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+#frac2App .choice{appearance:none;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;font:inherit;font-size:1.02rem;text-align:left;min-height:50px}
+#frac2App .choice.sym{text-align:center;font-family:var(--mono);font-size:1.5rem;font-weight:700}
+#frac2App .choice:hover:not(:disabled){border-color:var(--fr-accent);background:var(--fr-soft)}
+#frac2App .choice.sel{border-color:var(--fr-accent);background:var(--fr-soft)}
+#frac2App .choice.picked-ok{border-color:var(--good);background:var(--good-soft)}
+#frac2App .choice.picked-no{border-color:var(--danger);background:var(--danger-soft)}
+#frac2App .choice.right{border-color:var(--good);border-width:2.5px}
+#frac2App .choice:disabled{cursor:default}
+#frac2App .ansrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#frac2App .nb{display:inline-flex;align-items:stretch;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+#frac2App .nb:focus-within{border-color:var(--fr-accent);box-shadow:0 0 0 3px var(--fr-soft)}
+#frac2App .pm{appearance:none;border:0;border-right:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);width:42px;font-family:var(--mono);font-size:1.15rem;cursor:pointer}
+#frac2App .num{border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:1.2rem;font-weight:700;padding:10px 12px;width:12ch;min-width:0;outline:none}
+#frac2App .num.wide{width:18ch}
+#frac2App .num.exp{width:5ch}
+#frac2App .sciin{display:inline-flex;align-items:center;gap:6px;flex-wrap:nowrap;font-family:var(--mono);font-size:1.2rem;font-weight:700}
+#frac2App .num.coef{width:8ch}
+#frac2App .foot{text-align:left}
+#frac2App .sciin .ten{display:inline-flex;align-items:flex-start;gap:2px}
+#frac2App .sciin .ten .nb{transform:translateY(-10px)}
+#frac2App .unit{font-family:var(--mono);color:var(--muted)}
+#frac2App .tray{display:flex;gap:8px;flex-wrap:wrap;min-height:52px;padding:8px;border:1.5px dashed var(--line);border-radius:12px}
+#frac2App .tray.ans{border-color:var(--fr-accent);background:var(--fr-soft)}
+#frac2App .chip{appearance:none;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;font-family:var(--mono);font-weight:700;cursor:pointer}
+#frac2App .chip:hover:not(:disabled){border-color:var(--fr-accent)}
+#frac2App .chip .ix{font-size:.7rem;color:var(--muted);margin-right:4px}
+#frac2App .lt{align-self:center;color:var(--muted);font-family:var(--mono)}
+#frac2App .hint{background:var(--gold-soft);border-radius:10px;padding:10px 14px;font-size:.97rem}
+#frac2App .msg{color:var(--danger);font-size:.92rem;min-height:1.2em;margin:0}
+#frac2App .fb{border-radius:12px;padding:14px 16px;display:grid;gap:8px;min-width:0}
+#frac2App .fb p{margin:0}
+#frac2App .fb.ok{background:var(--good-soft)}
+#frac2App .fb.no{background:var(--danger-soft)}
+#frac2App .fbh{font-size:1.2rem;font-weight:800}
+#frac2App .fb.ok .fbh{color:var(--good)} #frac2App .fb.no .fbh{color:var(--danger)}
+#frac2App .watch{background:var(--gold-soft);border-radius:8px;padding:8px 12px}
+#frac2App ol.steps{margin:0;padding:0 0 0 22px;display:grid;gap:6px}
+#frac2App details summary{cursor:pointer;font-weight:700}
+#frac2App details[open] summary{margin-bottom:8px}
+#frac2App .added{font-size:.9rem;color:var(--muted);font-style:italic}
+#frac2App mark{background:var(--gold);color:#1B1B1B;padding:0 3px;border-radius:3px}
+#frac2App .xpf{font-family:var(--mono);font-weight:700;color:var(--fr-accent)}
+/* results */
+#frac2App .end{display:grid;gap:14px}
+#frac2App .bigscore{font-family:var(--display);font-weight:800;font-size:clamp(3rem,13vw,4.6rem);line-height:1}
+#frac2App .bkrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+#frac2App .bkrow span:last-child{font-family:var(--mono)}
+#frac2App .rv{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px;background:var(--surface)}
+#frac2App .rv.no{border-color:var(--danger)}
+#frac2App .rv .h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+#frac2App .rv .qn{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-weight:700}
+#frac2App .timer{font-family:var(--mono);font-size:.86rem;color:var(--muted)}
+#frac2App .lock{font-size:.78rem;color:var(--muted)}
+@media (max-width:560px){#frac2App{font-size:16px}#frac2App .stats{grid-template-columns:repeat(2,minmax(0,1fr))}#frac2App .steps3{grid-template-columns:1fr}#frac2App .warm{grid-template-columns:auto minmax(0,1fr)}#frac2App .warm .btn{grid-column:1/-1}#frac2App .qcard{padding:16px}}
+@media (prefers-reduced-motion:no-preference){#frac2App .fb{animation:frRise .25s ease-out}@keyframes frRise{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}}
+/* ---------- calmer navigation: compact top bar, tabs, rows, collapsible refreshers, pinned actions ---------- */
+#frac2App .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:4px 6px}
+#frac2App .topbar .fr-back{margin:0}
+#frac2App .chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#frac2App .chipx{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+#frac2App .chipx.warn{background:var(--gold-soft);border-color:var(--gold)}
+#frac2App .fr-title{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:2px 0 0}
+#frac2App .fr-title.sm{font-size:clamp(1.35rem,4.2vw,1.8rem)}
+#frac2App .sub1{margin:4px 0 12px;color:var(--muted);font-size:.92rem}
+#frac2App .muted{margin:0 0 8px;color:var(--muted);font-size:.9rem}
+#frac2App .mtabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:12px;margin-bottom:14px;overflow-x:auto}
+#frac2App .mtab{flex:1;appearance:none;border:0;background:transparent;font:inherit;font-weight:700;font-size:.92rem;color:var(--muted);padding:8px 10px;border-radius:9px;cursor:pointer;white-space:nowrap}
+#frac2App .mtab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+#frac2App .tabbody{display:grid;gap:10px}
+#frac2App .next{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:2px solid var(--fr-accent);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow)}
+#frac2App .next .ico{font-size:2rem}
+#frac2App .next h2{font-size:1.15rem;margin-top:2px}
+#frac2App .next p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+#frac2App .row-btn,#frac2App .lrow{appearance:none;width:100%;text-align:left;font:inherit;color:inherit;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+#frac2App .row-btn:hover,#frac2App .lrow:hover:not(:disabled){border-color:var(--fr-accent)}
+#frac2App .row-btn small,#frac2App .lrow small{display:block;color:var(--muted);font-size:.82rem;font-weight:500}
+#frac2App .row-btn>span:first-child{font-size:1.4rem}
+#frac2App .chev{color:var(--muted);font-size:1.3rem;line-height:1}
+#frac2App .path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#frac2App .path>div{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:4px}
+#frac2App .path b{font-family:var(--mono);font-size:1.15rem}
+#frac2App .path span{font-size:.78rem;color:var(--muted);font-weight:600}
+#frac2App .list{display:grid;gap:8px}
+#frac2App .lrow{grid-template-columns:auto minmax(0,1fr) auto auto}
+#frac2App .lrow:disabled{opacity:.55;cursor:default}
+#frac2App .lrow.done{border-color:var(--good)}
+#frac2App .lrow.final{background:linear-gradient(135deg,var(--gold-soft),var(--surface));border-color:var(--gold)}
+#frac2App .lno{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:.9rem;background:var(--fr-soft);color:var(--fr-accent)}
+#frac2App .lrow.done .lno{background:var(--good);color:#fff}
+#frac2App .lname b{font-family:var(--display);font-size:1rem;line-height:1.25}
+#frac2App .dots{display:flex;gap:4px}
+#frac2App .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.62rem;font-weight:800;color:#fff}
+#frac2App .dot.on{background:var(--good);border-color:var(--good)}
+#frac2App .stepline{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+#frac2App .stepline span{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--surface-2);color:var(--muted)}
+#frac2App .stepline span.ok{background:var(--good-soft);color:var(--good)}
+#frac2App details.acc{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+#frac2App details.acc>summary{font-family:var(--display);font-weight:800;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+#frac2App details.acc>summary::-webkit-details-marker{display:none}
+#frac2App details.acc>summary::after{content:"＋";color:var(--muted);font-weight:700}
+#frac2App details.acc[open]>summary::after{content:"−"}
+#frac2App details.acc[open]>summary{margin-bottom:10px}
+#frac2App details.acc .ex{margin-bottom:8px}
+#frac2App .dock{position:sticky;bottom:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));margin-top:6px;background:linear-gradient(to top,var(--bg) 75%,transparent)}
+#frac2App .dock .btn{flex:1;min-width:140px}
+#frac2App .qcard #f2-actions{position:sticky;bottom:0;z-index:3;background:var(--surface);padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));margin-block:-8px}
+#frac2App .multi{display:flex;flex-wrap:wrap;gap:8px}
+#frac2App .mchip{appearance:none;font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:9px 16px;cursor:pointer}
+#frac2App .mchip[aria-pressed="true"]{background:var(--fr-accent);border-color:var(--fr-accent);color:var(--fr-accent-ink)}
+#frac2App .mchip[aria-pressed="true"]::before{content:"✓ "}
+#frac2App .mchip:disabled{cursor:default}
+@media (max-width:560px){#frac2App .next{grid-template-columns:auto minmax(0,1fr)}#frac2App .next .btn{grid-column:1/-1}#frac2App .path{grid-template-columns:repeat(3,minmax(0,1fr))}#frac2App .path span{font-size:.7rem}#frac2App .dots{display:none}}
+/* ---------- fractions: stacked display and the whole / numerator / denominator answer boxes ---------- */
+#frac2App .fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;margin:0 .1em;font-variant-numeric:tabular-nums;font-size:.92em}
+#frac2App .fr>span{padding:0 .18em}
+#frac2App .fr>span:first-child{border-bottom:2px solid currentColor}
+#frac2App .mxn{white-space:nowrap;display:inline-flex;align-items:center;gap:.06em;vertical-align:middle}
+#frac2App .big{line-height:1.3}
+#frac2App .ideas .fr,#frac2App .flip .fr,#frac2App .ex .fr,#frac2App ol.steps .fr{font-size:.85em}
+#frac2App .fin{display:inline-flex;align-items:center;gap:10px}
+#frac2App .fin .num{border:1.5px solid var(--line);border-radius:10px;background:var(--surface);width:5ch;text-align:center;padding:8px 4px}
+#frac2App .fin .num:focus{border-color:var(--fr-accent);box-shadow:0 0 0 3px var(--fr-soft)}
+#frac2App .fin .whole{width:4.5ch;font-size:1.6rem;padding-block:14px}
+#frac2App .fstack{display:inline-flex;flex-direction:column;gap:5px;align-items:stretch}
+#frac2App .fstack i{display:block;height:3px;background:var(--ink);border-radius:2px}
+#frac2App .ansrow .nb .num{width:9ch}
+#frac2App .choice .fr{font-size:.95em}
+
+
 /* ================= MATH MASTERY TRAINER (Ch 1–2; scoped; follows the Quest Log theme) ================= */
 #mathApp{
   --mt-accent:var(--s-math); --mt-accent-ink:#FFFFFF; --mt-soft:color-mix(in srgb,var(--s-math) 12%,var(--surface));
@@ -1596,6 +1837,7 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
         <div class="theme-menu" id="practiceMenu" role="menu" hidden>
           <a class="theme-opt" role="menuitem" href="#math"><span class="pi">➗</span><span>Math Mastery<small>Chapters 1–2 · lessons, exams, daily warm-up</small></span></a>
           <a class="theme-opt" role="menuitem" href="#fractions"><span class="pi">½</span><span>Fractions<small>Chapter 3 recall + Lesson 3.1 · exams</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#fractions32"><span class="pi">÷</span><span>Dividing Fractions<small>Lessons 3.2 + 3.3 · due Tue Nov 10</small></span></a>
           <a class="theme-opt" role="menuitem" href="#roots"><span class="pi">√</span><span>Square Root Trainer<small>Lesson 1.1 extra practice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#voice"><span class="pi">✍️</span><span>Voice Trainer<small>Active &amp; passive voice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#french"><span class="pi">🇫🇷</span><span>French · Section A<small>Flashcards &amp; mock tests</small></span></a>
@@ -2005,6 +2247,10 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
 <div class="fr-wrap"><main id="fr-app"></main></div>
 </div>
 
+<div id="frac2App" hidden>
+<div class="fr-wrap"><main id="f2-app"></main></div>
+</div>
+
 <div id="mathApp" hidden>
 <div class="mt-wrap"><main id="mt-app"></main></div>
 </div>
@@ -2117,6 +2363,22 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
     note:'“Master” = Expert in practice (9 of the last 10 right) and 80%+ on the topic test. Lesson 3.1 rule: change mixed numbers to improper fractions first, and give answers as whole or mixed numbers in simplest form.'
   });
   if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-frac-trainer')) NEWS.unshift({id:'n-frac-trainer', date:'2026-10-24', kind:'assignment', title:'Math: Chapter 3 Fractions Trainer (Recall + Lesson 3.1)', detail:'Refresher, practice and a test for each topic, then five practice exams and the Final. Every wrong answer explains what went wrong.', open:'math-ch3-frac'});
+})();
+/* ---------- Dividing Fractions practice (Lessons 3.2 + 3.3) ----------
+   Added by the app; steps tick themselves from the Dividing Fractions Trainer. */
+(function(){
+  if(typeof BUILT_IN==='undefined') return;
+  const link={label:'Dividing Fractions Trainer: Lessons 3.2 + 3.3 practice', url:'#fractions32', kind:'STUDY'};
+  if(!BUILT_IN.some(t=>t.id==='math-3-2-3-3-practice')) BUILT_IN.push({
+    id:'math-3-2-3-3-practice', title:'Math · Practice Lessons 3.2 + 3.3: dividing fractions (4 topics, 3 practice exams, final)', subject:'math', teacher:(BUILT_IN.find(t=>t.id==='math-3-2')||BUILT_IN.find(t=>t.id==='math-1-1')||{}).teacher||'', due:'2026-11-10', xp:0,
+    turnIn:'Practice in the Dividing Fractions Trainer',
+    desc:'Lesson 3.2 Dividing fractions by whole numbers and Lesson 3.3 Dividing fractions by fractions, improper fractions and mixed numbers. Each topic starts with a refresher, then practice that adapts to you, then a topic test. Then three practice exams and a Final Exam. Wrong answers explain what went wrong; mistakes come back in the Daily Warm-up.',
+    steps:['Master 3.2 Dividing fractions by whole numbers','Master 3.3a Dividing by a fraction (keep · change · flip)','Master 3.3b Improper fractions & mixed numbers','Master 3.3c Word problems, order & checking','Practice Exam 1: 80%+','Practice Exam 2: 80%+','Practice Exam 3: 80%+','Final Exam: 90%+ (expert)'],
+    links:[link],
+    note:'Practice set by Papa, due Tuesday Nov 10. “Master” = Expert in practice (9 of the last 10 right) and 80%+ on the topic test.'
+  });
+  ['math-3-2','math-3-3'].forEach(id=>{ const t=BUILT_IN.find(x=>x.id===id); if(t && !(t.links||[]).some(l=>l.url==='#fractions32')) t.links=[...(t.links||[]),link]; });
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-frac32-trainer')) NEWS.unshift({id:'n-frac32-trainer', date:'2026-11-07', kind:'assignment', title:'Math: Dividing Fractions Trainer (Lessons 3.2 + 3.3), due Tue Nov 10', detail:'Refresher, practice and a test for each topic, then three practice exams and the Final. Every wrong answer explains what went wrong.', open:'math-3-2-3-3-practice'});
 })();
 /* ---------- French Section B assignment ----------
    The Classroom data has the Section B task; point it at the trainer and use steps the trainer can tick. */
@@ -2680,6 +2942,11 @@ window.QL={
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
     if(changed){ save(); renderAll(); }
   },
+  frac32Progress(marks){
+    const s=st('math-3-2-3-3-practice'); s.steps=s.steps||[]; let changed=false;
+    marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
+    if(changed){ save(); renderAll(); }
+  },
   fracProgress(marks){
     const s=st('math-ch3-frac'); s.steps=s.steps||[]; let changed=false;
     marks.forEach((m,i)=>{ if(m&&!s.steps[i]){ s.steps[i]=true; changed=true; } });
@@ -2689,7 +2956,7 @@ window.QL={
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#frac2App').hidden=name!=='fractions32'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
@@ -2699,10 +2966,11 @@ function showScreen(name){
   if(name==='frenchc') window.scrollTo({top:0});
   if(name==='math' && window.MATH) MATH.show();
   if(name==='fractions' && window.FRAC) FRAC.show();
+  if(name==='fractions32' && window.FRAC2) FRAC2.show();
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#fractions32"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -6068,6 +6336,115 @@ const QC={
       why:op==='×'?[`${fr(x[0]+' × '+y[0],x[1]+' × '+y[1])} = ${fr(x[0]*y[0],x[1]*y[1])}`,`Simplest form: ${simp(ans)}`]:[`${fr(...x)} × ${fr(y[1],y[0])} = ${fr(x[0]*y[1],x[1]*y[0])}`,`Simplest form: ${simp(ans)}`]});q.book=true;return q}
 };
 
+/* ---------- Lessons 3.2 and 3.3: dividing fractions (used by the Dividing Fractions Trainer) ---------- */
+const flipF=f=>[f[1],f[0]];
+/* x ÷ y for operands made with opF / opM / opW. more = extra traps checked first: [[value, message]] */
+function quotient(x,y,o){
+  o=o||{};const ans=div(x.f,y.f),a=x.imp,b=y.imp,xm=x.w&&!x.whole,ym=y.w&&!y.whole,traps=(o.more||[]).slice();
+  traps.push([mul(x.f,y.f),MSG.noFlip]);
+  if(!x.whole)traps.push([mul(flipF(x.f),y.f),MSG.flipFirst]);
+  traps.push([mul(flipF(x.f),flipF(y.f)),MSG.flipBoth]);
+  if(xm)traps.push([add(W(x.w),div([x.raw[0],x.raw[1]],y.f)),`Careful: you divided only the fraction part of ${x.h} and kept the ${x.w}. A mixed number is a whole plus a fraction, so change it to an improper fraction (${fr(...a)}) first.`]);
+  if(ym)traps.push([mul(x.f,[y.raw[1],y.raw[0]]),`You flipped only the fraction part of ${y.h}. Change it to an improper fraction (${fr(...b)}) first, then flip the whole thing: ${fr(b[1],b[0])}.`]);
+  if(ym)traps.push([div(x.f,[y.raw[0],y.raw[1]]),`You divided by only the fraction part of ${y.h}. Change the mixed number to an improper fraction first.`]);
+  if(xm)traps.push([div([x.w*x.raw[0]+x.raw[1],x.raw[1]],y.f),MSG.toImp+` (${x.h} = ${fr(...a)})`]);
+  if(ym)traps.push([div(x.f,[y.w*y.raw[0]+y.raw[1],y.raw[1]]),MSG.toImp+` (${y.h} = ${fr(...b)})`]);
+  if(y.whole)traps.push([div(W(y.f[0]),x.f),`That is ${y.h} ÷ ${x.h}, the other way round. The order matters: the first number is the one being divided.`]);
+  const mixed=xm||ym;
+  return FRAC({sec:o.sec,book:o.book,prompt:`${o.extra||'Divide. Give your answer in simplest form.'}<span class="big">${x.h}${D}${y.h}</span>`,ans,traps,
+    fallback:mixed?'Check each step: change mixed numbers to improper fractions, keep · change · flip, cancel, multiply, then simplify.':'',
+    hint:mixed?'Change mixed numbers to improper fractions first, then keep · change · flip.':y.whole?`Dividing by ${y.h} is the same as multiplying by ${fr(1,y.f[0])}.`:`Keep ${x.h}, change ÷ to ×, flip ${y.h}.`,
+    why:[xm?`${x.h} = ${fr(...a)}`:'',ym?`${y.h} = ${fr(...b)}`:'',y.whole?`${y.h} = ${fr(b[0],1)}, so its reciprocal is ${fr(1,b[0])}.`:'',
+      `Keep · change · flip: ${imp(a)}${X}${fr(b[1],b[0])}`,`= ${fr(a[0]+' × '+b[1],a[1]+' × '+b[0])} = ${fr(a[0]*b[1],a[1]*b[0])}`,
+      `Simplest form: ${simp(ans)}`,`Check: ${simp(ans)} × ${y.h} = ${x.h}`]});
+}
+const BOOK32=[[1,2,3],[3,5,6],[4,5,2],[9,11,3]];
+const G32={
+  divW(l){const [n,d]=properF(l),k=R(2,l===1?5:l===2?8:12);
+    return quotient(opF(n,d),opW(k),{sec:'G',more:[[mul([n,d],W(k)),`You multiplied by ${k}. Sharing into ${k} parts makes each part <b>smaller</b>: multiply by ${fr(1,k)} instead.`]]})},
+  divMixW(l){const [w,n,d]=mixedOp(Math.max(1,l-1)),k=R(2,l===1?4:8);return quotient(opM(w,n,d),opW(k),{sec:'G'})},
+  model(l){const [n,d]=properF(l),k=R(2,6),ans=div([n,d],W(k));
+    return MC({sec:'G',prompt:`Which is the same as ${fr(n,d)}${D}${k}?`,
+      opts:[[`${fr(1,k)} of ${fr(n,d)}`,''],[`${k}${X}${fr(n,d)}`,`That makes it ${k} times bigger. Splitting into ${k} equal parts makes each part smaller.`],[`${fr(d,n)}${X}${k}`,MSG.flipFirst],[`${fr(n,d)} − ${k}`,'Dividing is sharing into equal parts, not taking away.']],
+      hint:`Sharing ${fr(n,d)} equally into ${k} parts: what fraction of it is one part?`,
+      why:[`÷ ${k} means split into ${k} equal parts.`,`One part is ${fr(1,k)} of ${fr(n,d)} = ${fr(1,k)} × ${fr(n,d)} = ${simp(ans)}.`,'Three ways to say it: model it, take “⅓ of”, or multiply by the reciprocal.']})},
+  word(l){const [n,d]=properF(l),k=R(2,l===1?4:6),f=[n,d],ans=div(f,W(k));
+    const T=[[`${fr(n,d)} kg of clay is shared equally among ${k} students. How much clay does each student get (in kg)?`,'kg'],
+      [`A ${fr(n,d)} m piece of wire is cut into ${k} equal pieces. How long is each piece (in m)?`,'m'],
+      [`${k} friends share ${fr(n,d)} of a cantaloupe equally. What fraction of the whole cantaloupe does each friend get?`,''],
+      [`A ${fr(n,d)} L bottle of juice is poured equally into ${k} cups. How much juice is in each cup (in L)?`,'L']];
+    const [t,u]=pick(T);
+    return FRAC({sec:'G',prompt:t+' Give your answer in simplest form.',ans,
+      traps:[[mul(f,W(k)),`You multiplied by ${k}. Each share has to be <b>smaller</b> than the whole amount: divide by ${k}.`],[div(W(k),f),'You divided the other way round. The amount being shared comes first.']],
+      hint:`Each share = ${fr(n,d)} ÷ ${k} = ${fr(n,d)} × ${fr(1,k)}.`,
+      why:[`Each share = ${fr(n,d)} ÷ ${k}`,`= ${fr(n,d)} × ${fr(1,k)} = ${fr(n,d*k)}`,`Simplest form: ${simp(ans)}${u?' '+u:''}`]})},
+  recip(l){const t=l===1?pick([0,1]):pick([0,1,2]);
+    if(t===0){const w=R(2,12);return FRAC({sec:'G',prompt:`What is the reciprocal of ${w}?`,ans:[1,w],form:'improper',traps:[[[w,1],'The reciprocal of a whole number is 1 over it.']],
+      hint:`${w} = ${fr(w,1)}. Flip it.`,why:[`${w} = ${fr(w,1)}.`,`Flip: ${fr(1,w)}. Check: ${w} × ${fr(1,w)} = 1.`]})}
+    if(t===1){const [n,d]=properF(l);return FRAC({sec:'G',prompt:`What is the reciprocal of ${fr(n,d)}?`,ans:[d,n],form:'improper',traps:[[[n,d],'That is the same fraction. Flip it: the denominator goes on top.']],
+      hint:'Flip the fraction.',why:[`Flip ${fr(n,d)}: ${fr(d,n)}.`,`Check: ${fr(n,d)} × ${fr(d,n)} = 1.`]})}
+    const [w,n,d]=mixedOp(2),f=M(w,n,d);
+    return FRAC({sec:'G',prompt:`What is the reciprocal of ${mx(w,n,d)}?`,ans:[f[1],f[0]],form:'improper',
+      traps:[[M(w,d,n),'Flip the whole improper fraction, not just the fraction part.'],[[w*n+d,n],'Change the mixed number to an improper fraction first, then flip it.']],
+      hint:'Write it as an improper fraction first, then flip.',why:[`${mx(w,n,d)} = ${fr(...f)}.`,`Flip it: ${fr(f[1],f[0])}.`]})},
+  book(){const [n,d,k]=pick(BOOK32);const q=quotient(opF(n,d),opW(k),{sec:'G',book:true});return q}
+};
+const H33={
+  div(l){let x=properF(l),y=properF(l);while(eq(x,y))y=properF(l);return quotient(opF(...x),opF(...y),{sec:'H'})},
+  whole(l){const k=R(2,l===1?6:12),y=properF(l);return quotient(opW(k),opF(...y),{sec:'H',more:[[mul(W(k),y),MSG.noFlip],[mul(div(W(k),y),W(y[1])),MSG.wholeAsDen]]})},
+  howMany(l){const b=pick(l===1?[2,3,4]:[2,3,4,5,6]),m=pick(l===1?[2,3]:[2,3,4]),k=b*m;let a;do a=R(1,b-1);while(gcd(a,b)!==1);
+    return INT({sec:'H',prompt:`How many ${fr(1,k)}s are in ${fr(a,b)}?`,ans:a*m,
+      traps:[[a,`Rename ${fr(a,b)} with denominator ${k} first: ${fr(a,b)} = ${fr(a*m,k)}.`],[k,`${k} is how many ${fr(1,k)}s are in one <b>whole</b>. You only have ${fr(a,b)} of a whole.`]],
+      hint:`Rename ${fr(a,b)} with denominator ${k}.`,
+      why:[`${fr(a,b)} = ${fr(a*m,k)}`,`${fr(a*m,k)} ÷ ${fr(1,k)} = ${a*m} ÷ 1 = ${a*m}`,`So ${a*m} pieces of ${fr(1,k)} fit in ${fr(a,b)}.`]})},
+  commonDen(l){let x,y;do{x=properF(l);y=properF(l)}while(x[1]===y[1]||eq(x,y));
+    const L=lcm(x[1],y[1]),xn=x[0]*L/x[1],yn=y[0]*L/y[1],ans=div(x,y);
+    return FRAC({sec:'H',prompt:`Use a common denominator to divide. Give your answer in simplest form.<span class="big">${fr(...x)}${D}${fr(...y)} = ${fr(xn,L)}${D}${fr(yn,L)} = ?</span>`,ans,
+      traps:[[mul(x,y),MSG.noFlip],[[yn,xn],'You divided the second numerator by the first. Keep the order: first numerator ÷ second numerator.']],
+      hint:`With the same denominator, just divide the numerators: ${xn} ÷ ${yn}.`,
+      why:[`Common denominator ${L}: ${fr(...x)} = ${fr(xn,L)} and ${fr(...y)} = ${fr(yn,L)}.`,`Same-size pieces, so divide the numerators: ${xn} ÷ ${yn} = ${fr(xn,yn)}.`,`Simplest form: ${simp(ans)}`,`Same answer as keep · change · flip: ${fr(...x)} × ${fr(y[1],y[0])}.`]})},
+  same(l){const x=properF(l);let y=properF(l);while(eq(x,y))y=properF(l);
+    return MC({sec:'H',prompt:`Which is the same as ${fr(...x)}${D}${fr(...y)}?`,
+      opts:[[`${fr(...x)}${X}${fr(y[1],y[0])}`,''],[`${fr(x[1],x[0])}${X}${fr(...y)}`,MSG.flipFirst],[`${fr(...x)}${X}${fr(...y)}`,MSG.noFlip],[`${fr(x[1],x[0])}${X}${fr(y[1],y[0])}`,MSG.flipBoth]],
+      hint:'Keep · change · flip.',why:['Keep the first fraction.','Change ÷ to ×.',`Flip the second: ${fr(...y)} becomes ${fr(y[1],y[0])}.`]})},
+  bigger(l){const x=coin()?opW(R(2,9)):opF(...properF(l));const small=coin();const y=small?opF(...properF(l)):(coin()?opM(...mixedOp(1)):improperF(l));
+    const big=div(x.f,y.f),g=big[0]*x.f[1]>x.f[0]*big[1];
+    return MC({sec:'H',prompt:`Without calculating: is ${x.h}${D}${y.h} <b>greater</b> or <b>less</b> than ${x.h}?`,
+      opts:g?[[`Greater than ${x.h}`,''],[`Less than ${x.h}`,`${y.h} is less than 1. Dividing by a number less than 1 makes the answer <b>bigger</b> (more small pieces fit).`]]
+            :[[`Less than ${x.h}`,''],[`Greater than ${x.h}`,`${y.h} is more than 1. Dividing by a number greater than 1 makes the answer <b>smaller</b>.`]],
+      hint:`Is ${y.h} less than 1 or greater than 1?`,
+      why:[`${y.h} is ${g?'less':'greater'} than 1.`,g?'Dividing by a number less than 1 gives a bigger answer: more pieces of that size fit.':'Dividing by a number greater than 1 gives a smaller answer.',`Here: ${x.h} ÷ ${y.h} = ${simp(big)}.`]})},
+  book(){const b=pick([[[3,4],[1,8]],[[6,8],[1,8]],[[6,8],[9,12]],[[2,3],[7,10]],[[5,7],[2,7]]]);return quotient(opF(...b[0]),opF(...b[1]),{sec:'H',book:true})}
+};
+const I33={
+  mixProper(l){return quotient(mixedO(l),properO(l),{sec:'I'})},
+  properMix(l){return quotient(properO(l),mixedO(Math.max(1,l-1)),{sec:'I'})},
+  impProper(l){return quotient(improperF(l),properO(l),{sec:'I'})},
+  mixMix(l){return quotient(mixedO(Math.max(1,l-1)),mixedO(Math.max(1,l-1)),{sec:'I'})},
+  wholeMix(l){return quotient(opW(R(2,l===1?6:12)),mixedO(Math.max(1,l-1)),{sec:'I'})},
+  book(){const b=pick([['f',5,9,'m',4,1,3],['m',2,3,5,'m',1,8,9],['f',3,4,'m',1,1,2],['m',3,3,4,'f',3,4],['m',1,1,2,'f',3,8]]);const [x,y]=bookOp(b);return quotient(x,y,{sec:'I',book:true})}
+};
+const J33={
+  swap(l){const f=properF(l),k=R(2,l===1?5:9),a=div(f,W(k)),b=div(W(k),f);
+    return MC({sec:'J',prompt:`${fr(...f)}${D}${k} = ${simp(a)}. What is ${k}${D}${fr(...f)}?`,
+      opts:[[simp(b),''],[simp(a),'Swapping the order changes the answer. Dividing is not like multiplying: 4 ÷ 2 is not 2 ÷ 4.'],[simp(mul(f,W(k))),'That is ' +fr(...f)+' × '+k+', not '+k+' ÷ '+fr(...f)+'.'],[simp(red(f[1],f[0]*k)),MSG.flipBoth]],
+      hint:`Work it out: ${k} × ${fr(f[1],f[0])}. Notice how it compares with ${simp(a)}.`,
+      why:[`${k} ÷ ${fr(...f)} = ${k} × ${fr(f[1],f[0])} = ${simp(b)}.`,`The two answers are reciprocals of each other: ${simp(a)} and ${simp(b)}.`,'Order matters in division (the hands-on activity: 4 ÷ ⅖ = 10 but ⅖ ÷ 4 = 1/10).']})},
+  pieces(l){const piece=coin(l===1?.8:.5)?properF(Math.min(l,2)):M(1,...properF(1)),cnt=R(2,l===1?6:l===2?10:14),total=mul(piece,W(cnt));
+    const T=[['A ribbon is %T m long. It is cut into pieces that are each %P m long. How many pieces are there?'],['You have %T cups of flour. Each batch of muffins needs %P cup. How many batches can you make?'],['A trail is %T km long. It has rest stops every %P km. How many sections does the trail have?'],['A %T kg bag of rice is split into bags of %P kg each. How many small bags are there?']];
+    const t=pick(T)[0].replace('%T',simp(total)).replace('%P',simp(piece));
+    return FRAC({sec:'J',prompt:t,ans:W(cnt),
+      traps:[[mul(total,piece),'“How many pieces of size … fit” means divide, not multiply.'],[div(piece,total),'You divided the other way round. Total ÷ size of one piece.']],
+      hint:`Total ÷ size of one piece = ${simp(total)} ÷ ${simp(piece)}.`,
+      why:[`Number of pieces = ${simp(total)} ÷ ${simp(piece)}.`,`${imp(total)} × ${fr(piece[1],piece[0])} = ${cnt}`,`Check: ${cnt} × ${simp(piece)} = ${simp(total)}.`]})},
+  share(l){const x=coin()?opM(...mixedOp(Math.min(l,2))):opW(R(2,8)),y=coin()?opF(...properF(Math.min(l,2))):opM(...mixedOp(1));
+    return quotient(x,y,{sec:'J',extra:pick([`A recipe uses ${y.h} cups of flour per batch. How many batches can you make with ${x.h} cups?`,`Each lap of the track is ${y.h} km. How many laps is ${x.h} km?`,`A jug holds ${x.h} L. Each glass holds ${y.h} L. How many glasses can you fill?`])+' Give your answer in simplest form.'})},
+  check(l){const x=properO(l),y=coin()?properO(l):mixedO(1),ans=div(x.f,y.f);
+    return MC({sec:'J',prompt:`Your friend says ${x.h}${D}${y.h} = ${simp(ans)}. Which multiplication checks this?`,
+      opts:[[`${simp(ans)}${X}${y.h} = ${x.h}`,''],[`${simp(ans)}${X}${x.h} = ${y.h}`,'Multiply the answer by the <b>divisor</b> (the second number). You should get the first number back.'],[`${x.h}${X}${y.h} = ${simp(ans)}`,'That multiplies the two numbers you started with. To check a division, multiply the answer by the divisor.']],
+      hint:'Division and multiplication undo each other: answer × divisor = the number you started with.',
+      why:[`If ${x.h} ÷ ${y.h} = ${simp(ans)}, then ${simp(ans)} × ${y.h} = ${x.h}.`,'Always check by multiplying back.']})}
+};
 const SECTIONS=[
   {id:'A',no:'R1',lesson:'Recall 1',name:'Equivalent fractions & simplest form',gens:{missing:A.missing,equiv:A.equiv,simplify:A.simplify,notEquiv:A.notEquiv,book:QC.A}},
   {id:'B',no:'R2',lesson:'Recall 2',name:'Mixed numbers & improper fractions',gens:{toImp:B.toImp,toMixed:B.toMixed,pieces:B.pieces,bigger:B.bigger}},
@@ -6075,9 +6452,15 @@ const SECTIONS=[
   {id:'D',no:'R4',lesson:'Recall 4',name:'Whole numbers × ÷ fractions & the unit method',gens:{mulWhole:D_.mulWhole,divWhole:D_.divWhole,recip:D_.recip,units:D_.units,book:QC.D}},
   {id:'E',no:'R5',lesson:'Recall 5',name:'Multiplying & dividing proper fractions',gens:{mul:E.mul,div:E.div,same:E.same,ofWord:E.ofWord,book:QC.E}},
   {id:'F',no:'3.1',lesson:'Lesson 3.1',name:'Multiplying improper fractions & mixed numbers',gens:{impProper:F.impProper,mixProper:F.mixProper,impImp:F.impImp,mixMix:F.mixMix,cancel:F.cancel,word:F.word,book:F.book}}];
-function make(key,l){const [s,g]=key.split('.');const q=SECTIONS.find(x=>x.id===s).gens[g](l||1);q.key=key;q.sec=s;return q}
-const keysOf=s=>Object.keys(SECTIONS.find(x=>x.id===s).gens).map(g=>s+'.'+g);
-return {SECTIONS,make,keysOf,parse,userHtml,fr,mx,simp,imp,red,eq,mul,div,add,sub,gcd,shuffle,pick,R,esc,ol};
+const SECTIONS2=[
+  {id:'G',no:'3.2',lesson:'Lesson 3.2',name:'Dividing fractions by whole numbers',gens:{divW:G32.divW,model:G32.model,word:G32.word,recip:G32.recip,book:G32.book}},
+  {id:'H',no:'3.3a',lesson:'Lesson 3.3',name:'Dividing by a fraction: keep · change · flip',gens:{div:H33.div,whole:H33.whole,howMany:H33.howMany,commonDen:H33.commonDen,same:H33.same,bigger:H33.bigger,book:H33.book}},
+  {id:'I',no:'3.3b',lesson:'Lesson 3.3',name:'Dividing improper fractions & mixed numbers',gens:{mixProper:I33.mixProper,properMix:I33.properMix,impProper:I33.impProper,mixMix:I33.mixMix,wholeMix:I33.wholeMix,book:I33.book}},
+  {id:'J',no:'3.3c',lesson:'Lesson 3.3',name:'Word problems, order & checking',gens:{swap:J33.swap,pieces:J33.pieces,share:J33.share,check:J33.check}}];
+const ALLSEC=[...SECTIONS,...SECTIONS2];
+function make(key,l){const [s,g]=key.split('.');const q=ALLSEC.find(x=>x.id===s).gens[g](l||1);q.key=key;q.sec=s;return q}
+const keysOf=s=>Object.keys(ALLSEC.find(x=>x.id===s).gens).map(g=>s+'.'+g);
+return {SECTIONS,SECTIONS2,make,keysOf,parse,userHtml,fr,mx,simp,imp,red,eq,mul,div,add,sub,gcd,shuffle,pick,R,esc,ol};
 })();
 
 /* ================= FRACTIONS TRAINER · screens, progress and retention =================
@@ -6428,6 +6811,339 @@ window.FRAC={
 home();
 })();
 
+/* ================= DIVIDING FRACTIONS TRAINER (Lessons 3.2 + 3.3) · same screens as the Fractions Trainer =================
+   Same plan as the Math Mastery Trainer: refresher → practice → test for each lesson, then
+   5 practice exams and a final exam. Mistakes come back on a spaced schedule (1, 3, 7, 14 days),
+   the Daily Warm-up mixes topics, and every wrong answer is checked for the usual slip-ups. */
+(function(){
+const root=document.getElementById('frac2App'),app=root.querySelector('#f2-app');
+const $=s=>root.querySelector(s);
+const {SECTIONS2:SECTIONS,make,keysOf,parse,userHtml,fr,mx,shuffle,pick,esc,ol}=FG;
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const TODAY=()=>ymd(new Date());
+const addDays=(s,n)=>{const [y,m,d]=s.split('-').map(Number);return ymd(new Date(y,m-1,d+n))};
+const secOf=id=>SECTIONS.find(s=>s.id===id);
+
+/* ---------- refreshers (Chapter 3 Recall pages, Lesson 3.1 and the class notes) ---------- */
+const REF={
+ G:{ideas:[`Dividing by a whole number <b>shares</b> the fraction into equal parts, so each part is <b>smaller</b>: ${fr(1,2)} ÷ 3 = ${fr(1,6)}.`,
+   `Three ways to think about it: <b>model</b> it (split each piece into 3), take <b>${fr(1,3)} of</b> it, or <b>multiply by the reciprocal</b>: ${fr(1,2)} ÷ 3 = ${fr(1,2)} × ${fr(1,3)} = ${fr(1,6)}.`,
+   `The <b>reciprocal</b> of a whole number n is ${fr(1,'n')}: 3 → ${fr(1,3)}, 6 → ${fr(1,6)}. A number times its reciprocal is 1.`,
+   `Do <b>not</b> multiply by the whole number. ${fr(4,5)} ÷ 2 is <b>less</b> than ${fr(4,5)}, so the answer cannot be ${fr(8,5)}.`,
+   `Always give the answer in <b>simplest form</b>: ${fr(4,5)} ÷ 2 = ${fr(4,10)} = ${fr(2,5)}.`],
+   warn:[3],
+   ex:[['Wire: 3/5 m cut into 6 equal pieces',[`${fr(3,5)} ÷ 6 = ${fr(3,5)} × ${fr(1,6)}`,`= ${fr(3,30)} = ${fr(1,10)} m each`]],
+       ['Cantaloupe: 4/5 shared by 2 friends',[`${fr(4,5)} ÷ 2 = ${fr(4,5)} × ${fr(1,2)} = ${fr(4,10)}`,`Simplest form: ${fr(2,5)} each`]],
+       ['9/11 ÷ 3',[`${fr(9,11)} × ${fr(1,3)} = ${fr(9,33)}`,`Simplest form: ${fr(3,11)}`]]],
+   flips:[[`${fr(1,2)} ÷ 3 = ?`,fr(1,6)],['Reciprocal of 7?',fr(1,7)],[`${fr(4,5)} ÷ 2 = ?`,fr(2,5)],[`${fr(9,11)} ÷ 3 = ?`,fr(3,11)]]},
+ H:{ideas:[`To divide by a fraction, <b>keep · change · flip</b>: keep the first fraction, change ÷ to ×, flip the second one (its reciprocal). ${fr(3,4)} ÷ ${fr(1,8)} = ${fr(3,4)} × ${fr(8,1)} = 6.`,
+   `Only the <b>second</b> fraction (the divisor) is flipped. Never flip the first one.`,
+   `Another way: use a <b>common denominator</b>, then divide the numerators. ${fr(3,4)} ÷ ${fr(1,8)} = ${fr(6,8)} ÷ ${fr(1,8)} = 6 ÷ 1 = 6.`,
+   `“How many ${fr(1,8)}s are in ${fr(3,4)}?” is a division question: ${fr(3,4)} ÷ ${fr(1,8)} = 6.`,
+   `Dividing by a fraction <b>less than 1</b> gives a <b>bigger</b> answer (more small pieces fit). Dividing by a number greater than 1 gives a smaller answer.`],
+   warn:[1],
+   ex:[['3/4 ÷ 1/8 two ways',[`Reciprocal: ${fr(3,4)} × 8 = ${fr(24,4)} = 6`,`Common denominator: ${fr(6,8)} ÷ ${fr(1,8)} = 6 ÷ 1 = 6`]],
+       ['5 ÷ 5/8',[`5 × ${fr(8,5)} = ${fr(40,5)} = 8`,`Check: 8 × ${fr(5,8)} = 5 ✓`]]],
+   flips:[[`${fr(3,4)} ÷ ${fr(1,8)} = ?`,'6'],[`Which fraction do you flip in ${fr(2,3)} ÷ ${fr(5,6)}?`,`The second one: ${fr(5,6)} → ${fr(6,5)}`],[`${fr(2,3)} ÷ ${fr(7,10)} = ?`,fr(20,21)],[`Is 2 ÷ ${fr(1,3)} more or less than 2?`,'More: it is 6.']]},
+ I:{ideas:[`<b>First</b> change every mixed number to an improper fraction: ${mx(4,1,3)} = ${fr('4 × 3 + 1',3)} = ${fr(13,3)}.`,
+   `Then keep · change · flip, cancel common factors, and multiply.`,
+   `Flip the <b>whole</b> improper fraction, never just the fraction part: the reciprocal of ${mx(4,1,3)} is ${fr(3,13)}, not 4${fr(3,1)}.`,
+   `Give the answer in simplest form: a whole number or a mixed number.`],
+   warn:[2],
+   ex:[['5/9 ÷ 4 1/3',[`${mx(4,1,3)} = ${fr(13,3)}`,`${fr(5,9)} × ${fr(3,13)} = ${fr(15,117)}`,`Simplest form (÷ 3): ${fr(5,39)}`]],
+       ['2 3/5 ÷ 1 8/9',[`${mx(2,3,5)} = ${fr(13,5)} and ${mx(1,8,9)} = ${fr(17,9)}`,`${fr(13,5)} × ${fr(9,17)} = ${fr(117,85)}`,`= ${mx(1,32,85)}`]]],
+   flips:[[`${mx(4,1,3)} as an improper fraction?`,fr(13,3)],[`Reciprocal of ${mx(1,8,9)}?`,fr(9,17)],[`${mx(1,1,2)} ÷ ${fr(3,4)} = ?`,'2'],[`${mx(3,3,4)} ÷ ${fr(3,4)} = ?`,'5']]},
+ J:{ideas:[`<b>Order matters</b>: 4 ÷ ${fr(2,5)} = 10 but ${fr(2,5)} ÷ 4 = ${fr(1,10)}. The two answers are reciprocals.`,
+   `“How many pieces of size … fit in …?” → <b>total ÷ size of one piece</b>.`,
+   `“Shared equally among …” → <b>amount ÷ number of shares</b>.`,
+   `Check a division by multiplying back: answer × divisor = the number you started with.`],
+   warn:[0],
+   ex:[['Hands-on: 4 ÷ 2/5 and 2/5 ÷ 4',[`4 ÷ ${fr(2,5)} = 4 × ${fr(5,2)} = 10`,`${fr(2,5)} ÷ 4 = ${fr(2,5)} × ${fr(1,4)} = ${fr(1,10)}`,'Swapping the order flips the answer.']],
+       ['A 6 m ribbon cut into 3/4 m pieces',[`6 ÷ ${fr(3,4)} = 6 × ${fr(4,3)} = 8 pieces`,`Check: 8 × ${fr(3,4)} = 6 ✓`]]],
+   flips:[[`4 ÷ ${fr(2,5)} = ?`,'10'],[`${fr(2,5)} ÷ 4 = ?`,fr(1,10)],[`How do you check ${fr(3,4)} ÷ ${fr(1,8)} = 6?`,`6 × ${fr(1,8)} = ${fr(3,4)} ✓`],[`How many ${fr(1,2)} L glasses from 3 L?`,'6']]}
+};
+
+/* ---------- exams ---------- */
+const EXAMS=[
+  {id:'p1',name:'Practice Exam 1',n:20,lv:[1,1,2],sub:'Warm start'},
+  {id:'p2',name:'Practice Exam 2',n:20,lv:[1,2,2],sub:'Building up'},
+  {id:'p3',name:'Practice Exam 3',n:20,lv:[2,3,3],sub:'Test-ready'},
+  {id:'final',name:'Final Exam',n:25,lv:[3,3,3],sub:'Expert Grade 8 · all four topics'}];
+const PASS={test:80,exam:80,final:90};
+
+/* ---------- state, storage and Quest Log sync ---------- */
+const FKEY='ql-frac32-v1';
+let M={sec:{},ex:{},rev:[],xp:0,days:[],badges:{},retired:0};
+try{const r=localStorage.getItem(FKEY);if(r)M=Object.assign(M,JSON.parse(r))}catch(e){}
+function persist(){try{localStorage.setItem(FKEY,JSON.stringify(M))}catch(e){}}
+function save(){persist();if(window.FRAC2_CH)FRAC2_CH.push();syncQuest()}
+const ss=id=>M.sec[id]||(M.sec[id]={read:false,m:[],test:0,tests:0});
+function mast(id){const r=(ss(id).m||[]).slice(-10),n=r.length,c=r.reduce((a,b)=>a+b,0);return {n,c,expert:n>=10&&c>=9,pct:n?c*10:0}}
+function level(id){const r=(ss(id).m||[]).slice(-6);if(r.length<3)return 1;const a=r.reduce((x,y)=>x+y,0)/r.length;return a>=.84?3:a>=.6?2:1}
+const mastered=id=>mast(id).expert&&ss(id).test>=PASS.test;
+const exBest=id=>(M.ex[id]&&M.ex[id].best)||0;
+const exTries=id=>(M.ex[id]&&M.ex[id].tries)||0;
+function unlocked(id){const i=EXAMS.findIndex(e=>e.id===id);if(i===0)return true;if(id==='final')return EXAMS.slice(0,-1).every(e=>exBest(e.id)>=PASS.exam);return exTries(EXAMS[i-1].id)>0}
+function syncQuest(){if(window.QL&&QL.frac32Progress)QL.frac32Progress([...SECTIONS.map(s=>mastered(s.id)),...EXAMS.slice(0,-1).map(e=>exBest(e.id)>=PASS.exam),exBest('final')>=PASS.final])}
+function markDay(){const t=TODAY();if(!M.days.includes(t)){M.days.push(t);M.days=M.days.slice(-60)}}
+function streak(){let n=0,d=TODAY();if(!M.days.includes(d))d=addDays(d,-1);while(M.days.includes(d)){n++;d=addDays(d,-1)}return n}
+const RANKS=['Rookie','Half-way Hero','Quarter Master','Common-Denominator Scout','Reciprocal Ranger','Cancel Captain','Mixed-Number Mechanic','Fraction Fixer','Fraction Master','Legend'];
+const rank=()=>{const i=Math.min(RANKS.length-1,Math.floor(M.xp/300));return {name:RANKS[i]}};
+/* spaced review: a missed skill comes back after 1, 3, 7 and 14 days */
+const GAPS=[1,3,7,14];
+function miss(key){const r=M.rev.find(x=>x.k===key);if(r){r.box=0;r.due=addDays(TODAY(),1)}else M.rev.push({k:key,box:0,due:addDays(TODAY(),1)})}
+function reviewHit(key){const r=M.rev.find(x=>x.k===key);if(!r||r.due>TODAY())return false;r.box++;if(r.box>=GAPS.length){M.rev=M.rev.filter(x=>x!==r);M.retired=(M.retired||0)+1}else r.due=addDays(TODAY(),GAPS[r.box]);return true}
+const dueReviews=()=>M.rev.filter(r=>r.due<=TODAY());
+
+const BADGES=[
+  ['🚀','First steps','Finish your first practice round',()=>!!M.badges.first],
+  ['📖','Refreshed','Read all four refreshers',()=>SECTIONS.every(s=>ss(s.id).read)],
+  ['⭐','Section star','Master your first topic',()=>SECTIONS.some(s=>mastered(s.id))],
+  ['🏆','Full house','Master all four topics',()=>SECTIONS.every(s=>mastered(s.id))],
+  ['🔥','On fire','Get 8 in a row in one round',()=>!!M.badges.fire],
+  ['🔁','Comeback','Clear 3 mistakes from your review queue',()=>(M.retired||0)>=3],
+  ['📅','Week streak','Practise 7 days in a row',()=>streak()>=7||!!M.badges.week],
+  ['🎯','Exam ready','Score 80%+ on a practice exam',()=>EXAMS.slice(0,-1).some(e=>exBest(e.id)>=80)],
+  ['🏃','Marathon','Try all three practice exams',()=>EXAMS.slice(0,-1).every(e=>exTries(e.id)>0)],
+  ['🧠','Grade 8 expert','Score 90%+ on the final exam',()=>exBest('final')>=90]];
+
+let S={view:'home'};let timer=null;
+const stopTimer=()=>{if(timer){clearInterval(timer);timer=null}};
+const lessonName=id=>secOf(id).lesson;
+
+/* ---------- home: tabs (Today · Topics · Exams · Badges) ---------- */
+const TABS=[['today','Today'],['lessons','Topics'],['exams','Exams'],['badges','Badges']];
+function getTab(){try{return localStorage.getItem('f2-tab')||'today'}catch(e){return 'today'}}
+function setTab(t){try{localStorage.setItem('f2-tab',t)}catch(e){}}
+function nextStep(){
+  const due=dueReviews().length;
+  if(due)return {ico:'🔁',t:'Daily Warm-up',d:`${due} past mistake${due>1?'s are':' is'} due for review. 5 quick questions.`,b:'Start warm-up',act:'warm'};
+  const s=SECTIONS.find(x=>!mastered(x.id));
+  if(s){const st=ss(s.id),m=mast(s.id);
+    if(!st.read)return {ico:'📖',t:`${s.lesson}: read the refresher`,d:esc(s.name),b:'Open topic',sec:s.id};
+    if(!m.expert)return {ico:'🎯',t:`${s.lesson}: practise to Expert`,d:`${esc(s.name)} · ${m.n?m.c+'/'+m.n+' recent':'not started'}`,b:'Practise',go:'practice',sec:s.id};
+    return {ico:'📝',t:`${s.lesson}: topic test`,d:`${esc(s.name)} · pass with 80%`,b:'Take the test',go:'test',sec:s.id}}
+  const e=EXAMS.find(x=>unlocked(x.id)&&exBest(x.id)<(x.id==='final'?PASS.final:PASS.exam));
+  if(e)return {ico:e.id==='final'?'🏁':'🧪',t:e.name,d:`${e.n} questions · ${esc(e.sub)}`,b:'Start exam',exam:e.id};
+  return {ico:'☀️',t:'Daily Warm-up',d:'Everything is mastered. A quick mix keeps it fresh.',b:'Start warm-up',act:'warm'};
+}
+const pip=(on,label)=>`<span class="dot${on?' on':''}" title="${label}">${on?'✓':''}</span>`;
+function home(tab){
+  stopTimer();tab=tab||getTab();setTab(tab);S={view:'home',tab};
+  const rk=rank(),st=streak(),due=dueReviews().length,done=SECTIONS.filter(s=>mastered(s.id)).length,passed=EXAMS.slice(0,-1).filter(e=>exBest(e.id)>=PASS.exam).length;
+  let body='';
+  if(tab==='today'){const n=nextStep();
+    body=`<div class="next">
+      <span class="ico">${n.ico}</span><div><p class="eyebrow">Next step</p><h2>${n.t}</h2><p>${n.d}</p></div>
+      <button class="btn primary" type="button" ${n.act?`data-act="${n.act}"`:n.go?`data-start="${n.go}" data-sid="${n.sec}"`:n.exam?`data-exam="${n.exam}"`:`data-sec="${n.sec}"`}>${n.b} →</button></div>
+    ${n.act!=='warm'?`<button class="row-btn" type="button" data-act="warm"><span>☀️</span><span><b>Daily Warm-up</b><small>5 mixed questions${due?` · ${due} review${due>1?'s':''} due`:''}. Keeps your streak going.</small></span><span class="chev">›</span></button>`:''}
+    <div class="path"><div><b>${done}/4</b><span>topics mastered</span><div class="meter"><i style="width:${done/4*100}%"></i></div></div><div><b>${passed}/3</b><span>practice exams passed</span><div class="meter"><i style="width:${passed/3*100}%"></i></div></div><div><b>${exBest('final')>=PASS.final?'✓':'—'}</b><span>Final Exam</span><div class="meter"><i style="width:${Math.min(100,exBest('final'))}%"></i></div></div></div>`}
+  if(tab==='lessons')body=`<div class="list">${SECTIONS.map(s=>{const m=mast(s.id),x=ss(s.id),ok=mastered(s.id);return `<button class="lrow${ok?' done':''}" type="button" data-sec="${s.id}">
+      <span class="lno">${ok?'✓':s.no}</span><span class="lname"><b>${esc(s.name)}</b><small>${esc(s.lesson)} · ${m.n||x.tests?`${m.n?`Practice ${m.c}/${m.n}`:''}${m.n&&x.tests?' · ':''}${x.tests?`Test best ${x.test}%`:''}`:(x.read?'Refresher read':'Not started')}</small></span>
+      <span class="dots">${pip(x.read,'Refresher')}${pip(m.expert,'Practice Expert')}${pip(x.test>=PASS.test,'Test 80%+')}</span><span class="chev">›</span></button>`}).join('')}</div>
+    <p class="foot">3.2 is dividing by a whole number; 3.3a–c are the parts of Lesson 3.3. The three dots are the steps for each topic: refresher, practice to Expert, topic test 80%+.</p>`;
+  if(tab==='exams')body=`<div class="list">${EXAMS.map(e=>{const u=unlocked(e.id),b=exBest(e.id),t=exTries(e.id),pass=e.id==='final'?PASS.final:PASS.exam;return `<button class="lrow${b>=pass?' done':''}${e.id==='final'?' final':''}" type="button" data-exam="${e.id}" ${u?'':'disabled'}>
+      <span class="lno">${b>=pass?'✓':e.id==='final'?'🏁':e.id.slice(1)}</span><span class="lname"><b>${esc(e.name)}</b><small>${u?`${e.n} questions · ${esc(e.sub)}${t?` · best ${b}%`:''}`:`🔒 ${e.id==='final'?'Pass all three practice exams (80%+)':'Try the exam before this one first'}`}</small></span><span class="chev">${u?'›':''}</span></button>`}).join('')}</div>`;
+  if(tab==='badges')body=`<div class="badges">${BADGES.map(b=>`<div class="bdg${b[3]()?'':' off'}"><span class="e">${b[0]}</span><b>${b[1]}</b><span>${b[2]}</span></div>`).join('')}</div>
+    <p class="foot">How it helps you remember: topics start with flip cards you answer from memory, practice gets harder as you improve, and every mistake comes back after 1, 3, 7 and 14 days.</p>`;
+  app.innerHTML=`<div class="topbar"><a class="fr-back" href="#quest">← Quest Log</a><span class="chips"><span class="chipx" title="${M.xp} XP">⭐ ${esc(rk.name)}</span><span class="chipx">🔥 ${st}</span>${due?`<span class="chipx warn">🔁 ${due}</span>`:''}</span></div>
+  <h1 class="fr-title">Dividing Fractions <span class="hl">Trainer</span></h1>
+  <p class="sub1">Chapter 3 · Lesson 3.2 + Lesson 3.3 · practice due Tue Nov 10</p>
+  <div class="mtabs" role="tablist">${TABS.map(([k,l])=>`<button type="button" role="tab" class="mtab" data-tab="${k}" aria-selected="${k===tab}">${l}</button>`).join('')}</div>
+  <div class="tabbody">${body}</div>`;
+}
+
+/* ---------- topic page: learn first, actions always in reach ---------- */
+function refresherHtml(id,full){
+  const r=REF[id],cards=full?r.flips:r.flips.slice(0,2),ideas=full?r.ideas:r.ideas.slice(0,3);
+  return `<details class="acc" open><summary>🧠 Recall first: flip cards</summary><p class="muted">Answer each one in your head, then tap to check.</p><div class="flips">${cards.map(f=>`<button type="button" class="flip"><span class="q">${f[0]}</span><span class="a">${f[1]}</span><span class="tap">Think, then tap</span></button>`).join('')}</div></details>
+    <details class="acc" open><summary>📌 Key ideas</summary><ul class="ideas">${ideas.map((x,i)=>`<li class="${r.warn.includes(i)?'warn':''}">${x}</li>`).join('')}</ul></details>
+    ${full?`<details class="acc"><summary>✏️ Worked examples</summary>${r.ex.map(e=>`<div class="ex"><span class="t">${e[0]}</span>${e[1].map(x=>`<span>${x}</span>`).join('')}</div>`).join('')}</details>`:''}`;
+}
+function section(id){
+  stopTimer();S={view:'section',sec:id};const s=secOf(id),st=ss(id),m=mast(id),testNext=m.expert&&st.test<PASS.test;
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="lessons">← Topics</button><span class="chips"><span class="chipx">Level ${level(id)}</span></span></div>
+  <p class="eyebrow">${esc(s.lesson)}</p><h1 class="fr-title sm">${esc(s.name)}</h1>
+  <div class="stepline"><span class="${st.read?'ok':''}">1 Refresher</span><span class="${m.expert?'ok':''}">2 Practice ${m.n?m.c+'/'+m.n:''}</span><span class="${st.test>=PASS.test?'ok':''}">3 Test ${st.tests?st.test+'%':''}</span></div>
+  ${refresherHtml(id,true)}
+  <div class="dock"><button class="btn${testNext?'':' primary'}" type="button" data-act="practice">Practise · 10</button><button class="btn${testNext?' primary':''}" type="button" data-act="test">Topic test · 12</button></div>`;
+}
+function intro(mode,arg){
+  stopTimer();
+  if(mode==='practice'||mode==='test'){const id=arg;S={view:'intro',mode,sec:id};
+    app.innerHTML=`<div class="topbar"><button class="link" type="button" data-act="back">← ${esc(lessonName(id))}</button></div>
+    <p class="eyebrow">${mode==='test'?'Topic test':'Practice'} · ${esc(lessonName(id))}</p><h1 class="fr-title sm">Quick refresher</h1>
+    <p class="sub1">${mode==='test'?'12 questions, getting harder. Answers are checked at the end. Pass: 80%.':'10 questions at your level. Wrong answers show you what went wrong and how to fix it.'}</p>
+    ${refresherHtml(id,false)}
+    <div class="dock"><button class="btn primary" type="button" data-go="${mode}">I’m ready →</button></div>`;return}
+  const e=EXAMS.find(x=>x.id===arg);S={view:'intro',mode,exam:arg};
+  app.innerHTML=`<div class="topbar"><button class="link" type="button" data-tabgo="exams">← Exams</button></div>
+    <p class="eyebrow">${esc(e.sub)}</p><h1 class="fr-title sm">${esc(e.name)}</h1>
+    <p class="sub1">${e.n} questions from all four topics, getting harder. Answers are checked at the end, then every mistake is explained. Pass: ${arg==='final'?PASS.final:PASS.exam}%. Work on paper; no calculator needed.</p>
+    <details class="acc"><summary>📋 Formula sheet (1-minute refresh)</summary><ul class="ideas">
+      <li>÷ a whole number n: multiply by ${fr(1,'n')}. The answer is smaller.</li>
+      <li>÷ a fraction: keep · change · flip (only the second one). Or use a common denominator and divide the numerators.</li>
+      <li>Mixed numbers: change to improper fractions first (whole × denominator + numerator), then flip the whole divisor.</li>
+      <li>Order matters: 4 ÷ ${fr(2,5)} = 10 but ${fr(2,5)} ÷ 4 = ${fr(1,10)}. Check: answer × divisor = first number.</li>
+      <li>Answer in simplest form: a whole number, a proper fraction or a mixed number.</li></ul></details>
+    <div class="dock"><button class="btn primary" type="button" data-go="exam">Start the exam →</button></div>`;
+}
+/* n keys from a topic: every question type appears before any repeats */
+function deal(id,n){let out=[];while(out.length<n)out=out.concat(shuffle(keysOf(id)));return out.slice(0,n)}
+function planFor(mode,arg){
+  if(mode==='practice'){const lv=level(arg);return deal(arg,10).map(k=>({k,l:lv}))}
+  if(mode==='test')return shuffle(deal(arg,12)).map((k,i)=>({k,l:i<4?2:3}));
+  if(mode==='warm'){const p=dueReviews().slice(0,3).map(r=>({k:r.k,l:level(r.k[0]),rev:true}));
+    const started=SECTIONS.filter(s=>ss(s.id).m.length||ss(s.id).read).map(s=>s.id);const pool=(started.length?started:SECTIONS.map(s=>s.id));
+    while(p.length<5){const s=pick(pool);p.push({k:pick(keysOf(s)),l:level(s)})}return shuffle(p)}
+  const e=EXAMS.find(x=>x.id===arg);const per=e.id==='final'?{G:5,H:7,I:8,J:5}:{G:4,H:6,I:6,J:4};
+  let ks=[];Object.entries(per).forEach(([s,n])=>{ks=ks.concat(deal(s,n))});
+  if(e.id==='final'){['I.mixMix','J.pieces','H.whole','I.wholeMix','G.word'].forEach((k,i)=>{ks[ks.length-1-i]=k})}
+  ks=shuffle(ks);return ks.map((k,i)=>({k,l:e.lv[Math.min(2,Math.floor(i/(ks.length/3)))]}));
+}
+function start(mode,arg){
+  stopTimer();const plan=planFor(mode,arg);
+  S={view:'quiz',mode,arg,sec:mode==='practice'||mode==='test'?arg:null,plan,i:0,score:0,streak:0,best:0,extra:0,log:[],xp:0,t0:Date.now(),deferred:mode==='test'||mode==='exam'};
+  if(S.deferred)timer=setInterval(()=>{const el=$('#f2-timer');if(el)el.textContent=clock()},1000);
+  showQ();
+}
+const clock=()=>{const s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const titleOf=()=>S.mode==='practice'?`Practice · ${lessonName(S.sec)}`:S.mode==='test'?`Topic test · ${lessonName(S.sec)}`:S.mode==='warm'?'Daily Warm-up':EXAMS.find(e=>e.id===S.arg).name;
+
+/* ---------- question screen ---------- */
+const box=(id,cls,label)=>`<input id="${id}" class="num ${cls||''}" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="${label}">`;
+function showQ(){
+  const e=S.plan[S.i];if(!e.q)e.q=make(e.k,e.l);const q=e.q;S.answered=false;S.sel=null;
+  let area='';
+  if(q.kind==='mc')area=`<div class="choices">${q.choices.map((c,i)=>`<button type="button" class="choice${q.sym?' sym':''}" data-i="${i}">${c}</button>`).join('')}</div>`;
+  if(q.kind==='int')area=`<div class="ansrow">${q.pre?`<span class="unit">${esc(q.pre)}</span>`:''}<span class="nb">${box('f2-i','','Your answer')}</span></div>`;
+  if(q.kind==='frac'){const noW=q.form==='any';
+    area=`<div class="fin">${noW?'':box('f2-w','whole','Whole number part')}<span class="fstack">${box('f2-n','','Numerator (top)')}<i></i>${box('f2-d','','Denominator (bottom)')}</span></div>
+    <p class="foot" style="margin:0">${noW?'Type the numerator on top and the denominator below.':q.form==='improper'?'Give an improper fraction (top and bottom boxes). A whole number answer goes in the big box.':'Mixed number: whole number in the big box, fraction on the right. A whole number answer: leave the fraction empty.'}</p>`}
+  const tot=S.plan.length;
+  app.innerHTML=`<div class="qbar">
+    <button class="link" type="button" data-act="quit">← Quit</button>
+    <div class="prog"><span>${esc(titleOf())} · ${S.i+1} of ${tot}${S.deferred?` · <span id="f2-timer" class="timer">${clock()}</span>`:''}</span><div class="pbar"><i style="width:${S.i/tot*100}%"></i></div></div>
+    ${S.deferred?'':`<div class="score"><b>${S.score}</b>/${S.log.length}${S.streak>=3?` <span class="streak">${S.streak} in a row</span>`:''} · <span class="xpf">+${S.xp} XP</span></div>`}
+  </div>
+  <article class="qcard">
+    <p class="eyebrow">${esc(lessonName(q.sec))} · ${esc(secOf(q.sec).name)}${e.retry?' <span class="tag">Second chance</span>':''}${e.rev?' <span class="tag">Review</span>':''}${q.book?' <span class="tag">From the textbook</span>':''}</p>
+    <div class="prompt">${q.prompt}</div>
+    <div>${area}</div>
+    <p class="msg" id="f2-msg"></p>
+    <div class="row" id="f2-actions">
+      ${q.kind!=='mc'||S.deferred?`<button class="btn primary" type="button" id="f2-check">${S.deferred?(S.i===tot-1?'Finish':'Next →'):'Check'}</button>`:''}
+      ${S.deferred?'':'<button class="btn ghost" type="button" id="f2-hintBtn">Hint</button>'}
+    </div>
+    <div class="hint" id="f2-hint" hidden>${q.hint||''}</div>
+    <div id="f2-fb"></div>
+  </article>`;
+  const f=root.querySelector('.num');if(f&&matchMedia('(pointer:fine)').matches)f.focus();
+}
+const val=id=>{const el=$('#'+id);return el?el.value.trim():''};
+function readAnswer(q,choice){
+  if(q.kind==='mc'){const i=choice!=null?choice:S.sel;if(i==null)return {err:'Choose an answer first.'};return {ok:i===q.ans,shown:q.choices[i],ua:i,note:i!==q.ans&&q.diag?q.diag(i):''}}
+  if(q.kind==='int'){const raw=val('f2-i').replace(/[\s$,]/g,'');if(!raw)return {err:'Type your answer first.'};if(!/^\d+$/.test(raw))return {err:'Type a whole number.'};
+    return {ok:q.check(raw),shown:(q.pre||'')+raw,note:q.diag(raw)}}
+  const u={w:val('f2-w'),n:val('f2-n'),d:val('f2-d')},p=parse(u);if(p.err)return {err:p.err};
+  return {ok:q.check(u),shown:userHtml(p),note:q.diag(u)};
+}
+function check(choice){
+  if(S.answered)return;const e=S.plan[S.i],q=e.q,msg=$('#f2-msg');const r=readAnswer(q,choice);
+  if(r.err){msg.textContent=r.err;return}
+  msg.textContent='';S.answered=true;
+  const lid=q.sec;if(S.mode==='practice'||S.mode==='warm'){ss(lid).m=(ss(lid).m||[]).concat(r.ok?1:0).slice(-20)}
+  if(r.ok){S.score++;S.streak++;S.best=Math.max(S.best,S.streak);S.xp+=S.deferred?15:10;if(e.rev&&reviewHit(q.key))S.xp+=5}
+  else{S.streak=0;S.xp+=2;miss(q.key)}
+  S.log.push({q,ok:r.ok,shown:r.shown,note:r.note,e});
+  if(S.best>=8)M.badges.fire=true;
+  save();
+  if(S.deferred){next();return}
+  let added=false;
+  if(!r.ok&&S.extra<4){S.plan.push({k:q.key,l:Math.max(1,(e.l||1)),retry:true});S.extra++;added=true}
+  root.querySelectorAll('.choice').forEach(b=>{b.disabled=true;const i=+b.dataset.i;if(i===r.ua)b.classList.add(r.ok?'picked-ok':'picked-no');else if(i===q.ans)b.classList.add('right')});
+  root.querySelectorAll('.num').forEach(x=>x.disabled=true);
+  const hb=$('#f2-hintBtn');if(hb)hb.disabled=true;
+  const work=q.explain();
+  $('#f2-fb').innerHTML=r.ok?`<div class="fb ok"><p class="fbh">Correct${S.streak>=3?` · ${S.streak} in a row 🔥`:''} <span class="xpf">+${10+(e.rev?5:0)} XP</span></p><details><summary>See why</summary>${work}</details></div>`
+    :`<div class="fb no"><p class="fbh">Not quite</p><p>You answered: <b>${r.shown}</b><br>Correct answer: <b>${q.answerText}</b></p>${r.note?`<p class="watch"><b>What went wrong:</b> ${r.note}</p>`:''}<p style="font-weight:700">How to get there</p>${work}${added?'<p class="added">A similar question has been added to the end of this round. It will also come back in your Daily Warm-up.</p>':'<p class="added">This skill will come back in your Daily Warm-up.</p>'}</div>`;
+  const last=S.i===S.plan.length-1;
+  $('#f2-actions').innerHTML=`<button class="btn primary" type="button" id="f2-next">${last?'See results':'Next question →'}</button>`;
+  $('#f2-next').focus({preventScroll:true});
+  $('#f2-fb').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
+}
+function next(){if(S.i<S.plan.length-1){S.i++;showQ();window.scrollTo(0,0)}else end()}
+
+/* ---------- results ---------- */
+function end(){
+  stopTimer();const total=S.log.length,pct=Math.round(S.score/(S.deferred?S.plan.length:total)*100);
+  let headline='',bonus=0;
+  if(S.mode==='practice'){bonus=20;M.badges.first=true;headline=mast(S.sec).expert?'Expert in this topic! Take the topic test when you’re ready.':pct>=70?'Good round. Another one will push you towards Expert.':'Keep going. Read the “What went wrong” notes, then try again.'}
+  if(S.mode==='warm'){bonus=20;headline=`Warm-up done. Streak: ${streak()+(M.days.includes(TODAY())?0:1)} day${streak()===0?'':'s'} 🔥`}
+  if(S.mode==='test'){const st=ss(S.sec);st.tests=(st.tests||0)+1;const nb=pct>st.test;st.test=Math.max(st.test,pct);bonus=pct>=PASS.test?50:10;
+    headline=pct>=PASS.test?`Passed! ${mastered(S.sec)?'Topic mastered ✓':'Get to Expert in practice to master the topic.'}`:'Not 80% yet. Practise the questions you missed, then try again.';if(nb&&pct>=PASS.test)headline+=' New best!'}
+  if(S.mode==='exam'){const id=S.arg,r=M.ex[id]||{best:0,tries:0};const nb=pct>r.best;M.ex[id]={best:Math.max(r.best,pct),tries:r.tries+1,last:pct};const pass=id==='final'?PASS.final:PASS.exam;bonus=pct>=pass?(id==='final'?300:100):20;
+    headline=pct>=pass?(id==='final'?'🏆 Expert Grade 8 level. Outstanding!':'Passed! On to the next exam.'):`You need ${pass}% to pass. Review every mistake below, then try again: the questions change every time.`;if(nb)headline+=' New best score!'}
+  M.xp+=S.xp+bonus;markDay();if(streak()>=7)M.badges.week=true;save();
+  if((S.mode==='exam'||S.mode==='test')&&pct>=80&&window.boom)boom();
+  const by={};S.log.forEach(r=>{const s=r.q.sec;by[s]=by[s]||{r:0,t:0};by[s].t++;if(r.ok)by[s].r++});
+  const weakest=Object.entries(by).sort((a,b)=>a[1].r/a[1].t-b[1].r/b[1].t)[0];
+  const rv=(r,i)=>`<div class="rv${r.ok?'':' no'}"><div class="h"><span class="qn">Q${i+1}</span><b>${r.ok?'✓':'✗'}</b><span style="font-size:.85rem;color:var(--muted)">${esc(lessonName(r.q.sec))}</span></div><div>${r.q.prompt}</div>
+    <div>You answered: <b>${r.shown}</b>${r.ok?'':`<br>Correct answer: <b>${r.q.answerText}</b>`}</div>${r.ok?`<details><summary>See why</summary>${r.q.explain()}</details>`:`${r.note?`<p class="watch" style="margin:0"><b>What went wrong:</b> ${r.note}</p>`:''}${r.q.explain()}`}</div>`;
+  const review=S.log.map((r,i)=>S.deferred||!r.ok?rv(r,i):'').join('');
+  app.innerHTML=`<section class="end">
+    <p class="eyebrow">${esc(titleOf())} · complete${S.deferred?' · time '+clock():''}</p>
+    <div class="bigscore">${S.score}<span style="color:var(--muted);font-size:.45em"> / ${S.deferred?S.plan.length:total}${S.deferred?` · ${pct}%`:''}</span></div>
+    <p style="margin:0;max-width:62ch;font-weight:600">${headline}</p>
+    <p style="margin:0" class="xpf">+${S.xp+bonus} XP · ${esc(rank().name)}</p>
+    <div>${Object.entries(by).map(([k,v])=>`<div class="bkrow"><span>${esc(lessonName(k))} · ${esc(secOf(k).name)}</span><span>${v.r}/${v.t}</span></div>`).join('')}</div>
+    <div class="cta">${weakest&&weakest[1].r<weakest[1].t?`<button class="btn primary" type="button" data-sec="${weakest[0]}">Practise ${esc(lessonName(weakest[0]))}</button>`:''}
+      <button class="btn" type="button" data-act="again">Try again (new questions)</button><button class="btn ghost" type="button" data-tabgo="${S.mode==='exam'?'exams':S.mode==='warm'?'today':'lessons'}">Done</button></div>
+    ${review?`<h2 class="sec" style="margin-top:6px">${S.deferred?'Review every question':'Questions to look at again'}</h2><div style="display:grid;gap:8px">${review}</div>`:''}
+  </section>`;
+  S.view='end';window.scrollTo(0,0);
+}
+
+/* ---------- events (scoped to the trainer) ---------- */
+root.addEventListener('click',ev=>{
+  const fl=ev.target.closest('.flip');if(fl&&root.contains(fl)){fl.classList.toggle('open');return}
+  const t=ev.target.closest('button');if(!t||!root.contains(t))return;
+  if(t.dataset.tab)return home(t.dataset.tab);
+  if(t.dataset.tabgo)return home(t.dataset.tabgo);
+  if(t.dataset.start){S.sec=t.dataset.sid;ss(S.sec).read=true;save();return intro(t.dataset.start,t.dataset.sid)}
+  if(t.classList.contains('choice')){if(S.deferred){root.querySelectorAll('.choice').forEach(b=>b.classList.toggle('sel',b===t));S.sel=+t.dataset.i;return}return check(+t.dataset.i)}
+  if(t.id==='f2-check')return check();
+  if(t.id==='f2-next')return next();
+  if(t.id==='f2-hintBtn'){$('#f2-hint').hidden=false;t.disabled=true;return}
+  if(t.dataset.sec)return section(t.dataset.sec);
+  if(t.dataset.exam)return intro('exam',t.dataset.exam);
+  if(t.dataset.go){const g=t.dataset.go;if(g==='practice'||g==='test'){ss(S.sec).read=true;save();return start(g,S.sec)}return start('exam',S.exam)}
+  const a=t.dataset.act;
+  if(a==='back')return section(S.sec);
+  if(a==='warm')return start('warm');
+  if(a==='practice'){ss(S.sec).read=true;save();return intro('practice',S.sec)}
+  if(a==='test'){ss(S.sec).read=true;save();return intro('test',S.sec)}
+  if(a==='quit'){if(S.log.length===0||confirm('Leave this round? Answers so far are kept in your progress.')){return S.sec?section(S.sec):home(S.mode==='exam'?'exams':'today')}return}
+  if(a==='again')return S.mode==='practice'||S.mode==='test'?intro(S.mode,S.sec):S.mode==='exam'?intro('exam',S.arg):start('warm');
+});
+document.addEventListener('keydown',ev=>{
+  if(root.hidden||ev.key!=='Enter'||S.view!=='quiz'||!(root.contains(ev.target)||ev.target===document.body))return;
+  if(ev.target.classList&&ev.target.classList.contains('num')&&!S.answered){ev.preventDefault();
+    const boxes=[...root.querySelectorAll('.num')],i=boxes.indexOf(ev.target),nxt=boxes.slice(i+1).find(b=>!b.value);
+    if(nxt&&ev.target.value)nxt.focus();else check();return}
+  if(S.answered&&ev.target.id!=='f2-next'){ev.preventDefault();next()}
+});
+
+window.FRAC2={
+  get:()=>M,
+  apply:d=>{M=Object.assign({sec:{},ex:{},rev:[],xp:0,days:[],badges:{},retired:0},d);persist();if(S.view==='home')home();syncQuest()},
+  hasData:()=>M.xp>0||Object.keys(M.sec).length>0,
+  show:()=>{if(S.view!=='quiz')home()},
+  _q:()=>S.view==='quiz'?S.plan[S.i].q:null
+};
+home();
+})();
+
 </script>
 <script type="text/plain" id="appJs2">
 
@@ -6489,13 +7205,14 @@ window.ROOTS_CH=channel('progress/roots', ()=>window.ROOTS.get(), d=>window.ROOT
 window.VOICE_CH=channel('progress/voice', ()=>window.VOICE.get(), d=>window.VOICE.apply(d), ()=>window.VOICE.hasData());
 window.MATH_CH=channel('progress/math', ()=>window.MATH.get(), d=>window.MATH.apply(d), ()=>window.MATH.hasData());
 window.FRAC_CH=channel('progress/fractions', ()=>window.FRAC.get(), d=>window.FRAC.apply(d), ()=>window.FRAC.hasData());
+window.FRAC2_CH=channel('progress/fractions32', ()=>window.FRAC2.get(), d=>window.FRAC2.apply(d), ()=>window.FRAC2.hasData());
 (async()=>{
   const db = window.FB_DB || null;
   if(!db) return; // opened as a local file: keeps saving in this browser
   SYNC.db=db; setSync('online');
   document.querySelectorAll('.local-only').forEach(el=>el.hidden=true);
   $('#questFoot').textContent='Progress saves online automatically and follows you to any device. Classroom links open with the account that\'s signed in to Google.';
-  await QUEST_CH.attach(); await FR_CH.attach(); await FRB_CH.attach(); await FRC_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach();
+  await QUEST_CH.attach(); await FR_CH.attach(); await FRB_CH.attach(); await FRC_CH.attach(); await ROOTS_CH.attach(); await VOICE_CH.attach(); await MATH_CH.attach(); await FRAC_CH.attach(); await FRAC2_CH.attach();
 })();
 if(location.hash==='#french') showScreen('french');
 if(location.hash==='#frenchb') showScreen('frenchb');
@@ -6504,6 +7221,7 @@ if(location.hash==='#roots') showScreen('roots');
 if(location.hash==='#voice') showScreen('voice');
 if(location.hash==='#math') showScreen('math');
 if(location.hash==='#fractions') showScreen('fractions');
+if(location.hash==='#fractions32') showScreen('fractions32');
 if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
 </script>
 
