@@ -983,6 +983,53 @@ html[data-skin="night"] #rootsApp{--rt-accent-ink:#0B1530}
 .gate-msg{font-size:13.5px;color:var(--muted);min-height:1.2em}
 .gate-msg.err{color:var(--danger)}
 
+/* ================= BOOK NOTES: MONSTER (scoped; follows the Quest Log theme) ================= */
+#bookApp{--bk-accent:var(--s-lang,#5145CD);--bk-soft:color-mix(in srgb,var(--bk-accent) 10%,var(--surface));background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);margin-inline:-16px;padding:6px 16px 56px;min-height:100vh}
+#bookApp .bk-wrap{max-width:820px;margin:0 auto;display:grid;gap:14px}
+#bookApp h1,#bookApp h2,#bookApp h3{font-family:var(--display);margin:0;text-wrap:balance}
+#bookApp h1{font-size:clamp(2rem,6vw,2.8rem);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+#bookApp h2{font-size:1.35rem;font-weight:800}
+#bookApp h3{font-size:1.02rem;font-weight:800;margin-top:6px}
+#bookApp p{margin:0}
+#bookApp .hl{background:linear-gradient(transparent 58%,var(--gold) 58%,var(--gold) 92%,transparent 92%);padding-inline:.06em}
+#bookApp .eyebrow{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+#bookApp .bk-back{font-weight:600;text-decoration:none;font-size:14px;color:var(--bk-accent)}
+#bookApp .bk-hero{display:grid;gap:8px}
+#bookApp .lede,#bookApp .muted{color:var(--muted)}
+#bookApp .bk-note{font-size:.92rem;background:var(--bk-soft);border-left:4px solid var(--bk-accent);border-radius:8px;padding:10px 12px}
+#bookApp .bk-nav{display:flex;flex-wrap:wrap;gap:6px;position:sticky;top:0;z-index:2;background:var(--bg);padding:8px 0}
+#bookApp .bk-nav a{font-size:.85rem;font-weight:700;text-decoration:none;color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--surface)}
+#bookApp .bk-nav a:hover{border-color:var(--bk-accent)}
+#bookApp .bk-card{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px;scroll-margin-top:60px}
+#bookApp ul{margin:0;padding-left:1.2em;display:grid;gap:6px}
+#bookApp .bk-facts,#bookApp .bk-terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+#bookApp .bk-facts div,#bookApp .bk-terms div{display:grid;gap:2px;background:var(--bk-soft);border-radius:10px;padding:10px}
+#bookApp .bk-facts span,#bookApp .bk-terms span{font-size:.92rem;color:var(--muted)}
+#bookApp .bk-people{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+#bookApp .bk-people .p{display:grid;gap:3px;border:1.5px solid var(--line);border-radius:10px;padding:10px}
+#bookApp .bk-people .p.main{border-color:var(--bk-accent);background:var(--bk-soft)}
+#bookApp .bk-people span{font-size:.92rem}
+#bookApp details{border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+#bookApp details[open]{background:var(--bk-soft)}
+#bookApp details summary{cursor:pointer}
+#bookApp details p{margin-top:8px}
+#bookApp .bk-table{display:grid;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+#bookApp .bk-table .r{display:grid;grid-template-columns:1fr 1.6fr 1.6fr;gap:10px;padding:9px 12px;border-top:1px solid var(--line);font-size:.92rem}
+#bookApp .bk-table .r.h{border-top:0;font-weight:800;background:var(--bk-soft)}
+#bookApp .bk-table .r span:first-child{font-weight:700}
+#bookApp .bk-grid,#bookApp .bk-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+#bookApp .bk-grid>div{border:1.5px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:4px;align-content:start}
+#bookApp .bk-two>div{border-radius:10px;padding:10px;display:grid;gap:6px;align-content:start}
+#bookApp .bk-two .yes{background:var(--danger-soft,#fde8e8)}
+#bookApp .bk-two .no{background:var(--good-soft,#e5f6ea)}
+#bookApp .bk-flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+#bookApp .bk-flip{appearance:none;font:inherit;color:inherit;text-align:left;border:1.5px dashed var(--bk-accent);background:var(--surface);border-radius:12px;padding:12px;min-height:84px;cursor:pointer;display:grid;gap:6px;align-content:start}
+#bookApp .bk-flip .q{font-weight:700}
+#bookApp .bk-flip .a{display:none;font-size:.94rem;color:var(--good)}
+#bookApp .bk-flip.open{border-style:solid;background:var(--bk-soft)}
+#bookApp .bk-flip.open .a{display:block}
+#bookApp .bk-foot{font-size:.85rem;color:var(--muted);text-align:center}
+@media (max-width:560px){#bookApp .bk-table .r{grid-template-columns:1fr}#bookApp .bk-table .r.h{display:none}}
 /* ================= FRACTIONS TRAINER (Ch 3; scoped; follows the Quest Log theme) ================= */
 #fracApp{
   --fr-accent:var(--s-math); --fr-accent-ink:#FFFFFF; --fr-soft:color-mix(in srgb,var(--s-math) 12%,var(--surface));
@@ -2092,6 +2139,7 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
           <a class="theme-opt" role="menuitem" href="#fractions"><span class="pi">½</span><span>Fractions<small>Chapter 3 recall + Lesson 3.1 · exams</small></span></a>
           <a class="theme-opt" role="menuitem" href="#fractions32"><span class="pi">÷</span><span>Dividing Fractions<small>Lessons 3.2 + 3.3 · due Tue Nov 10</small></span></a>
           <a class="theme-opt" role="menuitem" href="#music"><span class="pi">🎵</span><span>Music Theory<small>Six answer sheets · test Fri Nov 13</small></span></a>
+          <a class="theme-opt" role="menuitem" href="#monster"><span class="pi">📖</span><span>Book Notes: Monster<small>Walter Dean Myers · study guide</small></span></a>
           <a class="theme-opt" role="menuitem" href="#roots"><span class="pi">√</span><span>Square Root Trainer<small>Lesson 1.1 extra practice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#voice"><span class="pi">✍️</span><span>Voice Trainer<small>Active &amp; passive voice</small></span></a>
           <a class="theme-opt" role="menuitem" href="#french"><span class="pi">🇫🇷</span><span>French · Section A<small>Flashcards &amp; mock tests</small></span></a>
@@ -2509,6 +2557,208 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
 <div class="fr-wrap"><main id="mu-app"></main></div>
 </div>
 
+<div id="bookApp" hidden>
+<div class="bk-wrap">
+  <a class="bk-back" href="#quest">← Quest Log</a>
+  <header class="bk-hero">
+    <p class="eyebrow">Book notes · Language</p>
+    <h1>Monster <span class="hl">study guide</span></h1>
+    <p class="lede">By Walter Dean Myers (1999), illustrated by Christopher Myers. The first book to win the Michael L. Printz Award for teen literature.</p>
+    <p class="bk-note">These notes help you understand and remember the book. They don’t replace reading it. Heads-up: the story is set in a jail and a murder trial, so it includes violence and some mature topics.</p>
+  </header>
+
+  <nav class="bk-nav" aria-label="Sections">
+    <a href="#bk-glance">At a glance</a><a href="#bk-form">How it’s told</a><a href="#bk-people">Characters</a><a href="#bk-plot">Day by day</a><a href="#bk-witness">Witnesses</a><a href="#bk-themes">Themes</a><a href="#bk-symbols">Symbols</a><a href="#bk-ending">The big question</a><a href="#bk-words">Key words</a><a href="#bk-think">Think about it</a>
+  </nav>
+
+  <section id="bk-glance" class="bk-card">
+    <h2>The story in two minutes</h2>
+    <p><b>Steve Harmon</b> is 16, a film-club student at Stuyvesant High School in New York who lives in Harlem with his parents and his little brother Jerry. He is in jail, on trial for <b>felony murder</b>.</p>
+    <p>Last December, two men robbed a Harlem drugstore. During a struggle the owner, <b>Mr. Alguinaldo Nesbitt</b>, was shot with his own gun and died. The prosecutor says it was a plan: <b>Bobo Evans</b> and <b>James King</b> did the robbery, 14-year-old <b>Osvaldo Cruz</b> was to block anyone who chased them, and <b>Steve</b> was the <b>lookout</b> who checked the store for police first.</p>
+    <p>Steve says he is innocent. To survive the terror of jail, he writes the whole trial as a <b>movie script</b>, and titles it with the word the prosecutor used for him in court: <b>“Monster.”</b></p>
+    <p>At the end, the jury finds <b>King guilty</b> and <b>Steve not guilty</b>. But when Steve turns to hug his lawyer, she turns away from him. Months later he is still filming himself, trying to work out who he really is and what she saw.</p>
+    <div class="bk-facts">
+      <div><b>Setting</b><span>Harlem and the Manhattan Detention Center, New York · a July trial about a robbery on December 22</span></div>
+      <div><b>Narrator</b><span>Steve, through his screenplay (third person, like a camera) and his journal (first person)</span></div>
+      <div><b>Genre</b><span>Realistic fiction · courtroom drama · told as a screenplay</span></div>
+      <div><b>Main conflict</b><span>Steve vs. the justice system, and Steve vs. himself: is he a good person or a “monster”?</span></div>
+    </div>
+  </section>
+
+  <section id="bk-form" class="bk-card">
+    <h2>How the book is told</h2>
+    <p>The book switches between two kinds of writing:</p>
+    <ul>
+      <li><b>The screenplay</b> (typed): the trial, flashbacks and jail scenes written like a film, with camera directions. It lets Steve watch his life from a distance, as if it were happening to a character.</li>
+      <li><b>The journal</b> (handwritten in the print book): Steve’s private, honest feelings: fear, loneliness, and doubt about himself.</li>
+    </ul>
+    <p><b>Why it matters:</b> the movie is how Steve copes. He says the movie feels more real than his life, then admits he just wishes it were only a movie. The camera shows what people <i>do</i>; the journal shows what Steve <i>feels</i>. Watch for the moments when the two don’t match.</p>
+    <h3>Film words in the script</h3>
+    <div class="bk-terms">
+      <div><b>FADE IN / FADE OUT</b><span>a scene appears from, or disappears into, darkness</span></div>
+      <div><b>CUT TO</b><span>jump straight to a new shot or scene</span></div>
+      <div><b>CU (close-up)</b><span>the camera is very close, usually on a face, to show emotion</span></div>
+      <div><b>MS / LS</b><span>medium shot / long shot: how far away the camera is</span></div>
+      <div><b>VO (voice-over)</b><span>a voice we hear while seeing something else</span></div>
+      <div><b>POV</b><span>point of view: we see through a character’s eyes</span></div>
+      <div><b>FLASHBACK</b><span>a scene from the past (the stoop, the park, the arrest)</span></div>
+      <div><b>DISSOLVE / SPLIT SCREEN</b><span>one image melts into another / two or more images at once</span></div>
+    </div>
+  </section>
+
+  <section id="bk-people" class="bk-card">
+    <h2>Characters</h2>
+    <div class="bk-people">
+      <div class="p main"><b>Steve Harmon</b><span>16, the defendant and narrator. Loves making films. Scared, thoughtful, unsure who he is. Accused of being the lookout.</span></div>
+      <div class="p"><b>Kathy O’Brien</b><span>Steve’s defence lawyer. Tough and honest with him. Her job: make him look human to the jury and separate him from King.</span></div>
+      <div class="p"><b>Sandra Petrocelli</b><span>The prosecutor (Assistant District Attorney). Skilled and determined. Calls the accused “monsters” in her opening.</span></div>
+      <div class="p"><b>James King</b><span>23, Steve’s co-defendant. Said to have shot Mr. Nesbitt. Earlier, he talked to Steve about needing a crew and a lookout.</span></div>
+      <div class="p"><b>Richard “Bobo” Evans</b><span>22, admits he was in the robbery. Testifies against King and Steve for a lighter sentence.</span></div>
+      <div class="p"><b>Osvaldo Cruz</b><span>14, member of the Diablos gang. His job was to block anyone chasing the robbers. Testifies for a deal; earlier bullied Steve.</span></div>
+      <div class="p"><b>Asa Briggs</b><span>King’s lawyer. Attacks the State’s witnesses as criminals who would say anything.</span></div>
+      <div class="p"><b>Alguinaldo Nesbitt</b><span>55, the drugstore owner from St. Kitts. Well respected; he was killed with his own licensed gun.</span></div>
+      <div class="p"><b>Lorelle Henry</b><span>58, retired school librarian. Saw two men arguing in the store and identifies King. She does <i>not</i> identify Steve.</span></div>
+      <div class="p"><b>Mr. George Sawicki</b><span>Steve’s film-club teacher. Testifies that Steve is honest and talented. Steve lists him (twice) as someone he admires.</span></div>
+      <div class="p"><b>Mr. and Mrs. Harmon</b><span>Steve’s parents. His mother says she knows he is innocent; his father cries and later seems unsure who his son is.</span></div>
+      <div class="p"><b>Jerry</b><span>Steve’s 11-year-old brother, who looks up to him. Steve wants to protect him.</span></div>
+      <div class="p"><b>Other witnesses</b><span>José Delgado (store clerk), Sal Zinzi and Wendell Bolden (informants), Detectives Karyl and Williams, Dr. Moody (medical examiner), Dorothy Moore and George Nipping (King’s witnesses).</span></div>
+      <div class="p"><b>In the jail</b><span>Sunset, Ernie, Acie and others, whose stories show Steve what prison life and “doing time” mean.</span></div>
+    </div>
+  </section>
+
+  <section id="bk-plot" class="bk-card">
+    <h2>Day by day</h2>
+    <details open><summary><b>Prologue</b> · the jail</summary>
+      <p>Steve describes the Detention Center: fights, crying in the dark, a scratched mirror where his face looks like a stranger’s. He decides to write his experience as a movie and name it after what the prosecutor called him.</p></details>
+    <details><summary><b>Monday, July 6</b> · the trial begins</summary>
+      <p>The opening credits roll. O’Brien warns Steve that felony murder is as serious as it gets. The prosecutor’s opening describes the robbery and says there are “monsters” in the community; Steve writes the word over and over until O’Brien crosses it out. O’Brien reminds the jury he is innocent until proven guilty; Briggs says the State’s witnesses are criminals.</p>
+      <p>Witnesses: the clerk <b>José Delgado</b> found Mr. Nesbitt dead and cigarettes missing. <b>Sal Zinzi</b> heard about the robbery in jail and traded the tip for a deal. A flashback shows 12-year-old Steve throwing a rock, telling his friend to run, and leaving him to take the punch.</p></details>
+    <details><summary><b>Tuesday, July 7</b> · Bolden and the stoop</summary>
+      <p><b>Wendell Bolden</b> says Bobo sold him stolen cigarettes and bragged about the robbery. A flashback shows King on a stoop talking about needing a crew “with heart”; Steve answers that he doesn’t know. That night Steve hears an inmate being attacked. A warm scene with Jerry shows Steve as a big brother.</p></details>
+    <details><summary><b>Wednesday, July 8</b> · detectives and Osvaldo</summary>
+      <p>In his journal Steve says he doesn’t feel part of his own trial, and that it’s hard to see himself as different from the other inmates. <b>Detective Karyl</b> admits there were no usable fingerprints; the case rests on informants. Flashbacks show Steve being questioned and an imagined death-row scene.</p>
+      <p>O’Brien tells Steve the jury may have judged him the moment they saw a young Black defendant. <b>Osvaldo</b> testifies that Bobo threatened him and that he was scared of Bobo, King and Steve. A flashback shows Osvaldo calling Steve a “lame” who wouldn’t have the heart for anything real.</p></details>
+    <details><summary><b>Thursday, July 9</b> · Osvaldo cross-examined, Dad visits</summary>
+      <p>Steve learns he could get 25 years to life. He looks at the crime-scene photos and wants O’Brien to see who he really is. King tries to scare him, but Steve realizes nothing can frighten him more than jail already does. Osvaldo says Steve was the lookout, then O’Brien exposes his lies about the Diablos and their face-cutting initiation.</p>
+      <p>Steve’s father visits and cries; he had dreamed of Steve going to college. Steve feels his father sees a monster instead of a son. Flashbacks show the day of the murder (Steve running from the crowd, a basketball left in the gutter), Bobo’s arrest on TV, and detectives handcuffing Steve at home in front of his mother and Jerry.</p></details>
+    <details><summary><b>Friday, July 10</b> · the evidence</summary>
+      <p>The prosecutor shows the photos again before the weekend. Mopping the jail floor in an orange jumpsuit, Steve realizes he once <i>wanted</i> to seem tough like Bobo, Osvaldo and King. Split-screen testimony: the gun was Mr. Nesbitt’s and legally licensed; the detective explains how the cigarette tip led to Bobo; the medical examiner explains how Mr. Nesbitt died.</p></details>
+    <details><summary><b>Saturday, July 11</b> · doubt</summary>
+      <p>Steve feels O’Brien thinks he is guilty; she corrects him to say “I didn’t do it.” In his journal he asks what he really did, and mentions walking into the drugstore and out again. His mother visits with a Bible and tells him she knows he is innocent, but afterward Steve admits that <i>he</i> is the one who isn’t sure. A flashback in Marcus Garvey Park shows King asking Steve if he is “down” to check out the drugstore; Steve looks away without answering.</p></details>
+    <details><summary><b>Sunday, July 12</b> · the long day</summary>
+      <p>A fight breaks out at church service. Steve thinks inmates fight because respect is all they have left. He waves to Jerry from a window though Jerry can’t see him, and admits he wishes his life were only a movie.</p></details>
+    <details><summary><b>Monday, July 13</b> · the star witnesses</summary>
+      <p><b>Lorelle Henry</b> identifies King as one of two men arguing with Mr. Nesbitt, but Briggs questions the photos and the small lineup. <b>Bobo</b> testifies that Steve came out of the store and gave no sign of trouble, that King shot Mr. Nesbitt, and that he and King ate fried chicken afterwards. O’Brien shows Bobo never spoke to Steve, never saw a real signal, and never gave him any money. “The people rest.”</p></details>
+    <details><summary><b>Tuesday, July 14</b> · the defence and closing arguments</summary>
+      <p>King’s side calls his cousin (alibi: he was at her house) and an old friend (King is left-handed). O’Brien prepares Steve with a paper-cup game: cup up for a good answer, down for a bad one. On the stand Steve says he was not in the drugstore that day and only knows the others as acquaintances; Mr. Sawicki vouches for his honesty.</p>
+      <p>Closings: Briggs says the State’s witnesses are the real monsters. O’Brien says nothing proves Steve agreed to a plan: no witness saw him, there was no signal and no money. Petrocelli says Steve made a <b>moral decision</b> to help and is just as guilty as the man who fired. The judge explains felony murder to the jury.</p></details>
+    <details><summary><b>Friday, July 17</b> · the verdict</summary>
+      <p>Steve can’t sleep and keeps editing the movie in his head. The jury finds <b>King guilty</b> and <b>Steve not guilty</b>. Steve opens his arms to hug O’Brien; she stiffens, gathers her papers and walks away. The final frame freezes on Steve’s grainy image, looking like a strange beast.</p></details>
+    <details><summary><b>December, five months later</b></summary>
+      <p>King gets 25 years to life; Osvaldo is sent to a reformatory for car theft; Bobo is still in jail. Steve’s father keeps his distance, unsure who his son is. Steve films himself again and again, looking for “one true image,” and still wonders what O’Brien saw when she turned away.</p></details>
+  </section>
+
+  <section id="bk-witness" class="bk-card">
+    <h2>Witness scorecard</h2>
+    <p class="muted">Most State witnesses got something in return for talking. That’s what the defence lawyers attack.</p>
+    <div class="bk-table" role="table">
+      <div class="r h" role="row"><span>Witness</span><span>What they said</span><span>The problem with it</span></div>
+      <div class="r" role="row"><span>José Delgado</span><span>Found the body; register open; 5 cartons of cigarettes missing.</span><span>Honest, but he saw nothing of the robbery itself.</span></div>
+      <div class="r" role="row"><span>Sal Zinzi</span><span>Heard in jail about a guy with stolen cigarettes.</span><span>Traded the story for early release.</span></div>
+      <div class="r" role="row"><span>Wendell Bolden</span><span>Bobo sold him cigarettes and bragged about the robbery.</span><span>His own assault charge was dropped.</span></div>
+      <div class="r" role="row"><span>Osvaldo Cruz</span><span>Bobo told him Steve would be the lookout.</span><span>Has a deal; lied about his gang; only repeats what he was told.</span></div>
+      <div class="r" role="row"><span>Lorelle Henry</span><span>Saw King arguing with Mr. Nesbitt.</span><span>Picked King from a small set of photos; did not see Steve at all.</span></div>
+      <div class="r" role="row"><span>Bobo Evans</span><span>Steve checked the store; King fired the gun.</span><span>Admits the robbery; testifying to avoid life in prison; never spoke to Steve.</span></div>
+      <div class="r" role="row"><span>Steve Harmon</span><span>He was not in the drugstore that day.</span><span>Can’t say where he was; knows all the others.</span></div>
+    </div>
+  </section>
+
+  <section id="bk-themes" class="bk-card">
+    <h2>Themes</h2>
+    <div class="bk-grid">
+      <div><h3>Identity: who is a “monster”?</h3><p>The prosecutor’s word sticks to Steve. He keeps asking whether he is a good person, and by the end even his father isn’t sure. The book asks whether one choice, or the company you keep, decides who you are.</p></div>
+      <div><h3>Truth vs. what can be proven</h3><p>The trial isn’t about what really happened, but what the jury believes. Witnesses bend the truth for deals, and Steve rehearses his answers with the cup game. Inmates argue about whether truth even matters “in the system.”</p></div>
+      <div><h3>Choices and responsibility</h3><p>Petrocelli calls Steve’s part a “moral decision.” Steve wonders which decisions he actually made: talking to King? Walking into the store? Not saying no? Being found not guilty doesn’t settle the question.</p></div>
+      <div><h3>Prejudice and fairness</h3><p>O’Brien warns that some jurors judged Steve the moment they saw a young Black man on trial. Her job is to make him look human, different from the others in orange jumpsuits.</p></div>
+      <div><h3>Fear and survival</h3><p>Jail is loud, violent and lonely. Steve copes by turning it into a movie. Over the trial he sees how the system wears people down.</p></div>
+      <div><h3>Family</h3><p>His mother’s faith, his father’s tears and Jerry’s admiration show what Steve could lose, and how the trial changes how his family sees him.</p></div>
+    </div>
+  </section>
+
+  <section id="bk-symbols" class="bk-card">
+    <h2>Symbols and motifs</h2>
+    <ul class="bk-sym">
+      <li><b>The word “Monster”</b>: the label the system puts on Steve. He writes it over and over; O’Brien crosses it out; it becomes his film’s title.</li>
+      <li><b>The movie / camera</b>: Steve’s way of stepping back from his life. In December he points the camera at himself, looking for the real Steve.</li>
+      <li><b>The mirror</b>: in the prologue Steve doesn’t recognize his own face, showing how jail is changing how he sees himself.</li>
+      <li><b>O’Brien’s cup game</b>: a cup turned up or down for good or bad answers. It shows that in court, how an answer sounds can matter as much as whether it is true.</li>
+      <li><b>Black-and-white, grainy images</b>: when things are uncertain or frightening, the film loses its colour. The last frame is so grainy Steve looks like a beast.</li>
+      <li><b>O’Brien turning away</b>: the book’s last mystery. Steve won the case, but did he win her trust?</li>
+    </ul>
+  </section>
+
+  <section id="bk-ending" class="bk-card">
+    <h2>The big question: was Steve the lookout?</h2>
+    <p>Myers never tells us. That is on purpose: you are the jury. Look for clues on both sides.</p>
+    <div class="bk-two">
+      <div class="yes"><h3>Clues he may have been involved</h3><ul>
+        <li>King asks Steve twice about the job; in the park he asks him to check out the drugstore, and Steve looks away instead of saying no.</li>
+        <li>In his journal Steve mentions walking into the drugstore and out again, but on the stand he says he wasn’t there that day.</li>
+        <li>On the day of the murder he runs from the crowd, leaving his basketball in the gutter.</li>
+        <li>He admits he once wanted to be tough like King, and he can’t say where he was.</li>
+        <li>O’Brien turns away from him after the verdict.</li></ul></div>
+      <div class="no"><h3>Clues he may be innocent</h3><ul>
+        <li>No witness without a deal saw him in the store, and Mrs. Henry didn’t see him at all.</li>
+        <li>There was no real signal: Bobo just says Steve came out and said nothing.</li>
+        <li>Bobo never spoke to Steve and Steve never got any money.</li>
+        <li>Mr. Sawicki and his family describe an honest, caring young man.</li>
+        <li>Steve’s fear and guilt may come from being near the crime, not from planning it.</li></ul></div>
+    </div>
+    <p><b>The legal answer vs. the moral answer:</b> “not guilty” means the State didn’t prove it beyond a reasonable doubt. It doesn’t mean everyone believes he did nothing wrong, including, maybe, Steve.</p>
+  </section>
+
+  <section id="bk-words" class="bk-card">
+    <h2>Courtroom words</h2>
+    <div class="bk-terms">
+      <div><b>Felony murder</b><span>if someone dies during a serious crime (like robbery), everyone who took part can be charged with murder, even if they didn’t kill anyone</span></div>
+      <div><b>Prosecutor</b><span>the lawyer for the State who tries to prove the accused is guilty</span></div>
+      <div><b>Defence attorney</b><span>the lawyer who defends the accused</span></div>
+      <div><b>Defendant</b><span>the person on trial</span></div>
+      <div><b>Testimony / witness</b><span>what a person says under oath / the person who says it</span></div>
+      <div><b>Cross-examination</b><span>when the other side’s lawyer questions a witness</span></div>
+      <div><b>Objection: sustained / overruled</b><span>the judge agrees with the objection / the judge rejects it</span></div>
+      <div><b>Leading the witness</b><span>asking a question that suggests the answer</span></div>
+      <div><b>Plea deal</b><span>admitting to a crime or testifying in exchange for a lighter sentence</span></div>
+      <div><b>Alibi</b><span>proof you were somewhere else when the crime happened</span></div>
+      <div><b>Reasonable doubt</b><span>if the jury has a sensible reason to doubt guilt, they must find the defendant not guilty</span></div>
+      <div><b>Verdict / appeal</b><span>the jury’s decision / asking a higher court to review it</span></div>
+    </div>
+  </section>
+
+  <section id="bk-think" class="bk-card">
+    <h2>Think about it</h2>
+    <p class="muted">Answer in your head or out loud, then tap to see ideas to compare with yours.</p>
+    <div class="bk-flips">
+      <button type="button" class="bk-flip"><span class="q">Why do you think Steve writes his story as a movie?</span><span class="a">It lets him step back from something too frightening to face directly, and it keeps him connected to the person he was: a filmmaker, not a prisoner.</span></button>
+      <button type="button" class="bk-flip"><span class="q">Who are the real “monsters” in the book? Is anyone?</span><span class="a">Petrocelli means the defendants; Briggs says it’s the State’s witnesses. Steve worries it might be him. The book suggests labels are too simple for real people.</span></button>
+      <button type="button" class="bk-flip"><span class="q">Why does O’Brien turn away after the verdict?</span><span class="a">Possibly she believes he was involved, or is uneasy that she helped him go free. It mirrors Steve’s own doubt about himself.</span></button>
+      <button type="button" class="bk-flip"><span class="q">Is being found “not guilty” the same as being innocent?</span><span class="a">No. Not guilty means the case wasn’t proven beyond reasonable doubt. Innocent means you truly did nothing wrong.</span></button>
+      <button type="button" class="bk-flip"><span class="q">What “moral decision” does the prosecutor say Steve made?</span><span class="a">To agree to check out the store so the robbery could happen: helping a crime, even without touching the gun.</span></button>
+      <button type="button" class="bk-flip"><span class="q">How does the rock flashback (age 12) connect to the trial?</span><span class="a">Steve caused trouble, told his friend to run, and left him to take the blame: a pattern of walking away from consequences.</span></button>
+      <button type="button" class="bk-flip"><span class="q">Why does O’Brien make Steve list the people he admires?</span><span class="a">To remind him, and help him show the jury, who he wants to be, not who the prosecutor says he is.</span></button>
+      <button type="button" class="bk-flip"><span class="q">What does Steve hope to find by filming himself at the end?</span><span class="a">“One true image”: the real Steve, and an answer to what O’Brien saw.</span></button>
+    </div>
+    <h3>Essay or discussion ideas</h3>
+    <ul>
+      <li>Do the people we spend time with shape who we become? Use Steve, King and Osvaldo as evidence.</li>
+      <li>How does the screenplay form change the way we judge Steve, compared with a normal novel?</li>
+      <li>Was the verdict for Steve fair? Argue one side using at least three clues from the book.</li>
+    </ul>
+  </section>
+  <p class="bk-foot">Notes written for Dhruv from the full text of <i>Monster</i>. All summaries are in our own words.</p>
+</div>
+</div>
+
 <div id="mathApp" hidden>
 <div class="mt-wrap"><main id="mt-app"></main></div>
 </div>
@@ -2646,6 +2896,21 @@ html[data-skin="night"] #voiceApp{--vt-accent-ink:#17143F}
   const link={label:'Music Theory Trainer: all six answer sheets, practice and mock tests', url:'#music', kind:'STUDY'};
   t.links=[link,...(t.links||[]).filter(l=>l.url!=='#music')];
   if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-music-trainer')) NEWS.unshift({id:'n-music-trainer', date:'2026-11-07', kind:'assignment', title:'Music: Music Theory Trainer is ready (test Fri Nov 13)', detail:'Built from Ms. Streiter’s six answer sheets: refreshers, practice, topic tests and mock tests with 10 True or False + 10 Multiple Choice, like the real test.', open:'music-theory-test'});
+})();
+/* ---------- Book notes: Monster (Walter Dean Myers) ----------
+   Added by the app; opens the #monster study guide. */
+(function(){
+  if(typeof BUILT_IN==='undefined') return;
+  if(typeof SUBJECTS!=='undefined' && !SUBJECTS.lang) SUBJECTS.lang={name:'Language', c:'--s-lang'};
+  if(!BUILT_IN.some(t=>t.id==='lang-monster-notes')) BUILT_IN.push({
+    id:'lang-monster-notes', title:'Language · Book study: Monster by Walter Dean Myers', subject:'lang', teacher:'', due:null, xp:0,
+    turnIn:'Study at home (book notes in the Quest Log)',
+    desc:'Steve Harmon, 16, is on trial for felony murder after a Harlem drugstore robbery, and tells his story as a movie script. The study guide has the story in two minutes, every character, a day-by-day summary, a witness scorecard, themes, symbols, courtroom words and questions to think about.',
+    steps:['Read the book (or your assigned chapters)','Read “The story in two minutes” in the study guide','Learn the characters: who is on Steve’s side, who is against him?','Read the day-by-day summary for the parts you have read','Learn the film words and courtroom words','Think about the themes: what makes someone a “monster”?','The big question: find 3 clues that Steve was the lookout and 3 that he wasn’t','Answer the “Think about it” cards out loud, then pick one essay idea and plan it'],
+    links:[{label:'Book notes: Monster study guide', url:'#monster', kind:'STUDY'}],
+    note:'The notes are a summary to help you remember and discuss the book. They don’t replace reading it.'
+  });
+  if(typeof NEWS!=='undefined' && Array.isArray(NEWS) && !NEWS.some(n=>n.id==='n-monster-notes')) NEWS.unshift({id:'n-monster-notes', date:'2026-11-09', kind:'material', title:'Book notes ready: Monster by Walter Dean Myers', detail:'A study guide with the story, characters, themes and the big question: was Steve the lookout?', open:'lang-monster-notes'});
 })();
 /* ---------- French Section B assignment ----------
    The Classroom data has the Section B task; point it at the trainer and use steps the trainer can tick. */
@@ -3228,7 +3493,7 @@ window.QL={
 
 /* ---------- Screens: Quest Log <-> French Trainer ---------- */
 function showScreen(name){
-  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#frac2App').hidden=name!=='fractions32'; $('#musApp').hidden=name!=='music'; $('#reviewApp').hidden=!name.startsWith('papa-');
+  $('#questApp').hidden=name!=='quest'; $('#trainerApp').hidden=name!=='french'; $('#frbApp').hidden=name!=='frenchb'; $('#frcApp').hidden=name!=='frenchc'; $('#rootsApp').hidden=name!=='roots'; $('#voiceApp').hidden=name!=='voice'; $('#mathApp').hidden=name!=='math'; $('#fracApp').hidden=name!=='fractions'; $('#frac2App').hidden=name!=='fractions32'; $('#musApp').hidden=name!=='music'; $('#bookApp').hidden=name!=='monster'; $('#reviewApp').hidden=!name.startsWith('papa-');
   if(modal.open) modal.close();
   if(name==='quest') renderAll();
   if(name.startsWith('papa-')) renderReview(name.slice(5));
@@ -3243,7 +3508,7 @@ function showScreen(name){
   window.scrollTo({top:0});
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#fractions32"],a[href="#music"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
+  const a=e.target.closest('a[href="#french"],a[href="#frenchb"],a[href="#frenchc"],a[href="#roots"],a[href="#voice"],a[href="#math"],a[href="#fractions"],a[href="#fractions32"],a[href="#music"],a[href="#monster"],a[href="#quest"],a[href^="#papa-"]'); if(!a) return;
   e.preventDefault(); showScreen(a.getAttribute('href').slice(1));
 });
 
@@ -8037,6 +8302,14 @@ window.MUS={
 home();
 })();
 
+/* ================= BOOK NOTES: MONSTER · flip cards and section links ================= */
+(function(){
+  const root=document.getElementById('bookApp'); if(!root) return;
+  root.addEventListener('click',e=>{
+    const f=e.target.closest('.bk-flip'); if(f){ f.classList.toggle('open'); return; }
+    const a=e.target.closest('.bk-nav a'); if(a){ e.preventDefault(); const t=root.querySelector(a.getAttribute('href')); if(t){ const d=t.querySelector('details'); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'}); } }
+  });
+})();
 </script>
 <script type="text/plain" id="appJs2">
 
@@ -8117,6 +8390,7 @@ if(location.hash==='#math') showScreen('math');
 if(location.hash==='#fractions') showScreen('fractions');
 if(location.hash==='#fractions32') showScreen('fractions32');
 if(location.hash==='#music') showScreen('music');
+if(location.hash==='#monster') showScreen('monster');
 if(location.hash.startsWith('#papa-')) showScreen(location.hash.slice(1));
 </script>
 
